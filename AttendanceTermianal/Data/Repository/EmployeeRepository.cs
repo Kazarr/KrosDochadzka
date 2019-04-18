@@ -140,10 +140,10 @@ namespace Data.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = @"INSERT INTO Employee (Password, Id_person)
-                                                VALUES (@Password, @Id_person)";
-                        command.Parameters.Add("@Firstname", SqlDbType.VarChar).Value = empolyee.Password;
-                        command.Parameters.Add("@Lastname", SqlDbType.VarChar).Value = empolyee.Id_person;
+                        command.CommandText = @"INSERT INTO Employee (Password, IdPerson)
+                                                VALUES (@Password, @IdPerson)";
+                        command.Parameters.Add("@Password", SqlDbType.VarChar).Value = empolyee.Password;
+                        command.Parameters.Add("@IdPerson", SqlDbType.VarChar).Value = empolyee.IdPerson;
                         if (command.ExecuteNonQuery() > 1)
                         {
                             return true;
