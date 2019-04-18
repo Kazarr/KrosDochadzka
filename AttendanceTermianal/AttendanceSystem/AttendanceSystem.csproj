@@ -52,6 +52,7 @@
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoginViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="MonthOverviewViewModel.cs" />
     <Compile Include="NewEmployeeViewModel.cs" />
@@ -75,6 +76,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmNewEmployee.resx">
       <DependentUpon>frmNewEmployee.cs</DependentUpon>
     </EmbeddedResource>
@@ -105,6 +109,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{CB5F584F-49F5-4BA1-97C7-B79B59A2071C}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
