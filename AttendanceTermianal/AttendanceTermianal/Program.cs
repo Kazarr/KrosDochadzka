@@ -15,7 +15,6 @@ namespace AttendanceTermianal
         [STAThread]
         static void Main()
         {
-            PersonGenerator generator = new PersonGenerator();           
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmTerminal());
