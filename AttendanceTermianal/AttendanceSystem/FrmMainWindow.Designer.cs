@@ -39,12 +39,14 @@
             this.labelMonth = new System.Windows.Forms.Label();
             this.comboBoxMonth = new System.Windows.Forms.ComboBox();
             this.dGVOverview = new System.Windows.Forms.DataGridView();
+            this.buttonExit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dGVOverview)).BeginInit();
             this.SuspendLayout();
             // 
             // btnShowMonth
             // 
-            this.btnShowMonth.Location = new System.Drawing.Point(15, 12);
+            this.btnShowMonth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnShowMonth.Location = new System.Drawing.Point(526, 12);
             this.btnShowMonth.Name = "btnShowMonth";
             this.btnShowMonth.Size = new System.Drawing.Size(162, 23);
             this.btnShowMonth.TabIndex = 20;
@@ -157,11 +159,22 @@
             this.dGVOverview.Size = new System.Drawing.Size(1151, 409);
             this.dGVOverview.TabIndex = 21;
             // 
+            // buttonExit
+            // 
+            this.buttonExit.Location = new System.Drawing.Point(15, 12);
+            this.buttonExit.Name = "buttonExit";
+            this.buttonExit.Size = new System.Drawing.Size(162, 23);
+            this.buttonExit.TabIndex = 22;
+            this.buttonExit.Text = "Exit";
+            this.buttonExit.UseVisualStyleBackColor = true;
+            this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
+            // 
             // FrmMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1187, 531);
+            this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.dGVOverview);
             this.Controls.Add(this.btnShowMonth);
             this.Controls.Add(this.label3);
@@ -194,6 +207,7 @@
         private System.Windows.Forms.Label labelMonth;
         private System.Windows.Forms.ComboBox comboBoxMonth;
         private System.Windows.Forms.DataGridView dGVOverview;
+        private System.Windows.Forms.Button buttonExit;
     }
 }
 

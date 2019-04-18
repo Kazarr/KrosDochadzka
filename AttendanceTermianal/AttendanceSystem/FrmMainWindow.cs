@@ -46,5 +46,10 @@ namespace AttendanceSystem
             frmMonthOverview monthOverview = new frmMonthOverview();
             monthOverview.ShowDialog();
         }
+
+        private void buttonExit_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
