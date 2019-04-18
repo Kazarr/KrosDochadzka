@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Data.Model;
+using Data.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,9 @@ namespace AttendanceSystem
 {
     class MainWindowViewModel
     {
+        public Empolyee GetEmployeeByID(int id)
+        {
+            return ManagerRepository.employeeRepository.GetEmpolyeeByID(id);
+        }
     }
 }

@@ -12,13 +12,22 @@ namespace AttendanceSystem
 {
     public partial class FrmMainWindow : Form
     {
-        private MainWindowViewModel _mainWindow = new MainWindowViewModel();
-        public FrmMainWindow()
+        private MainWindowViewModel _mainWindowViewModel = new MainWindowViewModel();
+        private int _employeeID;
+        public FrmMainWindow(int id)
         {
+            _employeeID = id;
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
+
+
         }
+
+        private void CheckPermission (){
+            
+         
+            }
 
    
 
