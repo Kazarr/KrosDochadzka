@@ -49,6 +49,9 @@ namespace Data.Repository
             }
         }
 
+
+
+        // this needs to be gone
         private string CalculateMD5Hash(string input)
 
         {
@@ -66,6 +69,8 @@ namespace Data.Repository
             return sb.ToString().ToLower();
         }
 
+
+        // this need to be gone too
         /// <summary>
         /// checks if id and hashed password match and are in our database
         /// </summary>
@@ -82,9 +87,39 @@ namespace Data.Repository
                     return true;
                 }
             }
-
-
             return false;
         }
+
+        public bool InsertEmployee(Empolyee empolyee)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"INSERT INTO Employee (Password, Id_person)
+                                                VALUES (@Password, @Id_person)";
+                        command.Parameters.Add("@Firstname", SqlDbType.VarChar).Value = empolyee.Password;
+                        command.Parameters.Add("@Lastname", SqlDbType.VarChar).Value = empolyee.Id_person;
+                        if (command.ExecuteNonQuery() > 1)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
     }
 }
