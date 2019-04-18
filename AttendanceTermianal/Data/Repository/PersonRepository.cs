@@ -113,5 +113,40 @@ namespace Data.Repository
                 }
             }
         }
+        public IEnumerable<Person> GetPersonsEmployees()
+        {
+            List<Person> ret = new List<Person>();
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"SELECT e.Id, p.First_name, p.Last_name, p.Phone_number, p.Adress FROM Person as p
+                                                JOIN Employee as e ON p.ID = e.Id_person";
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int personId = reader.GetInt32(0);
+                                string firstName = reader.GetString(1);
+                                string lastName = reader.GetString(2);
+                                string phoneNumber = reader.GetString(3);
+                                string adress = reader.IsDBNull(4) ? "" : reader.GetString(4);
+
+                                ret.Add(new Person(personId, firstName, lastName, phoneNumber, adress));
+                            }
+                            return ret;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
     }
 }
