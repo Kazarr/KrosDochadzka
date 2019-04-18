@@ -67,7 +67,7 @@ namespace Data.Repository
                                 string firstName = reader.GetString(1);
                                 string lastName = reader.GetString(2);
                                 string phoneNumber = reader.GetString(3);
-                                string adress = reader.GetString(4);
+                                string adress = reader.IsDBNull(4) ? "" : reader.GetString(4);
 
                                 return new Person(personId, firstName, lastName, phoneNumber, adress);
                             }

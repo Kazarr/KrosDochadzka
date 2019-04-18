@@ -45,5 +45,11 @@ namespace AttendanceTermianal
             return _terminalViewModel.IsCorrectId(input).Item2;
 
         }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            _terminalViewModel.FinishWork(CorrectId(txtEmpId.Text));
+            label3.Text = _terminalViewModel.EmployeeDescription(CorrectId(txtEmpId.Text));
+        }
     }
 }
