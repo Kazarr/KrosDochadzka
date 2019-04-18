@@ -12,7 +12,7 @@ namespace AttendanceSystem
 {
     public partial class frmLogin : Form
     {
-        LoginViewModel _login = new LoginViewModel();
+        LoginViewModel _loginViewModel = new LoginViewModel();
         public frmLogin()
         {
             InitializeComponent();
@@ -25,10 +25,11 @@ namespace AttendanceSystem
 
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
-            if (_login.CheckLogin(Convert.ToInt32(textBoxLogin.Text), textBoxPassword.Text))
+            if (_loginViewModel.CheckLogin(Convert.ToInt32(textBoxLogin.Text), textBoxPassword.Text))
                 {
-                FrmMainWindow frmMainWindow = new FrmMainWindow();
+                FrmMainWindow frmMainWindow = new FrmMainWindow(Convert.ToInt32(textBoxLogin.Text));
                 frmMainWindow.ShowDialog();
+                Close();
             }
             else
             {
