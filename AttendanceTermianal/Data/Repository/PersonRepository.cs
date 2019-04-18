@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Data.Repository
 {
-    class PersonRepository
+    public class PersonRepository
     {
         public IEnumerable<Person> GetPersons()
         {
@@ -67,7 +67,7 @@ namespace Data.Repository
                                 string phoneNumber = reader.GetString(3);
                                 string adress = reader.GetString(4);
 
-                                return new Person(personId, firstName, lastName, phoneNumber, adress));
+                                return new Person(personId, firstName, lastName, phoneNumber, adress);
                             }
                             throw new Exception("There was nothing to read");
                         }

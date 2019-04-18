@@ -38,10 +38,10 @@
             this.btnPrivate = new System.Windows.Forms.Button();
             this.btnDoctor = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblHour = new System.Windows.Forms.Label();
+            this.lblSec = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblDay = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
@@ -73,6 +73,7 @@
             this.btnArrival.TabIndex = 3;
             this.btnArrival.Text = "Arrival";
             this.btnArrival.UseVisualStyleBackColor = false;
+            this.btnArrival.Click += new System.EventHandler(this.btnArrival_Click);
             // 
             // btnExit
             // 
@@ -143,24 +144,24 @@
             this.label3.TabIndex = 9;
             this.label3.Text = "label3";
             // 
-            // label1
+            // lblHour
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(202, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 21);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "9:27";
+            this.lblHour.AutoSize = true;
+            this.lblHour.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHour.Location = new System.Drawing.Point(231, 11);
+            this.lblHour.Name = "lblHour";
+            this.lblHour.Size = new System.Drawing.Size(41, 21);
+            this.lblHour.TabIndex = 10;
+            this.lblHour.Text = "9:27";
             // 
-            // label4
+            // lblSec
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(249, 19);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(19, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "30";
+            this.lblSec.AutoSize = true;
+            this.lblSec.Location = new System.Drawing.Point(278, 19);
+            this.lblSec.Name = "lblSec";
+            this.lblSec.Size = new System.Drawing.Size(19, 13);
+            this.lblSec.TabIndex = 11;
+            this.lblSec.Text = "30";
             // 
             // lblDate
             // 
@@ -172,15 +173,15 @@
             this.lblDate.TabIndex = 12;
             this.lblDate.Text = "18.19";
             // 
-            // label6
+            // lblDay
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.Location = new System.Drawing.Point(123, 13);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 22);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Piatok";
+            this.lblDay.AutoSize = true;
+            this.lblDay.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblDay.Location = new System.Drawing.Point(123, 13);
+            this.lblDay.Name = "lblDay";
+            this.lblDay.Size = new System.Drawing.Size(63, 22);
+            this.lblDay.TabIndex = 13;
+            this.lblDay.Text = "Piatok";
             // 
             // timer
             // 
@@ -192,10 +193,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(451, 281);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblDay);
             this.Controls.Add(this.lblDate);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblSec);
+            this.Controls.Add(this.lblHour);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnDoctor);
             this.Controls.Add(this.btnPrivate);
@@ -224,10 +225,10 @@
         private System.Windows.Forms.Button btnPrivate;
         private System.Windows.Forms.Button btnDoctor;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblHour;
+        private System.Windows.Forms.Label lblSec;
         private System.Windows.Forms.Label lblDate;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblDay;
         private System.Windows.Forms.Timer timer;
     }
 }
