@@ -12,6 +12,14 @@ namespace Data.Model
         {
         }
 
+        public Daily_Result(int id_employee, DateTime start, DateTime finish, int id_worktype)
+        {
+            Id_employee = id_employee;
+            Start = start;
+            Finish = finish;
+            Id_worktype = id_worktype;
+        }
+
         public Daily_Result(int id, int id_employee, DateTime start, DateTime finish, int id_worktype)
         {
             Id = id;

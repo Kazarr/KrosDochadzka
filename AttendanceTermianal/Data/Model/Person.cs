@@ -12,6 +12,14 @@ namespace Data.Model
         {
         }
 
+        public Person(string first_name, string last_name, string phone_number, string adress)
+        {
+            First_name = first_name;
+            Last_name = last_name;
+            Phone_number = phone_number;
+            Adress = adress;
+        }
+
         public Person(int id, string first_name, string last_name, string phone_number, string adress)
         {
             Id = id;

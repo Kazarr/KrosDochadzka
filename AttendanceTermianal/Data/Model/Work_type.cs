@@ -12,6 +12,11 @@ namespace Data.Model
         {
         }
 
+        public Work_type(string name)
+        {
+            Name = name;
+        }
+
         public Work_type(int id, string name)
         {
             Id = id;
