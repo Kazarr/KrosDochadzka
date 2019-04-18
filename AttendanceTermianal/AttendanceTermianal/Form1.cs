@@ -26,5 +26,10 @@ namespace AttendanceTermianal
             lblHour.Text = _terminalViewModel.CurrentHourmin();
             lblSec.Text = _terminalViewModel.CurrentSec();
         }
+
+        private void frmTerminal_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
