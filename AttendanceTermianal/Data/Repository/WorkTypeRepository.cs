@@ -42,5 +42,34 @@ namespace Data.Repository
                 }
             }
         }
+        public bool InsertWork_Type(Work_type work_Type)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"INSERT INTO Work_Type (Name)
+                                                VALUES (@Name)";
+                        command.Parameters.Add("@Name", SqlDbType.VarChar).Value = work_Type.Name;
+                        if (command.ExecuteNonQuery() > 1)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
     }
 }

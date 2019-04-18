@@ -59,7 +59,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Repository\DialyResultRepository.cs" />
+    <Compile Include="Repository\DailyResultRepository.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />
     <Compile Include="Repository\ManagerRepository.cs" />
     <Compile Include="Repository\PersonRepository.cs" />

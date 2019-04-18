@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Data.Repository
 {
-    public class DialyResultRepository
+    public class DailyResultRepository
     {
         public IEnumerable<Daily_Result> GetDailyResult()
         {
