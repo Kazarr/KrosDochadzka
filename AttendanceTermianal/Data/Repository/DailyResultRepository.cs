@@ -79,7 +79,7 @@ namespace Data.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = @"UPDATE Daily_Result
+                        command.CommandText = @"UPDATE DailyResult
                                                SET Finish = GETDATE()
                                                 WHERE ID = @ID";
                         command.Parameters.Add("@ID", SqlDbType.VarChar).Value = daily_Result.Id;
