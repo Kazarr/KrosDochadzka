@@ -209,7 +209,6 @@
             this.Name = "frmTerminal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Attendence Terminal";
-            this.Load += new System.EventHandler(this.frmTerminal_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Generator\PasswordGenerator.cs" />
     <Compile Include="Generator\PersonGenerator.cs" />
     <Compile Include="Model\Daily_Result.cs" />
     <Compile Include="Model\Empolyee.cs" />

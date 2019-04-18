@@ -16,7 +16,7 @@ namespace AttendanceSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmMainWindow());
+            Application.Run(new frmLogin());
         }
     }
 }
