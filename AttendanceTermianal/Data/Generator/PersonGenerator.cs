@@ -14,6 +14,11 @@ namespace Data.Generator
     {
         public const int PERSON_COUNT = 100;
         private PersonRepository _personRepository;
+
+        public PersonGenerator()
+        {
+            _personRepository = new PersonRepository();
+        }
         public Person FakePerson()
         {
             Random r = new Random();
