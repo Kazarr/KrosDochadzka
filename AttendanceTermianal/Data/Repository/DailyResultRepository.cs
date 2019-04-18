@@ -45,7 +45,7 @@ namespace Data.Repository
                 }
             }
         }
-        public bool InsertDialyResult(Daily_Result daily_Result)
+        public int InsertDialyResult(Daily_Result daily_Result)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
             {
@@ -56,17 +56,11 @@ namespace Data.Repository
                     {
                         command.Connection = connection;
                         command.CommandText = @"INSERT INTO Daily_Result (Id_employee, Id_Worktype)
+                                                OUTPUT INSERTED.Id
                                                 VALUES (@Id_Employee, @Id_Worktype)";
                         command.Parameters.Add("@Id_Employee", SqlDbType.VarChar).Value = daily_Result.Id_employee;
                         command.Parameters.Add("@Id_Worktype", SqlDbType.VarChar).Value = daily_Result.Id_worktype;
-                        if (command.ExecuteNonQuery() > 1)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
+                        return (int)command.ExecuteScalar();
                     }
                 }
                 catch (Exception e)
@@ -85,10 +79,9 @@ namespace Data.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = @"UPDATE Dialy_Result
-                                               SET Finish = @Finish
+                        command.CommandText = @"UPDATE Daily_Result
+                                               SET Finish = GETDATE()
                                                 WHERE ID = @ID";
-                        command.Parameters.Add("@Finish", SqlDbType.VarChar).Value = daily_Result.Finish;
                         command.Parameters.Add("@ID", SqlDbType.VarChar).Value = daily_Result.Id;
                         if (command.ExecuteNonQuery() > 1)
                         {

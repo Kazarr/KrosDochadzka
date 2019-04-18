@@ -10,6 +10,7 @@ namespace AttendanceTermianal
 {
     public class TerminalViewModel
     {
+        private Daily_Result _result = new Daily_Result();
         public string CurrentDate()
         {
             string date = DateTime.Now.ToString("dd/MM/yyyy");
@@ -36,7 +37,7 @@ namespace AttendanceTermianal
             string fullName = $"{ManagerRepository.personRepository.GetPersonByIdEmployee(id).First_name} " +
                                 $"{ManagerRepository.personRepository.GetPersonByIdEmployee(id).Last_name} " +
                                 $"{DateTime.Now}";
-            return fullName;                   
+            return fullName;
         }
         public Tuple<bool, int> IsCorrectId(string input)
         {
@@ -49,15 +50,17 @@ namespace AttendanceTermianal
             return new Tuple<bool, int>(false, Id);
         }
 
-        public bool StartWork(int id_employee, int id_worktype)
+        public void StartWork(int id_employee, int id_worktype)
         {
-            Daily_Result result = new Daily_Result();
-            result.Id_worktype = id_worktype;
-            result.Id_employee = id_employee;
-            return ManagerRepository.dialyResultRepository.InsertDialyResult(result);
-            //ManagerRepository.dialyResultRepository.InsertDialyResult(daily_Result.Id_employee, daily_Result.Id_worktype);
-            //ManagerRepository.dialyResultRepository.InsertDialyResult(daily_Result);
-            //return daily_Result;
+            _result.Id_worktype = id_worktype;
+            _result.Id_employee = id_employee;
+            _result.Id = ManagerRepository.dialyResultRepository.InsertDialyResult(_result);
+            
+        }
+        public bool FinishWork(int id_employee)
+        {
+            _result.Id_employee = id_employee;
+            return ManagerRepository.dialyResultRepository.UpdateFinishDailyResult(_result);
         }
     }
 }
