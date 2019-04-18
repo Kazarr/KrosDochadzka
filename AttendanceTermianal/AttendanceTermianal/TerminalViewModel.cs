@@ -38,6 +38,16 @@ namespace AttendanceTermianal
                                 $"{DateTime.Now}";
             return fullName;                   
         }
+        public Tuple<bool, int> IsCorrectId(string input)
+        {
+            int Id = 0;
+            bool isOk = int.TryParse(input, out Id);
+            if (isOk)
+            {
+                return new Tuple<bool, int>(true, Id);
+            }
+            return new Tuple<bool, int>(false, Id);
+        }
 
     }
 }
