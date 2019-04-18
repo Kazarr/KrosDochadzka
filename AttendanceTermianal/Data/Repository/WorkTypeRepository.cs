@@ -11,9 +11,9 @@ namespace Data.Repository
 {
     public class WorkTypeRepository
     {
-        public IEnumerable<Work_type> GetWork_Type()
+        public IEnumerable<WorkType> GetWork_Type()
         {
-            List<Work_type> ret = new List<Work_type>();
+            List<WorkType> ret = new List<WorkType>();
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
             {
                 try
@@ -22,7 +22,7 @@ namespace Data.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = @"SELECT * FROM Work_Type";
+                        command.CommandText = @"SELECT * FROM WorkType";
                         using(SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
@@ -30,7 +30,7 @@ namespace Data.Repository
                                 int workTypeId = reader.GetInt32(0);
                                 string name = reader.GetString(1);
 
-                                ret.Add(new Work_type(workTypeId, name));
+                                ret.Add(new WorkType(workTypeId, name));
                             }
                             return ret;
                         }
@@ -42,7 +42,7 @@ namespace Data.Repository
                 }
             }
         }
-        public bool InsertWork_Type(Work_type work_Type)
+        public bool InsertWork_Type(WorkType work_Type)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
             {
@@ -52,7 +52,7 @@ namespace Data.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = @"INSERT INTO Work_Type (Name)
+                        command.CommandText = @"INSERT INTO WorkType (Name)
                                                 VALUES (@Name)";
                         command.Parameters.Add("@Name", SqlDbType.VarChar).Value = work_Type.Name;
                         if (command.ExecuteNonQuery() > 1)

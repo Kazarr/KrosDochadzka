@@ -13,11 +13,11 @@ namespace AttendanceSystem
     {
         public Empolyee GetEmployeeByID(int id)
         {
-            return ManagerRepository.employeeRepository.GetEmpolyeeByID(id);
+            return ManagerRepository.EmployeeRepository.GetEmpolyeeByID(id);
         }
         public BindingList<Person> FillComboBox()
         {
-            return new BindingList<Person>(ManagerRepository.personRepository.GetPersonsEmployees().ToList());
+            return new BindingList<Person>(ManagerRepository.PersonRepository.GetPersonsEmployees().ToList());
         }
     }
 }

@@ -11,9 +11,9 @@ namespace Data.Repository
 {
     public class DailyResultRepository
     {
-        public IEnumerable<Daily_Result> GetDailyResult()
+        public IEnumerable<DailyResult> GetDailyResult()
         {
-            List<Daily_Result> ret = new List<Daily_Result>();
+            List<DailyResult> ret = new List<DailyResult>();
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
             {
                 try
@@ -33,7 +33,7 @@ namespace Data.Repository
                                 DateTime finish = reader.GetDateTime(3);
                                 int workTypeId = reader.GetInt32(4);
 
-                                ret.Add(new Daily_Result(dailyResultId, employeeId, start, finish, workTypeId));
+                                ret.Add(new DailyResult(dailyResultId, employeeId, start, finish, workTypeId));
                             }
                             return ret;
                         }
@@ -45,7 +45,7 @@ namespace Data.Repository
                 }
             }
         }
-        public int InsertDialyResult(Daily_Result daily_Result)
+        public int InsertDialyResult(DailyResult daily_Result)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
             {
@@ -55,7 +55,7 @@ namespace Data.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = @"INSERT INTO Daily_Result (IdEmployee, Id_Worktype)
+                        command.CommandText = @"INSERT INTO DailyResult (IdEmployee, IdWorktype)
                                                 OUTPUT INSERTED.Id
                                                 VALUES (@Id_Employee, @Id_Worktype)";
                         command.Parameters.Add("@Id_Employee", SqlDbType.VarChar).Value = daily_Result.IdEmployee;
@@ -69,7 +69,7 @@ namespace Data.Repository
                 }
             }
         }
-        public bool UpdateFinishDailyResult(Daily_Result daily_Result)
+        public bool UpdateFinishDailyResult(DailyResult daily_Result)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
             {

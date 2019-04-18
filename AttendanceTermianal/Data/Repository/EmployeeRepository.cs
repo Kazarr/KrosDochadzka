@@ -142,8 +142,8 @@ namespace Data.Repository
                         command.Connection = connection;
                         command.CommandText = @"INSERT INTO Employee (Password, IdPerson)
                                                 VALUES (@Password, @IdPerson)";
-                        command.Parameters.Add("@Firstname", SqlDbType.VarChar).Value = empolyee.Password;
-                        command.Parameters.Add("@Lastname", SqlDbType.VarChar).Value = empolyee.IdPerson;
+                        command.Parameters.Add("@Password", SqlDbType.VarChar).Value = empolyee.Password;
+                        command.Parameters.Add("@IdPerson", SqlDbType.VarChar).Value = empolyee.IdPerson;
                         if (command.ExecuteNonQuery() > 1)
                         {
                             return true;
