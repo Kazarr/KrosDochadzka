@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,11 @@ namespace AttendanceTermianal
             string day = DateTime.Now.ToString("ss");
             return day;
         }
+
+        //public string Meno()
+        //{
+        //    ManagerRepository.dialyResultRepository.
+        //}
 
     }
 }
