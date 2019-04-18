@@ -14,25 +14,25 @@ namespace Data.Model
 
         public Daily_Result(int id_employee, DateTime start, DateTime finish, int id_worktype)
         {
-            Id_employee = id_employee;
+            IdEmployee = id_employee;
             Start = start;
             Finish = finish;
-            Id_worktype = id_worktype;
+            IdWorktype = id_worktype;
         }
 
         public Daily_Result(int id, int id_employee, DateTime start, DateTime finish, int id_worktype)
         {
             Id = id;
-            Id_employee = id_employee;
+            IdEmployee = id_employee;
             Start = start;
             Finish = finish;
-            Id_worktype = id_worktype;
+            IdWorktype = id_worktype;
         }
 
         public int Id { get; set; }
-        public int Id_employee { get; set; }
+        public int IdEmployee { get; set; }
         public DateTime Start { get; set; }
         public DateTime Finish { get; set; }
-        public int Id_worktype { get; set; }
+        public int IdWorktype { get; set; }
     }
 }

@@ -34,8 +34,8 @@ namespace AttendanceTermianal
 
         public string EmployeeDescription(int id)
         {
-            string fullName = $"{ManagerRepository.personRepository.GetPersonByIdEmployee(id).First_name} " +
-                                $"{ManagerRepository.personRepository.GetPersonByIdEmployee(id).Last_name} " +
+            string fullName = $"{ManagerRepository.personRepository.GetPersonByIdEmployee(id).FirstName} " +
+                                $"{ManagerRepository.personRepository.GetPersonByIdEmployee(id).LastName} " +
                                 $"{DateTime.Now}";
             return fullName;
         }
@@ -52,14 +52,14 @@ namespace AttendanceTermianal
 
         public void StartWork(int id_employee, int id_worktype)
         {
-            _result.Id_worktype = id_worktype;
-            _result.Id_employee = id_employee;
+            _result.IdWorktype = id_worktype;
+            _result.IdEmployee = id_employee;
             _result.Id = ManagerRepository.dialyResultRepository.InsertDialyResult(_result);
             
         }
         public bool FinishWork(int id_employee)
         {
-            _result.Id_employee = id_employee;
+            _result.IdEmployee = id_employee;
             return ManagerRepository.dialyResultRepository.UpdateFinishDailyResult(_result);
         }
     }

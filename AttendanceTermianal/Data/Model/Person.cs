@@ -14,25 +14,34 @@ namespace Data.Model
 
         public Person(string first_name, string last_name, string phone_number, string adress)
         {
-            First_name = first_name;
-            Last_name = last_name;
-            Phone_number = phone_number;
+            FirstName = first_name;
+            LastName = last_name;
+            PhoneNumber = phone_number;
             Adress = adress;
         }
 
         public Person(int id, string first_name, string last_name, string phone_number, string adress)
         {
             Id = id;
-            First_name = first_name;
-            Last_name = last_name;
-            Phone_number = phone_number;
+            FirstName = first_name;
+            LastName = last_name;
+            PhoneNumber = phone_number;
             Adress = adress;
         }
 
         public int Id { get; set; }
-        public string First_name { get; set; }
-        public string Last_name { get; set; }
-        public string Phone_number { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string PhoneNumber { get; set; }
         public string Adress { get; set; }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(FirstName);
+            sb.Append(" ");
+            sb.AppendLine(LastName);
+            return sb.ToString();
+        }
     }
 }

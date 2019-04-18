@@ -55,11 +55,11 @@ namespace Data.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = @"INSERT INTO Daily_Result (Id_employee, Id_Worktype)
+                        command.CommandText = @"INSERT INTO Daily_Result (IdEmployee, Id_Worktype)
                                                 OUTPUT INSERTED.Id
                                                 VALUES (@Id_Employee, @Id_Worktype)";
-                        command.Parameters.Add("@Id_Employee", SqlDbType.VarChar).Value = daily_Result.Id_employee;
-                        command.Parameters.Add("@Id_Worktype", SqlDbType.VarChar).Value = daily_Result.Id_worktype;
+                        command.Parameters.Add("@Id_Employee", SqlDbType.VarChar).Value = daily_Result.IdEmployee;
+                        command.Parameters.Add("@Id_Worktype", SqlDbType.VarChar).Value = daily_Result.IdWorktype;
                         return (int)command.ExecuteScalar();
                     }
                 }

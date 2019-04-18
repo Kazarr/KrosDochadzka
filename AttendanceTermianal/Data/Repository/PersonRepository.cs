@@ -56,8 +56,8 @@ namespace Data.Repository
                     {
                         command.Connection = connection;
                         command.CommandText = @"SELECT * FROM Person as p
-                                                JOIN Employee as e ON p.Id = e.Id_person
-                                                WHERE e.Id_person = @employeeId";
+                                                JOIN Employee as e ON p.Id = e.IdPerson
+                                                WHERE e.IdPerson = @employeeId";
                         command.Parameters.Add("@employeeId", SqlDbType.Int).Value = employeeId;
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -91,11 +91,11 @@ namespace Data.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = @"INSERT INTO Person (First_name, Last_name, Phone_number, Adress)
+                        command.CommandText = @"INSERT INTO Person (FirstName, LastName, PhoneNumber, Adress)
                                                 VALUES (@FirstName, @Lastname, @PhoneNumber, @Adress)";
-                        command.Parameters.Add("@Firstname", SqlDbType.VarChar).Value = person.First_name;
-                        command.Parameters.Add("@Lastname", SqlDbType.VarChar).Value = person.Last_name;
-                        command.Parameters.Add("@PhoneNumber", SqlDbType.VarChar).Value = person.Phone_number;
+                        command.Parameters.Add("@Firstname", SqlDbType.VarChar).Value = person.FirstName;
+                        command.Parameters.Add("@Lastname", SqlDbType.VarChar).Value = person.LastName;
+                        command.Parameters.Add("@PhoneNumber", SqlDbType.VarChar).Value = person.PhoneNumber;
                         command.Parameters.Add("@Adress", SqlDbType.VarChar).Value = person.Adress;
                         if (command.ExecuteNonQuery() > 1)
                         {
@@ -124,8 +124,8 @@ namespace Data.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = @"SELECT e.Id, p.First_name, p.Last_name, p.Phone_number, p.Adress FROM Person as p
-                                                JOIN Employee as e ON p.ID = e.Id_person";
+                        command.CommandText = @"SELECT e.Id, p.FirstName, p.LastName, p.PhoneNumber, p.Adress FROM Person as p
+                                                JOIN Employee as e ON p.ID = e.IdPerson";
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
