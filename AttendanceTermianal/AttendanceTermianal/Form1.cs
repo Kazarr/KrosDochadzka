@@ -16,11 +16,15 @@ namespace AttendanceTermianal
         public frmTerminal()
         {
             InitializeComponent();
+            timer.Start();
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
             lblDate.Text = _terminalViewModel.CurrentDate();
+            lblDay.Text = _terminalViewModel.CurrentDay();
+            lblHour.Text = _terminalViewModel.CurrentHourmin();
+            lblSec.Text = _terminalViewModel.CurrentSec();
         }
     }
 }
