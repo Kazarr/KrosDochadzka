@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Data.Generator;
 
 namespace AttendanceTermianal
 {
@@ -14,6 +15,8 @@ namespace AttendanceTermianal
         [STAThread]
         static void Main()
         {
+            PersonGenerator generator = new PersonGenerator();
+            generator.GenerateRandomPersons();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmTerminal());

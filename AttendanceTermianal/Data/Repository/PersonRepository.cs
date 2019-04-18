@@ -18,6 +18,7 @@ namespace Data.Repository
             {
                 try
                 {
+                    connection.Open();
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
@@ -50,6 +51,7 @@ namespace Data.Repository
             {
                 try
                 {
+                    connection.Open();
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
@@ -85,6 +87,7 @@ namespace Data.Repository
             {
                 try
                 {
+                    connection.Open();
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
