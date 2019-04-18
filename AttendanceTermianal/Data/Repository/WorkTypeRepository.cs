@@ -11,9 +11,9 @@ namespace Data.Repository
 {
     public class WorkTypeRepository
     {
-        public IEnumerable<Work_type> GetWork_Type()
+        public IEnumerable<WorkType> GetWork_Type()
         {
-            List<Work_type> ret = new List<Work_type>();
+            List<WorkType> ret = new List<WorkType>();
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
             {
                 try
@@ -30,7 +30,7 @@ namespace Data.Repository
                                 int workTypeId = reader.GetInt32(0);
                                 string name = reader.GetString(1);
 
-                                ret.Add(new Work_type(workTypeId, name));
+                                ret.Add(new WorkType(workTypeId, name));
                             }
                             return ret;
                         }
@@ -42,7 +42,7 @@ namespace Data.Repository
                 }
             }
         }
-        public bool InsertWork_Type(Work_type work_Type)
+        public bool InsertWork_Type(WorkType work_Type)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
             {

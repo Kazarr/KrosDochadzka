@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace Data.Model
 {
-    public class Work_type
+    public class WorkType
     {
-        public Work_type()
+        public WorkType()
         {
         }
 
-        public Work_type(string name)
+        public WorkType(string name)
         {
             Name = name;
         }
 
-        public Work_type(int id, string name)
+        public WorkType(int id, string name)
         {
             Id = id;
             Name = name;
