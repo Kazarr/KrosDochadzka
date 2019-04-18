@@ -8,19 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AttendanceTermianal
+namespace AttendanceSystem
 {
-    public partial class frmTerminal : Form
+    public partial class frmMonthOverview : Form
     {
-        private TerminalViewModel _terminalViewModel = new TerminalViewModel();
-        public frmTerminal()
+        public frmMonthOverview()
         {
             InitializeComponent();
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        private void label11_Click(object sender, EventArgs e)
         {
-            lblDate.Text = _terminalViewModel.CurrentDate();
+
+        }
+
+        private void buttonOK_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
         }
     }
 }
