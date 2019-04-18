@@ -14,23 +14,18 @@ namespace AttendanceSystem
     public partial class frmNewEmployee : Form
     {
         private NewEmployeeViewModel _newEmployee = new NewEmployeeViewModel();
+
         public frmNewEmployee()
         {
             InitializeComponent();
-        }
+        }      
 
-        private void labelSupervisor_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonConfirm_Click(object sender, EventArgs e)
+        private void buttonConfirm_Click_1(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
-
         }
 
-        private void buttonCancel_Click(object sender, EventArgs e)
+        private void buttonCancel_Click_1(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }

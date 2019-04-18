@@ -67,6 +67,7 @@
             this.buttonConfirm.TabIndex = 56;
             this.buttonConfirm.Text = "Confirm";
             this.buttonConfirm.UseVisualStyleBackColor = true;
+            this.buttonConfirm.Click += new System.EventHandler(this.buttonConfirm_Click_1);
             // 
             // buttonCancel
             // 
@@ -77,6 +78,7 @@
             this.buttonCancel.TabIndex = 55;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click_1);
             // 
             // textBoxConfirmPassword
             // 
@@ -304,7 +306,7 @@
             this.labelFirstName.TabIndex = 29;
             this.labelFirstName.Text = "First Name:";
             // 
-            // Form2
+            // frmNewEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -337,7 +339,7 @@
             this.Controls.Add(this.labelSalary);
             this.Controls.Add(this.labelLastName);
             this.Controls.Add(this.labelFirstName);
-            this.Name = "Form2";
+            this.Name = "frmNewEmployee";
             this.Text = "Form2";
             this.ResumeLayout(false);
             this.PerformLayout();
