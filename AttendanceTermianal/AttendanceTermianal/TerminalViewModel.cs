@@ -30,10 +30,14 @@ namespace AttendanceTermianal
             return day;
         }
 
-        //public string Meno()
-        //{
-        //    ManagerRepository.dialyResultRepository.
-        //}
+        public string EmployeeDescription(int id)
+        {
+            //StringBuilder employeeDescription = new StringBuilder();
+            string fullName = $"{ManagerRepository.personRepository.GetPersonByIdEmployee(id).First_name} " +
+                                $"{ManagerRepository.personRepository.GetPersonByIdEmployee(id).Last_name} " +
+                                $"{DateTime.Now}";
+            return fullName;                   
+        }
 
     }
 }

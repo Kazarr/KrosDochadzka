@@ -73,6 +73,7 @@
             this.btnArrival.TabIndex = 3;
             this.btnArrival.Text = "Arrival";
             this.btnArrival.UseVisualStyleBackColor = false;
+            this.btnArrival.Click += new System.EventHandler(this.btnArrival_Click);
             // 
             // btnExit
             // 
