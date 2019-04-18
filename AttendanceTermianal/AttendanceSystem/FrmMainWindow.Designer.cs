@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.btnShowMonth = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnUpdateEmployee = new System.Windows.Forms.Button();
             this.btnDeleteEmployee = new System.Windows.Forms.Button();
             this.btnNewEmployee = new System.Windows.Forms.Button();
@@ -52,16 +51,6 @@
             this.btnShowMonth.Text = "Month Overview";
             this.btnShowMonth.UseVisualStyleBackColor = true;
             this.btnShowMonth.Click += new System.EventHandler(this.btnShowMonth_Click_1);
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1017, 88);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 13);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "(choosed by combobox)";
             // 
             // btnUpdateEmployee
             // 
@@ -109,6 +98,7 @@
             this.labelChoosePerson.Size = new System.Drawing.Size(108, 18);
             this.labelChoosePerson.TabIndex = 14;
             this.labelChoosePerson.Text = "Choose  person ";
+            this.labelChoosePerson.Visible = false;
             // 
             // comboBoxPerson
             // 
@@ -158,7 +148,7 @@
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(162, 23);
             this.buttonExit.TabIndex = 22;
-            this.buttonExit.Text = "Exit";
+            this.buttonExit.Text = "Logout";
             this.buttonExit.UseVisualStyleBackColor = true;
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
             // 
@@ -170,7 +160,6 @@
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.dGVOverview);
             this.Controls.Add(this.btnShowMonth);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnUpdateEmployee);
             this.Controls.Add(this.btnDeleteEmployee);
             this.Controls.Add(this.btnNewEmployee);
@@ -189,7 +178,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnShowMonth;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnUpdateEmployee;
         private System.Windows.Forms.Button btnDeleteEmployee;
         private System.Windows.Forms.Button btnNewEmployee;

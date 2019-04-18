@@ -20,14 +20,28 @@ namespace AttendanceSystem
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
+            CheckPermission();
 
 
         }
 
         private void CheckPermission (){
-            
-         
+            if (_mainWindowViewModel.GetEmployeeByID(_employeeID).Permision >=2)
+            {
+                btnUpdateEmployee.Visible = true;
+                labelChoosePerson.Visible = true;
+                comboBoxPerson.Visible = true;
+
             }
+            if (_mainWindowViewModel.GetEmployeeByID(_employeeID).Permision >= 3)
+            {
+                btnNewEmployee.Visible = true;
+                btnDeleteEmployee.Visible = true;
+            }
+
+
+
+        }
 
    
 
@@ -58,7 +72,7 @@ namespace AttendanceSystem
 
         private void buttonExit_Click(object sender, EventArgs e)
         {
-            Close();
+            DialogResult = DialogResult.OK;
         }
     }
 }
