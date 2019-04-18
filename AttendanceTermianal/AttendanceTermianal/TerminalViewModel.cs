@@ -1,4 +1,5 @@
-﻿using Data.Repository;
+﻿using Data.Model;
+using Data.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,6 @@ namespace AttendanceTermianal
 
         public string EmployeeDescription(int id)
         {
-            //StringBuilder employeeDescription = new StringBuilder();
             string fullName = $"{ManagerRepository.personRepository.GetPersonByIdEmployee(id).First_name} " +
                                 $"{ManagerRepository.personRepository.GetPersonByIdEmployee(id).Last_name} " +
                                 $"{DateTime.Now}";
@@ -49,5 +49,15 @@ namespace AttendanceTermianal
             return new Tuple<bool, int>(false, Id);
         }
 
+        public bool StartWork(int id_employee, int id_worktype)
+        {
+            Daily_Result result = new Daily_Result();
+            result.Id_worktype = id_worktype;
+            result.Id_employee = id_employee;
+            return ManagerRepository.dialyResultRepository.InsertDialyResult(result);
+            //ManagerRepository.dialyResultRepository.InsertDialyResult(daily_Result.Id_employee, daily_Result.Id_worktype);
+            //ManagerRepository.dialyResultRepository.InsertDialyResult(daily_Result);
+            //return daily_Result;
+        }
     }
 }

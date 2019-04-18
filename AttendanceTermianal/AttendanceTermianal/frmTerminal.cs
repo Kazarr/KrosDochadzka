@@ -29,6 +29,7 @@ namespace AttendanceTermianal
 
         private void btnArrival_Click(object sender, EventArgs e)
         {
+            _terminalViewModel.StartWork(CorrectId(txtEmpId.Text), 1);
             label3.Text = _terminalViewModel.EmployeeDescription(CorrectId(txtEmpId.Text));
         }
         public int CorrectId(string input)
