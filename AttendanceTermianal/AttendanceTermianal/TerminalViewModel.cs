@@ -51,7 +51,7 @@ namespace AttendanceTermianal
 
         public bool StartWork(int id_employee, int id_worktype)
         {
-            Daily_Result result = new Daily_Result();
+            DailyResult result = new DailyResult();
             result.Id_worktype = id_worktype;
             result.Id_employee = id_employee;
             return ManagerRepository.dialyResultRepository.InsertDialyResult(result);
