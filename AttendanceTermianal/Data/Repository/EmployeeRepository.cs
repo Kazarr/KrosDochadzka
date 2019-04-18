@@ -14,7 +14,7 @@ namespace Data.Repository
         public IEnumerable<Empolyee> GetEmpolyees()
         {
             List<Empolyee> ret = new List<Empolyee>();
-            using (SqlConnection connection = new SqlConnection(Shared.CONNECTION_STRING))
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
             {
                 try
                 {

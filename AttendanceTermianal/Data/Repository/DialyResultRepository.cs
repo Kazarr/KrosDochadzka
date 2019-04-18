@@ -14,7 +14,7 @@ namespace Data.Repository
         public IEnumerable<Daily_Result> GetDailyResult()
         {
             List<Daily_Result> ret = new List<Daily_Result>();
-            using (SqlConnection connection = new SqlConnection(Shared.CONNECTION_STRING))
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
             {
                 try
                 {

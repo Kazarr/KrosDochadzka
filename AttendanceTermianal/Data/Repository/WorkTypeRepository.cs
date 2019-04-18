@@ -14,7 +14,7 @@ namespace Data.Repository
         public IEnumerable<Work_type> GetWork_Type()
         {
             List<Work_type> ret = new List<Work_type>();
-            using (SqlConnection connection = new SqlConnection(Shared.CONNECTION_STRING))
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
             {
                 try
                 {

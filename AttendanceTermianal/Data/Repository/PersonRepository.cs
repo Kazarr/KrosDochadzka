@@ -14,7 +14,7 @@ namespace Data.Repository
         public IEnumerable<Person> GetPersons()
         {
             List<Person> ret = new List<Person>();
-            using (SqlConnection connection = new SqlConnection(Shared.CONNECTION_STRING))
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
             {
                 try
                 {
@@ -46,7 +46,7 @@ namespace Data.Repository
         }
         public Person GetPersonByIdEmployee(int employeeId)
         {
-            using (SqlConnection connection = new SqlConnection(Shared.CONNECTION_STRING))
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
             {
                 try
                 {
@@ -70,6 +70,37 @@ namespace Data.Repository
                                 return new Person(personId, firstName, lastName, phoneNumber, adress));
                             }
                             throw new Exception("There was nothing to read");
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+        public bool InsertPerson(Person person)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"INSERT INTO Person (First_name, Last_name, Phone_number, Adress)
+                                                VALUES (@FirstName, @Lastname, @PhoneNumber, @Adress)";
+                        command.Parameters.Add("@Firstname", SqlDbType.VarChar).Value = person.First_name;
+                        command.Parameters.Add("@Lastname", SqlDbType.VarChar).Value = person.Last_name;
+                        command.Parameters.Add("@PhoneNumber", SqlDbType.VarChar).Value = person.Phone_number;
+                        command.Parameters.Add("@Adress", SqlDbType.VarChar).Value = person.Adress;
+                        if (command.ExecuteNonQuery() > 1)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
                         }
                     }
                 }
