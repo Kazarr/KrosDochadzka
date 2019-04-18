@@ -29,7 +29,7 @@ namespace AttendanceSystem
                 {
                 FrmMainWindow frmMainWindow = new FrmMainWindow(Convert.ToInt32(textBoxLogin.Text));
                 frmMainWindow.ShowDialog();
-                Close();
+                
             }
             else
             {
