@@ -22,7 +22,7 @@ namespace Data.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = @"SELECT * FROM Work_Type";
+                        command.CommandText = @"SELECT * FROM WorkType";
                         using(SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
@@ -52,7 +52,7 @@ namespace Data.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = @"INSERT INTO Work_Type (Name)
+                        command.CommandText = @"INSERT INTO WorkType (Name)
                                                 VALUES (@Name)";
                         command.Parameters.Add("@Name", SqlDbType.VarChar).Value = work_Type.Name;
                         if (command.ExecuteNonQuery() > 1)

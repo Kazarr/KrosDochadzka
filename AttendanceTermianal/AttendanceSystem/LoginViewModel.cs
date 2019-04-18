@@ -11,7 +11,7 @@ namespace AttendanceSystem
     {
         public bool CheckLogin(int id, string password)
         {
-            return ManagerRepository.employeeRepository.CheckLogin(id,password);
+            return ManagerRepository.EmployeeRepository.CheckLogin(id,password);
         }
     }
 }

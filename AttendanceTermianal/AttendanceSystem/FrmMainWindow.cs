@@ -21,7 +21,7 @@ namespace AttendanceSystem
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             CheckPermission();
-
+            comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox();
 
         }
         /// <summary>

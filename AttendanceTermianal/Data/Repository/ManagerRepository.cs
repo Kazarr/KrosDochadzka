@@ -8,9 +8,9 @@ namespace Data.Repository
 {
     public class ManagerRepository
     {
-        public static DailyResultRepository dialyResultRepository = new DailyResultRepository();
-        public static EmployeeRepository employeeRepository = new EmployeeRepository();
-        public static PersonRepository personRepository = new PersonRepository();
-        public static WorkTypeRepository workTypeRepository = new WorkTypeRepository();
+        public static DailyResultRepository DailyResultRepository = new DailyResultRepository();
+        public static EmployeeRepository EmployeeRepository = new EmployeeRepository();
+        public static PersonRepository PersonRepository = new PersonRepository();
+        public static WorkTypeRepository WorkTypeRepository = new WorkTypeRepository();
     }
 }

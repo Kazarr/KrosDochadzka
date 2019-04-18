@@ -10,7 +10,7 @@ namespace AttendanceTermianal
 {
     public class TerminalViewModel
     {
-        private Daily_Result _result = new Daily_Result();
+        private DailyResult _result = new DailyResult();
         public string CurrentDate()
         {
             string date = DateTime.Now.ToString("dd/MM/yyyy");
@@ -32,10 +32,11 @@ namespace AttendanceTermianal
             return day;
         }
 
-        public string EmployeeDescription(int id)
+        public string EmployeeDescription(int id, string work)
         {
-            string fullName = $"{ManagerRepository.personRepository.GetPersonByIdEmployee(id).First_name} " +
-                                $"{ManagerRepository.personRepository.GetPersonByIdEmployee(id).Last_name} " +
+            string fullName = $"{ManagerRepository.PersonRepository.GetPersonByIdEmployee(id).FirstName} " +
+                                $"{ManagerRepository.PersonRepository.GetPersonByIdEmployee(id).LastName} " +
+                                $"{work} " + 
                                 $"{DateTime.Now}";
             return fullName;
         }
@@ -52,15 +53,15 @@ namespace AttendanceTermianal
 
         public void StartWork(int id_employee, int id_worktype)
         {
-            _result.Id_worktype = id_worktype;
-            _result.Id_employee = id_employee;
-            _result.Id = ManagerRepository.dialyResultRepository.InsertDialyResult(_result);
+            _result.IdWorktype = id_worktype;
+            _result.IdEmployee = id_employee;
+            _result.Id = ManagerRepository.DailyResultRepository.InsertDialyResult(_result);
             
         }
         public bool FinishWork(int id_employee)
         {
-            _result.Id_employee = id_employee;
-            return ManagerRepository.dialyResultRepository.UpdateFinishDailyResult(_result);
+            _result.IdEmployee = id_employee;
+            return ManagerRepository.DailyResultRepository.UpdateFinishDailyResult(_result);
         }
     }
 }
