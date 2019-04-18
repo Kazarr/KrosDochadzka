@@ -95,7 +95,7 @@
             this.btnLunch.ForeColor = System.Drawing.Color.White;
             this.btnLunch.Location = new System.Drawing.Point(266, 126);
             this.btnLunch.Name = "btnLunch";
-            this.btnLunch.Size = new System.Drawing.Size(95, 30);
+            this.btnLunch.Size = new System.Drawing.Size(111, 30);
             this.btnLunch.TabIndex = 5;
             this.btnLunch.Text = "Lunch";
             this.btnLunch.UseVisualStyleBackColor = false;
@@ -107,7 +107,7 @@
             this.btnBusinessTrip.ForeColor = System.Drawing.Color.White;
             this.btnBusinessTrip.Location = new System.Drawing.Point(266, 162);
             this.btnBusinessTrip.Name = "btnBusinessTrip";
-            this.btnBusinessTrip.Size = new System.Drawing.Size(95, 30);
+            this.btnBusinessTrip.Size = new System.Drawing.Size(111, 30);
             this.btnBusinessTrip.TabIndex = 6;
             this.btnBusinessTrip.Text = "Business Trip";
             this.btnBusinessTrip.UseVisualStyleBackColor = false;
@@ -119,7 +119,7 @@
             this.btnPrivate.ForeColor = System.Drawing.Color.White;
             this.btnPrivate.Location = new System.Drawing.Point(266, 198);
             this.btnPrivate.Name = "btnPrivate";
-            this.btnPrivate.Size = new System.Drawing.Size(95, 30);
+            this.btnPrivate.Size = new System.Drawing.Size(111, 30);
             this.btnPrivate.TabIndex = 7;
             this.btnPrivate.Text = "Private";
             this.btnPrivate.UseVisualStyleBackColor = false;
@@ -131,7 +131,7 @@
             this.btnDoctor.ForeColor = System.Drawing.Color.White;
             this.btnDoctor.Location = new System.Drawing.Point(266, 234);
             this.btnDoctor.Name = "btnDoctor";
-            this.btnDoctor.Size = new System.Drawing.Size(95, 30);
+            this.btnDoctor.Size = new System.Drawing.Size(111, 30);
             this.btnDoctor.TabIndex = 8;
             this.btnDoctor.Text = "Doctor";
             this.btnDoctor.UseVisualStyleBackColor = false;
