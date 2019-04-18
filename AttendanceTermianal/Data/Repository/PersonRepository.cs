@@ -56,8 +56,8 @@ namespace Data.Repository
                     {
                         command.Connection = connection;
                         command.CommandText = @"SELECT * FROM Person as p
-                                                JOIN Employee as e ON p.Id = e.Id_person
-                                                WHERE e.Id_person = @employeeId";
+                                                JOIN Employee as e ON p.Id = e.IdPerson
+                                                WHERE e.IdPerson = @employeeId";
                         command.Parameters.Add("@employeeId", SqlDbType.Int).Value = employeeId;
                         using (SqlDataReader reader = command.ExecuteReader())
                         {

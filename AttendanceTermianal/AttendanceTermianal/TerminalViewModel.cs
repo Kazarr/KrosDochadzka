@@ -32,10 +32,11 @@ namespace AttendanceTermianal
             return day;
         }
 
-        public string EmployeeDescription(int id)
+        public string EmployeeDescription(int id, string workType)
         {
             string fullName = $"{ManagerRepository.personRepository.GetPersonByIdEmployee(id).First_name} " +
                                 $"{ManagerRepository.personRepository.GetPersonByIdEmployee(id).Last_name} " +
+                                $"{workType} " +
                                 $"{DateTime.Now}";
             return fullName;
         }
