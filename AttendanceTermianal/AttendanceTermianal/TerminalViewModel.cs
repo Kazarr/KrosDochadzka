@@ -10,7 +10,7 @@ namespace AttendanceTermianal
 {
     public class TerminalViewModel
     {
-        private Daily_Result _result = new Daily_Result();
+        private DailyResult _result = new DailyResult();
         public string CurrentDate()
         {
             string date = DateTime.Now.ToString("dd/MM/yyyy");
@@ -34,8 +34,8 @@ namespace AttendanceTermianal
 
         public string EmployeeDescription(int id)
         {
-            string fullName = $"{ManagerRepository.personRepository.GetPersonByIdEmployee(id).First_name} " +
-                                $"{ManagerRepository.personRepository.GetPersonByIdEmployee(id).Last_name} " +
+            string fullName = $"{ManagerRepository.PersonRepository.GetPersonByIdEmployee(id).First_name} " +
+                                $"{ManagerRepository.PersonRepository.GetPersonByIdEmployee(id).Last_name} " +
                                 $"{DateTime.Now}";
             return fullName;
         }
@@ -54,13 +54,13 @@ namespace AttendanceTermianal
         {
             _result.Id_worktype = id_worktype;
             _result.Id_employee = id_employee;
-            _result.Id = ManagerRepository.dialyResultRepository.InsertDialyResult(_result);
+            _result.Id = ManagerRepository.DialyResultRepository.InsertDialyResult(_result);
             
         }
         public bool FinishWork(int id_employee)
         {
             _result.Id_employee = id_employee;
-            return ManagerRepository.dialyResultRepository.UpdateFinishDailyResult(_result);
+            return ManagerRepository.DialyResultRepository.UpdateFinishDailyResult(_result);
         }
     }
 }
