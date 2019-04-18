@@ -29,7 +29,20 @@ namespace AttendanceTermianal
 
         private void btnArrival_Click(object sender, EventArgs e)
         {
-            label3.Text = _terminalViewModel.EmployeeDescription(int.Parse(txtEmpId.Text));
+            label3.Text = _terminalViewModel.EmployeeDescription(CorrectId(txtEmpId.Text));
+        }
+        public int CorrectId(string input)
+        {
+            if (_terminalViewModel.IsCorrectId(input).Item1)
+            {
+                return _terminalViewModel.IsCorrectId(input).Item2;
+            }
+            else
+            {
+                MessageBox.Show("Insert number!!!");
+            }
+            return _terminalViewModel.IsCorrectId(input).Item2;
+
         }
     }
 }
