@@ -12,9 +12,33 @@ namespace AttendanceSystem
 {
     public partial class frmLogin : Form
     {
+        LoginViewModel _login = new LoginViewModel();
         public frmLogin()
         {
             InitializeComponent();
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void buttonConfirm_Click(object sender, EventArgs e)
+        {
+            if (_login.CheckLogin(Convert.ToInt32(textBoxLogin.Text), textBoxPassword.Text))
+                {
+                FrmMainWindow frmMainWindow = new FrmMainWindow();
+                frmMainWindow.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Wrong Password","Retard");
+            }
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

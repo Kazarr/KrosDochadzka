@@ -23,7 +23,7 @@ namespace Data.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = @"SELECT * FROM Empolyee";
+                        command.CommandText = @"SELECT * FROM Employee";
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
@@ -31,11 +31,11 @@ namespace Data.Repository
                                 int employeeId = reader.GetInt32(0);
                                 string password = reader.GetString(1);
                                 int idPerson = reader.GetInt32(2);
-                                int idSupervisor = reader.GetInt32(3);
+                                int idSupervisor = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
                                 int permision = reader.GetInt32(4);
                                 decimal salary = reader.GetDecimal(5);
                                 DateTime hiredDate = reader.GetDateTime(6);
-
+                                
                                 ret.Add(new Empolyee(employeeId, password, idPerson, idSupervisor, permision, salary, hiredDate));
                             }
                             return ret;
@@ -80,9 +80,11 @@ namespace Data.Repository
         public bool CheckLogin(int id, string password)
         {
             List<Empolyee> employees = new List<Empolyee>(GetEmpolyees());
-            foreach(var employee in employees)
+            Console.WriteLine(CalculateMD5Hash(password));
+            Console.WriteLine(employees[0].Password);
+            foreach (var employee in employees)
             {
-                if (employee.Id.Equals(id.ToString())&& employee.Password.Equals(CalculateMD5Hash(password)))
+                if ((employee.Id==id) && (employee.Password.Equals(CalculateMD5Hash(password))))
                 {
                     return true;
                 }
