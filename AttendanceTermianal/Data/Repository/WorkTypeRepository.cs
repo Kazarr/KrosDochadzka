@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,8 +11,9 @@ namespace Data.Repository
 {
     public class WorkTypeRepository
     {
-        public DataSet GetEmployees()
+        public IEnumerable<Work_type> GetWork_Type()
         {
+            List<Work_type> ret = new List<Work_type>();
             using (SqlConnection connection = new SqlConnection(Shared.CONNECTION_STRING))
             {
                 try
@@ -20,11 +22,16 @@ namespace Data.Repository
                     {
                         command.Connection = connection;
                         command.CommandText = @"SELECT * FROM Work_Type";
-                        using (SqlDataAdapter adapter = new SqlDataAdapter())
+                        using(SqlDataReader reader = command.ExecuteReader())
                         {
-                            DataSet ds = new DataSet();
-                            adapter.Fill(ds, "Work_Type");
-                            return ds;
+                            while (reader.Read())
+                            {
+                                int workTypeId = reader.GetInt32(0);
+                                string name = reader.GetString(1);
+
+                                ret.Add(new Work_type(workTypeId, name));
+                            }
+                            return ret;
                         }
                     }
                 }

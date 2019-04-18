@@ -8,6 +8,21 @@ namespace Data.Model
 {
     public class Empolyee
     {
+        public Empolyee()
+        {
+        }
+
+        public Empolyee(int id, string password, int id_person, int id_supervisor, int permision, decimal salary, DateTime hiredDate)
+        {
+            Id = id;
+            Password = password;
+            Id_person = id_person;
+            Id_supervisor = id_supervisor;
+            Permision = permision;
+            Salary = salary;
+            HiredDate = hiredDate;
+        }
+
         public int Id { get; set; }
         public string Password { get; set; }
         public int Id_person { get; set; }

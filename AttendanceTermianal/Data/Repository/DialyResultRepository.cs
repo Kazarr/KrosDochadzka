@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,8 +11,9 @@ namespace Data.Repository
 {
     public class DialyResultRepository
     {
-        public DataSet GetEmployees()
+        public IEnumerable<Daily_Result> GetDailyResult()
         {
+            List<Daily_Result> ret = new List<Daily_Result>();
             using (SqlConnection connection = new SqlConnection(Shared.CONNECTION_STRING))
             {
                 try
@@ -20,11 +22,19 @@ namespace Data.Repository
                     {
                         command.Connection = connection;
                         command.CommandText = @"SELECT * FROM Daily_Result";
-                        using (SqlDataAdapter adapter = new SqlDataAdapter())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            DataSet ds = new DataSet();
-                            adapter.Fill(ds, "Daily_Result");
-                            return ds;
+                            while (reader.Read())
+                            {
+                                int dailyResultId = reader.GetInt32(0);
+                                int employeeId = reader.GetInt32(1);
+                                DateTime start = reader.GetDateTime(2);
+                                DateTime finish = reader.GetDateTime(3);
+                                int workTypeId = reader.GetInt32(4);
+
+                                ret.Add(new Daily_Result(dailyResultId, employeeId, start, finish, workTypeId));
+                            }
+                            return ret;
                         }
                     }
                 }

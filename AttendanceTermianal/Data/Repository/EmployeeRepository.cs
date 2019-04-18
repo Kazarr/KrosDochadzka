@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,24 +11,36 @@ namespace Data.Repository
 {
     public class EmployeeRepository
     {
-        public DataSet GetEmployees()
+        public IEnumerable<Empolyee> GetEmpolyees()
         {
-            using(SqlConnection connection = new SqlConnection(Shared.CONNECTION_STRING))
+            List<Empolyee> ret = new List<Empolyee>();
+            using (SqlConnection connection = new SqlConnection(Shared.CONNECTION_STRING))
             {
                 try
                 {
-                    using(SqlCommand command = new SqlCommand())
+                    using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = @"SELECT * FROM Employee";
-                        using(SqlDataAdapter adapter = new SqlDataAdapter())
+                        command.CommandText = @"SELECT * FROM Empolyee";
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            DataSet ds = new DataSet();
-                            adapter.Fill(ds, "Employee");
-                            return ds;
+                            while (reader.Read())
+                            {
+                                int employeeId = reader.GetInt32(0);
+                                string password = reader.GetString(1);
+                                int idPerson = reader.GetInt32(2);
+                                int idSupervisor = reader.GetInt32(3);
+                                int permision = reader.GetInt32(4);
+                                decimal salary = reader.GetDecimal(5);
+                                DateTime hiredDate = reader.GetDateTime(6);
+
+                                ret.Add(new Empolyee(employeeId, password, idPerson, idSupervisor, permision, salary, hiredDate));
+                            }
+                            return ret;
                         }
                     }
-                }catch(Exception e)
+                }
+                catch (Exception e)
                 {
                     throw e;
                 }

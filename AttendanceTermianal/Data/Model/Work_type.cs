@@ -6,8 +6,18 @@ using System.Threading.Tasks;
 
 namespace Data.Model
 {
-    public class Wokr_type
+    public class Work_type
     {
+        public Work_type()
+        {
+        }
+
+        public Work_type(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
     }
