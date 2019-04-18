@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace AttendanceTermianal
 {
-    public partial class Form1 : Form
+    public partial class frmTerminal : Form
     {
-        public Form1()
+        private TerminalViewModel _terminalViewModel = new TerminalViewModel();
+        public frmTerminal()
         {
             InitializeComponent();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            lblDate.Text = _terminalViewModel.CurrentDate();
         }
     }
 }
