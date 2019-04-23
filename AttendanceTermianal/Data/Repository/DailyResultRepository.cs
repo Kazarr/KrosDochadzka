@@ -119,7 +119,7 @@ namespace Data.Repository
                         command.Connection = connection;
                         command.CommandText = @"select distinct datename (month, d.Start), count(*)
                                                 from [dbo].[DailyResult] as d
-                                                where d.id_Employee = @id
+                                                where d.idEmployee = @id
                                                 group by datename (month, d.Start)
                                                 order by datename (month, d.Start)";
                         command.Parameters.Add("@id", SqlDbType.Int).Value = id;
