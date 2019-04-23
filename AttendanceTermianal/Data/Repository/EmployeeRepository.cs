@@ -49,6 +49,40 @@ namespace Data.Repository
             }
         }
 
+        public bool InsertFullEmployee(Empolyee employee)
+        {
+            employee.Password = CalculateMD5Hash(employee.Password);
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"INSERT INTO Employee (Salary, IdPermission, IdSupervisor, Password, IdPerson)
+                                                VALUES (@Salary, @IdPermission, @IdSupervisor, @Password, @IdPerson)";
+                        command.Parameters.Add("@Salary", SqlDbType.Decimal).Value = employee.Salary;
+                        command.Parameters.Add("@IdPermission", SqlDbType.Int).Value = employee.Permision;
+                        command.Parameters.Add("@IdSupervisor", SqlDbType.Int).Value = employee.IdSupervisor;
+                        command.Parameters.Add("@Password", SqlDbType.VarChar).Value = employee.Password;
+                        command.Parameters.Add("@IdPerson", SqlDbType.VarChar).Value = employee.IdPerson;
+                        if (command.ExecuteNonQuery() > 1)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
 
         public Empolyee GetEmpolyeeByID(int id)
         {

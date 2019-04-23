@@ -33,7 +33,7 @@ namespace Data.Generator
         {
             for(int i = 0; i < PERSON_COUNT; i++)
             {
-                _personRepository.InsertPerson(FakePerson());
+                _personRepository.InsertOnlyPerson(FakePerson());
             }
         }
 
