@@ -24,7 +24,9 @@ namespace AttendanceSystem
             comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox();
 
         }
-
+        /// <summary>
+        /// checks if the loged user is regular (1) supervisor(2) or admin (3) 
+        /// </summary>
         private void CheckPermission (){
             if (_mainWindowViewModel.GetEmployeeByID(_employeeID).Permision >=2)
             {
