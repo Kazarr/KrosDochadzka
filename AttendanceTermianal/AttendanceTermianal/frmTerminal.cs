@@ -42,34 +42,64 @@ namespace AttendanceTermianal
 
         private void btnArrival_Click(object sender, EventArgs e)
         {
-            _terminalViewModel.StartWork(CorrectId(txtEmpId.Text), (int)WorkType.Work);
-            label3.Text = _terminalViewModel.EmployeeDescription(CorrectId(txtEmpId.Text), nameof(WorkType.Work));
-
+            if (CorrectEmp(txtEmpId.Text))
+            {
+                _terminalViewModel.FinishWork(CorrectId(txtEmpId.Text));
+                _terminalViewModel.StartWork(CorrectId(txtEmpId.Text), (int)WorkType.Work);
+                label3.Text = _terminalViewModel.EmployeeDescription(CorrectId(txtEmpId.Text), nameof(WorkType.Work));
+            }
         }
 
-        //private void selectedBtn(WorkType type)
-        //{
-        //    _terminalViewModel.StartWork(CorrectId(txtEmpId.Text), (int)type);
-        //    label3.Text = _terminalViewModel.EmployeeDescription(CorrectId(txtEmpId.Text), nameof(type));
-        //}
         public int CorrectId(string input)
         {
-            if (_terminalViewModel.IsCorrectId(input).Item1)
+            bool test = false;
+            while (!test)
             {
-                return _terminalViewModel.IsCorrectId(input).Item2;
-            }
-            else
-            {
-                MessageBox.Show("Insert number!!!");
+                if (_terminalViewModel.IsCorrectId(input).Item1)
+                {
+                    test = _terminalViewModel.IsCorrectId(input).Item1;
+                    return _terminalViewModel.IsCorrectId(input).Item2;
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect Id");
+                }
             }
             return _terminalViewModel.IsCorrectId(input).Item2;
+        }
 
+        public bool CorrectEmp(string input)
+        {
+            bool test = false;
+            if (!test)
+            {
+                if (_terminalViewModel.CorrectEmp(input))
+                {
+                    test = true;
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("napiču");
+                }                
+            }return false;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             _terminalViewModel.FinishWork(CorrectId(txtEmpId.Text));
             label3.Text = _terminalViewModel.EmployeeDescription(CorrectId(txtEmpId.Text),nameof(WorkType.Exit));
+        }
+
+        private void btnLunch_Click(object sender, EventArgs e)
+        {
+            if (CorrectEmp(txtEmpId.Text))
+            {
+                _terminalViewModel.FinishWork(CorrectId(txtEmpId.Text));
+                _terminalViewModel.StartWork(CorrectId(txtEmpId.Text), (int)WorkType.Lunch);
+                label3.Text = _terminalViewModel.EmployeeDescription(CorrectId(txtEmpId.Text), nameof(WorkType.Lunch));
+            }
+
         }
     }
 }

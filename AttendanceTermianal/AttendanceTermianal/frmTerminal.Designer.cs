@@ -43,6 +43,7 @@
             this.lblDate = new System.Windows.Forms.Label();
             this.lblDay = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.btnOther = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label2
@@ -67,11 +68,11 @@
             this.btnArrival.BackColor = System.Drawing.Color.Blue;
             this.btnArrival.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnArrival.ForeColor = System.Drawing.Color.White;
-            this.btnArrival.Location = new System.Drawing.Point(216, 90);
+            this.btnArrival.Location = new System.Drawing.Point(226, 90);
             this.btnArrival.Name = "btnArrival";
             this.btnArrival.Size = new System.Drawing.Size(95, 30);
             this.btnArrival.TabIndex = 3;
-            this.btnArrival.Text = "Arrival";
+            this.btnArrival.Text = "Príchod";
             this.btnArrival.UseVisualStyleBackColor = false;
             this.btnArrival.Click += new System.EventHandler(this.btnArrival_Click);
             // 
@@ -80,7 +81,7 @@
             this.btnExit.BackColor = System.Drawing.Color.Blue;
             this.btnExit.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(317, 90);
+            this.btnExit.Location = new System.Drawing.Point(327, 90);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(95, 30);
             this.btnExit.TabIndex = 4;
@@ -93,19 +94,20 @@
             this.btnLunch.BackColor = System.Drawing.Color.Blue;
             this.btnLunch.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnLunch.ForeColor = System.Drawing.Color.White;
-            this.btnLunch.Location = new System.Drawing.Point(266, 126);
+            this.btnLunch.Location = new System.Drawing.Point(210, 138);
             this.btnLunch.Name = "btnLunch";
             this.btnLunch.Size = new System.Drawing.Size(111, 30);
             this.btnLunch.TabIndex = 5;
             this.btnLunch.Text = "Lunch";
             this.btnLunch.UseVisualStyleBackColor = false;
+            this.btnLunch.Click += new System.EventHandler(this.btnLunch_Click);
             // 
             // btnBusinessTrip
             // 
             this.btnBusinessTrip.BackColor = System.Drawing.Color.Blue;
             this.btnBusinessTrip.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnBusinessTrip.ForeColor = System.Drawing.Color.White;
-            this.btnBusinessTrip.Location = new System.Drawing.Point(266, 162);
+            this.btnBusinessTrip.Location = new System.Drawing.Point(210, 174);
             this.btnBusinessTrip.Name = "btnBusinessTrip";
             this.btnBusinessTrip.Size = new System.Drawing.Size(111, 30);
             this.btnBusinessTrip.TabIndex = 6;
@@ -117,7 +119,7 @@
             this.btnPrivate.BackColor = System.Drawing.Color.Blue;
             this.btnPrivate.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnPrivate.ForeColor = System.Drawing.Color.White;
-            this.btnPrivate.Location = new System.Drawing.Point(266, 198);
+            this.btnPrivate.Location = new System.Drawing.Point(327, 174);
             this.btnPrivate.Name = "btnPrivate";
             this.btnPrivate.Size = new System.Drawing.Size(111, 30);
             this.btnPrivate.TabIndex = 7;
@@ -129,7 +131,7 @@
             this.btnDoctor.BackColor = System.Drawing.Color.Blue;
             this.btnDoctor.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnDoctor.ForeColor = System.Drawing.Color.White;
-            this.btnDoctor.Location = new System.Drawing.Point(266, 234);
+            this.btnDoctor.Location = new System.Drawing.Point(327, 138);
             this.btnDoctor.Name = "btnDoctor";
             this.btnDoctor.Size = new System.Drawing.Size(111, 30);
             this.btnDoctor.TabIndex = 8;
@@ -141,9 +143,8 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(16, 186);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.Size = new System.Drawing.Size(0, 13);
             this.label3.TabIndex = 9;
-            this.label3.Text = "label3";
             // 
             // lblHour
             // 
@@ -188,12 +189,25 @@
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
+            // btnOther
+            // 
+            this.btnOther.BackColor = System.Drawing.Color.Blue;
+            this.btnOther.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnOther.ForeColor = System.Drawing.Color.White;
+            this.btnOther.Location = new System.Drawing.Point(210, 210);
+            this.btnOther.Name = "btnOther";
+            this.btnOther.Size = new System.Drawing.Size(111, 30);
+            this.btnOther.TabIndex = 14;
+            this.btnOther.Text = "Other";
+            this.btnOther.UseVisualStyleBackColor = false;
+            // 
             // frmTerminal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(451, 281);
+            this.ClientSize = new System.Drawing.Size(451, 247);
+            this.Controls.Add(this.btnOther);
             this.Controls.Add(this.lblDay);
             this.Controls.Add(this.lblDate);
             this.Controls.Add(this.lblSec);
@@ -231,6 +245,7 @@
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Label lblDay;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Button btnOther;
     }
 }
 
