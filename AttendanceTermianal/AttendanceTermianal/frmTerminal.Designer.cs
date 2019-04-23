@@ -94,7 +94,7 @@
             this.btnLunch.BackColor = System.Drawing.Color.Blue;
             this.btnLunch.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnLunch.ForeColor = System.Drawing.Color.White;
-            this.btnLunch.Location = new System.Drawing.Point(210, 138);
+            this.btnLunch.Location = new System.Drawing.Point(12, 152);
             this.btnLunch.Name = "btnLunch";
             this.btnLunch.Size = new System.Drawing.Size(111, 30);
             this.btnLunch.TabIndex = 5;
@@ -107,7 +107,7 @@
             this.btnBusinessTrip.BackColor = System.Drawing.Color.Blue;
             this.btnBusinessTrip.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnBusinessTrip.ForeColor = System.Drawing.Color.White;
-            this.btnBusinessTrip.Location = new System.Drawing.Point(210, 174);
+            this.btnBusinessTrip.Location = new System.Drawing.Point(288, 152);
             this.btnBusinessTrip.Name = "btnBusinessTrip";
             this.btnBusinessTrip.Size = new System.Drawing.Size(111, 30);
             this.btnBusinessTrip.TabIndex = 6;
@@ -120,7 +120,7 @@
             this.btnPrivate.BackColor = System.Drawing.Color.Blue;
             this.btnPrivate.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnPrivate.ForeColor = System.Drawing.Color.White;
-            this.btnPrivate.Location = new System.Drawing.Point(327, 174);
+            this.btnPrivate.Location = new System.Drawing.Point(149, 200);
             this.btnPrivate.Name = "btnPrivate";
             this.btnPrivate.Size = new System.Drawing.Size(111, 30);
             this.btnPrivate.TabIndex = 7;
@@ -133,7 +133,7 @@
             this.btnDoctor.BackColor = System.Drawing.Color.Blue;
             this.btnDoctor.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnDoctor.ForeColor = System.Drawing.Color.White;
-            this.btnDoctor.Location = new System.Drawing.Point(327, 138);
+            this.btnDoctor.Location = new System.Drawing.Point(149, 152);
             this.btnDoctor.Name = "btnDoctor";
             this.btnDoctor.Size = new System.Drawing.Size(111, 30);
             this.btnDoctor.TabIndex = 8;
@@ -144,7 +144,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 186);
+            this.label3.Location = new System.Drawing.Point(33, 70);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 13);
             this.label3.TabIndex = 9;
@@ -197,7 +197,7 @@
             this.btnOther.BackColor = System.Drawing.Color.Blue;
             this.btnOther.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnOther.ForeColor = System.Drawing.Color.White;
-            this.btnOther.Location = new System.Drawing.Point(210, 210);
+            this.btnOther.Location = new System.Drawing.Point(12, 200);
             this.btnOther.Name = "btnOther";
             this.btnOther.Size = new System.Drawing.Size(111, 30);
             this.btnOther.TabIndex = 14;
