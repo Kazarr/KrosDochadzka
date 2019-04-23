@@ -20,7 +20,12 @@ namespace AttendanceSystem
             return new BindingList<Person>(ManagerRepository.PersonRepository.GetPersonsEmployees().ToList());
         }
 
-        public IDictionary<string ,int> GetMonthWithNumberOfRecords(int id)
+        public BindingList<Person> FillComboBox(int idSupervisor)
+        {
+            return new BindingList<Person>(ManagerRepository.PersonRepository.GetPersonEmployeesPlebs(idSupervisor).ToList());
+        }
+
+        public IDictionary<string, int> GetMonthWithNumberOfRecords(int id)
         {
             return ManagerRepository.DailyResultRepository.GetMonthsWithNumberOfRecords(id);
         }

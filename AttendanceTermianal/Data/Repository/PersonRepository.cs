@@ -148,5 +148,43 @@ namespace Data.Repository
                 }
             }
         }
+        public IEnumerable<Person> GetPersonEmployeesPlebs(int idBoss)
+        {
+            List<Person> ret = new List<Person>();
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"SELECT DISTINCT e.Id, p.FirstName, p.LastName, p.PhoneNumber, p.Adress FROM Employee AS e
+                                              LEFT JOIN Employee AS sup ON e.Id = sup.IdSupervisor
+                                              JOIN Person AS p ON e.IdPerson = p.ID
+                                              WHERE e.IdSupervisor = @idBoss";
+                        command.Parameters.Add("@idBoss", SqlDbType.Int).Value = idBoss;
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int personId = reader.GetInt32(0);
+                                string firstName = reader.GetString(1);
+                                string lastName = reader.GetString(2);
+                                string phoneNumber = reader.GetString(3);
+                                string adress = reader.IsDBNull(4) ? "" : reader.GetString(4);
+
+                                ret.Add(new Person(personId, firstName, lastName, phoneNumber, adress));
+                            }
+                            return ret;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
     }
 }
