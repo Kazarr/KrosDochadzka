@@ -22,6 +22,7 @@ namespace AttendanceSystem
             WindowState = FormWindowState.Maximized;
             CheckPermission();
             comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox();
+            fillMonthComboBox();
 
         }
         /// <summary>
@@ -45,6 +46,14 @@ namespace AttendanceSystem
 
         }
 
+        private void fillMonthComboBox()
+        {
+            Dictionary<string, int> monthRecords = new Dictionary<string, int>(_mainWindowViewModel.GetMonthWithNumberOfRecords(_employeeID));
+            foreach (var month in monthRecords.Keys)
+            {
+                comboBoxMonth.Items.Add($"{month.ToString()}: {monthRecords[month]}");
+            }
+        }
    
 
         private void btnDeleteEmployee_Click_1(object sender, EventArgs e)
