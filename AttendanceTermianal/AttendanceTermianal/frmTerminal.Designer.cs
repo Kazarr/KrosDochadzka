@@ -113,6 +113,7 @@
             this.btnBusinessTrip.TabIndex = 6;
             this.btnBusinessTrip.Text = "Business Trip";
             this.btnBusinessTrip.UseVisualStyleBackColor = false;
+            this.btnBusinessTrip.Click += new System.EventHandler(this.btnBusinessTrip_Click);
             // 
             // btnPrivate
             // 
@@ -125,6 +126,7 @@
             this.btnPrivate.TabIndex = 7;
             this.btnPrivate.Text = "Private";
             this.btnPrivate.UseVisualStyleBackColor = false;
+            this.btnPrivate.Click += new System.EventHandler(this.btnPrivate_Click);
             // 
             // btnDoctor
             // 
@@ -137,6 +139,7 @@
             this.btnDoctor.TabIndex = 8;
             this.btnDoctor.Text = "Doctor";
             this.btnDoctor.UseVisualStyleBackColor = false;
+            this.btnDoctor.Click += new System.EventHandler(this.btnDoctor_Click);
             // 
             // label3
             // 
@@ -200,6 +203,7 @@
             this.btnOther.TabIndex = 14;
             this.btnOther.Text = "Other";
             this.btnOther.UseVisualStyleBackColor = false;
+            this.btnOther.Click += new System.EventHandler(this.btnOther_Click);
             // 
             // frmTerminal
             // 
