@@ -45,7 +45,7 @@ namespace Data.Repository
                 }
             }
         }
-        public int InsertDialyResult(DailyResult daily_Result)
+        public int InsertDialyResult(DailyResult dailyResult)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
             {
@@ -58,8 +58,8 @@ namespace Data.Repository
                         command.CommandText = @"INSERT INTO DailyResult (IdEmployee, IdWorktype)
                                                 OUTPUT INSERTED.Id
                                                 VALUES (@Id_Employee, @Id_Worktype)";
-                        command.Parameters.Add("@Id_Employee", SqlDbType.VarChar).Value = daily_Result.IdEmployee;
-                        command.Parameters.Add("@Id_Worktype", SqlDbType.VarChar).Value = daily_Result.IdWorktype;
+                        command.Parameters.Add("@Id_Employee", SqlDbType.VarChar).Value = dailyResult.IdEmployee;
+                        command.Parameters.Add("@Id_Worktype", SqlDbType.VarChar).Value = dailyResult.IdWorktype;
                         return (int)command.ExecuteScalar();
                     }
                 }
