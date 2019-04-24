@@ -131,6 +131,37 @@ namespace Data.Repository
                 }
             }
         }
+        public bool CheckIfWorkDailyExist(DailyResult daily_Result)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"SELECT finish  FROM [KROSDOCHADZKA].[dbo].[DailyResult]
+                                            where IdEmployee=@IdEmp and IdWorktype=1 and  Finish <> null and [start]<>null";
+                        command.Parameters.Add("@IdEmp", SqlDbType.Int).Value = daily_Result.IdEmployee;
+                        command.Parameters.Add("@IdWT", SqlDbType.Int).Value = daily_Result.IdWorktype;
+
+                        if (command.ExecuteScalar() != null)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
 
         /// <summary>
         ///   method for geting number of records with months

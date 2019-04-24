@@ -45,7 +45,7 @@ namespace AttendanceTermianal
             }
             return false;
         }
-        private void ChangeType(EWorkType type)
+        private void ChangeWorkType(EWorkType type)
         {
             if (CorrectEmp(txtEmpId.Text))
             {
@@ -56,7 +56,7 @@ namespace AttendanceTermianal
         }
         private void btnArrival_Click(object sender, EventArgs e)
         {
-            ChangeType(EWorkType.Work);
+            ChangeWorkType(EWorkType.Work);
         }
         private void btnExit_Click(object sender, EventArgs e)
         {
@@ -64,25 +64,29 @@ namespace AttendanceTermianal
             _terminalViewModel.FinishWork(employeeId);
             label3.Text = _terminalViewModel.EmployeeDescription(employeeId, nameof(EWorkType.Exit));
         }
+        //private void btnExit_Click(object sender, EventArgs e)
+        //{
+        //    ChangeWorkType(EWorkType.Exit);
+        //}
         private void btnLunch_Click(object sender, EventArgs e)
         {
-            ChangeType(EWorkType.Lunch);
+            ChangeWorkType(EWorkType.Lunch);
         }
         private void btnDoctor_Click(object sender, EventArgs e)
         {
-            ChangeType(EWorkType.Doctor);
+            ChangeWorkType(EWorkType.Doctor);
         }
         private void btnBusinessTrip_Click(object sender, EventArgs e)
         {
-            ChangeType(EWorkType.BusinessTrip);
+            ChangeWorkType(EWorkType.BusinessTrip);
         }
         private void btnPrivate_Click(object sender, EventArgs e)
         {
-            ChangeType(EWorkType.Private);
+            ChangeWorkType(EWorkType.Private);
         }
         private void btnOther_Click(object sender, EventArgs e)
         {
-            ChangeType(EWorkType.Other);
+            ChangeWorkType(EWorkType.Other);
         }
     }
 }
