@@ -9,8 +9,14 @@ using System.Threading.Tasks;
 
 namespace AttendanceSystem
 {
-    class MainWindowViewModel
+    public class MainWindowViewModel
     {
+        private Empolyee _empolyee;
+        private Person _person;
+
+        public Person Person { get => _person; set {  _person = value;
+                                                      Empolyee = GetEmpolyeeByPersonId(Person.Id);}}
+        public Empolyee Empolyee { get => _empolyee; set => _empolyee = value; }
         public Empolyee GetEmployeeByID(int id)
         {
             return ManagerRepository.EmployeeRepository.GetEmpolyeeByID(id);
@@ -29,12 +35,17 @@ namespace AttendanceSystem
         {
             return ManagerRepository.DailyResultRepository.GetMonthsWithNumberOfRecords(id);
         }
-
-        public BindingList<DaySummary> FillDataGridViewOverview(int id, string month)
+        public Person GetPersonByEmployeeId(int employeeId)
         {
-            return new BindingList<DaySummary>( ManagerRepository.DaySummaryRepository.GetSummariesByMonth(month, id));
-
+            return ManagerRepository.PersonRepository.GetPersonByIdEmployee(employeeId);
         }
-
+        public Person GetPersonByEmployee(Person person)
+        {
+            return ManagerRepository.PersonRepository.GetPersonByIdEmployee(person.Id);
+        }
+        public Empolyee GetEmpolyeeByPersonId(int id)
+        {
+            return ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(id);
+        }
     }
 }

@@ -96,11 +96,48 @@ namespace Data.Repository
                         command.Connection = connection;
                         command.CommandText = @"SELECT * FROM Person as p
                                                 JOIN Employee as e ON p.Id = e.IdPerson
-                                                WHERE e.IdPerson = @employeeId";
+                                                WHERE e.Id = @employeeId";
                         command.Parameters.Add("@employeeId", SqlDbType.Int).Value = employeeId;
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             if(reader.Read())
+                            {
+                                int personId = reader.GetInt32(0);
+                                string firstName = reader.GetString(1);
+                                string lastName = reader.GetString(2);
+                                string phoneNumber = reader.GetString(3);
+                                string adress = reader.IsDBNull(4) ? "" : reader.GetString(4);
+
+                                return new Person(personId, firstName, lastName, phoneNumber, adress);
+                            }
+                            throw new Exception("There was nothing to read");
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
+        public Person GetPersonByEmployee(Empolyee empolyee)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"SELECT * FROM Person as p
+                                                JOIN Employee as e ON p.Id = e.IdPerson
+                                                WHERE e.IdPerson = @employeeId";
+                        command.Parameters.Add("@employeeId", SqlDbType.Int).Value = empolyee.Id;
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
                             {
                                 int personId = reader.GetInt32(0);
                                 string firstName = reader.GetString(1);
@@ -191,7 +228,7 @@ namespace Data.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = @"SELECT e.Id, p.FirstName, p.LastName, p.PhoneNumber, p.Adress FROM Person as p
+                        command.CommandText = @"SELECT p.Id, p.FirstName, p.LastName, p.PhoneNumber, p.Adress FROM Person as p
                                                 JOIN Employee as e ON p.ID = e.IdPerson";
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
@@ -226,7 +263,7 @@ namespace Data.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = @"SELECT DISTINCT e.Id, p.FirstName, p.LastName, p.PhoneNumber, p.Adress FROM Employee AS e
+                        command.CommandText = @"SELECT DISTINCT p.Id, p.FirstName, p.LastName, p.PhoneNumber, p.Adress FROM Employee AS e
                                               LEFT JOIN Employee AS sup ON e.Id = sup.IdSupervisor
                                               JOIN Person AS p ON e.IdPerson = p.ID
                                               WHERE e.IdSupervisor = @idBoss";
