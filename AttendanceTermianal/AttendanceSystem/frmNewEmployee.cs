@@ -30,7 +30,7 @@ namespace AttendanceSystem
             //_newEmployee = new NewEmployeeViewModel();
             _newEmployee = new NewEmployeeViewModel(employeeID);
 
-            _newEmployee.Empolyee = _newEmployee.ge
+            //_newEmployee.Empolyee = _newEmployee.ge
             cmbSupervisors.DataSource = _newEmployee.FillSupervisors();
             cmbSupervisors.SelectedIndex = cmbSupervisors.Items.IndexOf(_newEmployee.GetPersonByEmployeeId(employeeID));
             textBoxFirstName.Text = _newEmployee.Person.FirstName;
