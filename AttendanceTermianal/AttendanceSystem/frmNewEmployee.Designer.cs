@@ -35,10 +35,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxPostalCode = new System.Windows.Forms.TextBox();
             this.textBoxCity = new System.Windows.Forms.TextBox();
-            this.textBoxHomeNumber = new System.Windows.Forms.TextBox();
-            this.textBoxStreetName = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textAdress = new System.Windows.Forms.TextBox();
+            this.textBoxPermisions = new System.Windows.Forms.TextBox();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.textBoxSalary = new System.Windows.Forms.TextBox();
             this.textBoxPhoneNumber = new System.Windows.Forms.TextBox();
@@ -47,7 +45,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelPostalCode = new System.Windows.Forms.Label();
             this.labelCity = new System.Windows.Forms.Label();
-            this.labelHomeNumber = new System.Windows.Forms.Label();
             this.labelSupervisor = new System.Windows.Forms.Label();
             this.labelPermission = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -56,6 +53,7 @@
             this.labelSalary = new System.Windows.Forms.Label();
             this.labelLastName = new System.Windows.Forms.Label();
             this.labelFirstName = new System.Windows.Forms.Label();
+            this.cmbSupervisors = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // buttonConfirm
@@ -114,6 +112,7 @@
             this.textBoxPostalCode.Name = "textBoxPostalCode";
             this.textBoxPostalCode.Size = new System.Drawing.Size(196, 20);
             this.textBoxPostalCode.TabIndex = 51;
+            this.textBoxPostalCode.Visible = false;
             // 
             // textBoxCity
             // 
@@ -121,34 +120,21 @@
             this.textBoxCity.Name = "textBoxCity";
             this.textBoxCity.Size = new System.Drawing.Size(196, 20);
             this.textBoxCity.TabIndex = 50;
+            this.textBoxCity.Visible = false;
             // 
-            // textBoxHomeNumber
+            // textAdress
             // 
-            this.textBoxHomeNumber.Location = new System.Drawing.Point(550, 137);
-            this.textBoxHomeNumber.Name = "textBoxHomeNumber";
-            this.textBoxHomeNumber.Size = new System.Drawing.Size(196, 20);
-            this.textBoxHomeNumber.TabIndex = 49;
+            this.textAdress.Location = new System.Drawing.Point(550, 91);
+            this.textAdress.Name = "textAdress";
+            this.textAdress.Size = new System.Drawing.Size(196, 20);
+            this.textAdress.TabIndex = 48;
             // 
-            // textBoxStreetName
+            // textBoxPermisions
             // 
-            this.textBoxStreetName.Location = new System.Drawing.Point(550, 91);
-            this.textBoxStreetName.Name = "textBoxStreetName";
-            this.textBoxStreetName.Size = new System.Drawing.Size(196, 20);
-            this.textBoxStreetName.TabIndex = 48;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(178, 324);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(196, 20);
-            this.textBox5.TabIndex = 47;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(178, 267);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(196, 20);
-            this.textBox4.TabIndex = 46;
+            this.textBoxPermisions.Location = new System.Drawing.Point(178, 267);
+            this.textBoxPermisions.Name = "textBoxPermisions";
+            this.textBoxPermisions.Size = new System.Drawing.Size(196, 20);
+            this.textBoxPermisions.TabIndex = 46;
             // 
             // textBoxPassword
             // 
@@ -205,6 +191,7 @@
             this.labelPostalCode.Size = new System.Drawing.Size(116, 24);
             this.labelPostalCode.TabIndex = 39;
             this.labelPostalCode.Text = "Postal Code:";
+            this.labelPostalCode.Visible = false;
             // 
             // labelCity
             // 
@@ -215,16 +202,7 @@
             this.labelCity.Size = new System.Drawing.Size(45, 24);
             this.labelCity.TabIndex = 38;
             this.labelCity.Text = "City:";
-            // 
-            // labelHomeNumber
-            // 
-            this.labelHomeNumber.AutoSize = true;
-            this.labelHomeNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelHomeNumber.Location = new System.Drawing.Point(383, 137);
-            this.labelHomeNumber.Name = "labelHomeNumber";
-            this.labelHomeNumber.Size = new System.Drawing.Size(141, 24);
-            this.labelHomeNumber.TabIndex = 37;
-            this.labelHomeNumber.Text = "Home Number:";
+            this.labelCity.Visible = false;
             // 
             // labelSupervisor
             // 
@@ -252,9 +230,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label3.Location = new System.Drawing.Point(408, 91);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(116, 24);
+            this.label3.Size = new System.Drawing.Size(74, 24);
             this.label3.TabIndex = 34;
-            this.label3.Text = "Street name:";
+            this.label3.Text = "Adress:";
             // 
             // label2
             // 
@@ -306,11 +284,20 @@
             this.labelFirstName.TabIndex = 29;
             this.labelFirstName.Text = "First Name:";
             // 
+            // cmbSupervisors
+            // 
+            this.cmbSupervisors.FormattingEnabled = true;
+            this.cmbSupervisors.Location = new System.Drawing.Point(178, 324);
+            this.cmbSupervisors.Name = "cmbSupervisors";
+            this.cmbSupervisors.Size = new System.Drawing.Size(196, 21);
+            this.cmbSupervisors.TabIndex = 57;
+            // 
             // frmNewEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(813, 522);
+            this.Controls.Add(this.cmbSupervisors);
             this.Controls.Add(this.buttonConfirm);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.textBoxConfirmPassword);
@@ -318,10 +305,8 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBoxPostalCode);
             this.Controls.Add(this.textBoxCity);
-            this.Controls.Add(this.textBoxHomeNumber);
-            this.Controls.Add(this.textBoxStreetName);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.textAdress);
+            this.Controls.Add(this.textBoxPermisions);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.textBoxSalary);
             this.Controls.Add(this.textBoxPhoneNumber);
@@ -330,7 +315,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelPostalCode);
             this.Controls.Add(this.labelCity);
-            this.Controls.Add(this.labelHomeNumber);
             this.Controls.Add(this.labelSupervisor);
             this.Controls.Add(this.labelPermission);
             this.Controls.Add(this.label3);
@@ -355,10 +339,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBoxPostalCode;
         private System.Windows.Forms.TextBox textBoxCity;
-        private System.Windows.Forms.TextBox textBoxHomeNumber;
-        private System.Windows.Forms.TextBox textBoxStreetName;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textAdress;
+        private System.Windows.Forms.TextBox textBoxPermisions;
         private System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.TextBox textBoxSalary;
         private System.Windows.Forms.TextBox textBoxPhoneNumber;
@@ -367,7 +349,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelPostalCode;
         private System.Windows.Forms.Label labelCity;
-        private System.Windows.Forms.Label labelHomeNumber;
         private System.Windows.Forms.Label labelSupervisor;
         private System.Windows.Forms.Label labelPermission;
         private System.Windows.Forms.Label label3;
@@ -376,5 +357,6 @@
         private System.Windows.Forms.Label labelSalary;
         private System.Windows.Forms.Label labelLastName;
         private System.Windows.Forms.Label labelFirstName;
+        private System.Windows.Forms.ComboBox cmbSupervisors;
     }
 }
