@@ -44,7 +44,8 @@ namespace Data.Repository
                     throw e;
                 }
             }
-        }
+        }       
+
         public int InsertDialyResult(DailyResult daily_Result)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
@@ -69,6 +70,7 @@ namespace Data.Repository
                 }
             }
         }
+
         public bool UpdateFinishDailyResult(DailyResult daily_Result)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))

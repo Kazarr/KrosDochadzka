@@ -50,6 +50,7 @@
     <Compile Include="Generator\PasswordGenerator.cs" />
     <Compile Include="Generator\PersonGenerator.cs" />
     <Compile Include="Model\DailyResult.cs" />
+    <Compile Include="Model\DaySummary.cs" />
     <Compile Include="Model\Empolyee.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\WorkType.cs" />
@@ -60,6 +61,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Repository\DailyResultRepository.cs" />
+    <Compile Include="Repository\DaySummaryRepository.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />
     <Compile Include="Repository\ManagerRepository.cs" />
     <Compile Include="Repository\PersonRepository.cs" />

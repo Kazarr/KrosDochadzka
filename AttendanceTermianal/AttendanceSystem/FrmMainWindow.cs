@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Data.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -23,13 +25,15 @@ namespace AttendanceSystem
             CheckPermission();
             comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox();
             fillMonthComboBox();
+            fillDGV();
 
         }
         /// <summary>
         /// checks if the loged user is regular (1) supervisor(2) or admin (3) 
         /// </summary>
-        private void CheckPermission (){
-            if (_mainWindowViewModel.GetEmployeeByID(_employeeID).Permision >=2)
+        private void CheckPermission()
+        {
+            if (_mainWindowViewModel.GetEmployeeByID(_employeeID).Permision >= 2)
             {
                 btnUpdateEmployee.Visible = true;
                 labelChoosePerson.Visible = true;
@@ -54,7 +58,33 @@ namespace AttendanceSystem
                 comboBoxMonth.Items.Add($"{month.ToString()}: {monthRecords[month]}");
             }
         }
-   
+
+        private void fillDGV()
+        {
+            DateTime today = DateTime.Now;
+            Dictionary<string, List<string>> myAprilDictionary=new Dictionary<string, List<string>>( _mainWindowViewModel.getApril(_employeeID));
+            
+            dGVOverview.Columns.Add("Datum", "Datum");
+            dGVOverview.Columns.Add("WorkStart", "WorkStart");
+            dGVOverview.Columns.Add("WorkFinish", "WorkFinish");
+            dGVOverview.Columns.Add("LunchBreakStart", "LunchBreakStart");
+            dGVOverview.Columns.Add("LunchBreakFinish", "LunchBreakFinish");
+            int nieco = 0;
+            foreach (var key in myAprilDictionary.Keys)
+            {
+                nieco++;
+
+                Debug.WriteLine(key+" WTF:"+nieco);
+                dGVOverview.Rows.Add();
+                for (int i = 0; i < 4; i++)
+                {
+                    Debug.WriteLine(myAprilDictionary[key][i]);
+                    dGVOverview[nieco, i].Value = myAprilDictionary[key][i].Count() == 0 ? "": myAprilDictionary[key][i];
+                    //dGVOverview.Rows[nieco].Cells[i].Value = myAprilDictionary[key][i].ToString();
+                }
+            }
+
+        }
 
         private void btnDeleteEmployee_Click_1(object sender, EventArgs e)
         {

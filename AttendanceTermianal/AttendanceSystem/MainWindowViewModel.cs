@@ -20,9 +20,18 @@ namespace AttendanceSystem
             return new BindingList<Person>(ManagerRepository.PersonRepository.GetPersonsEmployees().ToList());
         }
 
-        public IDictionary<string ,int> GetMonthWithNumberOfRecords(int id)
+        public IDictionary<string, int> GetMonthWithNumberOfRecords(int id)
         {
             return ManagerRepository.DailyResultRepository.GetMonthsWithNumberOfRecords(id);
         }
+
+        public List<string> FillDGV(DateTime date, int idEmployee)
+        {
+            return ManagerRepository.DaySummaryRepository.MakeLine(date, idEmployee);
+        }
+
+        public Dictionary<string, List<string >> getApril(int idEmployee){
+            return ManagerRepository.DaySummaryRepository.April(idEmployee);
+}
     }
 }
