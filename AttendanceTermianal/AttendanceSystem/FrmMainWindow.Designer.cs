@@ -131,15 +131,24 @@
             this.comboBoxMonth.Name = "comboBoxMonth";
             this.comboBoxMonth.Size = new System.Drawing.Size(395, 21);
             this.comboBoxMonth.TabIndex = 11;
+            this.comboBoxMonth.SelectedIndexChanged += new System.EventHandler(this.comboBoxMonth_SelectedIndexChanged);
             // 
             // dGVOverview
             // 
+            this.dGVOverview.AllowUserToAddRows = false;
+            this.dGVOverview.AllowUserToDeleteRows = false;
             this.dGVOverview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dGVOverview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dGVOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGVOverview.ColumnHeadersVisible = false;
             this.dGVOverview.Location = new System.Drawing.Point(15, 212);
+            this.dGVOverview.MultiSelect = false;
             this.dGVOverview.Name = "dGVOverview";
+            this.dGVOverview.ReadOnly = true;
+            this.dGVOverview.RowHeadersVisible = false;
+            this.dGVOverview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dGVOverview.Size = new System.Drawing.Size(1151, 409);
             this.dGVOverview.TabIndex = 21;
             // 

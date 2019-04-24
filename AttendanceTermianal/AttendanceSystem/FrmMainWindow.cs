@@ -21,11 +21,9 @@ namespace AttendanceSystem
             _employeeID = id;
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
-            WindowState = FormWindowState.Maximized;
+            WindowState = FormWindowState.Maximized;            
             CheckPermission();
-            fillMonthComboBox();
-            
-
+            fillMonthComboBox();   
         }
         /// <summary>
         /// checks if the loged user is regular (1) supervisor(2) or admin (3) 
@@ -55,11 +53,18 @@ namespace AttendanceSystem
             Dictionary<string, int> monthRecords = new Dictionary<string, int>(_mainWindowViewModel.GetMonthWithNumberOfRecords(_employeeID));
             foreach (var month in monthRecords.Keys)
             {
-                comboBoxMonth.Items.Add($"{month.ToString()}: {monthRecords[month]}");
+                comboBoxMonth.Items.Add($"{month.ToString()} : {monthRecords[month]}");
             }
         }
 
-      
+        private void fillDataGridView()
+        {
+            //get name of the month from the combobox
+            string selected = comboBoxMonth.GetItemText(comboBoxMonth.SelectedItem);
+            selected = selected.Split(' ')[0];          
+
+            dGVOverview.DataSource = _mainWindowViewModel.FillDataGridViewOverview( _employeeID, selected);
+        }
 
         private void btnDeleteEmployee_Click_1(object sender, EventArgs e)
         {
@@ -90,7 +95,10 @@ namespace AttendanceSystem
         {
             DialogResult = DialogResult.OK;
         }
-
+        private void comboBoxMonth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            fillDataGridView();
+        }
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
         {
             // todo: vytiahni z combobxu osobu co tam je a na posli ju frmnewemployee
