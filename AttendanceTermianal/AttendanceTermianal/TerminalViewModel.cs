@@ -63,28 +63,34 @@ namespace AttendanceTermianal
                 return false;
             }      
         }
-        private void StartWork(int id_employee, int id_worktype)
+        private void StartWork(int id_employee, EWorkType type)
         {
-            _result.IdWorktype = id_worktype;
+            _result.IdWorktype = (int)type;
             _result.IdEmployee = id_employee;
             _result.Id = ManagerRepository.DailyResultRepository.InsertDialyResult(_result);           
         }
-        public bool FinishWork(int id_employee)
+        public bool FinishWork(int id_employee, EWorkType type)
         {
+            _result.IdWorktype = (int)type;
             _result.IdEmployee = id_employee;
-            return ManagerRepository.DailyResultRepository.UpdateFinishDailyResult(_result);
-        }
-        public void ChangeWorkType(EWorkType type, int id_employee)
-        {
-            if (!CheckDailyResult(id_employee, (int)type))
+            if (ManagerRepository.DailyResultRepository.CheckIfWorkDailyExist(_result)== null)
             {
-                FinishWork(id_employee);
-                StartWork(id_employee, (int)type);
+                return ManagerRepository.DailyResultRepository.UpdateFinishDailyResult(_result);
+            }
+            return false;
+            
+        }
+        public void ChangeWorkType(int id_employee, EWorkType type)
+        {
+            if (!CheckDailyResult(id_employee, type))
+            {
+                FinishWork(id_employee, type);
+                StartWork(id_employee, type);
             }           
         }
-        public bool CheckDailyResult(int id_employee, int id_worktype)
+        public bool CheckDailyResult(int id_employee, EWorkType type)
         {
-            _result.IdWorktype = id_worktype;
+            _result.IdWorktype = (int)type;
             _result.IdEmployee = id_employee;
             return ManagerRepository.DailyResultRepository.CheckIfDailyResultExist(_result);
         }

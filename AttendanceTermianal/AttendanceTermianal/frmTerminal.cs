@@ -50,7 +50,7 @@ namespace AttendanceTermianal
             if (CorrectEmp(txtEmpId.Text))
             {
                 int employeeId = int.Parse(txtEmpId.Text);
-                _terminalViewModel.ChangeWorkType(type, employeeId);
+                _terminalViewModel.ChangeWorkType(employeeId, type);
                 label3.Text = _terminalViewModel.EmployeeDescription(employeeId, type.ToString());
             }
         }
@@ -61,7 +61,8 @@ namespace AttendanceTermianal
         private void btnExit_Click(object sender, EventArgs e)
         {
             int employeeId = int.Parse(txtEmpId.Text);
-            _terminalViewModel.FinishWork(employeeId);
+
+            _terminalViewModel.FinishWork(employeeId, EWorkType.Exit);
             label3.Text = _terminalViewModel.EmployeeDescription(employeeId, nameof(EWorkType.Exit));
         }
         //private void btnExit_Click(object sender, EventArgs e)

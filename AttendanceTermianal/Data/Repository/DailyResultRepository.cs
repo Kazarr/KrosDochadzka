@@ -131,7 +131,7 @@ namespace Data.Repository
                 }
             }
         }
-        public bool CheckIfWorkDailyExist(DailyResult daily_Result)
+        public DateTime? CheckIfWorkDailyExist(DailyResult daily_Result)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
             {
@@ -142,18 +142,11 @@ namespace Data.Repository
                     {
                         command.Connection = connection;
                         command.CommandText = @"SELECT finish  FROM [KROSDOCHADZKA].[dbo].[DailyResult]
-                                            where IdEmployee=@IdEmp and IdWorktype=1 and  Finish <> null and [start]<>null";
+                                            where IdEmployee=@IdEmp and IdWorktype=@IdWT  and finish is null
+                                            and CONVERT(date,[Start]) = CONVERT(date,GETDATE()) ";
                         command.Parameters.Add("@IdEmp", SqlDbType.Int).Value = daily_Result.IdEmployee;
                         command.Parameters.Add("@IdWT", SqlDbType.Int).Value = daily_Result.IdWorktype;
-
-                        if (command.ExecuteScalar() != null)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
+                        return (DateTime?)command.ExecuteScalar();
                     }
                 }
                 catch (Exception e)
