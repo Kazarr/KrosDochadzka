@@ -253,5 +253,38 @@ namespace Data.Repository
                 }
             }
         }
+        public Person GetPersonById(int personId)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"SELECT * FROM Person WHERE Id = @id";
+                        command.Parameters.Add("@id", SqlDbType.Int).Value = personId;
+                        using(SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int id = reader.GetInt32(0);
+                                string firstName = reader.GetString(1);
+                                string lastName = reader.GetString(2);
+                                string phoneNumber = reader.GetString(3);
+                                string adress = reader.IsDBNull(4) ? "" : reader.GetString(4);
+                                return new Person(id, firstName, lastName, phoneNumber, adress);
+                            }
+                            throw new Exception("There was nothing to read");
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
     }
 }

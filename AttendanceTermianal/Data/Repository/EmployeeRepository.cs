@@ -49,6 +49,47 @@ namespace Data.Repository
             }
         }
 
+        public bool UpdateEmployee(Empolyee empolyee, Person person)
+        {
+            empolyee.Password = CalculateMD5Hash(empolyee.Password);
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @" UPDATE Person 
+                                                  SET	FirstName = @firstname,
+		                                                Lastname = @lastName,
+		                                                PhoneNumber = @phoneNumber,
+		                                                Adress = @adress
+                                                WHERE ID = (SELECT e.IdPerson FROM Employee AS e
+			                                                JOIN Person AS p ON e.IdPerson = p.ID
+			                                                WHERE e.Id = @employeeId)";
+                        command.Parameters.Add("@firstname", SqlDbType.Decimal).Value = person.FirstName;
+                        command.Parameters.Add("@lastName", SqlDbType.Int).Value = person.LastName;
+                        command.Parameters.Add("@phoneNumber", SqlDbType.Int).Value = person.PhoneNumber;
+                        command.Parameters.Add("@adress", SqlDbType.VarChar).Value = person.Adress;
+                        command.Parameters.Add("@employeeId", SqlDbType.VarChar).Value = empolyee.Id;
+                        if (command.ExecuteNonQuery() > 1)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
         public bool InsertFullEmployee(Empolyee employee)
         {
             employee.Password = CalculateMD5Hash(employee.Password);

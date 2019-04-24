@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -84,6 +85,13 @@ namespace AttendanceSystem
         private void buttonExit_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
+        }
+
+        private void btnUpdateEmployee_Click(object sender, EventArgs e)
+        {
+            // todo: vytiahni z combobxu osobu co tam je a na posli ju frmnewemployee
+            frmNewEmployee newEmployee = new frmNewEmployee(_employeeID);
+            newEmployee.ShowDialog();
         }
     }
 }
