@@ -17,5 +17,6 @@ namespace Data.Model
         public TimeSpan Doctor { get; set; } = TimeSpan.Zero;
         public TimeSpan Private { get; set; } = TimeSpan.Zero;
         public TimeSpan Other { get; set; } = TimeSpan.Zero;
+        public TimeSpan? TotalTimeWorked { get; set; }= TimeSpan.Zero;
     }
 }

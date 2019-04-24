@@ -142,7 +142,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dGVOverview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dGVOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dGVOverview.ColumnHeadersVisible = false;
             this.dGVOverview.Location = new System.Drawing.Point(15, 212);
             this.dGVOverview.MultiSelect = false;
             this.dGVOverview.Name = "dGVOverview";
