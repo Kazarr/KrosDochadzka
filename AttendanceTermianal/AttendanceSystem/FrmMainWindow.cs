@@ -23,7 +23,6 @@ namespace AttendanceSystem
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             CheckPermission();
-            comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox();
             fillMonthComboBox();
             fillDGV();
 
@@ -38,10 +37,11 @@ namespace AttendanceSystem
                 btnUpdateEmployee.Visible = true;
                 labelChoosePerson.Visible = true;
                 comboBoxPerson.Visible = true;
-
+                comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox(_employeeID);
             }
             if (_mainWindowViewModel.GetEmployeeByID(_employeeID).Permision >= 3)
             {
+                comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox();
                 btnNewEmployee.Visible = true;
                 btnDeleteEmployee.Visible = true;
             }

@@ -8,9 +8,13 @@ using System.Threading.Tasks;
 
 namespace AttendanceTermianal
 {
+
+    
     public class TerminalViewModel
     {
+      
         private DailyResult _result = new DailyResult();
+        private Empolyee _empolyee = new Empolyee();
         public string CurrentDate()
         {
             string date = DateTime.Now.ToString("dd/MM/yyyy");
@@ -40,28 +44,41 @@ namespace AttendanceTermianal
                                 $"{DateTime.Now}";
             return fullName;
         }
-        public Tuple<bool, int> IsCorrectId(string input)
+        public bool CorrectEmp(string input)
         {
-            int Id = 0;
-            bool isOk = int.TryParse(input, out Id);
-            if (isOk)
+            try
             {
-                return new Tuple<bool, int>(true, Id);
+                var empoloyee = ManagerRepository.EmployeeRepository.GetEmpolyeeByID(int.Parse(input));
+                if (empoloyee != null && empoloyee.Id.Equals(int.Parse(input)))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }               
             }
-            return new Tuple<bool, int>(false, Id);
+            catch (FormatException)
+            {
+                return false;
+            }      
         }
-
-        public void StartWork(int id_employee, int id_worktype)
+        private void StartWork(int id_employee, int id_worktype)
         {
             _result.IdWorktype = id_worktype;
             _result.IdEmployee = id_employee;
-            _result.Id = ManagerRepository.DailyResultRepository.InsertDialyResult(_result);
-            
+            _result.Id = ManagerRepository.DailyResultRepository.InsertDialyResult(_result);           
         }
         public bool FinishWork(int id_employee)
         {
             _result.IdEmployee = id_employee;
             return ManagerRepository.DailyResultRepository.UpdateFinishDailyResult(_result);
+        }
+        public void ChangeWorkType(EWorkType type, int id_employee)
+        {
+            FinishWork(id_employee);
+            StartWork(id_employee, (int)type);
+            
         }
     }
 }

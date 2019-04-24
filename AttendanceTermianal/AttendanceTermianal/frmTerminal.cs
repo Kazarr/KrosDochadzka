@@ -13,24 +13,14 @@ namespace AttendanceTermianal
     public partial class frmTerminal : Form
     {
         private TerminalViewModel _terminalViewModel = new TerminalViewModel();
-        enum WorkType
-        {
-            Work = 1,
-            Lunch = 2,
-            Holiday =3,
-            HomeOffice =4,
-            BusinessTrip=5,
-            Doctor = 6,
-            Private =7,
-            Other =8,
-            Exit =9
-        }
+        
+
         public frmTerminal()
         {
             InitializeComponent();
             timer.Start();
-        }
 
+        }
         private void timer_Tick(object sender, EventArgs e)
         {
             lblDate.Text = _terminalViewModel.CurrentDate();
@@ -38,38 +28,61 @@ namespace AttendanceTermianal
             lblHour.Text = _terminalViewModel.CurrentHourmin();
             lblSec.Text = _terminalViewModel.CurrentSec();
         }
-
-
+        public bool CorrectEmp(string input)
+        {
+            bool test = false;
+            if (!test)
+            {
+                if (_terminalViewModel.CorrectEmp(input))
+                {
+                    test = true;
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("This Id does not exist");
+                }
+            }
+            return false;
+        }
+        private void ChangeType(EWorkType type)
+        {
+            if (CorrectEmp(txtEmpId.Text))
+            {
+                int employeeId = int.Parse(txtEmpId.Text);
+                _terminalViewModel.ChangeWorkType(type, employeeId);
+                label3.Text = _terminalViewModel.EmployeeDescription(employeeId, type.ToString());
+            }
+        }
         private void btnArrival_Click(object sender, EventArgs e)
         {
-            _terminalViewModel.StartWork(CorrectId(txtEmpId.Text), (int)WorkType.Work);
-            label3.Text = _terminalViewModel.EmployeeDescription(CorrectId(txtEmpId.Text), nameof(WorkType.Work));
-
+            ChangeType(EWorkType.Work);
         }
-
-        //private void selectedBtn(WorkType type)
-        //{
-        //    _terminalViewModel.StartWork(CorrectId(txtEmpId.Text), (int)type);
-        //    label3.Text = _terminalViewModel.EmployeeDescription(CorrectId(txtEmpId.Text), nameof(type));
-        //}
-        public int CorrectId(string input)
-        {
-            if (_terminalViewModel.IsCorrectId(input).Item1)
-            {
-                return _terminalViewModel.IsCorrectId(input).Item2;
-            }
-            else
-            {
-                MessageBox.Show("Insert number!!!");
-            }
-            return _terminalViewModel.IsCorrectId(input).Item2;
-
-        }
-
         private void btnExit_Click(object sender, EventArgs e)
         {
-            _terminalViewModel.FinishWork(CorrectId(txtEmpId.Text));
-            label3.Text = _terminalViewModel.EmployeeDescription(CorrectId(txtEmpId.Text),nameof(WorkType.Exit));
+            int employeeId = int.Parse(txtEmpId.Text);
+            _terminalViewModel.FinishWork(employeeId);
+            label3.Text = _terminalViewModel.EmployeeDescription(employeeId, nameof(EWorkType.Exit));
+        }
+        private void btnLunch_Click(object sender, EventArgs e)
+        {
+            ChangeType(EWorkType.Lunch);
+        }
+        private void btnDoctor_Click(object sender, EventArgs e)
+        {
+            ChangeType(EWorkType.Doctor);
+        }
+        private void btnBusinessTrip_Click(object sender, EventArgs e)
+        {
+            ChangeType(EWorkType.BusinessTrip);
+        }
+        private void btnPrivate_Click(object sender, EventArgs e)
+        {
+            ChangeType(EWorkType.Private);
+        }
+        private void btnOther_Click(object sender, EventArgs e)
+        {
+            ChangeType(EWorkType.Other);
         }
     }
 }
