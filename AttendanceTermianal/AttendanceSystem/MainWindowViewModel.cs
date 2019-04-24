@@ -31,6 +31,12 @@ namespace AttendanceSystem
             return new BindingList<Person>(ManagerRepository.PersonRepository.GetPersonEmployeesPlebs(idSupervisor).ToList());
         }
 
+        public BindingList<DaySummary> FillDataGridViewOverview(int id, string month)
+        {
+            return new BindingList<DaySummary>(ManagerRepository.DaySummaryRepository.GetSummariesByMonth(month, id));
+
+        }
+
         public IDictionary<string, int> GetMonthWithNumberOfRecords(int id)
         {
             return ManagerRepository.DailyResultRepository.GetMonthsWithNumberOfRecords(id);
