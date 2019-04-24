@@ -14,19 +14,14 @@ namespace AttendanceSystem
         public Empolyee Empolyee { get; set; }
         public Person Person { get; set; }
 
-        public NewEmployeeViewModel(int idPerson)
+        public NewEmployeeViewModel(Person person, Empolyee empolyee)
         {
-            Empolyee = ManagerRepository.EmployeeRepository.GetEmpolyeeByID(idPerson);
-            Person = ManagerRepository.PersonRepository.GetPersonById(idPerson);
+            Person = person;
+            Empolyee = empolyee;
         }
 
         public NewEmployeeViewModel()
         {
-        }
-
-        public Person GetPersonByEmployeeId(int employeeId)
-        {
-            return ManagerRepository.PersonRepository.GetPersonByIdEmployee(employeeId);
         }
 
         public void AddNewEmployee(string firstName, string lastName, string phoneNumber, string adress, decimal salary, int permission, Person supervisor, string password)

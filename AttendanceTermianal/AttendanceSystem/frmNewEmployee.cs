@@ -14,29 +14,26 @@ namespace AttendanceSystem
 
     public partial class frmNewEmployee : Form
     {
-        private NewEmployeeViewModel _newEmployee;
-        //private int _employeeID;
+        private NewEmployeeViewModel _newEmployeeViewModel;
+
 
         public frmNewEmployee()
         {
             InitializeComponent();
-            cmbSupervisors.DataSource = _newEmployee.FillSupervisors();
-            _newEmployee = new NewEmployeeViewModel();
+            cmbSupervisors.DataSource = _newEmployeeViewModel.FillSupervisors();
+            _newEmployeeViewModel = new NewEmployeeViewModel();
         }
 
-        public frmNewEmployee(int employeeID)
+        public frmNewEmployee(Person person, Empolyee empolyee)
         {
             InitializeComponent();
-            //_newEmployee = new NewEmployeeViewModel();
-            _newEmployee = new NewEmployeeViewModel(employeeID);
-
-            //_newEmployee.Empolyee = _newEmployee.ge
-            cmbSupervisors.DataSource = _newEmployee.FillSupervisors();
-            cmbSupervisors.SelectedIndex = cmbSupervisors.Items.IndexOf(_newEmployee.GetPersonByEmployeeId(employeeID));
-            textBoxFirstName.Text = _newEmployee.Person.FirstName;
-            textBoxLastName.Text = _newEmployee.Person.LastName;
-            textBoxPhoneNumber.Text = _newEmployee.Person.PhoneNumber;
-            textAdress.Text = _newEmployee.Person.Adress;
+            _newEmployeeViewModel = new NewEmployeeViewModel(person, empolyee);
+            cmbSupervisors.DataSource = _newEmployeeViewModel.FillSupervisors();
+            cmbSupervisors.SelectedItem = _newEmployeeViewModel.Person;
+            textBoxFirstName.Text = _newEmployeeViewModel.Person.FirstName;
+            textBoxLastName.Text = _newEmployeeViewModel.Person.LastName;
+            textBoxPhoneNumber.Text = _newEmployeeViewModel.Person.PhoneNumber;
+            textAdress.Text = _newEmployeeViewModel.Person.Adress;
 
         }
 
@@ -46,14 +43,15 @@ namespace AttendanceSystem
             int permision;
             if (decimal.TryParse(textBoxSalary.Text, out salary)) { }
             if (int.TryParse(textBoxPermisions.Text, out permision)) { }
-            //DialogResult = DialogResult.OK;
-            if (_newEmployee.Empolyee.Id != 0)
+            if (_newEmployeeViewModel.Empolyee.Id == 0)
             {
-                _newEmployee.AddNewEmployee(textBoxFirstName.Text, textBoxLastName.Text, textBoxPhoneNumber.Text, textAdress.Text, salary, permision, (Person)cmbSupervisors.SelectedItem, textBoxPassword.Text);
+                _newEmployeeViewModel.AddNewEmployee(textBoxFirstName.Text, textBoxLastName.Text, textBoxPhoneNumber.Text, textAdress.Text, salary, permision, (Person)cmbSupervisors.SelectedItem, textBoxPassword.Text);
+                DialogResult = DialogResult.OK;
             }
             else
             {
-                _newEmployee.UpdateEmployee(textBoxFirstName.Text, textBoxLastName.Text, textBoxPhoneNumber.Text, textAdress.Text, salary, permision, (Person)cmbSupervisors.SelectedItem, textBoxPassword.Text);
+                _newEmployeeViewModel.UpdateEmployee(textBoxFirstName.Text, textBoxLastName.Text, textBoxPhoneNumber.Text, textAdress.Text, salary, permision, (Person)cmbSupervisors.SelectedItem, textBoxPassword.Text);
+                DialogResult = DialogResult.OK;
             }
             
         }

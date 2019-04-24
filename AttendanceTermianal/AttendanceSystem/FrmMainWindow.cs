@@ -78,6 +78,10 @@ namespace AttendanceSystem
         {
             frmNewEmployee newEmployee = new frmNewEmployee();
             newEmployee.ShowDialog();
+            if (newEmployee.DialogResult == DialogResult.OK)
+            {
+                CheckPermission();
+            }
         }
 
         private void btnShowMonth_Click_1(object sender, EventArgs e)
@@ -93,9 +97,32 @@ namespace AttendanceSystem
 
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
         {
-            // todo: vytiahni z combobxu osobu co tam je a na posli ju frmnewemployee
-            frmNewEmployee newEmployee = new frmNewEmployee(_employeeID);
+            frmNewEmployee newEmployee = new frmNewEmployee(_mainWindowViewModel.Person,_mainWindowViewModel.Empolyee);
             newEmployee.ShowDialog();
+            if(newEmployee.DialogResult == DialogResult.OK)
+            {
+                CheckPermission();
+            }
+        }
+
+        private void comboBoxPerson_ValueMemberChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void comboBoxPerson_BindingContextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void comboBoxPerson_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void comboBoxPerson_SelectedValueChanged(object sender, EventArgs e)
+        {
+            _mainWindowViewModel.Person = (Person)comboBoxPerson.SelectedItem;
         }
     }
 }
