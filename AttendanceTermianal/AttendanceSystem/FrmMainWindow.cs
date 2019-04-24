@@ -63,7 +63,7 @@ namespace AttendanceSystem
             string selected = comboBoxMonth.GetItemText(comboBoxMonth.SelectedItem);
             selected = selected.Split(' ')[0];          
 
-            dGVOverview.DataSource = _mainWindowViewModel.FillDataGridViewOverview( _employeeID, selected);
+            dGVOverview.DataSource = _mainWindowViewModel.FillDataGridViewOverview( _employeeID, selected);          
         }
 
         private void btnDeleteEmployee_Click_1(object sender, EventArgs e)
