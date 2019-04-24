@@ -29,5 +29,7 @@ namespace AttendanceSystem
         {
             return ManagerRepository.DailyResultRepository.GetMonthsWithNumberOfRecords(id);
         }
+
+
     }
 }

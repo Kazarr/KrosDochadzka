@@ -8,13 +8,13 @@ namespace Data.Model
 {
     public class DaySummary
     {
-        public List<DailyResult> Work { get; set; }
-        public List<DailyResult> Lunch { get; set; }
-        public List<DailyResult> Holiday { get; set; }
-        public List<DailyResult> HomeOffice { get; set; }
-        public List<DailyResult> BusinessTrip { get; set; }
-        public List<DailyResult> Doctor { get; set; }
-        public List<DailyResult> Private { get; set; }
-        public List<DailyResult> Other { get; set; }
+        public DateTime WorkArrivalTime { get; set; }
+        public DateTime WorkLeavingTime { get; set; }
+        public TimeSpan HolidayTime { get; set; } = TimeSpan.Zero;
+        public TimeSpan HomeOffice { get; set; } = TimeSpan.Zero;
+        public TimeSpan BusinessTrip { get; set; } = TimeSpan.Zero;
+        public TimeSpan Doctor { get; set; } = TimeSpan.Zero;
+        public TimeSpan Private { get; set; } = TimeSpan.Zero;
+        public TimeSpan Other { get; set; } = TimeSpan.Zero;
     }
 }

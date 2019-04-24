@@ -24,7 +24,7 @@ namespace AttendanceSystem
             WindowState = FormWindowState.Maximized;
             CheckPermission();
             fillMonthComboBox();
-            fillDGV();
+            
 
         }
         /// <summary>
@@ -59,32 +59,7 @@ namespace AttendanceSystem
             }
         }
 
-        private void fillDGV()
-        {
-            DateTime today = DateTime.Now;
-            Dictionary<string, List<string>> myAprilDictionary=new Dictionary<string, List<string>>( _mainWindowViewModel.getApril(_employeeID));
-            
-            dGVOverview.Columns.Add("Datum", "Datum");
-            dGVOverview.Columns.Add("WorkStart", "WorkStart");
-            dGVOverview.Columns.Add("WorkFinish", "WorkFinish");
-            dGVOverview.Columns.Add("LunchBreakStart", "LunchBreakStart");
-            dGVOverview.Columns.Add("LunchBreakFinish", "LunchBreakFinish");
-            int nieco = 0;
-            foreach (var key in myAprilDictionary.Keys)
-            {
-                nieco++;
-
-                Debug.WriteLine(key+" WTF:"+nieco);
-                dGVOverview.Rows.Add();
-                for (int i = 0; i < 4; i++)
-                {
-                    Debug.WriteLine(myAprilDictionary[key][i]);
-                    dGVOverview[nieco, i].Value = myAprilDictionary[key][i].Count() == 0 ? "": myAprilDictionary[key][i];
-                    //dGVOverview.Rows[nieco].Cells[i].Value = myAprilDictionary[key][i].ToString();
-                }
-            }
-
-        }
+      
 
         private void btnDeleteEmployee_Click_1(object sender, EventArgs e)
         {
