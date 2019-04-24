@@ -8,8 +8,9 @@ namespace Data.Model
 {
     public class DaySummary
     {
-        public DateTime WorkArrivalTime { get; set; }
-        public DateTime WorkLeavingTime { get; set; }
+        public DateTime? WorkArrivalTime { get; set; }
+        public DateTime? WorkLeavingTime { get; set; }
+        public TimeSpan LunchBreak { get; set; } = TimeSpan.Zero;
         public TimeSpan HolidayTime { get; set; } = TimeSpan.Zero;
         public TimeSpan HomeOffice { get; set; } = TimeSpan.Zero;
         public TimeSpan BusinessTrip { get; set; } = TimeSpan.Zero;

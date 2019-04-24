@@ -30,6 +30,11 @@ namespace AttendanceSystem
             return ManagerRepository.DailyResultRepository.GetMonthsWithNumberOfRecords(id);
         }
 
+        public BindingList<DaySummary> FillDataGridViewOverview(int id, string month)
+        {
+            return new BindingList<DaySummary>( ManagerRepository.DaySummaryRepository.GetSummariesByMonth(month, id));
+
+        }
 
     }
 }
