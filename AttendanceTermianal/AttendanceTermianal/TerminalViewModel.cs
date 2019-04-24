@@ -36,11 +36,11 @@ namespace AttendanceTermianal
             return day;
         }
 
-        public string EmployeeDescription(int id, string work)
+        public string EmployeeDescription(int id_employee, string workType)
         {
-            string fullName = $"{ManagerRepository.PersonRepository.GetPersonByIdEmployee(id).FirstName} " +
-                                $"{ManagerRepository.PersonRepository.GetPersonByIdEmployee(id).LastName} " +
-                                $"{work} " + 
+            string fullName = $"{ManagerRepository.PersonRepository.GetPersonByIdEmployee(id_employee).FirstName} " +
+                                $"{ManagerRepository.PersonRepository.GetPersonByIdEmployee(id_employee).LastName} " +
+                                $"{workType} " + 
                                 $"{DateTime.Now}";
             return fullName;
         }
@@ -76,9 +76,17 @@ namespace AttendanceTermianal
         }
         public void ChangeWorkType(EWorkType type, int id_employee)
         {
-            FinishWork(id_employee);
-            StartWork(id_employee, (int)type);
-            
+            if (!CheckDailyResult(id_employee, (int)type))
+            {
+                FinishWork(id_employee);
+                StartWork(id_employee, (int)type);
+            }           
+        }
+        public bool CheckDailyResult(int id_employee, int id_worktype)
+        {
+            _result.IdWorktype = id_worktype;
+            _result.IdEmployee = id_employee;
+            return ManagerRepository.DailyResultRepository.CheckIfDailyResultExist(_result);
         }
     }
 }
