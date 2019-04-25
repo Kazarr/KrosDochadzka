@@ -94,6 +94,7 @@ namespace Data.Repository
         {
             DaySummary daySummary = new DaySummary();
 
+            daySummary.Date = date.Date.ToString("MM-dd-yyyy");
             daySummary.WorkArrivalTime = GetArrivalTime(date, idEmployee);
             daySummary.WorkLeavingTime = GetLeavingTime(date, idEmployee);
             daySummary.LunchBreak = GetTimeSpendOnDailyResults(date, idEmployee, 2);
