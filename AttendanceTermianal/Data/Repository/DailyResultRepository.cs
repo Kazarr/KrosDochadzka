@@ -201,5 +201,68 @@ namespace Data.Repository
                 }
             }
         }
+        public DailyResult SelectLastStartAndFinish(DailyResult dailyResult)
+        {
+            DailyResult result = new DailyResult();
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"select max([start]), min(finish) from dailyresult where id in
+                            (select top 2 id from DailyResult where IdEmployee=@IdEmp and IdWorktype=1 order by [Start] desc) ";
+                        command.Parameters.Add("@IdEmp", SqlDbType.Int).Value = dailyResult.IdEmployee;
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {                                
+                                result.Finish = reader.GetDateTime(0);
+                                result.Start = reader.GetDateTime(1);
+                            }
+                            return result;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+        //                              Nemazať, spojazdním(qubo)
+
+        //public bool CheckIfResultIsTheSame(DailyResult dailyResult)
+        //{
+        //    DailyResult result = new DailyResult();
+        //    using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+        //    {
+        //        try
+        //        {
+        //            connection.Open();
+        //            using (SqlCommand command = new SqlCommand())
+        //            {
+        //                command.Connection = connection;
+        //                command.CommandText = @"  select top 2 * from DailyResult where IdEmployee =@IdEmp 
+        //                        and CONVERT(date,[Start]) = CONVERT(date,GETDATE()) order by [start] desc";
+        //                command.Parameters.Add("@IdEmp", SqlDbType.Int).Value = dailyResult.IdEmployee;
+        //                using (SqlDataReader reader = command.ExecuteReader())
+        //                {
+        //                    while (reader.Read())
+        //                    {
+        //                        result.Finish = reader.GetDateTime(0);
+        //                        result.Start = reader.GetDateTime(1);
+        //                    }                            
+        //                }
+        //            }
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            throw e;
+        //        }
+        //    }
+        //}
     }
 }

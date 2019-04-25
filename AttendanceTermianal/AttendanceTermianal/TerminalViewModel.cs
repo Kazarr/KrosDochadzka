@@ -75,7 +75,7 @@ namespace AttendanceTermianal
         /// <param name="type"></param>
         private void StartWork(int id_employee, EWorkType type)
         {
-            _result.Id = ManagerRepository.DailyResultRepository.InsertDialyResult(SetResult(id_employee, type));           
+            _result.Id = ManagerRepository.DailyResultRepository.InsertDialyResult(SetResult(id_employee, type));
         }
         /// <summary>
         /// Update finish time posledného záznamu v prípade ak je prázdny
