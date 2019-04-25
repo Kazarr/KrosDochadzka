@@ -131,7 +131,12 @@ namespace Data.Repository
                 }
             }
         }
-        public DateTime? CheckIfWorkDailyExist(DailyResult daily_Result)
+        /// <summary>
+        /// vyhladá POSLEDNÝ finish time daného employee
+        /// </summary>
+        /// <param name="daily_Result"></param>
+        /// <returns> vráti finish time buď null alebo hodnotu </returns>
+        public DateTime? GetFinishDailyResult(DailyResult daily_Result)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
             {
@@ -141,12 +146,13 @@ namespace Data.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = @"SELECT finish  FROM [KROSDOCHADZKA].[dbo].[DailyResult]
-                                            where IdEmployee=@IdEmp and IdWorktype=@IdWT  and finish is null
-                                            and CONVERT(date,[Start]) = CONVERT(date,GETDATE()) ";
+                        command.CommandText = @"SELECT finish FROM [KROSDOCHADZKA].[dbo].[DailyResult]
+                                            where IdEmployee=@IdEmp 
+                                            and CONVERT(date,[Start]) = CONVERT(date,GETDATE()) order by [start] desc ";
                         command.Parameters.Add("@IdEmp", SqlDbType.Int).Value = daily_Result.IdEmployee;
-                        command.Parameters.Add("@IdWT", SqlDbType.Int).Value = daily_Result.IdWorktype;
-                        return (DateTime?)command.ExecuteScalar();
+                        DateTime? test = command.ExecuteScalar() as DateTime?;
+
+                        return test;
                     }
                 }
                 catch (Exception e)
