@@ -38,6 +38,7 @@
             this.comboBoxMonth = new System.Windows.Forms.ComboBox();
             this.dGVOverview = new System.Windows.Forms.DataGridView();
             this.buttonExit = new System.Windows.Forms.Button();
+            this.btnDetails = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dGVOverview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -165,11 +166,22 @@
             this.buttonExit.UseVisualStyleBackColor = true;
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
             // 
+            // btnDetails
+            // 
+            this.btnDetails.Location = new System.Drawing.Point(15, 183);
+            this.btnDetails.Name = "btnDetails";
+            this.btnDetails.Size = new System.Drawing.Size(174, 23);
+            this.btnDetails.TabIndex = 23;
+            this.btnDetails.Text = "Details";
+            this.btnDetails.UseVisualStyleBackColor = true;
+            this.btnDetails.Click += new System.EventHandler(this.btnDetails_Click);
+            // 
             // FrmMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1187, 531);
+            this.Controls.Add(this.btnDetails);
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.dGVOverview);
             this.Controls.Add(this.btnShowMonth);
@@ -200,6 +212,7 @@
         private System.Windows.Forms.ComboBox comboBoxMonth;
         private System.Windows.Forms.DataGridView dGVOverview;
         private System.Windows.Forms.Button buttonExit;
+        private System.Windows.Forms.Button btnDetails;
     }
 }
 
