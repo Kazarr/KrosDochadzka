@@ -120,6 +120,7 @@ namespace AttendanceTermianal
             _result.IdWorktype = (int)type;
             _result.IdEmployee = id_employee;
             return _result;
+
         }
     }
 }
