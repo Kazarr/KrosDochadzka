@@ -15,10 +15,10 @@ namespace AttendanceSystem
     public partial class FrmMainWindow : Form
     {
         private MainWindowViewModel _mainWindowViewModel = new MainWindowViewModel();
-        private int _employeeID;
+        private int _loggedEmployeeID;
         public FrmMainWindow(int id)
         {
-            _employeeID = id;
+            _loggedEmployeeID = id;
             InitializeComponent();
             FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;            
@@ -30,14 +30,14 @@ namespace AttendanceSystem
         /// </summary>
         private void CheckPermission()
         {
-            if (_mainWindowViewModel.GetEmployeeByID(_employeeID).Permision >= 2)
+            if (_mainWindowViewModel.GetEmployeeByID(_loggedEmployeeID).Permision >= 2)
             {
                 btnUpdateEmployee.Visible = true;
                 labelChoosePerson.Visible = true;
                 comboBoxPerson.Visible = true;
-                comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox(_employeeID);
+                comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox(_loggedEmployeeID);
             }
-            if (_mainWindowViewModel.GetEmployeeByID(_employeeID).Permision >= 3)
+            if (_mainWindowViewModel.GetEmployeeByID(_loggedEmployeeID).Permision >= 3)
             {
                 comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox();
                 btnNewEmployee.Visible = true;
@@ -50,7 +50,7 @@ namespace AttendanceSystem
 
         private void fillMonthComboBox()
         {
-            Dictionary<string, int> monthRecords = new Dictionary<string, int>(_mainWindowViewModel.GetMonthWithNumberOfRecords(_employeeID));
+            Dictionary<string, int> monthRecords = new Dictionary<string, int>(_mainWindowViewModel.GetMonthWithNumberOfRecords(_loggedEmployeeID));
             foreach (var month in monthRecords.Keys)
             {
                 comboBoxMonth.Items.Add($"{month.ToString()} : {monthRecords[month]}");
@@ -63,7 +63,7 @@ namespace AttendanceSystem
             string selected = comboBoxMonth.GetItemText(comboBoxMonth.SelectedItem);
             selected = selected.Split(' ')[0];          
 
-            dGVOverview.DataSource = _mainWindowViewModel.FillDataGridViewOverview( _employeeID, selected);          
+            dGVOverview.DataSource = _mainWindowViewModel.FillDataGridViewOverview( _loggedEmployeeID, selected);          
         }
 
         private void btnDeleteEmployee_Click_1(object sender, EventArgs e)
@@ -83,6 +83,7 @@ namespace AttendanceSystem
         {
             frmNewEmployee newEmployee = new frmNewEmployee();
             newEmployee.ShowDialog();
+
             if (newEmployee.DialogResult == DialogResult.OK)
             {
                 CheckPermission();
@@ -131,6 +132,12 @@ namespace AttendanceSystem
         private void comboBoxPerson_SelectedValueChanged(object sender, EventArgs e)
         {
             _mainWindowViewModel.Person = (Person)comboBoxPerson.SelectedItem;
+        }
+
+        private void btnDetails_Click(object sender, EventArgs e)
+        {
+            frmDailyDetails dailyDetails = new frmDailyDetails(_loggedEmployeeID);
+            dailyDetails.ShowDialog();
         }
     }
 }
