@@ -71,7 +71,7 @@ namespace AttendanceSystem
             DialogResult dialogResult = MessageBox.Show("Are you serious?", "Delete faggot", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                //do something
+                _mainWindowViewModel.DeleteEmployeePerson((Person)comboBoxPerson.SelectedItem);
             }
             else if (dialogResult == DialogResult.No)
             {

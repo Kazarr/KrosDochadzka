@@ -22,15 +22,31 @@ namespace AttendanceSystem
 
         public NewEmployeeViewModel()
         {
+            Empolyee = new Empolyee();
+            Person = new Person();
         }
 
         public void AddNewEmployee(string firstName, string lastName, string phoneNumber, string adress, decimal salary, int permission, Person supervisor, string password)
         {
             Person p = new Person(firstName, lastName, phoneNumber, adress);
             p.Id = ManagerRepository.PersonRepository.InsertPerson(p);
-            Empolyee e = new Empolyee(password,p.Id, supervisor.Id, permission,salary);
-            ManagerRepository.EmployeeRepository.InsertFullEmployee(e);
-            
+            Empolyee e = new Empolyee(password, p.Id, permission, salary);
+            //e.Password = password;
+            //e.IdPerson = p.Id;
+            //e.IdSupervisor = supervisor.Id;
+            //e.Permision = permission;
+            //e.Salary = salary;
+            if (supervisor == null)
+            {
+                e.IdSupervisor = ManagerRepository.EmployeeRepository.InsertFullEmployee(e);
+                ManagerRepository.EmployeeRepository.UpdateSupervisor(e);
+            }
+            else
+            {
+                ManagerRepository.EmployeeRepository.InsertFullEmployee(e);
+            }
+
+
         }
 
         public BindingList<Person> FillSupervisors()

@@ -12,6 +12,14 @@ namespace Data.Model
         {
         }
 
+        public Empolyee(string password, int idPerson, int permision, decimal salary)
+        {
+            Password = password;
+            IdPerson = idPerson;
+            Permision = permision;
+            Salary = salary;
+        }
+
         public Empolyee(string password, int idPerson, int idSupervisor, int permision, decimal salary)
         {
             Password = password;

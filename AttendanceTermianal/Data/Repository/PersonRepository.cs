@@ -84,6 +84,35 @@ namespace Data.Repository
             }
         }
 
+        public bool DeletePerson(Person person)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"DELETE FROM Person WHERE Id = @Id";
+                        command.Parameters.Add("@Id", SqlDbType.Int).Value = person.Id;
+                        if (command.ExecuteNonQuery() > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
         public Person GetPersonByIdEmployee(int employeeId)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))

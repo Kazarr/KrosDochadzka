@@ -20,6 +20,7 @@ namespace AttendanceSystem
         public frmNewEmployee()
         {
             InitializeComponent();
+            _newEmployeeViewModel = new NewEmployeeViewModel();
             cmbSupervisors.DataSource = _newEmployeeViewModel.FillSupervisors();
             _newEmployeeViewModel = new NewEmployeeViewModel();
         }
