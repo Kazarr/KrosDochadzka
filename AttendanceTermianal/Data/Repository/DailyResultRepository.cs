@@ -149,6 +149,47 @@ namespace Data.Repository
                 }
             }
         }
+        
+        /// <summary>
+        /// insert new Daily result entered from system
+        /// </summary>
+        /// <param name="dailyResult"></param>
+        /// <returns></returns>
+        public bool InsertNewDailyResultFromSystem (DailyResult dailyResult)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"insert into DailyResult 
+                                                values (@IdEmployee,@StartTime,@FinishTime,@WorkTypeID)";
+                        command.Parameters.Add("@IdEmployee", SqlDbType.Int).Value = dailyResult.IdEmployee;
+                        command.Parameters.Add("@WorkTypeID", SqlDbType.Int).Value = dailyResult.IdWorktype;
+                        command.Parameters.Add("@StartTime", SqlDbType.DateTime2).Value = dailyResult.Start;
+                        command.Parameters.Add("@FinishTime", SqlDbType.DateTime2).Value = dailyResult.Finish;
+
+                        if (command.ExecuteNonQuery()>0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                    return false;
+                }
+            }
+        }
 
         public bool UpdateFinishDailyResult(DailyResult daily_Result)
         {

@@ -16,9 +16,9 @@ namespace AttendanceSystem
         private DateTime _thisDate;
         private DailyDetailsViewModel _dailyDetailsViewModel = new DailyDetailsViewModel();
 
-        public frmDailyDetails(int id,DateTime date)
+        public frmDailyDetails(int loggedEmployeeId,DateTime date)
         {
-            _loggedEmployeeId = id;
+            _loggedEmployeeId = loggedEmployeeId;
             _thisDate = date;          
             InitializeComponent();
             FillDataGridView();
@@ -44,10 +44,7 @@ namespace AttendanceSystem
         }
 
 
-        private void frmDailyDetails_Load(object sender, EventArgs e)
-        {
-
-        }
+ 
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
@@ -86,6 +83,15 @@ namespace AttendanceSystem
             {
                 //do something else
             }
+        }
+
+   
+
+        private void btnAdd_Click_1(object sender, EventArgs e)
+        {
+            frmDailyDetailsAddEdit frmDailyDetailsAdd = new frmDailyDetailsAddEdit(_loggedEmployeeId,_thisDate);
+            frmDailyDetailsAdd.ShowDialog();
+            FillDataGridView();
         }
     }
 }
