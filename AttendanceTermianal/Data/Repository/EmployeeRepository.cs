@@ -152,14 +152,15 @@ namespace Data.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = @"INSERT INTO Employee (Salary, IdPermission, IdSupervisor, Password, IdPerson)
+                        command.CommandText = @"INSERT INTO Employee (Salary, IdPermission, IdSupervisor, Password, IdPerson, HiredDate)
                                                 OUTPUT INSERTED.Id
-                                                VALUES (@Salary, @IdPermission, @IdSupervisor, @Password, @IdPerson)";
+                                                VALUES (@Salary, @IdPermission, @IdSupervisor, @Password, @IdPerson, @HiredDate)";
                         command.Parameters.Add("@Salary", SqlDbType.Decimal).Value = employee.Salary;
                         command.Parameters.Add("@IdPermission", SqlDbType.Int).Value = employee.Permision;
                         command.Parameters.Add("@IdSupervisor", SqlDbType.Int).Value = (object)employee.IdSupervisor ?? DBNull.Value;
                         command.Parameters.Add("@Password", SqlDbType.VarChar).Value = employee.Password;
                         command.Parameters.Add("@IdPerson", SqlDbType.VarChar).Value = employee.IdPerson;
+                        command.Parameters.Add("@HiredDate", SqlDbType.Date).Value = (object)employee.HiredDate ?? DateTime.Now;
                         return (int)command.ExecuteScalar();
                     }
                 }
@@ -245,6 +246,43 @@ namespace Data.Repository
                         command.Connection = connection;
                         command.CommandText = @"select * from Employee where idPerson = @id";
                         command.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int employeeId = reader.GetInt32(0);
+                                string password = reader.GetString(1);
+                                int idPerson = reader.GetInt32(2);
+                                int idSupervisor = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
+                                int permision = reader.GetInt32(4);
+                                decimal salary = reader.GetDecimal(5);
+                                DateTime hiredDate = reader.GetDateTime(6);
+
+                                return new Empolyee(employeeId, password, idPerson, idSupervisor, permision, salary, hiredDate);
+                            }
+                            return null;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
+        public Empolyee GetEmpolyeeByIdPerson(Person person)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"select * from Employee where idPerson = @id";
+                        command.Parameters.Add("@id", SqlDbType.Int).Value = person.Id;
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             if (reader.Read())
