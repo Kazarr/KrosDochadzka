@@ -201,6 +201,11 @@ namespace Data.Repository
                 }
             }
         }
+        /// <summary>
+        /// Select posledného startu a predposledného finishu
+        /// </summary>
+        /// <param name="dailyResult"></param>
+        /// <returns>start a finish time</returns>
         public DailyResult SelectLastStartAndFinish(DailyResult dailyResult)
         {
             DailyResult result = new DailyResult();
@@ -232,37 +237,80 @@ namespace Data.Repository
                 }
             }
         }
-        //                              Nemazať, spojazdním(qubo)
+        /// <summary>
+        /// Select posledných dvoch záznamov zamestnanca(Employee) 
+        /// </summary>
+        /// <param name="dailyResult"></param>
+        /// <returns>List posledných dvoch záznamov </returns>
+        public List<DailyResult> SelectTwoLastResults(DailyResult dailyResult)
+        {
+            List<DailyResult> ret = new List<DailyResult>();
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"  select top 2 * from DailyResult where IdEmployee = @IdEmpl 
+                                and CONVERT(date,[Start]) = CONVERT(date,GETDATE()) order by [start] desc";
+                        command.Parameters.Add("@IdEmpl", SqlDbType.Int).Value = dailyResult.IdEmployee;
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                DailyResult dr = new DailyResult();
+                                dr.Id = reader.GetInt32(0);
+                                dr.IdEmployee = reader.GetInt32(1);
+                                dr.Start = reader.GetDateTime(2);
+                                dr.Finish = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3);
+                                dr.IdWorktype = reader.GetInt32(4);
 
-        //public bool CheckIfResultIsTheSame(DailyResult dailyResult)
-        //{
-        //    DailyResult result = new DailyResult();
-        //    using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
-        //    {
-        //        try
-        //        {
-        //            connection.Open();
-        //            using (SqlCommand command = new SqlCommand())
-        //            {
-        //                command.Connection = connection;
-        //                command.CommandText = @"  select top 2 * from DailyResult where IdEmployee =@IdEmp 
-        //                        and CONVERT(date,[Start]) = CONVERT(date,GETDATE()) order by [start] desc";
-        //                command.Parameters.Add("@IdEmp", SqlDbType.Int).Value = dailyResult.IdEmployee;
-        //                using (SqlDataReader reader = command.ExecuteReader())
-        //                {
-        //                    while (reader.Read())
-        //                    {
-        //                        result.Finish = reader.GetDateTime(0);
-        //                        result.Start = reader.GetDateTime(1);
-        //                    }                            
-        //                }
-        //            }
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            throw e;
-        //        }
-        //    }
-        //}
+                                ret.Add(dr);
+                            }
+                            return ret;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+        /// <summary>
+        /// Vloženie záznamu
+        /// </summary>
+        /// <param name="dailyResult"> obsahuje IdEmployee, start a finish </param>
+        /// <returns>true alebo false v prípade úspešneho uloženia</returns>
+        public bool InsertInBlankSpace(DailyResult dailyResult)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"Insert into DailyResult (IdEmployee,[Start],Finish,IdWorktype) 
+                                            values (@Id_Employee,@start,@finish,8)";
+                        command.Parameters.Add("@Id_Employee", SqlDbType.VarChar).Value = dailyResult.IdEmployee;
+                        command.Parameters.Add("@start", SqlDbType.DateTime2).Value = dailyResult.Start;
+                        command.Parameters.Add("@finish", SqlDbType.DateTime2).Value = dailyResult.Finish;
+                        if (command.ExecuteNonQuery()>0)
+                        {
+                            return true;
+                        }
+                        return false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
     }
 }

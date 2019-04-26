@@ -85,7 +85,7 @@ namespace AttendanceTermianal
         /// <returns> true ak vykoná update</returns>
         public bool FinishWork(int id_employee, EWorkType type)
         {
-            DateTime? daco = ManagerRepository.DailyResultRepository.GetFinishDailyResult(SetResult(id_employee, type));
+            //DateTime? daco = ManagerRepository.DailyResultRepository.GetFinishDailyResult(SetResult(id_employee, type));
             if (ManagerRepository.DailyResultRepository.GetFinishDailyResult(SetResult(id_employee, type)) == null)
             {
                 return ManagerRepository.DailyResultRepository.UpdateFinishDailyResult(SetResult(id_employee, type));
@@ -103,6 +103,7 @@ namespace AttendanceTermianal
             {
                 FinishWork(id_employee, type);
                 StartWork(id_employee, type);
+                FillBlankSpace(id_employee, type);
             }           
         }
         /// <summary>
@@ -120,7 +121,27 @@ namespace AttendanceTermianal
             _result.IdWorktype = (int)type;
             _result.IdEmployee = id_employee;
             return _result;
-
+        }
+        /// <summary>
+        /// Záplní okno v prípade viacnásobného príchodu a odchodu
+        /// </summary>
+        /// <param name="id_employee"></param>
+        /// <param name="type"></param>
+        public void FillBlankSpace(int id_employee, EWorkType type)
+        {
+            _result.IdEmployee = id_employee;
+            List<DailyResult> test = new List<DailyResult>();
+            test = ManagerRepository.DailyResultRepository.SelectTwoLastResults(_result);
+            if (test.Count==2)
+            {
+                if (test[0].IdWorktype == test[1].IdWorktype)
+                {
+                    _result.Finish = ManagerRepository.DailyResultRepository.SelectLastStartAndFinish(_result).Finish;
+                    _result.Start = ManagerRepository.DailyResultRepository.SelectLastStartAndFinish(_result).Start;
+                    ManagerRepository.DailyResultRepository.InsertInBlankSpace(_result);
+                }
+            }
+            
         }
     }
 }
