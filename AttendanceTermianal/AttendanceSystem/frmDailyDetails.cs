@@ -21,10 +21,23 @@ namespace AttendanceSystem
             _loggedEmployeeId = id;
             _thisDate = date;          
             InitializeComponent();
-            fillDataGridView();
+            FillDataGridView();
+            CheckPermission();
+        }
+        /// <summary>
+        /// checks if the logged person got rights to edit
+        /// </summary>
+        private void CheckPermission()
+        {
+            if (_dailyDetailsViewModel.GetEmpolyeeById(_loggedEmployeeId).Permision>1)
+            {
+                btnAdd.Visible = true;
+                btnDelete.Visible = true;
+                btnEdit.Visible = true;
+            }
         }
 
-        private void fillDataGridView()
+        private void FillDataGridView()
         {
             dGVDailyResultsOverview.DataSource = _dailyDetailsViewModel.GetDailyResultWithWorkTypes(_loggedEmployeeId, _thisDate);
             dGVDailyResultsOverview.Columns["DailyResultID"].Visible = false;
@@ -60,7 +73,7 @@ namespace AttendanceSystem
                             "try tu restart the program, check connection\n" +
                             "if problem persists contact tech support");
                     }
-                    fillDataGridView();
+                    FillDataGridView();
 
                 }
                 else

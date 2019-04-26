@@ -30,8 +30,8 @@
         {
             this.dGVDailyResultsOverview = new System.Windows.Forms.DataGridView();
             this.btnConfirm = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dGVDailyResultsOverview)).BeginInit();
             this.SuspendLayout();
@@ -62,25 +62,27 @@
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
-            // button1
+            // btnEdit
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(406, 59);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(148, 40);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Edit record";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnEdit.Location = new System.Drawing.Point(406, 59);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(148, 40);
+            this.btnEdit.TabIndex = 2;
+            this.btnEdit.Text = "Edit record";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Visible = false;
             // 
-            // button2
+            // btnAdd
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button2.Location = new System.Drawing.Point(406, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(148, 41);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Add new record";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnAdd.Location = new System.Drawing.Point(406, 12);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(148, 41);
+            this.btnAdd.TabIndex = 3;
+            this.btnAdd.Text = "Add new record";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Visible = false;
             // 
             // btnDelete
             // 
@@ -91,6 +93,7 @@
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Delete record";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Visible = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // frmDailyDetails
@@ -99,8 +102,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(566, 514);
             this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.dGVDailyResultsOverview);
             this.Name = "frmDailyDetails";
@@ -115,8 +118,8 @@
 
         private System.Windows.Forms.DataGridView dGVDailyResultsOverview;
         private System.Windows.Forms.Button btnConfirm;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDelete;
     }
 }

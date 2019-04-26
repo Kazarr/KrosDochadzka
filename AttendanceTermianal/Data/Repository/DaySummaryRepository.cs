@@ -104,10 +104,11 @@ namespace Data.Repository
             daySummary.Doctor = GetTimeSpendOnDailyResults(date, idEmployee, 6);
             daySummary.Private = GetTimeSpendOnDailyResults(date, idEmployee, 7);
             daySummary.Other = GetTimeSpendOnDailyResults(date, idEmployee, 8);
-            daySummary.TotalTimeWorked = daySummary.WorkLeavingTime - daySummary.WorkArrivalTime - daySummary.HolidayTime +
-                daySummary.HomeOffice + daySummary.BusinessTrip - daySummary.Doctor - daySummary.Private - daySummary.Other;
 
-            daySummary.TotalTimeWorked += daySummary.LunchBreak > TimeSpan.FromMinutes(30) ? daySummary.LunchBreak : TimeSpan.FromMinutes(30);
+            daySummary.TotalTimeWorked = daySummary.WorkLeavingTime - daySummary.WorkArrivalTime - daySummary.HolidayTime 
+                 - daySummary.Doctor - daySummary.Private - daySummary.Other;
+
+            daySummary.TotalTimeWorked -= daySummary.LunchBreak > TimeSpan.FromMinutes(30) ? daySummary.LunchBreak : TimeSpan.FromMinutes(30);
 
             return daySummary;
 

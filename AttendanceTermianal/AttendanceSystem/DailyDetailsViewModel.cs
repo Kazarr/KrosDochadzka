@@ -19,5 +19,10 @@ namespace AttendanceSystem
         {
             return ManagerRepository.DailyResultRepository.DeleteDailyResult(dailyResultID);
         }
+
+        public Empolyee GetEmpolyeeById(int employeeId)
+        {
+            return ManagerRepository.EmployeeRepository.GetEmpolyeeByID(employeeId);
+        }
     }
 }
