@@ -51,6 +51,7 @@ namespace Data.Repository
 
         public bool UpdateEmployee(Empolyee empolyee, Person person)
         {
+            bool updatePerson = false;
             empolyee.Password = CalculateMD5Hash(empolyee.Password);
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
             {
@@ -75,6 +76,27 @@ namespace Data.Repository
                         command.Parameters.Add("@employeeId", SqlDbType.Int).Value = empolyee.Id;
                         if (command.ExecuteNonQuery() > 1)
                         {
+                            updatePerson = true;
+                        }
+                    }
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"   Update Employee
+                                                    SET	Password = @Password,
+		                                                IdPerson = @IdPerson,
+		                                                IdSuperVisor = @IdSupervisor,
+		                                                IdPermission = @IdPermission,
+		                                                Salary = @Salary
+                                                WHERE Id = @Id";
+                        command.Parameters.Add("@Password", SqlDbType.VarChar).Value = empolyee.Password;
+                        command.Parameters.Add("@IdPerson", SqlDbType.VarChar).Value = empolyee.IdPerson;
+                        command.Parameters.Add("@IdSupervisor", SqlDbType.VarChar).Value = empolyee.IdSupervisor;
+                        command.Parameters.Add("@IdPermission", SqlDbType.VarChar).Value = empolyee.Permision;
+                        command.Parameters.Add("@Salary", SqlDbType.Int).Value = empolyee.Salary;
+                        command.Parameters.Add("@Id", SqlDbType.Int).Value = empolyee.Id;
+                        if (command.ExecuteNonQuery() > 0 && updatePerson)
+                        {
                             return true;
                         }
                         else
@@ -90,7 +112,36 @@ namespace Data.Repository
             }
         }
 
-        public bool InsertFullEmployee(Empolyee employee)
+        public bool DeleteEmployee(Empolyee empolyee)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"DELETE FROM Employee WHERE Id = @Id";
+                        command.Parameters.Add("@Id", SqlDbType.Decimal).Value = empolyee.Id;
+                        if (command.ExecuteNonQuery() > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
+        public int InsertFullEmployee(Empolyee employee)
         {
             employee.Password = CalculateMD5Hash(employee.Password);
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
@@ -102,20 +153,40 @@ namespace Data.Repository
                     {
                         command.Connection = connection;
                         command.CommandText = @"INSERT INTO Employee (Salary, IdPermission, IdSupervisor, Password, IdPerson)
+                                                OUTPUT INSERTED.Id
                                                 VALUES (@Salary, @IdPermission, @IdSupervisor, @Password, @IdPerson)";
                         command.Parameters.Add("@Salary", SqlDbType.Decimal).Value = employee.Salary;
                         command.Parameters.Add("@IdPermission", SqlDbType.Int).Value = employee.Permision;
-                        command.Parameters.Add("@IdSupervisor", SqlDbType.Int).Value = employee.IdSupervisor;
+                        command.Parameters.Add("@IdSupervisor", SqlDbType.Int).Value = (object)employee.IdSupervisor ?? DBNull.Value;
                         command.Parameters.Add("@Password", SqlDbType.VarChar).Value = employee.Password;
                         command.Parameters.Add("@IdPerson", SqlDbType.VarChar).Value = employee.IdPerson;
-                        if (command.ExecuteNonQuery() > 1)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
+                        return (int)command.ExecuteScalar();
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
+        public void UpdateSupervisor(Empolyee empolyee)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"UPDATE Employee
+	                                            SET IdSupervisor = @idSupervisor
+	                                            WHERE id = @idEmployee ";
+                        command.Parameters.Add("@idSupervisor", SqlDbType.Decimal).Value = empolyee.IdSupervisor;
+                        command.Parameters.Add("@idEmployee", SqlDbType.Int).Value = empolyee.Id;
+
+                        command.ExecuteNonQuery();
                     }
                 }
                 catch (Exception e)
