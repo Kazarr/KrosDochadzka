@@ -74,5 +74,12 @@ namespace AttendanceSystem
             ManagerRepository.EmployeeRepository.DeleteEmployee(e);
             ManagerRepository.PersonRepository.DeletePerson(person);
         }
+
+        public BindingList<Person> FillPlebPerson(int employeeId)
+        {
+            BindingList<Person> ret = new BindingList<Person>();
+            ret.Add(ManagerRepository.PersonRepository.GetPersonByIdEmployee(employeeId));
+            return ret;
+        }
     }
 }
