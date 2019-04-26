@@ -39,6 +39,15 @@ namespace Data.Model
             HiredDate = hiredDate;
         }
 
+        public Empolyee(string password, int id_person,  int permision, decimal salary, DateTime hiredDate)
+        {
+            Password = password;
+            IdPerson = id_person;
+            Permision = permision;
+            Salary = salary;
+            HiredDate = hiredDate;
+        }
+
         public Empolyee(int id, string password, int id_person, int id_supervisor, int permision, decimal salary, DateTime hiredDate)
         {
             Id = id;
