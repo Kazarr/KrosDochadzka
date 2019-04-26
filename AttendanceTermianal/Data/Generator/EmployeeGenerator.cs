@@ -11,8 +11,13 @@ namespace Data.Generator
 {
     public class EmployeeGenerator
     {
-        private EmployeeRepository _employeeRepository;
+        private EmployeeRepository _employeeRepository ;
         private PersonRepository _personRepository;
+
+        public EmployeeGenerator()
+        {
+            _employeeRepository = new EmployeeRepository();
+        }
 
         Random r = new Random();
 
@@ -23,9 +28,8 @@ namespace Data.Generator
             return start.AddDays(r.Next(range));
         }
 
-        public Empolyee SetEmployee(int i)
+        public Empolyee SetSupervisor(int i)
         {
-
             string pass = "0000";
             int idPerson = i;
             int idPermission = 2;
@@ -33,10 +37,30 @@ namespace Data.Generator
             DateTime date = RandomDate();
             return new Empolyee(pass, idPerson, idPermission, salary, date);
         }
-        public void GenerateEmployee()
+        public Empolyee SetEmployee(int i)
+        {
+            string pass = "0000";
+            int idPerson = i;
+            int idSupervisor = r.Next(30, 143);
+            int idPermission = 1;
+            decimal salary = r.Next(1000, 2500);
+            DateTime date = RandomDate();
+            return new Empolyee(pass, idPerson, idSupervisor, idPermission, salary, date);
+        }
+
+        public void GenerateSupervisor()
         {
             List<Person> people = ManagerRepository.PersonRepository.GetPersons().ToList();
             for (int i = 3; i < people.Count - 700; i++)
+            {
+               _employeeRepository.InsertFullEmployee(SetSupervisor(i));
+            }
+        }
+
+        public void GenerateEmployee()
+        {
+            List<Person> people = ManagerRepository.PersonRepository.GetPersons().ToList();
+            for (int i = 200; i < people.Count-1 ; i++)
             {
                 _employeeRepository.InsertFullEmployee(SetEmployee(i));
             }
