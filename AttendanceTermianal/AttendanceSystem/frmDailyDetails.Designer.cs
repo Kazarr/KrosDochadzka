@@ -28,21 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dGVDailyResultsOverview = new System.Windows.Forms.DataGridView();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dGVDailyResultsOverview)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dGVDailyResultsOverview
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 105);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(542, 344);
-            this.dataGridView1.TabIndex = 0;
+            this.dGVDailyResultsOverview.AllowUserToAddRows = false;
+            this.dGVDailyResultsOverview.AllowUserToDeleteRows = false;
+            this.dGVDailyResultsOverview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dGVDailyResultsOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGVDailyResultsOverview.Location = new System.Drawing.Point(12, 105);
+            this.dGVDailyResultsOverview.MultiSelect = false;
+            this.dGVDailyResultsOverview.Name = "dGVDailyResultsOverview";
+            this.dGVDailyResultsOverview.ReadOnly = true;
+            this.dGVDailyResultsOverview.RowHeadersVisible = false;
+            this.dGVDailyResultsOverview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dGVDailyResultsOverview.Size = new System.Drawing.Size(542, 344);
+            this.dGVDailyResultsOverview.TabIndex = 0;
             // 
             // btnConfirm
             // 
@@ -84,6 +91,7 @@
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Delete record";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // frmDailyDetails
             // 
@@ -94,18 +102,18 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnConfirm);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dGVDailyResultsOverview);
             this.Name = "frmDailyDetails";
             this.Text = "DailyDetails";
             this.Load += new System.EventHandler(this.frmDailyDetails_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dGVDailyResultsOverview)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dGVDailyResultsOverview;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;

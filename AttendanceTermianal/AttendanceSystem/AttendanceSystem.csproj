@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DailyResultViewModel.cs" />
+    <Compile Include="DailyDetailsViewModel.cs" />
     <Compile Include="frmDailyDetails.cs">
       <SubType>Form</SubType>
     </Compile>
