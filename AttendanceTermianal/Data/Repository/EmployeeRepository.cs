@@ -152,14 +152,15 @@ namespace Data.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = @"INSERT INTO Employee (Salary, IdPermission, IdSupervisor, Password, IdPerson)
+                        command.CommandText = @"INSERT INTO Employee (Salary, IdPermission, IdSupervisor, Password, IdPerson, HiredDate)
                                                 OUTPUT INSERTED.Id
-                                                VALUES (@Salary, @IdPermission, @IdSupervisor, @Password, @IdPerson)";
+                                                VALUES (@Salary, @IdPermission, @IdSupervisor, @Password, @IdPerson, @HiredDate)";
                         command.Parameters.Add("@Salary", SqlDbType.Decimal).Value = employee.Salary;
                         command.Parameters.Add("@IdPermission", SqlDbType.Int).Value = employee.Permision;
                         command.Parameters.Add("@IdSupervisor", SqlDbType.Int).Value = (object)employee.IdSupervisor ?? DBNull.Value;
                         command.Parameters.Add("@Password", SqlDbType.VarChar).Value = employee.Password;
                         command.Parameters.Add("@IdPerson", SqlDbType.VarChar).Value = employee.IdPerson;
+                        command.Parameters.Add("@HiredDate", SqlDbType.Date).Value = (object)employee.HiredDate ?? DateTime.Now;
                         return (int)command.ExecuteScalar();
                     }
                 }
