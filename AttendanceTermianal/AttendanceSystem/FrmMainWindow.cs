@@ -71,7 +71,8 @@ namespace AttendanceSystem
             DialogResult dialogResult = MessageBox.Show("Are you serious?", "Delete faggot", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                //do something
+                _mainWindowViewModel.DeleteEmployeePerson((Person)comboBoxPerson.SelectedItem);
+                comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox();
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -136,8 +137,14 @@ namespace AttendanceSystem
 
         private void btnDetails_Click(object sender, EventArgs e)
         {
-            frmDailyDetails dailyDetails = new frmDailyDetails(_loggedEmployeeID);
-            dailyDetails.ShowDialog();
+            //checks if something is selected
+            if (dGVOverview.SelectedRows.Count > 0)
+            {
+                //gets date from selectedRow
+                DateTime selectedDate = Convert.ToDateTime(dGVOverview.Rows[dGVOverview.CurrentCell.RowIndex].Cells[0].Value.ToString());
+                frmDailyDetails dailyDetails = new frmDailyDetails(_loggedEmployeeID, selectedDate);
+                dailyDetails.ShowDialog();
+            }
         }
     }
 }

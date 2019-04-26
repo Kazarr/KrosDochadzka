@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,84 @@ namespace Data.Repository
 {
     public class DailyResultRepository
     {
+
+        public IEnumerable<DailyResultWithWorkType> GetSpecifficDailyResult(int employeeID,DateTime date)
+        {
+            List<DailyResultWithWorkType> ret = new List<DailyResultWithWorkType>();
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"select dr.id,dr.idEmployee,dr.Start,dr.Finish,w.Name 
+                                                from DailyResult as dr
+                                                left join WorkType as w on w.Id=dr.IdWorktype
+                                                where idEmployee=@idEmployee and (convert(date,dr.Start)=convert(date,@date) 
+                                                    or convert(date,dr.Finish)=convert(date,@date))";
+                        command.Parameters.Add("@idEmployee", SqlDbType.Int).Value = employeeID;
+                        command.Parameters.Add("@date", SqlDbType.DateTime2).Value = date;
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                DailyResultWithWorkType dailyResultWithWork = new DailyResultWithWorkType();
+                                dailyResultWithWork.DailyResultID = reader.GetInt32(0);
+                                dailyResultWithWork.IdEmployee = reader.GetInt32(1);
+                                dailyResultWithWork.StartTime = reader.IsDBNull(2) ? (DateTime?)null : reader.GetDateTime(2);
+                                dailyResultWithWork.FinishTime = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3);
+                                dailyResultWithWork.WorkType = reader.IsDBNull(4) ? "" : reader.GetString(4);
+
+                                ret.Add(dailyResultWithWork);
+
+                            }
+                            return ret;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
+        public bool DeleteDailyResult (int dailyResultID)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"delete from DailyResult
+                                                where id = @dailyResultID";
+                        command.Parameters.Add("@dailyResultID", SqlDbType.Int).Value = dailyResultID;
+
+                        if (command.ExecuteNonQuery()>0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e.Message); 
+                    return false;
+
+                }
+            }
+        }
+
         public IEnumerable<DailyResult> GetDailyResult()
         {
             List<DailyResult> ret = new List<DailyResult>();
@@ -22,7 +101,7 @@ namespace Data.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = @"SELECT * FROM Daily_Result";
+                        command.CommandText = @"SELECT * FROM DailyResult";
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
@@ -45,6 +124,7 @@ namespace Data.Repository
                 }
             }
         }
+
         public int InsertDialyResult(DailyResult dailyResult)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
@@ -69,6 +149,7 @@ namespace Data.Repository
                 }
             }
         }
+
         public bool UpdateFinishDailyResult(DailyResult daily_Result)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))

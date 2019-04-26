@@ -57,7 +57,7 @@ namespace Data.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = @"SELECT DISTINCT e.Id, p.FirstName, p.LastName, p.PhoneNumber, p.Adress FROM Employee AS e
+                        command.CommandText = @"SELECT DISTINCT p.Id, p.FirstName, p.LastName, p.PhoneNumber, p.Adress FROM Employee AS e
                                               LEFT JOIN Employee AS sup ON e.Id = sup.IdSupervisor
                                               JOIN Person AS p ON e.IdPerson = p.ID
                                               WHERE e.Id = e.IdSupervisor";
@@ -74,6 +74,35 @@ namespace Data.Repository
                                 ret.Add(new Person(personId, firstName, lastName, phoneNumber, adress));
                             }
                             return ret;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
+        public bool DeletePerson(Person person)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"DELETE FROM Person WHERE Id = @Id";
+                        command.Parameters.Add("@Id", SqlDbType.Int).Value = person.Id;
+                        if (command.ExecuteNonQuery() > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
                         }
                     }
                 }
