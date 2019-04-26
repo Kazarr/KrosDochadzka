@@ -72,6 +72,7 @@ namespace AttendanceSystem
             if (dialogResult == DialogResult.Yes)
             {
                 _mainWindowViewModel.DeleteEmployeePerson((Person)comboBoxPerson.SelectedItem);
+                comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox();
             }
             else if (dialogResult == DialogResult.No)
             {

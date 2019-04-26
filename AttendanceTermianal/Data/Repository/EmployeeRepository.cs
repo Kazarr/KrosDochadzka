@@ -135,7 +135,7 @@ namespace Data.Repository
                                                 VALUES (@Salary, @IdPermission, @IdSupervisor, @Password, @IdPerson)";
                         command.Parameters.Add("@Salary", SqlDbType.Decimal).Value = employee.Salary;
                         command.Parameters.Add("@IdPermission", SqlDbType.Int).Value = employee.Permision;
-                        command.Parameters.Add("@IdSupervisor", SqlDbType.Int).Value = employee.IdSupervisor;
+                        command.Parameters.Add("@IdSupervisor", SqlDbType.Int).Value = (object)employee.IdSupervisor ?? DBNull.Value;
                         command.Parameters.Add("@Password", SqlDbType.VarChar).Value = employee.Password;
                         command.Parameters.Add("@IdPerson", SqlDbType.VarChar).Value = employee.IdPerson;
                         return (int)command.ExecuteScalar();

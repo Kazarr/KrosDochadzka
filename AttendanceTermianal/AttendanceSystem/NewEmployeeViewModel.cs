@@ -39,6 +39,7 @@ namespace AttendanceSystem
             if (supervisor == null)
             {
                 e.IdSupervisor = ManagerRepository.EmployeeRepository.InsertFullEmployee(e);
+                e.Id = e.IdSupervisor.Value;
                 ManagerRepository.EmployeeRepository.UpdateSupervisor(e);
             }
             else
