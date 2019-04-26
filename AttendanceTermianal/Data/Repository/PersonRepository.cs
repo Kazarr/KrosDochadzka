@@ -57,7 +57,7 @@ namespace Data.Repository
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = @"SELECT DISTINCT e.Id, p.FirstName, p.LastName, p.PhoneNumber, p.Adress FROM Employee AS e
+                        command.CommandText = @"SELECT DISTINCT p.Id, p.FirstName, p.LastName, p.PhoneNumber, p.Adress FROM Employee AS e
                                               LEFT JOIN Employee AS sup ON e.Id = sup.IdSupervisor
                                               JOIN Person AS p ON e.IdPerson = p.ID
                                               WHERE e.Id = e.IdSupervisor";

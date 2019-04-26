@@ -51,6 +51,7 @@ namespace Data.Repository
 
         public bool UpdateEmployee(Empolyee empolyee, Person person)
         {
+            bool updatePerson = false;
             empolyee.Password = CalculateMD5Hash(empolyee.Password);
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
             {
@@ -74,6 +75,27 @@ namespace Data.Repository
                         command.Parameters.Add("@adress", SqlDbType.VarChar).Value = person.Adress;
                         command.Parameters.Add("@employeeId", SqlDbType.Int).Value = empolyee.Id;
                         if (command.ExecuteNonQuery() > 1)
+                        {
+                            updatePerson = true;
+                        }
+                    }
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"   Update Employee
+                                                    SET	Password = @Password,
+		                                                IdPerson = @IdPerson,
+		                                                IdSuperVisor = @IdSupervisor,
+		                                                IdPermission = @IdPermission,
+		                                                Salary = @Salary
+                                                WHERE Id = @Id";
+                        command.Parameters.Add("@Password", SqlDbType.VarChar).Value = empolyee.Password;
+                        command.Parameters.Add("@IdPerson", SqlDbType.VarChar).Value = empolyee.IdPerson;
+                        command.Parameters.Add("@IdSupervisor", SqlDbType.VarChar).Value = empolyee.IdSupervisor;
+                        command.Parameters.Add("@IdPermission", SqlDbType.VarChar).Value = empolyee.Permision;
+                        command.Parameters.Add("@Salary", SqlDbType.Int).Value = empolyee.Salary;
+                        command.Parameters.Add("@Id", SqlDbType.Int).Value = empolyee.Id;
+                        if (command.ExecuteNonQuery() > 0 && updatePerson)
                         {
                             return true;
                         }

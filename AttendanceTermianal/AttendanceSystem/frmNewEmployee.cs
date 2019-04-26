@@ -30,13 +30,24 @@ namespace AttendanceSystem
             InitializeComponent();
             _newEmployeeViewModel = new NewEmployeeViewModel(person, empolyee);
             cmbSupervisors.DataSource = _newEmployeeViewModel.FillSupervisors();
-            cmbSupervisors.SelectedItem = _newEmployeeViewModel.Person;
+            cmbSupervisors.SelectedIndex = cmbSupervisors.FindStringExact(_newEmployeeViewModel.GetSupervisor(empolyee.IdSupervisor).ToString());
             textBoxFirstName.Text = _newEmployeeViewModel.Person.FirstName;
             textBoxLastName.Text = _newEmployeeViewModel.Person.LastName;
             textBoxPhoneNumber.Text = _newEmployeeViewModel.Person.PhoneNumber;
             textAdress.Text = _newEmployeeViewModel.Person.Adress;
-
+            textBoxSalary.Text = _newEmployeeViewModel.Empolyee.Salary.ToString();
+            textBoxPermisions.Text = _newEmployeeViewModel.Empolyee.Permision.ToString();
+            textBoxPassword.Text = _newEmployeeViewModel.Empolyee.Password;
+            textBoxConfirmPassword.Text = _newEmployeeViewModel.Empolyee.Password;
         }
+
+        //private int SelectSupervisor(ComboBox comboBox)
+        //{
+        //    for(int i = 0; i < comboBox.Items.Count; i++)
+        //    {
+        //        if(comboBox.Items[i].Equals(_newEmployeeViewModel.Supervisor))
+        //    }
+        //}
 
         private void buttonConfirm_Click_1(object sender, EventArgs e)
         {

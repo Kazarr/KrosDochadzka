@@ -11,13 +11,16 @@ namespace AttendanceSystem
 {
     public class NewEmployeeViewModel
     {
+
         public Empolyee Empolyee { get; set; }
         public Person Person { get; set; }
+        public Person Supervisor { get; set; }
 
         public NewEmployeeViewModel(Person person, Empolyee empolyee)
         {
             Person = person;
             Empolyee = empolyee;
+            Supervisor = GetSupervisor(Empolyee.Id);
         }
 
         public NewEmployeeViewModel()
@@ -44,10 +47,16 @@ namespace AttendanceSystem
             }
             else
             {
+                e.IdSupervisor = ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(supervisor.Id).Id;
                 ManagerRepository.EmployeeRepository.InsertFullEmployee(e);
             }
 
 
+        }
+
+        public Person GetSupervisor(int? idEmployee)
+        {
+            return ManagerRepository.PersonRepository.GetPersonByIdEmployee(idEmployee.Value);
         }
 
         public BindingList<Person> FillSupervisors()
@@ -61,6 +70,14 @@ namespace AttendanceSystem
             Empolyee.Permision = permission;
             Empolyee.Salary = salary;
             Person p = new Person(firstName, lastName, phoneNumber, adress);
+            if(supervisor == null)
+            {
+                Empolyee.IdSupervisor = Empolyee.Id;
+            }
+            else
+            {
+                Empolyee.IdSupervisor = ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(supervisor.Id).Id;
+            }
             ManagerRepository.EmployeeRepository.UpdateEmployee(Empolyee, p);
             
 
