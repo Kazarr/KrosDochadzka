@@ -58,6 +58,16 @@ namespace AttendanceSystem
             return ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(id);
         }
 
+        public Empolyee GetEmpolyeeByPersonId(Person person)
+        {
+            return ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(person);
+        }
+
+        public int GetEmployeeIdByPerson(Person selectedItem)
+        {
+            return ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(selectedItem.Id).Id;
+        }
+
         public void DeleteEmployeePerson(Person person)
         {
             Empolyee e = ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(person.Id);

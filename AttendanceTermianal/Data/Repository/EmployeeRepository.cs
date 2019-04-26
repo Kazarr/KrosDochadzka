@@ -270,6 +270,43 @@ namespace Data.Repository
             }
         }
 
+        public Empolyee GetEmpolyeeByIdPerson(Person person)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"select * from Employee where idPerson = @id";
+                        command.Parameters.Add("@id", SqlDbType.Int).Value = person.Id;
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int employeeId = reader.GetInt32(0);
+                                string password = reader.GetString(1);
+                                int idPerson = reader.GetInt32(2);
+                                int idSupervisor = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
+                                int permision = reader.GetInt32(4);
+                                decimal salary = reader.GetDecimal(5);
+                                DateTime hiredDate = reader.GetDateTime(6);
+
+                                return new Empolyee(employeeId, password, idPerson, idSupervisor, permision, salary, hiredDate);
+                            }
+                            return null;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
         // this needs to be gone
         private string CalculateMD5Hash(string input)
 

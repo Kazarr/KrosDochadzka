@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace AttendanceSystem
         {
             _loggedEmployeeID = id;
             InitializeComponent();
-            FormBorderStyle = FormBorderStyle.None;
+            //FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;            
             CheckPermission();
             fillMonthComboBox();   
@@ -50,20 +51,16 @@ namespace AttendanceSystem
 
         private void fillMonthComboBox()
         {
-            Dictionary<string, int> monthRecords = new Dictionary<string, int>(_mainWindowViewModel.GetMonthWithNumberOfRecords(_loggedEmployeeID));
-            foreach (var month in monthRecords.Keys)
-            {
-                comboBoxMonth.Items.Add($"{month.ToString()} : {monthRecords[month]}");
-            }
+            comboBoxMonth.DataSource = DateTimeFormatInfo.CurrentInfo.MonthNames;
         }
 
         private void fillDataGridView()
         {
             //get name of the month from the combobox
             string selected = comboBoxMonth.GetItemText(comboBoxMonth.SelectedItem);
-            selected = selected.Split(' ')[0];          
+            //selected = selected.Split(' ')[0];          
 
-            dGVOverview.DataSource = _mainWindowViewModel.FillDataGridViewOverview( _loggedEmployeeID, selected);          
+            dGVOverview.DataSource = _mainWindowViewModel.FillDataGridViewOverview(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), selected);          
         }
 
         private void btnDeleteEmployee_Click_1(object sender, EventArgs e)
@@ -133,6 +130,7 @@ namespace AttendanceSystem
         private void comboBoxPerson_SelectedValueChanged(object sender, EventArgs e)
         {
             _mainWindowViewModel.Person = (Person)comboBoxPerson.SelectedItem;
+            fillMonthComboBox();
         }
 
         private void btnDetails_Click(object sender, EventArgs e)
