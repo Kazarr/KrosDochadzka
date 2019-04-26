@@ -41,14 +41,6 @@ namespace AttendanceSystem
             textBoxConfirmPassword.Text = _newEmployeeViewModel.Empolyee.Password;
         }
 
-        //private int SelectSupervisor(ComboBox comboBox)
-        //{
-        //    for(int i = 0; i < comboBox.Items.Count; i++)
-        //    {
-        //        if(comboBox.Items[i].Equals(_newEmployeeViewModel.Supervisor))
-        //    }
-        //}
-
         private void buttonConfirm_Click_1(object sender, EventArgs e)
         {
             decimal salary;
