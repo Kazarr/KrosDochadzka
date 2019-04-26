@@ -46,12 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DailyDetailsAddEditViewModel.cs" />
     <Compile Include="DailyDetailsViewModel.cs" />
     <Compile Include="frmDailyDetails.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmDailyDetails.Designer.cs">
       <DependentUpon>frmDailyDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDailyDetailsAddEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDailyDetailsAddEdit.Designer.cs">
+      <DependentUpon>frmDailyDetailsAddEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -85,6 +92,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmDailyDetails.resx">
       <DependentUpon>frmDailyDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDailyDetailsAddEdit.resx">
+      <DependentUpon>frmDailyDetailsAddEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>

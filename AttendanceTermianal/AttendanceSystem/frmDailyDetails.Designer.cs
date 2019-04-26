@@ -83,6 +83,7 @@
             this.btnAdd.Text = "Add new record";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Visible = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click_1);
             // 
             // btnDelete
             // 
@@ -108,7 +109,7 @@
             this.Controls.Add(this.dGVDailyResultsOverview);
             this.Name = "frmDailyDetails";
             this.Text = "DailyDetails";
-            this.Load += new System.EventHandler(this.frmDailyDetails_Load);
+          
             ((System.ComponentModel.ISupportInitialize)(this.dGVDailyResultsOverview)).EndInit();
             this.ResumeLayout(false);
 
