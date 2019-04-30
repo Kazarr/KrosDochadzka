@@ -41,7 +41,10 @@ namespace AttendanceSystem
                 btnUpdateEmployee.Visible = true;
                 labelChoosePerson.Visible = true;
                 comboBoxPerson.Visible = true;
-                comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox(_loggedEmployeeID);
+                if(_mainWindowViewModel.GetEmployeeByID(_loggedEmployeeID).Permision == 2)
+                {
+                    comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox(_loggedEmployeeID);
+                }
             }
             if (_mainWindowViewModel.GetEmployeeByID(_loggedEmployeeID).Permision >= 3)
             {

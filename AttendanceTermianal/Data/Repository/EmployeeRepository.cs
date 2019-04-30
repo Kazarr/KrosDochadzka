@@ -136,7 +136,7 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    return false;
                 }
             }
         }
