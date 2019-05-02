@@ -40,7 +40,6 @@ namespace AttendanceSystem
             cmbPermissions.SelectedItem = _newEmployeeViewModel.EmployeePermission(empolyee);
             textBoxPassword.Visible = false;
             textBoxConfirmPassword.Visible = false;
-            lblPassword.Visible = false;
             lblUserConfirmPassword.Visible = false;
             lblUserPassword.Visible = false;
         }
@@ -65,6 +64,11 @@ namespace AttendanceSystem
         private void buttonCancel_Click_1(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
+        }
+
+        private void frmNewEmployee_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

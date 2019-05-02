@@ -67,7 +67,7 @@ namespace AttendanceSystem
         private void fillMonthComboBox()
         {
             comboBoxMonth.DataSource = DateTimeFormatInfo.CurrentInfo.MonthNames;
-            comboBoxMonth.SelectedIndex = int.Parse(DateTime.Now.Month.ToString())-1;
+            //comboBoxMonth.SelectedIndex = int.Parse(DateTime.Now.Month.ToString())-1;
         }
 
         private void fillDataGridView()
@@ -158,14 +158,15 @@ namespace AttendanceSystem
 
         private void comboBoxPerson_TextChanged(object sender, EventArgs e)
         {
-            
+            comboBoxMonth.SelectedIndex = int.Parse(DateTime.Now.Month.ToString()) - 1;
         }
 
 
         private void comboBoxPerson_SelectedValueChanged(object sender, EventArgs e)
         {
             _mainWindowViewModel.Person = (Person)comboBoxPerson.SelectedItem;
-            fillMonthComboBox();
+            //fillMonthComboBox();
+            comboBoxMonth.SelectedIndex = int.Parse(DateTime.Now.Month.ToString()) - 1;
             btnReset.Enabled = true;
         }
 
