@@ -163,7 +163,7 @@ namespace AttendanceSystem
         private void comboBoxPerson_SelectedValueChanged(object sender, EventArgs e)
         {
             _mainWindowViewModel.Person = (Person)comboBoxPerson.SelectedItem;
-            //fillMonthComboBox();
+            fillMonthComboBox();
             comboBoxMonth.SelectedIndex = int.Parse(DateTime.Now.Month.ToString()) - 1;
             btnReset.Enabled = true;
         }
@@ -206,10 +206,17 @@ namespace AttendanceSystem
             {
                 dGVOverview.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightSkyBlue;
             }
+            else if (dGVOverview.Rows[e.RowIndex].Cells[1].Value != null && dGVOverview.Rows[e.RowIndex].Cells[2].Value == null)
+            {
+
+                dGVOverview.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.DarkRed;
+            }
+
             else if (dGVOverview.Rows[e.RowIndex].Cells[10].Value == null)
             {
 
             }
+           
 
             else if ((TimeSpan)(dGVOverview.Rows[e.RowIndex].Cells[10].Value) > TimeSpan.FromHours(10))
             {
