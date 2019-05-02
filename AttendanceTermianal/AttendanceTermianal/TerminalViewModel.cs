@@ -17,7 +17,7 @@ namespace AttendanceTermianal
         private Empolyee _empolyee = new Empolyee();
         public string CurrentDate()
         {
-            string date = DateTime.Now.ToString("dd/MM/yyyy");
+            string date = DateTime.Now.ToString("dd.MM.yyyy");
             return date;
         }
         public string CurrentDay()
@@ -36,14 +36,23 @@ namespace AttendanceTermianal
             return day;
         }
 
-        public string EmployeeDescription(int id_employee, string workType)
+        public string DescriptionFullname(int id_employee)
         {
             string fullName = $"{ManagerRepository.PersonRepository.GetPersonByIdEmployee(id_employee).FirstName} " +
-                                $"{ManagerRepository.PersonRepository.GetPersonByIdEmployee(id_employee).LastName} " +
-                                $"{workType} " + 
-                                $"{DateTime.Now}";
+                                $"{ManagerRepository.PersonRepository.GetPersonByIdEmployee(id_employee).LastName} ";
             return fullName;
         }
+        public string DescriptionWorkType(string wokrType)
+        {
+            string workT = $"{wokrType} ";
+            return workT;
+        }
+        public string DescriptionDate()
+        {
+            string date = DateTime.Now.ToString("dd.MM.yyyy" + " | " + "HH:mm");
+            return date;
+        }
+
         /// <summary>
         /// kontroluje či pod zadaným ID existuje nejaký employee
         /// </summary>

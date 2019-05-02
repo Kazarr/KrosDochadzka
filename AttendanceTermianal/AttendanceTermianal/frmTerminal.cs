@@ -13,7 +13,7 @@ namespace AttendanceTermianal
     public partial class frmTerminal : Form
     {
         private TerminalViewModel _terminalViewModel = new TerminalViewModel();
-        
+
 
         public frmTerminal()
         {
@@ -51,7 +51,9 @@ namespace AttendanceTermianal
             {
                 int employeeId = int.Parse(txtEmpId.Text);
                 _terminalViewModel.ChangeWorkType(employeeId, type);
-                label3.Text = _terminalViewModel.EmployeeDescription(employeeId, type.ToString());
+                lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
+                lblDateNow.Text = _terminalViewModel.DescriptionDate();
+                lblWorkType.Text = _terminalViewModel.DescriptionWorkType(type.ToString());
             }
         }
         private void btnArrival_Click(object sender, EventArgs e)
@@ -61,9 +63,10 @@ namespace AttendanceTermianal
         private void btnExit_Click(object sender, EventArgs e)
         {
             int employeeId = int.Parse(txtEmpId.Text);
-
             _terminalViewModel.FinishWork(employeeId, EWorkType.Exit);
-            label3.Text = _terminalViewModel.EmployeeDescription(employeeId, nameof(EWorkType.Exit));
+            lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
+            lblDateNow.Text = _terminalViewModel.DescriptionDate();
+            lblWorkType.Text = _terminalViewModel.DescriptionWorkType(nameof(EWorkType.Exit));
         }
         //private void btnExit_Click(object sender, EventArgs e)
         //{
@@ -88,6 +91,41 @@ namespace AttendanceTermianal
         private void btnOther_Click(object sender, EventArgs e)
         {
             ChangeWorkType(EWorkType.Other);
+        }
+
+        private void picEntry_MouseClick(object sender, MouseEventArgs e)
+        {
+            ChangeWorkType(EWorkType.Work);
+        }
+
+        private void picExit_MouseClick(object sender, MouseEventArgs e)
+        {
+            int employeeId = int.Parse(txtEmpId.Text);
+
+            _terminalViewModel.FinishWork(employeeId, EWorkType.Exit);
+            lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
+            lblDateNow.Text = _terminalViewModel.DescriptionDate();
+            lblWorkType.Text = _terminalViewModel.DescriptionWorkType(nameof(EWorkType.Exit));
+        }
+
+        private void picLunch_MouseClick(object sender, MouseEventArgs e)
+        {
+            ChangeWorkType(EWorkType.Lunch);
+        }
+
+        private void picTrip_MouseClick(object sender, MouseEventArgs e)
+        {
+            ChangeWorkType(EWorkType.BusinessTrip);
+        }
+
+        private void picDoctor_MouseClick(object sender, MouseEventArgs e)
+        {
+            ChangeWorkType(EWorkType.Doctor);
+        }
+
+        private void picPrivate_MouseClick(object sender, MouseEventArgs e)
+        {
+            ChangeWorkType(EWorkType.Private);
         }
     }
 }
