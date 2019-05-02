@@ -41,6 +41,7 @@ namespace AttendanceSystem
                 btnUpdateEmployee.Visible = true;
                 labelChoosePerson.Visible = true;
                 comboBoxPerson.Visible = true;
+                btnReset.Visible = true;
                 if(_mainWindowViewModel.GetEmployeeByID(_loggedEmployeeID).Permision == 2)
                 {
                     comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox(_loggedEmployeeID);
@@ -139,6 +140,7 @@ namespace AttendanceSystem
         {
             _mainWindowViewModel.Person = (Person)comboBoxPerson.SelectedItem;
             fillMonthComboBox();
+            btnReset.Enabled = true;
         }
 
         private void btnDetails_Click(object sender, EventArgs e)
@@ -152,6 +154,11 @@ namespace AttendanceSystem
                 dailyDetails.ShowDialog();
                 fillDataGridView();
             }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            _mainWindowViewModel.ResetPassword();
         }
     }
 }

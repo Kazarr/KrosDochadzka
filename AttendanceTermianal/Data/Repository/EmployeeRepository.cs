@@ -49,6 +49,38 @@ namespace Data.Repository
             }
         }
 
+        public bool ResetPassword(int employeeId, string password)
+        {
+            password = CalculateMD5Hash(password);
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"UPDATE Employee SET Password = @password WHERE ID = @id";
+                        command.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
+                        command.Parameters.Add("@id", SqlDbType.VarChar).Value = employeeId;
+                        if (command.ExecuteNonQuery() > 1)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
         public bool UpdateEmployee(Empolyee empolyee, Person person)
         {
             bool updatePerson = false;
