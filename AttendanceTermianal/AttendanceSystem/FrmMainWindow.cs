@@ -22,11 +22,15 @@ namespace AttendanceSystem
             _loggedEmployeeID = id;
             InitializeComponent();
             //FormBorderStyle = FormBorderStyle.None;
-            WindowState = FormWindowState.Maximized;            
+            WindowState = FormWindowState.Maximized;
             CheckPermission();
             fillMonthComboBox();
-            fillDataGridView();
-            
+            // fillDataGridView();
+
+            dGVOverview.Columns[1].DefaultCellStyle.Format = "HH:mm:ss ";
+            dGVOverview.Columns[2].DefaultCellStyle.Format = "HH:mm:ss ";
+
+
         }
 
         /// <summary>
@@ -36,7 +40,7 @@ namespace AttendanceSystem
         {
             int permssion = _mainWindowViewModel.GetEmployeeByID(_loggedEmployeeID).Permision;
 
-            if ( permssion == 1)
+            if (permssion == 1)
             {
                 btnDeleteEmployee.Visible = false;
                 btnNewEmployee.Visible = false;
@@ -58,11 +62,12 @@ namespace AttendanceSystem
                 btnReset.Visible = true;
             }
 
-           
+
 
 
 
         }
+
 
         private void fillMonthComboBox()
         {
@@ -70,23 +75,13 @@ namespace AttendanceSystem
             //comboBoxMonth.SelectedIndex = int.Parse(DateTime.Now.Month.ToString())-1;
         }
 
+
         private void fillDataGridView()
         {
             //get name of the month from the combobox
             string selected = comboBoxMonth.GetItemText(comboBoxMonth.SelectedItem);
-
             dGVOverview.DataSource = _mainWindowViewModel.FillDataGridViewOverview(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), selected);
 
-
-            foreach (DataGridViewRow row in dGVOverview.Rows)
-            {
-
-                if (Convert.ToDateTime(row.Cells[0].Value).DayOfWeek.ToString().Equals("Sunday") || Convert.ToDateTime(row.Cells[0].Value).DayOfWeek.ToString().Equals("Saturday"))
-                {
-                    row.DefaultCellStyle.BackColor = Color.Orange;
-                }
-            }
-       
         }
 
 
@@ -104,6 +99,7 @@ namespace AttendanceSystem
             }
         }
 
+
         private void btnNewEmployee_Click_1(object sender, EventArgs e)
         {
             frmNewEmployee newEmployee = new frmNewEmployee();
@@ -115,11 +111,13 @@ namespace AttendanceSystem
             }
         }
 
+
         private void btnShowMonth_Click_1(object sender, EventArgs e)
         {
             frmMonthOverview monthOverview = new frmMonthOverview();
             monthOverview.ShowDialog();
         }
+
 
         private void buttonExit_Click(object sender, EventArgs e)
         {
@@ -135,9 +133,9 @@ namespace AttendanceSystem
 
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
         {
-            frmNewEmployee newEmployee = new frmNewEmployee(_mainWindowViewModel.Person,_mainWindowViewModel.Empolyee);
+            frmNewEmployee newEmployee = new frmNewEmployee(_mainWindowViewModel.Person, _mainWindowViewModel.Empolyee);
             newEmployee.ShowDialog();
-            if(newEmployee.DialogResult == DialogResult.OK)
+            if (newEmployee.DialogResult == DialogResult.OK)
             {
                 CheckPermission();
             }
@@ -146,19 +144,19 @@ namespace AttendanceSystem
 
         private void comboBoxPerson_ValueMemberChanged(object sender, EventArgs e)
         {
-            
+
         }
 
 
         private void comboBoxPerson_BindingContextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
 
         private void comboBoxPerson_TextChanged(object sender, EventArgs e)
         {
-            comboBoxMonth.SelectedIndex = int.Parse(DateTime.Now.Month.ToString()) - 1;
+
         }
 
 
@@ -178,15 +176,56 @@ namespace AttendanceSystem
             {
                 //gets date from selectedRow
                 DateTime selectedDate = Convert.ToDateTime(dGVOverview.Rows[dGVOverview.CurrentCell.RowIndex].Cells[0].Value.ToString());
-                frmDailyDetails dailyDetails = new frmDailyDetails(_loggedEmployeeID, selectedDate,_mainWindowViewModel.GetEmployeeIdByPerson((Data.Model.Person)comboBoxPerson.SelectedItem));
+                frmDailyDetails dailyDetails = new frmDailyDetails(_loggedEmployeeID, selectedDate, _mainWindowViewModel.GetEmployeeIdByPerson((Data.Model.Person)comboBoxPerson.SelectedItem));
                 dailyDetails.ShowDialog();
                 fillDataGridView();
             }
         }
 
+
         private void btnReset_Click(object sender, EventArgs e)
         {
             _mainWindowViewModel.ResetPassword();
+        }
+
+
+        private void FrmMainWindow_Load(object sender, EventArgs e)
+        {
+            fillDataGridView();
+        }
+
+        /// <summary>
+        /// Method for painting data grid view 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dGVOverview_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            if (Convert.ToDateTime(dGVOverview.Rows[e.RowIndex].Cells[0].Value).DayOfWeek.ToString().Equals("Sunday") ||
+                Convert.ToDateTime(dGVOverview.Rows[e.RowIndex].Cells[0].Value).DayOfWeek.ToString().Equals("Saturday"))
+            {
+                dGVOverview.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightSkyBlue;
+            }
+            else if (dGVOverview.Rows[e.RowIndex].Cells[10].Value == null)
+            {
+
+            }
+
+            else if ((TimeSpan)(dGVOverview.Rows[e.RowIndex].Cells[10].Value) > TimeSpan.FromHours(10))
+            {
+                dGVOverview.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.MediumPurple;
+            }
+
+            else if ((TimeSpan)(dGVOverview.Rows[e.RowIndex].Cells[10].Value) < TimeSpan.FromHours(6))
+            {
+                dGVOverview.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightPink;
+            }
+
+            else
+            {
+                dGVOverview.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.MediumSeaGreen;
+            }
+
         }
     }
 }
