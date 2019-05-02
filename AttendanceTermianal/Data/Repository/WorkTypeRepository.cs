@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,7 +29,7 @@ namespace Data.Repository
                             while (reader.Read())
                             {
                                 int workTypeId = reader.GetInt32(0);
-                                string name = reader.GetString(1);
+                                string name = reader.GetString(1);                               
 
                                 ret.Add(new WorkType(workTypeId, name));
                             }
@@ -42,6 +43,7 @@ namespace Data.Repository
                 }
             }
         }
+
         public bool InsertWork_Type(WorkType work_Type)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
@@ -71,5 +73,7 @@ namespace Data.Repository
                 }
             }
         }
+
+
     }
 }

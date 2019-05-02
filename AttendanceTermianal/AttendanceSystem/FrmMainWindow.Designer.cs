@@ -38,6 +38,8 @@
             this.comboBoxMonth = new System.Windows.Forms.ComboBox();
             this.dGVOverview = new System.Windows.Forms.DataGridView();
             this.buttonExit = new System.Windows.Forms.Button();
+            this.btnDetails = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dGVOverview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,7 +63,7 @@
             this.btnUpdateEmployee.TabIndex = 17;
             this.btnUpdateEmployee.Text = "Update Employee";
             this.btnUpdateEmployee.UseVisualStyleBackColor = true;
-            this.btnUpdateEmployee.Visible = false;
+            this.btnUpdateEmployee.Click += new System.EventHandler(this.btnUpdateEmployee_Click);
             // 
             // btnDeleteEmployee
             // 
@@ -72,7 +74,6 @@
             this.btnDeleteEmployee.TabIndex = 16;
             this.btnDeleteEmployee.Text = "Delete Employee";
             this.btnDeleteEmployee.UseVisualStyleBackColor = true;
-            this.btnDeleteEmployee.Visible = false;
             this.btnDeleteEmployee.Click += new System.EventHandler(this.btnDeleteEmployee_Click_1);
             // 
             // btnNewEmployee
@@ -84,7 +85,6 @@
             this.btnNewEmployee.TabIndex = 15;
             this.btnNewEmployee.Text = "New Employee";
             this.btnNewEmployee.UseVisualStyleBackColor = true;
-            this.btnNewEmployee.Visible = false;
             this.btnNewEmployee.Click += new System.EventHandler(this.btnNewEmployee_Click_1);
             // 
             // labelChoosePerson
@@ -98,7 +98,6 @@
             this.labelChoosePerson.Size = new System.Drawing.Size(108, 18);
             this.labelChoosePerson.TabIndex = 14;
             this.labelChoosePerson.Text = "Choose  person ";
-            this.labelChoosePerson.Visible = false;
             // 
             // comboBoxPerson
             // 
@@ -108,7 +107,10 @@
             this.comboBoxPerson.Name = "comboBoxPerson";
             this.comboBoxPerson.Size = new System.Drawing.Size(395, 21);
             this.comboBoxPerson.TabIndex = 13;
-            this.comboBoxPerson.Visible = false;
+            this.comboBoxPerson.ValueMemberChanged += new System.EventHandler(this.comboBoxPerson_ValueMemberChanged);
+            this.comboBoxPerson.SelectedValueChanged += new System.EventHandler(this.comboBoxPerson_SelectedValueChanged);
+            this.comboBoxPerson.BindingContextChanged += new System.EventHandler(this.comboBoxPerson_BindingContextChanged);
+            this.comboBoxPerson.TextChanged += new System.EventHandler(this.comboBoxPerson_TextChanged);
             // 
             // labelMonth
             // 
@@ -130,17 +132,26 @@
             this.comboBoxMonth.Name = "comboBoxMonth";
             this.comboBoxMonth.Size = new System.Drawing.Size(395, 21);
             this.comboBoxMonth.TabIndex = 11;
+            this.comboBoxMonth.SelectedIndexChanged += new System.EventHandler(this.comboBoxMonth_SelectedIndexChanged);
             // 
             // dGVOverview
             // 
+            this.dGVOverview.AllowUserToAddRows = false;
+            this.dGVOverview.AllowUserToDeleteRows = false;
             this.dGVOverview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dGVOverview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dGVOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGVOverview.Location = new System.Drawing.Point(15, 212);
+            this.dGVOverview.MultiSelect = false;
             this.dGVOverview.Name = "dGVOverview";
+            this.dGVOverview.ReadOnly = true;
+            this.dGVOverview.RowHeadersVisible = false;
+            this.dGVOverview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dGVOverview.Size = new System.Drawing.Size(1151, 409);
             this.dGVOverview.TabIndex = 21;
+            this.dGVOverview.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dGVOverview_RowPrePaint);
             // 
             // buttonExit
             // 
@@ -152,11 +163,36 @@
             this.buttonExit.UseVisualStyleBackColor = true;
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
             // 
+            // btnDetails
+            // 
+            this.btnDetails.Location = new System.Drawing.Point(15, 183);
+            this.btnDetails.Name = "btnDetails";
+            this.btnDetails.Size = new System.Drawing.Size(174, 23);
+            this.btnDetails.TabIndex = 23;
+            this.btnDetails.Text = "Details";
+            this.btnDetails.UseVisualStyleBackColor = true;
+            this.btnDetails.Click += new System.EventHandler(this.btnDetails_Click);
+            // 
+            // btnReset
+            // 
+            this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReset.Enabled = false;
+            this.btnReset.Location = new System.Drawing.Point(997, 129);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(162, 23);
+            this.btnReset.TabIndex = 24;
+            this.btnReset.Text = "Reset Password";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Visible = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // FrmMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1187, 531);
+            this.Controls.Add(this.btnReset);
+            this.Controls.Add(this.btnDetails);
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.dGVOverview);
             this.Controls.Add(this.btnShowMonth);
@@ -169,6 +205,7 @@
             this.Controls.Add(this.comboBoxMonth);
             this.Name = "FrmMainWindow";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.FrmMainWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dGVOverview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -187,6 +224,8 @@
         private System.Windows.Forms.ComboBox comboBoxMonth;
         private System.Windows.Forms.DataGridView dGVOverview;
         private System.Windows.Forms.Button buttonExit;
+        private System.Windows.Forms.Button btnDetails;
+        private System.Windows.Forms.Button btnReset;
     }
 }
 

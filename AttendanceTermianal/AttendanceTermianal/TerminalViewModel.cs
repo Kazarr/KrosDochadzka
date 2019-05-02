@@ -8,12 +8,16 @@ using System.Threading.Tasks;
 
 namespace AttendanceTermianal
 {
+
+    
     public class TerminalViewModel
     {
+      
         private DailyResult _result = new DailyResult();
+        private Empolyee _empolyee = new Empolyee();
         public string CurrentDate()
         {
-            string date = DateTime.Now.ToString("dd/MM/yyyy");
+            string date = DateTime.Now.ToString("dd.MM.yyyy");
             return date;
         }
         public string CurrentDay()
@@ -32,36 +36,121 @@ namespace AttendanceTermianal
             return day;
         }
 
-        public string EmployeeDescription(int id, string work)
+        public string DescriptionFullname(int id_employee)
         {
-            string fullName = $"{ManagerRepository.PersonRepository.GetPersonByIdEmployee(id).FirstName} " +
-                                $"{ManagerRepository.PersonRepository.GetPersonByIdEmployee(id).LastName} " +
-                                $"{work} " + 
-                                $"{DateTime.Now}";
+            string fullName = $"{ManagerRepository.PersonRepository.GetPersonByIdEmployee(id_employee).FirstName} " +
+                                $"{ManagerRepository.PersonRepository.GetPersonByIdEmployee(id_employee).LastName} ";
             return fullName;
         }
-        public Tuple<bool, int> IsCorrectId(string input)
+        public string DescriptionWorkType(string wokrType)
         {
-            int Id = 0;
-            bool isOk = int.TryParse(input, out Id);
-            if (isOk)
-            {
-                return new Tuple<bool, int>(true, Id);
-            }
-            return new Tuple<bool, int>(false, Id);
+            string workT = $"{wokrType} ";
+            return workT;
+        }
+        public string DescriptionDate()
+        {
+            string date = DateTime.Now.ToString("dd.MM.yyyy" + " | " + "HH:mm");
+            return date;
         }
 
-        public void StartWork(int id_employee, int id_worktype)
+        /// <summary>
+        /// kontroluje či pod zadaným ID existuje nejaký employee
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public bool CorrectEmp(string input)
         {
-            _result.IdWorktype = id_worktype;
-            _result.IdEmployee = id_employee;
-            _result.Id = ManagerRepository.DailyResultRepository.InsertDialyResult(_result);
-            
+            try
+            {
+                var empoloyee = ManagerRepository.EmployeeRepository.GetEmpolyeeByID(int.Parse(input));
+                if (empoloyee != null && empoloyee.Id.Equals(int.Parse(input)))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }               
+            }
+            catch (FormatException)
+            {
+                return false;
+            }      
         }
-        public bool FinishWork(int id_employee)
+        /// <summary>
+        /// Vloží(INSERT) do db.daily_result nový záznam
+        /// </summary>
+        /// <param name="id_employee"></param>
+        /// <param name="type"></param>
+        private void StartWork(int id_employee, EWorkType type)
+        {
+            _result.Id = ManagerRepository.DailyResultRepository.InsertDialyResult(SetResult(id_employee, type));
+        }
+        /// <summary>
+        /// Update finish time posledného záznamu v prípade ak je prázdny
+        /// </summary>
+        /// <param name="id_employee"></param>
+        /// <param name="type"></param>
+        /// <returns> true ak vykoná update</returns>
+        public bool FinishWork(int id_employee, EWorkType type)
+        {
+            //DateTime? daco = ManagerRepository.DailyResultRepository.GetFinishDailyResult(SetResult(id_employee, type));
+            if (ManagerRepository.DailyResultRepository.GetFinishDailyResult(SetResult(id_employee, type)) == null)
+            {
+                return ManagerRepository.DailyResultRepository.UpdateFinishDailyResult(SetResult(id_employee, type));
+            }
+            return false;
+        }
+        /// <summary>
+        /// výkoná update finish time posledného záznamu a vytvorí nový
+        /// </summary>
+        /// <param name="id_employee"></param>
+        /// <param name="type"></param>
+        public void ChangeWorkType(int id_employee, EWorkType type)
+        {
+            if (!CheckDailyResult(id_employee, type))
+            {
+                FinishWork(id_employee, type);
+                StartWork(id_employee, type);
+                FillBlankSpace(id_employee, type);
+            }           
+        }
+        /// <summary>
+        /// Kontroluje či existuje záznam
+        /// </summary>
+        /// <param name="id_employee"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public bool CheckDailyResult(int id_employee, EWorkType type)
+        {
+            return ManagerRepository.DailyResultRepository.CheckIfDailyResultExist(SetResult(id_employee, type));
+        }
+        public DailyResult SetResult(int id_employee, EWorkType type)
+        {
+            _result.IdWorktype = (int)type;
+            _result.IdEmployee = id_employee;
+            return _result;
+        }
+        /// <summary>
+        /// Záplní okno v prípade viacnásobného príchodu a odchodu
+        /// </summary>
+        /// <param name="id_employee"></param>
+        /// <param name="type"></param>
+        public void FillBlankSpace(int id_employee, EWorkType type)
         {
             _result.IdEmployee = id_employee;
-            return ManagerRepository.DailyResultRepository.UpdateFinishDailyResult(_result);
+            List<DailyResult> test = new List<DailyResult>();
+            test = ManagerRepository.DailyResultRepository.SelectTwoLastResults(_result);
+            if (test.Count==2)
+            {
+                if (test[0].IdWorktype == test[1].IdWorktype)
+                {
+                    _result.Finish = ManagerRepository.DailyResultRepository.SelectLastStartAndFinish(_result).Finish;
+                    _result.Start = ManagerRepository.DailyResultRepository.SelectLastStartAndFinish(_result).Start;
+                    ManagerRepository.DailyResultRepository.InsertInBlankSpace(_result);
+                }
+            }
+            
         }
     }
 }

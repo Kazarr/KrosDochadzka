@@ -29,208 +29,288 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label2 = new System.Windows.Forms.Label();
             this.txtEmpId = new System.Windows.Forms.TextBox();
-            this.btnArrival = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.btnLunch = new System.Windows.Forms.Button();
-            this.btnBusinessTrip = new System.Windows.Forms.Button();
-            this.btnPrivate = new System.Windows.Forms.Button();
-            this.btnDoctor = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
             this.lblHour = new System.Windows.Forms.Label();
             this.lblSec = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.lblDay = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.panelMain = new System.Windows.Forms.Panel();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnEntry = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnLunch = new System.Windows.Forms.Button();
+            this.btnBTrip = new System.Windows.Forms.Button();
+            this.btnDoctor = new System.Windows.Forms.Button();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblWorkType = new System.Windows.Forms.Label();
+            this.lblDateNow = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.timerClear = new System.Windows.Forms.Timer(this.components);
+            this.panelMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(12, 95);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 19);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Employee ID";
             // 
             // txtEmpId
             // 
-            this.txtEmpId.Location = new System.Drawing.Point(114, 96);
+            this.txtEmpId.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtEmpId.BackColor = System.Drawing.Color.White;
+            this.txtEmpId.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtEmpId.Font = new System.Drawing.Font("Century Gothic", 23F, System.Drawing.FontStyle.Bold);
+            this.txtEmpId.ForeColor = System.Drawing.Color.Black;
+            this.txtEmpId.Location = new System.Drawing.Point(95, 18);
+            this.txtEmpId.MaxLength = 8;
             this.txtEmpId.Name = "txtEmpId";
-            this.txtEmpId.Size = new System.Drawing.Size(67, 20);
-            this.txtEmpId.TabIndex = 2;
+            this.txtEmpId.Size = new System.Drawing.Size(439, 38);
+            this.txtEmpId.TabIndex = 0;
+            this.txtEmpId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // btnArrival
+            // lblName
             // 
-            this.btnArrival.BackColor = System.Drawing.Color.Blue;
-            this.btnArrival.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnArrival.ForeColor = System.Drawing.Color.White;
-            this.btnArrival.Location = new System.Drawing.Point(216, 90);
-            this.btnArrival.Name = "btnArrival";
-            this.btnArrival.Size = new System.Drawing.Size(95, 30);
-            this.btnArrival.TabIndex = 3;
-            this.btnArrival.Text = "Arrival";
-            this.btnArrival.UseVisualStyleBackColor = false;
-            this.btnArrival.Click += new System.EventHandler(this.btnArrival_Click);
-            // 
-            // btnExit
-            // 
-            this.btnExit.BackColor = System.Drawing.Color.Blue;
-            this.btnExit.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(317, 90);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(95, 30);
-            this.btnExit.TabIndex = 4;
-            this.btnExit.Text = "Exit";
-            this.btnExit.UseVisualStyleBackColor = false;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // btnLunch
-            // 
-            this.btnLunch.BackColor = System.Drawing.Color.Blue;
-            this.btnLunch.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnLunch.ForeColor = System.Drawing.Color.White;
-            this.btnLunch.Location = new System.Drawing.Point(266, 126);
-            this.btnLunch.Name = "btnLunch";
-            this.btnLunch.Size = new System.Drawing.Size(111, 30);
-            this.btnLunch.TabIndex = 5;
-            this.btnLunch.Text = "Lunch";
-            this.btnLunch.UseVisualStyleBackColor = false;
-            // 
-            // btnBusinessTrip
-            // 
-            this.btnBusinessTrip.BackColor = System.Drawing.Color.Blue;
-            this.btnBusinessTrip.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnBusinessTrip.ForeColor = System.Drawing.Color.White;
-            this.btnBusinessTrip.Location = new System.Drawing.Point(266, 162);
-            this.btnBusinessTrip.Name = "btnBusinessTrip";
-            this.btnBusinessTrip.Size = new System.Drawing.Size(111, 30);
-            this.btnBusinessTrip.TabIndex = 6;
-            this.btnBusinessTrip.Text = "Business Trip";
-            this.btnBusinessTrip.UseVisualStyleBackColor = false;
-            // 
-            // btnPrivate
-            // 
-            this.btnPrivate.BackColor = System.Drawing.Color.Blue;
-            this.btnPrivate.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnPrivate.ForeColor = System.Drawing.Color.White;
-            this.btnPrivate.Location = new System.Drawing.Point(266, 198);
-            this.btnPrivate.Name = "btnPrivate";
-            this.btnPrivate.Size = new System.Drawing.Size(111, 30);
-            this.btnPrivate.TabIndex = 7;
-            this.btnPrivate.Text = "Private";
-            this.btnPrivate.UseVisualStyleBackColor = false;
-            // 
-            // btnDoctor
-            // 
-            this.btnDoctor.BackColor = System.Drawing.Color.Blue;
-            this.btnDoctor.Font = new System.Drawing.Font("Microsoft YaHei", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnDoctor.ForeColor = System.Drawing.Color.White;
-            this.btnDoctor.Location = new System.Drawing.Point(266, 234);
-            this.btnDoctor.Name = "btnDoctor";
-            this.btnDoctor.Size = new System.Drawing.Size(111, 30);
-            this.btnDoctor.TabIndex = 8;
-            this.btnDoctor.Text = "Doctor";
-            this.btnDoctor.UseVisualStyleBackColor = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(16, 186);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "label3";
+            this.lblName.Font = new System.Drawing.Font("Century Gothic", 25F, System.Drawing.FontStyle.Bold);
+            this.lblName.Location = new System.Drawing.Point(3, 0);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(519, 40);
+            this.lblName.TabIndex = 9;
+            this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblHour
             // 
             this.lblHour.AutoSize = true;
-            this.lblHour.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHour.Location = new System.Drawing.Point(231, 11);
+            this.lblHour.Font = new System.Drawing.Font("Century Gothic", 47.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblHour.Location = new System.Drawing.Point(299, 3);
             this.lblHour.Name = "lblHour";
-            this.lblHour.Size = new System.Drawing.Size(41, 21);
+            this.lblHour.Size = new System.Drawing.Size(155, 74);
             this.lblHour.TabIndex = 10;
             this.lblHour.Text = "9:27";
             // 
             // lblSec
             // 
             this.lblSec.AutoSize = true;
-            this.lblSec.Location = new System.Drawing.Point(278, 19);
+            this.lblSec.Font = new System.Drawing.Font("Century Gothic", 14F);
+            this.lblSec.Location = new System.Drawing.Point(491, 46);
             this.lblSec.Name = "lblSec";
-            this.lblSec.Size = new System.Drawing.Size(19, 13);
+            this.lblSec.Size = new System.Drawing.Size(32, 22);
             this.lblSec.TabIndex = 11;
             this.lblSec.Text = "30";
             // 
             // lblDate
             // 
-            this.lblDate.AutoSize = true;
-            this.lblDate.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblDate.Location = new System.Drawing.Point(13, 13);
+            this.lblDate.Font = new System.Drawing.Font("Century Gothic", 18F);
+            this.lblDate.Location = new System.Drawing.Point(14, 15);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(55, 22);
+            this.lblDate.Size = new System.Drawing.Size(151, 30);
             this.lblDate.TabIndex = 12;
             this.lblDate.Text = "18.19";
+            this.lblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblDay
             // 
-            this.lblDay.AutoSize = true;
-            this.lblDay.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblDay.Location = new System.Drawing.Point(123, 13);
+            this.lblDay.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblDay.Location = new System.Drawing.Point(14, 45);
             this.lblDay.Name = "lblDay";
-            this.lblDay.Size = new System.Drawing.Size(63, 22);
+            this.lblDay.Size = new System.Drawing.Size(151, 28);
             this.lblDay.TabIndex = 13;
             this.lblDay.Text = "Piatok";
+            this.lblDay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // timer
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // panelMain
+            // 
+            this.panelMain.Controls.Add(this.btnExit);
+            this.panelMain.Controls.Add(this.btnEntry);
+            this.panelMain.Controls.Add(this.button1);
+            this.panelMain.Controls.Add(this.btnLunch);
+            this.panelMain.Controls.Add(this.btnBTrip);
+            this.panelMain.Controls.Add(this.btnDoctor);
+            this.panelMain.Controls.Add(this.txtEmpId);
+            this.panelMain.Controls.Add(this.pictureBox7);
+            this.panelMain.ForeColor = System.Drawing.Color.White;
+            this.panelMain.Location = new System.Drawing.Point(5, 205);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(545, 345);
+            this.panelMain.TabIndex = 1;
+            // 
+            // btnExit
+            // 
+            this.btnExit.Image = global::AttendanceTermianal.Properties.Resources.exit;
+            this.btnExit.Location = new System.Drawing.Point(275, 207);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(264, 130);
+            this.btnExit.TabIndex = 6;
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnEntry
+            // 
+            this.btnEntry.Image = global::AttendanceTermianal.Properties.Resources.entry;
+            this.btnEntry.Location = new System.Drawing.Point(10, 207);
+            this.btnEntry.Name = "btnEntry";
+            this.btnEntry.Size = new System.Drawing.Size(264, 130);
+            this.btnEntry.TabIndex = 1;
+            this.btnEntry.UseVisualStyleBackColor = true;
+            this.btnEntry.Click += new System.EventHandler(this.btnEntry_Click);
+            // 
+            // button1
+            // 
+            this.button1.Image = global::AttendanceTermianal.Properties.Resources._private;
+            this.button1.Location = new System.Drawing.Point(409, 74);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(130, 130);
+            this.button1.TabIndex = 5;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnLunch
+            // 
+            this.btnLunch.Image = global::AttendanceTermianal.Properties.Resources.lunch;
+            this.btnLunch.Location = new System.Drawing.Point(10, 74);
+            this.btnLunch.Name = "btnLunch";
+            this.btnLunch.Size = new System.Drawing.Size(130, 130);
+            this.btnLunch.TabIndex = 2;
+            this.btnLunch.UseVisualStyleBackColor = true;
+            this.btnLunch.Click += new System.EventHandler(this.btnLunch_Click);
+            // 
+            // btnBTrip
+            // 
+            this.btnBTrip.Image = global::AttendanceTermianal.Properties.Resources.BS_TRIP;
+            this.btnBTrip.Location = new System.Drawing.Point(143, 74);
+            this.btnBTrip.Name = "btnBTrip";
+            this.btnBTrip.Size = new System.Drawing.Size(130, 130);
+            this.btnBTrip.TabIndex = 3;
+            this.btnBTrip.UseVisualStyleBackColor = true;
+            this.btnBTrip.Click += new System.EventHandler(this.btnBTrip_Click);
+            // 
+            // btnDoctor
+            // 
+            this.btnDoctor.Image = global::AttendanceTermianal.Properties.Resources.doctor;
+            this.btnDoctor.Location = new System.Drawing.Point(276, 74);
+            this.btnDoctor.Name = "btnDoctor";
+            this.btnDoctor.Size = new System.Drawing.Size(130, 130);
+            this.btnDoctor.TabIndex = 4;
+            this.btnDoctor.UseVisualStyleBackColor = true;
+            this.btnDoctor.Click += new System.EventHandler(this.btnDoctor_Click);
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox7.Image = global::AttendanceTermianal.Properties.Resources.ID;
+            this.pictureBox7.Location = new System.Drawing.Point(-7, 7);
+            this.pictureBox7.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(563, 62);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 23;
+            this.pictureBox7.TabStop = false;
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.lblWorkType);
+            this.panel2.Controls.Add(this.lblDateNow);
+            this.panel2.Controls.Add(this.lblName);
+            this.panel2.Location = new System.Drawing.Point(15, 88);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(529, 111);
+            this.panel2.TabIndex = 23;
+            // 
+            // lblWorkType
+            // 
+            this.lblWorkType.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblWorkType.Location = new System.Drawing.Point(3, 70);
+            this.lblWorkType.Name = "lblWorkType";
+            this.lblWorkType.Size = new System.Drawing.Size(519, 37);
+            this.lblWorkType.TabIndex = 11;
+            this.lblWorkType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblDateNow
+            // 
+            this.lblDateNow.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblDateNow.Location = new System.Drawing.Point(3, 38);
+            this.lblDateNow.Name = "lblDateNow";
+            this.lblDateNow.Size = new System.Drawing.Size(519, 30);
+            this.lblDateNow.TabIndex = 10;
+            this.lblDateNow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.lblDate);
+            this.panel3.Controls.Add(this.lblDay);
+            this.panel3.Controls.Add(this.lblHour);
+            this.panel3.Controls.Add(this.lblSec);
+            this.panel3.Location = new System.Drawing.Point(5, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(545, 82);
+            this.panel3.TabIndex = 24;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.panel3);
+            this.panel4.Controls.Add(this.panelMain);
+            this.panel4.Controls.Add(this.panel2);
+            this.panel4.Location = new System.Drawing.Point(5, 5);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(555, 555);
+            this.panel4.TabIndex = 1;
+            // 
+            // timerClear
+            // 
+            this.timerClear.Interval = 2500;
+            this.timerClear.Tick += new System.EventHandler(this.timerClear_Tick);
             // 
             // frmTerminal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(451, 281);
-            this.Controls.Add(this.lblDay);
-            this.Controls.Add(this.lblDate);
-            this.Controls.Add(this.lblSec);
-            this.Controls.Add(this.lblHour);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.btnDoctor);
-            this.Controls.Add(this.btnPrivate);
-            this.Controls.Add(this.btnBusinessTrip);
-            this.Controls.Add(this.btnLunch);
-            this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.btnArrival);
-            this.Controls.Add(this.txtEmpId);
-            this.Controls.Add(this.label2);
+            this.ClientSize = new System.Drawing.Size(565, 565);
+            this.Controls.Add(this.panel4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmTerminal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Attendence Terminal";
+            this.Text = ";";
+            this.panelMain.ResumeLayout(false);
+            this.panelMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtEmpId;
-        private System.Windows.Forms.Button btnArrival;
-        private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Button btnLunch;
-        private System.Windows.Forms.Button btnBusinessTrip;
-        private System.Windows.Forms.Button btnPrivate;
-        private System.Windows.Forms.Button btnDoctor;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblHour;
         private System.Windows.Forms.Label lblSec;
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Label lblDay;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Panel panelMain;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label lblWorkType;
+        private System.Windows.Forms.Label lblDateNow;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Timer timerClear;
+        private System.Windows.Forms.Button btnDoctor;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnEntry;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnLunch;
+        private System.Windows.Forms.Button btnBTrip;
     }
 }
 

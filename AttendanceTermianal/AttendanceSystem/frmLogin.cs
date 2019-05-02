@@ -1,7 +1,9 @@
-﻿using System;
+﻿using com.rusanu.dataconnectiondialog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -25,21 +27,48 @@ namespace AttendanceSystem
 
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
-            if (_loginViewModel.CheckLogin(Convert.ToInt32(textBoxLogin.Text), textBoxPassword.Text))
+            if (Data.Shared.CheckConnection())
+            {
+                if (_loginViewModel.CheckLogin(Convert.ToInt32(textBoxLogin.Text), textBoxPassword.Text))
                 {
-                FrmMainWindow frmMainWindow = new FrmMainWindow(Convert.ToInt32(textBoxLogin.Text));
-                frmMainWindow.ShowDialog();
-                
+                    FrmMainWindow frmMainWindow = new FrmMainWindow(Convert.ToInt32(textBoxLogin.Text));
+                    frmMainWindow.ShowDialog();
+
+                }
+                else
+                {
+                    MessageBox.Show("Wrong Password");
+                }
             }
             else
             {
-                MessageBox.Show("Wrong Password","Retard");
+                MessageBox.Show("Connection not established");
             }
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnChooseServer_Click(object sender, EventArgs e)
+        {
+            SqlConnectionStringBuilder scsb = new SqlConnectionStringBuilder();
+            // Set desired properties on the connection
+            scsb.IntegratedSecurity = true;
+            scsb.InitialCatalog = "master";
+            // Display the connection dialog
+            DataConnectionDialog dlg = new DataConnectionDialog(scsb);
+            if (DialogResult.OK == dlg.ShowDialog())
+            {
+                Data.Properties.Settings.Default.ConnectionString = dlg.ConnectionStringBuilder.ConnectionString;
+                // Use the connection properties
+                //using (SqlConnection conn = new SqlConnection(dlg.ConnectionStringBuilder.))
+                //{
+                //    conn.Open();
+                //    //...
+                //}
+            }
         }
     }
 }

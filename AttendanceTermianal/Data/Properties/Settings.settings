@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Data.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="ConnectionString" Type="System.String" Scope="Application">
+    <Setting Name="ConnectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)">Server = TRANSFORMER2\SQLEXPRESS2016; Database=KROSDOCHADZKA;Trusted_Connection=True</Value>
     </Setting>
   </Settings>

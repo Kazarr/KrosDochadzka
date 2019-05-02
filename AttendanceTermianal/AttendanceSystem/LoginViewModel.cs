@@ -1,6 +1,7 @@
 ﻿using Data.Repository;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,5 +14,7 @@ namespace AttendanceSystem
         {
             return ManagerRepository.EmployeeRepository.CheckLogin(id,password);
         }
+
+       
     }
 }
