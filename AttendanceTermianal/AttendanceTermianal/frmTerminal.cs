@@ -13,7 +13,7 @@ namespace AttendanceTermianal
     public partial class frmTerminal : Form
     {
         private TerminalViewModel _terminalViewModel = new TerminalViewModel();
-
+        private int _tick;
 
         public frmTerminal()
         {
@@ -36,62 +36,42 @@ namespace AttendanceTermianal
                 if (_terminalViewModel.CorrectEmp(input))
                 {
                     test = true;
-                    return true;
+                    return test;
                 }
                 else
                 {
-                    MessageBox.Show("This Id does not exist");
+                    ShowError();
                 }
             }
             return false;
         }
-        private void ChangeWorkType(EWorkType type)
+
+        private void ShowError()
         {
-            if (CorrectEmp(txtEmpId.Text))
+            MessageBox.Show("This Id does not exist");
+        }
+        private void ChangeWorkType(EWorkType type)
+        {            
+            if (!string.IsNullOrEmpty(txtEmpId.Text))
             {
-                int employeeId = int.Parse(txtEmpId.Text);
-                _terminalViewModel.ChangeWorkType(employeeId, type);
-                lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
-                lblDateNow.Text = _terminalViewModel.DescriptionDate();
-                lblWorkType.Text = _terminalViewModel.DescriptionWorkType(type.ToString());
+                if (CorrectEmp(txtEmpId.Text))
+                {
+                    _tick = 0;
+                    int employeeId = int.Parse(txtEmpId.Text);
+                    _terminalViewModel.ChangeWorkType(employeeId, type);
+                    lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
+                    lblDateNow.Text = _terminalViewModel.DescriptionDate();
+                    lblWorkType.Text = _terminalViewModel.DescriptionWorkType(type.ToString());
+                    txtEmpId.Clear();
+                    timerClear.Start();
+                }
+            }
+            else
+            {
+                ShowError();
             }
         }
-        private void btnArrival_Click(object sender, EventArgs e)
-        {
-            ChangeWorkType(EWorkType.Work);
-        }
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            int employeeId = int.Parse(txtEmpId.Text);
-            _terminalViewModel.FinishWork(employeeId, EWorkType.Exit);
-            lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
-            lblDateNow.Text = _terminalViewModel.DescriptionDate();
-            lblWorkType.Text = _terminalViewModel.DescriptionWorkType(nameof(EWorkType.Exit));
-        }
-        //private void btnExit_Click(object sender, EventArgs e)
-        //{
-        //    ChangeWorkType(EWorkType.Exit);
-        //}
-        private void btnLunch_Click(object sender, EventArgs e)
-        {
-            ChangeWorkType(EWorkType.Lunch);
-        }
-        private void btnDoctor_Click(object sender, EventArgs e)
-        {
-            ChangeWorkType(EWorkType.Doctor);
-        }
-        private void btnBusinessTrip_Click(object sender, EventArgs e)
-        {
-            ChangeWorkType(EWorkType.BusinessTrip);
-        }
-        private void btnPrivate_Click(object sender, EventArgs e)
-        {
-            ChangeWorkType(EWorkType.Private);
-        }
-        private void btnOther_Click(object sender, EventArgs e)
-        {
-            ChangeWorkType(EWorkType.Other);
-        }
+
 
         private void picEntry_MouseClick(object sender, MouseEventArgs e)
         {
@@ -100,12 +80,24 @@ namespace AttendanceTermianal
 
         private void picExit_MouseClick(object sender, MouseEventArgs e)
         {
-            int employeeId = int.Parse(txtEmpId.Text);
-
-            _terminalViewModel.FinishWork(employeeId, EWorkType.Exit);
-            lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
-            lblDateNow.Text = _terminalViewModel.DescriptionDate();
-            lblWorkType.Text = _terminalViewModel.DescriptionWorkType(nameof(EWorkType.Exit));
+            if (!string.IsNullOrEmpty(txtEmpId.Text))
+            {
+                if (CorrectEmp(txtEmpId.Text))
+                {
+                    _tick = 0;
+                    int employeeId = int.Parse(txtEmpId.Text);
+                    _terminalViewModel.FinishWork(employeeId, EWorkType.Exit);
+                    lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
+                    lblDateNow.Text = _terminalViewModel.DescriptionDate();
+                    lblWorkType.Text = _terminalViewModel.DescriptionWorkType(nameof(EWorkType.Exit));
+                    txtEmpId.Clear();
+                    timerClear.Start();
+                }
+            }
+            else
+            {
+                ShowError();
+            }
         }
 
         private void picLunch_MouseClick(object sender, MouseEventArgs e)
@@ -126,6 +118,17 @@ namespace AttendanceTermianal
         private void picPrivate_MouseClick(object sender, MouseEventArgs e)
         {
             ChangeWorkType(EWorkType.Private);
+        }
+
+        private void timerClear_Tick(object sender, EventArgs e)
+        {
+            _tick++;
+            if (_tick == 25)
+            {
+                lblName.Text = "Kros";
+                lblDateNow.Text = _terminalViewModel.DescriptionDate();
+                lblWorkType.Text="";
+            }
         }
     }
 }

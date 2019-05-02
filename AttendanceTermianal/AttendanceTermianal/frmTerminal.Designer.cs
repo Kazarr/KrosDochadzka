@@ -49,6 +49,7 @@
             this.lblDateNow = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.timerClear = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.picEntry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLunch)).BeginInit();
@@ -272,6 +273,10 @@
             this.panel4.Size = new System.Drawing.Size(555, 555);
             this.panel4.TabIndex = 25;
             // 
+            // timerClear
+            // 
+            this.timerClear.Tick += new System.EventHandler(this.timerClear_Tick);
+            // 
             // frmTerminal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -321,6 +326,7 @@
         private System.Windows.Forms.Label lblWorkType;
         private System.Windows.Forms.Label lblDateNow;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Timer timerClear;
     }
 }
 
