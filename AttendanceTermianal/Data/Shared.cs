@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,17 +17,17 @@ namespace Data
         {
 
             SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString);
-            connection.OpenAsync();
-            if (connection.State == System.Data.ConnectionState.Closed)
+            try
+            {
+                connection.Open();
+            }
+            catch (SqlException )
             {
                 connection.Close();
                 return false;
             }
-            else
-            {
-                connection.Close();
-                return true;
-            }
+            connection.Close();
+            return true;       
             
 
         }
