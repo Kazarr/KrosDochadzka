@@ -62,7 +62,6 @@
             this.btnUpdateEmployee.TabIndex = 17;
             this.btnUpdateEmployee.Text = "Update Employee";
             this.btnUpdateEmployee.UseVisualStyleBackColor = true;
-            this.btnUpdateEmployee.Visible = false;
             this.btnUpdateEmployee.Click += new System.EventHandler(this.btnUpdateEmployee_Click);
             // 
             // btnDeleteEmployee
@@ -74,7 +73,6 @@
             this.btnDeleteEmployee.TabIndex = 16;
             this.btnDeleteEmployee.Text = "Delete Employee";
             this.btnDeleteEmployee.UseVisualStyleBackColor = true;
-            this.btnDeleteEmployee.Visible = false;
             this.btnDeleteEmployee.Click += new System.EventHandler(this.btnDeleteEmployee_Click_1);
             // 
             // btnNewEmployee
@@ -86,7 +84,6 @@
             this.btnNewEmployee.TabIndex = 15;
             this.btnNewEmployee.Text = "New Employee";
             this.btnNewEmployee.UseVisualStyleBackColor = true;
-            this.btnNewEmployee.Visible = false;
             this.btnNewEmployee.Click += new System.EventHandler(this.btnNewEmployee_Click_1);
             // 
             // labelChoosePerson
@@ -100,7 +97,6 @@
             this.labelChoosePerson.Size = new System.Drawing.Size(108, 18);
             this.labelChoosePerson.TabIndex = 14;
             this.labelChoosePerson.Text = "Choose  person ";
-            this.labelChoosePerson.Visible = false;
             // 
             // comboBoxPerson
             // 
@@ -110,7 +106,6 @@
             this.comboBoxPerson.Name = "comboBoxPerson";
             this.comboBoxPerson.Size = new System.Drawing.Size(395, 21);
             this.comboBoxPerson.TabIndex = 13;
-            this.comboBoxPerson.Visible = false;
             this.comboBoxPerson.ValueMemberChanged += new System.EventHandler(this.comboBoxPerson_ValueMemberChanged);
             this.comboBoxPerson.SelectedValueChanged += new System.EventHandler(this.comboBoxPerson_SelectedValueChanged);
             this.comboBoxPerson.BindingContextChanged += new System.EventHandler(this.comboBoxPerson_BindingContextChanged);

@@ -24,34 +24,39 @@ namespace AttendanceSystem
             //FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;            
             CheckPermission();
-            fillMonthComboBox();   
+            fillMonthComboBox();
+            fillDataGridView();
+            
         }
+
         /// <summary>
         /// checks if the loged user is regular (1) supervisor(2) or admin (3) 
         /// </summary>
         private void CheckPermission()
         {
-            if (_mainWindowViewModel.GetEmployeeByID(_loggedEmployeeID).Permision >= 1)
+            int permssion = _mainWindowViewModel.GetEmployeeByID(_loggedEmployeeID).Permision;
+
+            if ( permssion == 1)
             {
-                comboBoxPerson.Visible = true;
+                btnDeleteEmployee.Visible = false;
+                btnNewEmployee.Visible = false;
+                btnUpdateEmployee.Visible = false;
                 comboBoxPerson.DataSource = _mainWindowViewModel.FillPlebPerson(_loggedEmployeeID);
             }
-                if (_mainWindowViewModel.GetEmployeeByID(_loggedEmployeeID).Permision >= 2)
+            else if (permssion == 2)
             {
-                btnUpdateEmployee.Visible = true;
-                labelChoosePerson.Visible = true;
-                comboBoxPerson.Visible = true;
-                if(_mainWindowViewModel.GetEmployeeByID(_loggedEmployeeID).Permision == 2)
-                {
-                    comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox(_loggedEmployeeID);
-                }
+
+                btnDeleteEmployee.Visible = false;
+                btnNewEmployee.Visible = false;
+                comboBoxPerson.DataSource = _mainWindowViewModel.FillPlebPerson(_loggedEmployeeID);
+                comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox(_loggedEmployeeID);
             }
-            if (_mainWindowViewModel.GetEmployeeByID(_loggedEmployeeID).Permision >= 3)
+            else if (permssion == 3)
             {
                 comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox();
-                btnNewEmployee.Visible = true;
-                btnDeleteEmployee.Visible = true;
             }
+
+           
 
 
 
@@ -68,8 +73,20 @@ namespace AttendanceSystem
             string selected = comboBoxMonth.GetItemText(comboBoxMonth.SelectedItem);
             //selected = selected.Split(' ')[0];          
 
-            dGVOverview.DataSource = _mainWindowViewModel.FillDataGridViewOverview(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), selected);          
+            dGVOverview.DataSource = _mainWindowViewModel.FillDataGridViewOverview(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), selected);
+
+
+            foreach (DataGridViewRow row in dGVOverview.Rows)
+            {
+
+                if (Convert.ToDateTime(row.Cells[0].Value).DayOfWeek.ToString().Equals("Sunday") || Convert.ToDateTime(row.Cells[0].Value).DayOfWeek.ToString().Equals("Saturday"))
+                {
+                    row.DefaultCellStyle.BackColor = Color.Red;
+                }
+            }
+       
         }
+
 
         private void btnDeleteEmployee_Click_1(object sender, EventArgs e)
         {
@@ -106,10 +123,14 @@ namespace AttendanceSystem
         {
             DialogResult = DialogResult.OK;
         }
+
+
         private void comboBoxMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
             fillDataGridView();
         }
+
+
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
         {
             frmNewEmployee newEmployee = new frmNewEmployee(_mainWindowViewModel.Person,_mainWindowViewModel.Empolyee);
@@ -120,26 +141,31 @@ namespace AttendanceSystem
             }
         }
 
+
         private void comboBoxPerson_ValueMemberChanged(object sender, EventArgs e)
         {
             
         }
+
 
         private void comboBoxPerson_BindingContextChanged(object sender, EventArgs e)
         {
             
         }
 
+
         private void comboBoxPerson_TextChanged(object sender, EventArgs e)
         {
             
         }
+
 
         private void comboBoxPerson_SelectedValueChanged(object sender, EventArgs e)
         {
             _mainWindowViewModel.Person = (Person)comboBoxPerson.SelectedItem;
             fillMonthComboBox();
         }
+
 
         private void btnDetails_Click(object sender, EventArgs e)
         {

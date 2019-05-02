@@ -33,7 +33,7 @@ namespace AttendanceSystem
             }
             else
             {
-                MessageBox.Show("Wrong Password","Retard");
+                MessageBox.Show("Wrong Password");
             }
         }
 

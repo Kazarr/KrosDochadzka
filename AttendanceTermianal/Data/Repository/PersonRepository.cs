@@ -46,6 +46,7 @@ namespace Data.Repository
             }
         }
 
+
         public List<Person> GetPersonEmployeesSupervisors()
         {
             List<Person> ret = new List<Person>();
@@ -84,6 +85,7 @@ namespace Data.Repository
             }
         }
 
+
         public bool DeletePerson(Person person)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
@@ -112,6 +114,7 @@ namespace Data.Repository
                 }
             }
         }
+
 
         public Person GetPersonByIdEmployee(int employeeId)
         {
@@ -150,6 +153,7 @@ namespace Data.Repository
             }
         }
 
+
         public Person GetPersonByEmployee(Empolyee empolyee)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
@@ -187,6 +191,7 @@ namespace Data.Repository
             }
         }
 
+
         public int InsertPerson(Person person)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
@@ -213,6 +218,8 @@ namespace Data.Repository
                 }
             }
         }
+
+
         public bool InsertOnlyPerson(Person person)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
@@ -245,7 +252,8 @@ namespace Data.Repository
                 }
             }
         }
-        
+
+
         public IEnumerable<Person> GetPersonsEmployees()
         {
             List<Person> ret = new List<Person>();
@@ -281,6 +289,8 @@ namespace Data.Repository
                 }
             }
         }
+
+
         public IEnumerable<Person> GetPersonEmployeesPlebs(int idBoss)
         {
             List<Person> ret = new List<Person>();
@@ -319,6 +329,8 @@ namespace Data.Repository
                 }
             }
         }
+
+
         public Person GetPersonById(int personId)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
