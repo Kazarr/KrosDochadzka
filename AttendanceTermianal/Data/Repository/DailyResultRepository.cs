@@ -434,5 +434,38 @@ namespace Data.Repository
                 }
             }
         }
+
+        public bool DeleteDailyResultByIdEmployee(int idEmployee)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"DELETE FROM DailyResult
+                                                WHERE idEmployee = @didEmployee";
+                        command.Parameters.Add("@didEmployee", SqlDbType.Int).Value = idEmployee;
+
+                        if (command.ExecuteNonQuery() > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                    return false;
+
+                }
+            }
+        }
     }
 }

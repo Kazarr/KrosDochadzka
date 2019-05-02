@@ -71,6 +71,7 @@ namespace AttendanceSystem
         public void DeleteEmployeePerson(Person person)
         {
             Empolyee e = ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(person.Id);
+            ManagerRepository.DailyResultRepository.DeleteDailyResultByIdEmployee(e.Id);
             ManagerRepository.EmployeeRepository.DeleteEmployee(e);
             //ManagerRepository.PersonRepository.DeletePerson(person);//nemusime mazat z osoby
         }
