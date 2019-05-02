@@ -34,6 +34,7 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.textBoxLogin = new System.Windows.Forms.TextBox();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.btnChooseServer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonConfirm
@@ -51,7 +52,7 @@
             // 
             this.labelLogin.AutoSize = true;
             this.labelLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelLogin.Location = new System.Drawing.Point(31, 69);
+            this.labelLogin.Location = new System.Drawing.Point(31, 125);
             this.labelLogin.Name = "labelLogin";
             this.labelLogin.Size = new System.Drawing.Size(149, 24);
             this.labelLogin.TabIndex = 1;
@@ -80,7 +81,7 @@
             // 
             // textBoxLogin
             // 
-            this.textBoxLogin.Location = new System.Drawing.Point(219, 73);
+            this.textBoxLogin.Location = new System.Drawing.Point(219, 129);
             this.textBoxLogin.Name = "textBoxLogin";
             this.textBoxLogin.Size = new System.Drawing.Size(167, 20);
             this.textBoxLogin.TabIndex = 4;
@@ -93,11 +94,23 @@
             this.textBoxPassword.Size = new System.Drawing.Size(167, 20);
             this.textBoxPassword.TabIndex = 5;
             // 
+            // btnChooseServer
+            // 
+            this.btnChooseServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnChooseServer.Location = new System.Drawing.Point(26, 12);
+            this.btnChooseServer.Name = "btnChooseServer";
+            this.btnChooseServer.Size = new System.Drawing.Size(154, 46);
+            this.btnChooseServer.TabIndex = 6;
+            this.btnChooseServer.Text = "Choose server";
+            this.btnChooseServer.UseVisualStyleBackColor = true;
+            this.btnChooseServer.Click += new System.EventHandler(this.btnChooseServer_Click);
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(434, 313);
+            this.Controls.Add(this.btnChooseServer);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.textBoxLogin);
             this.Controls.Add(this.buttonCancel);
@@ -120,5 +133,6 @@
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.TextBox textBoxLogin;
         private System.Windows.Forms.TextBox textBoxPassword;
+        private System.Windows.Forms.Button btnChooseServer;
     }
 }

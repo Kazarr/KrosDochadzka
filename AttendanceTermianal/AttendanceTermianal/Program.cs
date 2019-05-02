@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Data.Generator;
+using System.Configuration;
 
 namespace AttendanceTermianal
 {
@@ -25,6 +26,9 @@ namespace AttendanceTermianal
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmTerminal());
+
         }
+
+
     }
 }
