@@ -100,8 +100,10 @@ namespace AttendanceTermianal
 
         private void picExit_MouseClick(object sender, MouseEventArgs e)
         {
-            int employeeId = int.Parse(txtEmpId.Text);
-
+       
+    
+                int employeeId = int.Parse(txtEmpId.Text);
+          
             _terminalViewModel.FinishWork(employeeId, EWorkType.Exit);
             lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
             lblDateNow.Text = _terminalViewModel.DescriptionDate();

@@ -25,15 +25,22 @@ namespace AttendanceSystem
 
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
-            if (_loginViewModel.CheckLogin(Convert.ToInt32(textBoxLogin.Text), textBoxPassword.Text))
+            if (Data.Shared.CheckConnection())
+            {
+                if (_loginViewModel.CheckLogin(Convert.ToInt32(textBoxLogin.Text), textBoxPassword.Text))
                 {
-                FrmMainWindow frmMainWindow = new FrmMainWindow(Convert.ToInt32(textBoxLogin.Text));
-                frmMainWindow.ShowDialog();
-                
+                    FrmMainWindow frmMainWindow = new FrmMainWindow(Convert.ToInt32(textBoxLogin.Text));
+                    frmMainWindow.ShowDialog();
+
+                }
+                else
+                {
+                    MessageBox.Show("Wrong Password");
+                }
             }
             else
             {
-                MessageBox.Show("Wrong Password");
+                MessageBox.Show("Connection not established");
             }
         }
 

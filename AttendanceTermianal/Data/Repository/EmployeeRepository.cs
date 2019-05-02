@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -15,37 +16,45 @@ namespace Data.Repository
         public IEnumerable<Empolyee> GetEmpolyees()
         {
             List<Empolyee> ret = new List<Empolyee>();
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            try
             {
-                try
+                using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
+                    try
                     {
-                        command.Connection = connection;
-                        command.CommandText = @"SELECT * FROM Employee";
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        connection.OpenAsync();
+                        using (SqlCommand command = new SqlCommand())
                         {
-                            while (reader.Read())
+                            command.Connection = connection;
+                            command.CommandText = @"SELECT * FROM Employee";
+                            using (SqlDataReader reader = command.ExecuteReader())
                             {
-                                int employeeId = reader.GetInt32(0);
-                                string password = reader.GetString(1);
-                                int idPerson = reader.GetInt32(2);
-                                int idSupervisor = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
-                                int permision = reader.GetInt32(4);
-                                decimal salary = reader.GetDecimal(5);
-                                DateTime hiredDate = reader.GetDateTime(6);
-                                
-                                ret.Add(new Empolyee(employeeId, password, idPerson, idSupervisor, permision, salary, hiredDate));
+                                while (reader.Read())
+                                {
+                                    int employeeId = reader.GetInt32(0);
+                                    string password = reader.GetString(1);
+                                    int idPerson = reader.GetInt32(2);
+                                    int idSupervisor = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
+                                    int permision = reader.GetInt32(4);
+                                    decimal salary = reader.GetDecimal(5);
+                                    DateTime hiredDate = reader.GetDateTime(6);
+
+                                    ret.Add(new Empolyee(employeeId, password, idPerson, idSupervisor, permision, salary, hiredDate));
+                                }
+                                return ret;
                             }
-                            return ret;
                         }
                     }
+                    catch (Exception e)
+                    {
+                        throw e;
+                    }
                 }
-                catch (Exception e)
-                {
-                    throw e;
-                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
             }
         }
 
@@ -196,7 +205,7 @@ namespace Data.Repository
                 }
             }
         }
-
+        
         public Empolyee GetEmpolyeeByID(int id)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
@@ -233,7 +242,7 @@ namespace Data.Repository
                 }
             }
         }
-
+        
         public Empolyee GetEmpolyeeByIdPerson(int id)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
@@ -336,7 +345,16 @@ namespace Data.Repository
         /// <returns>true if password and login match </returns>
         public bool CheckLogin(int id, string password)
         {
-            List<Empolyee> employees = new List<Empolyee>(GetEmpolyees());
+            List<Empolyee> employees;
+            if (GetEmpolyees() != null)
+            {
+                 employees= new List<Empolyee>(GetEmpolyees());
+
+            }
+            else
+            {
+                return false;
+            }
             Console.WriteLine(CalculateMD5Hash(password));
             Console.WriteLine(employees[0].Password);
             foreach (var employee in employees)
