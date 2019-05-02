@@ -58,6 +58,38 @@ namespace Data.Repository
             }
         }
 
+        public bool ResetPassword(int employeeId, string password)
+        {
+            password = CalculateMD5Hash(password);
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"UPDATE Employee SET Password = @password WHERE ID = @id";
+                        command.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
+                        command.Parameters.Add("@id", SqlDbType.VarChar).Value = employeeId;
+                        if (command.ExecuteNonQuery() > 1)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
         public bool UpdateEmployee(Empolyee empolyee, Person person)
         {
             bool updatePerson = false;
@@ -92,13 +124,11 @@ namespace Data.Repository
                     {
                         command.Connection = connection;
                         command.CommandText = @"   Update Employee
-                                                    SET	Password = @Password,
-		                                                IdPerson = @IdPerson,
+                                                    SET	IdPerson = @IdPerson,
 		                                                IdSuperVisor = @IdSupervisor,
 		                                                IdPermission = @IdPermission,
 		                                                Salary = @Salary
                                                 WHERE Id = @Id";
-                        command.Parameters.Add("@Password", SqlDbType.VarChar).Value = empolyee.Password;
                         command.Parameters.Add("@IdPerson", SqlDbType.VarChar).Value = empolyee.IdPerson;
                         command.Parameters.Add("@IdSupervisor", SqlDbType.VarChar).Value = empolyee.IdSupervisor;
                         command.Parameters.Add("@IdPermission", SqlDbType.VarChar).Value = empolyee.Permision;
@@ -121,6 +151,42 @@ namespace Data.Repository
             }
         }
 
+        public bool UpdateEmployeePleb(Empolyee empolyee)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"UPDATE Employee
+                                                  SET IdSupervisor = (SELECT id FROM Employee
+                                                  WHERE IdPermission = 3)
+                                                  WHERE id IN (SELECT id FROM Employee WHERE IdSupervisor = @idSupervisor)";
+                        command.Parameters.Add("@idSupervisor", SqlDbType.Decimal).Value = empolyee.IdSupervisor;
+                        if (command.ExecuteNonQuery() > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+        /// <summary>
+        /// Recursively delete supervisor. Normal delete pleb.
+        /// </summary>
+        /// <param name="empolyee"></param>
+        /// <returns></returns>
         public bool DeleteEmployee(Empolyee empolyee)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
@@ -145,6 +211,10 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
+                    if (UpdateEmployeePleb(empolyee))
+                    {
+                        return DeleteEmployee(empolyee);
+                    }
                     return false;
                 }
             }

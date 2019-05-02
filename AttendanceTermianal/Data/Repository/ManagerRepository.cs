@@ -13,5 +13,6 @@ namespace Data.Repository
         public static PersonRepository PersonRepository = new PersonRepository();
         public static WorkTypeRepository WorkTypeRepository = new WorkTypeRepository();
         public static DaySummaryRepository DaySummaryRepository = new DaySummaryRepository();
+        public static PermissionRepository PermissionRepository = new PermissionRepository();
     }
 }

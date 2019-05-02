@@ -31,14 +31,13 @@
             this.buttonConfirm = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.textBoxConfirmPassword = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblUserConfirmPassword = new System.Windows.Forms.Label();
+            this.lblPassword = new System.Windows.Forms.Label();
             this.textBoxPostalCode = new System.Windows.Forms.TextBox();
             this.textBoxCity = new System.Windows.Forms.TextBox();
             this.textAdress = new System.Windows.Forms.TextBox();
             this.textBoxPermisions = new System.Windows.Forms.TextBox();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
-            this.textBoxSalary = new System.Windows.Forms.TextBox();
             this.textBoxPhoneNumber = new System.Windows.Forms.TextBox();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
@@ -48,12 +47,11 @@
             this.labelSupervisor = new System.Windows.Forms.Label();
             this.labelPermission = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.labelPassword = new System.Windows.Forms.Label();
-            this.labelSalary = new System.Windows.Forms.Label();
+            this.lblUserPassword = new System.Windows.Forms.Label();
             this.labelLastName = new System.Windows.Forms.Label();
             this.labelFirstName = new System.Windows.Forms.Label();
             this.cmbSupervisors = new System.Windows.Forms.ComboBox();
+            this.cmbPermissions = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // buttonConfirm
@@ -62,7 +60,7 @@
             this.buttonConfirm.Location = new System.Drawing.Point(441, 454);
             this.buttonConfirm.Name = "buttonConfirm";
             this.buttonConfirm.Size = new System.Drawing.Size(186, 38);
-            this.buttonConfirm.TabIndex = 56;
+            this.buttonConfirm.TabIndex = 7;
             this.buttonConfirm.Text = "Confirm";
             this.buttonConfirm.UseVisualStyleBackColor = true;
             this.buttonConfirm.Click += new System.EventHandler(this.buttonConfirm_Click_1);
@@ -73,42 +71,43 @@
             this.buttonCancel.Location = new System.Drawing.Point(146, 454);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(165, 38);
-            this.buttonCancel.TabIndex = 55;
+            this.buttonCancel.TabIndex = 8;
+            this.buttonCancel.TabStop = false;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click_1);
             // 
             // textBoxConfirmPassword
             // 
-            this.textBoxConfirmPassword.Location = new System.Drawing.Point(550, 400);
+            this.textBoxConfirmPassword.Location = new System.Drawing.Point(605, 380);
             this.textBoxConfirmPassword.Name = "textBoxConfirmPassword";
             this.textBoxConfirmPassword.PasswordChar = '*';
             this.textBoxConfirmPassword.Size = new System.Drawing.Size(196, 20);
             this.textBoxConfirmPassword.TabIndex = 54;
             // 
-            // label5
+            // lblUserConfirmPassword
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label5.Location = new System.Drawing.Point(357, 396);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(167, 24);
-            this.label5.TabIndex = 53;
-            this.label5.Text = "Confirm Password:";
+            this.lblUserConfirmPassword.AutoSize = true;
+            this.lblUserConfirmPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblUserConfirmPassword.Location = new System.Drawing.Point(412, 376);
+            this.lblUserConfirmPassword.Name = "lblUserConfirmPassword";
+            this.lblUserConfirmPassword.Size = new System.Drawing.Size(167, 24);
+            this.lblUserConfirmPassword.TabIndex = 53;
+            this.lblUserConfirmPassword.Text = "Confirm Password:";
             // 
-            // label4
+            // lblPassword
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(574, 291);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(92, 24);
-            this.label4.TabIndex = 52;
-            this.label4.Text = "Password";
+            this.lblPassword.AutoSize = true;
+            this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblPassword.Location = new System.Drawing.Point(629, 271);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(92, 24);
+            this.lblPassword.TabIndex = 52;
+            this.lblPassword.Text = "Password";
             // 
             // textBoxPostalCode
             // 
-            this.textBoxPostalCode.Location = new System.Drawing.Point(550, 243);
+            this.textBoxPostalCode.Location = new System.Drawing.Point(605, 223);
             this.textBoxPostalCode.Name = "textBoxPostalCode";
             this.textBoxPostalCode.Size = new System.Drawing.Size(196, 20);
             this.textBoxPostalCode.TabIndex = 51;
@@ -116,7 +115,7 @@
             // 
             // textBoxCity
             // 
-            this.textBoxCity.Location = new System.Drawing.Point(550, 190);
+            this.textBoxCity.Location = new System.Drawing.Point(605, 170);
             this.textBoxCity.Name = "textBoxCity";
             this.textBoxCity.Size = new System.Drawing.Size(196, 20);
             this.textBoxCity.TabIndex = 50;
@@ -124,10 +123,10 @@
             // 
             // textAdress
             // 
-            this.textAdress.Location = new System.Drawing.Point(550, 91);
+            this.textAdress.Location = new System.Drawing.Point(178, 380);
             this.textAdress.Name = "textAdress";
             this.textAdress.Size = new System.Drawing.Size(196, 20);
-            this.textAdress.TabIndex = 48;
+            this.textAdress.TabIndex = 6;
             // 
             // textBoxPermisions
             // 
@@ -138,39 +137,32 @@
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Location = new System.Drawing.Point(550, 344);
+            this.textBoxPassword.Location = new System.Drawing.Point(605, 324);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.PasswordChar = '*';
             this.textBoxPassword.Size = new System.Drawing.Size(196, 20);
             this.textBoxPassword.TabIndex = 45;
-            // 
-            // textBoxSalary
-            // 
-            this.textBoxSalary.Location = new System.Drawing.Point(178, 210);
-            this.textBoxSalary.Name = "textBoxSalary";
-            this.textBoxSalary.Size = new System.Drawing.Size(196, 20);
-            this.textBoxSalary.TabIndex = 44;
             // 
             // textBoxPhoneNumber
             // 
             this.textBoxPhoneNumber.Location = new System.Drawing.Point(178, 149);
             this.textBoxPhoneNumber.Name = "textBoxPhoneNumber";
             this.textBoxPhoneNumber.Size = new System.Drawing.Size(196, 20);
-            this.textBoxPhoneNumber.TabIndex = 43;
+            this.textBoxPhoneNumber.TabIndex = 2;
             // 
             // textBoxLastName
             // 
             this.textBoxLastName.Location = new System.Drawing.Point(178, 96);
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(196, 20);
-            this.textBoxLastName.TabIndex = 42;
+            this.textBoxLastName.TabIndex = 1;
             // 
             // textBoxFirstName
             // 
             this.textBoxFirstName.Location = new System.Drawing.Point(178, 46);
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(196, 20);
-            this.textBoxFirstName.TabIndex = 41;
+            this.textBoxFirstName.TabIndex = 0;
             // 
             // label1
             // 
@@ -186,7 +178,7 @@
             // 
             this.labelPostalCode.AutoSize = true;
             this.labelPostalCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelPostalCode.Location = new System.Drawing.Point(408, 243);
+            this.labelPostalCode.Location = new System.Drawing.Point(463, 223);
             this.labelPostalCode.Name = "labelPostalCode";
             this.labelPostalCode.Size = new System.Drawing.Size(116, 24);
             this.labelPostalCode.TabIndex = 39;
@@ -197,7 +189,7 @@
             // 
             this.labelCity.AutoSize = true;
             this.labelCity.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelCity.Location = new System.Drawing.Point(479, 190);
+            this.labelCity.Location = new System.Drawing.Point(534, 170);
             this.labelCity.Name = "labelCity";
             this.labelCity.Size = new System.Drawing.Size(45, 24);
             this.labelCity.TabIndex = 38;
@@ -228,41 +220,21 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(408, 91);
+            this.label3.Location = new System.Drawing.Point(84, 375);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 24);
             this.label3.TabIndex = 34;
             this.label3.Text = "Adress:";
             // 
-            // label2
+            // lblUserPassword
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(574, 27);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 24);
-            this.label2.TabIndex = 33;
-            this.label2.Text = "Address";
-            // 
-            // labelPassword
-            // 
-            this.labelPassword.AutoSize = true;
-            this.labelPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelPassword.Location = new System.Drawing.Point(427, 344);
-            this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(97, 24);
-            this.labelPassword.TabIndex = 32;
-            this.labelPassword.Text = "Password:";
-            // 
-            // labelSalary
-            // 
-            this.labelSalary.AutoSize = true;
-            this.labelSalary.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelSalary.Location = new System.Drawing.Point(92, 210);
-            this.labelSalary.Name = "labelSalary";
-            this.labelSalary.Size = new System.Drawing.Size(66, 24);
-            this.labelSalary.TabIndex = 31;
-            this.labelSalary.Text = "Salary:";
+            this.lblUserPassword.AutoSize = true;
+            this.lblUserPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblUserPassword.Location = new System.Drawing.Point(482, 324);
+            this.lblUserPassword.Name = "lblUserPassword";
+            this.lblUserPassword.Size = new System.Drawing.Size(97, 24);
+            this.lblUserPassword.TabIndex = 32;
+            this.lblUserPassword.Text = "Password:";
             // 
             // labelLastName
             // 
@@ -281,7 +253,7 @@
             this.labelFirstName.Location = new System.Drawing.Point(54, 41);
             this.labelFirstName.Name = "labelFirstName";
             this.labelFirstName.Size = new System.Drawing.Size(106, 24);
-            this.labelFirstName.TabIndex = 29;
+            this.labelFirstName.TabIndex = 10;
             this.labelFirstName.Text = "First Name:";
             // 
             // cmbSupervisors
@@ -290,25 +262,33 @@
             this.cmbSupervisors.Location = new System.Drawing.Point(178, 324);
             this.cmbSupervisors.Name = "cmbSupervisors";
             this.cmbSupervisors.Size = new System.Drawing.Size(196, 21);
-            this.cmbSupervisors.TabIndex = 57;
+            this.cmbSupervisors.TabIndex = 5;
+            // 
+            // cmbPermissions
+            // 
+            this.cmbPermissions.FormattingEnabled = true;
+            this.cmbPermissions.Location = new System.Drawing.Point(178, 266);
+            this.cmbPermissions.Name = "cmbPermissions";
+            this.cmbPermissions.Size = new System.Drawing.Size(196, 21);
+            this.cmbPermissions.TabIndex = 4;
             // 
             // frmNewEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(813, 522);
+            this.Controls.Add(this.cmbPermissions);
             this.Controls.Add(this.cmbSupervisors);
             this.Controls.Add(this.buttonConfirm);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.textBoxConfirmPassword);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblUserConfirmPassword);
+            this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.textBoxPostalCode);
             this.Controls.Add(this.textBoxCity);
             this.Controls.Add(this.textAdress);
             this.Controls.Add(this.textBoxPermisions);
             this.Controls.Add(this.textBoxPassword);
-            this.Controls.Add(this.textBoxSalary);
             this.Controls.Add(this.textBoxPhoneNumber);
             this.Controls.Add(this.textBoxLastName);
             this.Controls.Add(this.textBoxFirstName);
@@ -318,9 +298,7 @@
             this.Controls.Add(this.labelSupervisor);
             this.Controls.Add(this.labelPermission);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.labelPassword);
-            this.Controls.Add(this.labelSalary);
+            this.Controls.Add(this.lblUserPassword);
             this.Controls.Add(this.labelLastName);
             this.Controls.Add(this.labelFirstName);
             this.Name = "frmNewEmployee";
@@ -335,14 +313,13 @@
         private System.Windows.Forms.Button buttonConfirm;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.TextBox textBoxConfirmPassword;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblUserConfirmPassword;
+        private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.TextBox textBoxPostalCode;
         private System.Windows.Forms.TextBox textBoxCity;
         private System.Windows.Forms.TextBox textAdress;
         private System.Windows.Forms.TextBox textBoxPermisions;
         private System.Windows.Forms.TextBox textBoxPassword;
-        private System.Windows.Forms.TextBox textBoxSalary;
         private System.Windows.Forms.TextBox textBoxPhoneNumber;
         private System.Windows.Forms.TextBox textBoxLastName;
         private System.Windows.Forms.TextBox textBoxFirstName;
@@ -352,11 +329,10 @@
         private System.Windows.Forms.Label labelSupervisor;
         private System.Windows.Forms.Label labelPermission;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label labelPassword;
-        private System.Windows.Forms.Label labelSalary;
+        private System.Windows.Forms.Label lblUserPassword;
         private System.Windows.Forms.Label labelLastName;
         private System.Windows.Forms.Label labelFirstName;
         private System.Windows.Forms.ComboBox cmbSupervisors;
+        private System.Windows.Forms.ComboBox cmbPermissions;
     }
 }

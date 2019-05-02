@@ -41,7 +41,7 @@ namespace Data.Generator
         {
             string pass = "0000";
             int idPerson = i;
-            int idSupervisor = r.Next(30, 143);
+            int idSupervisor = r.Next(2118, 2214);
             int idPermission = 1;
             decimal salary = r.Next(1000, 2500);
             DateTime date = RandomDate();
@@ -51,7 +51,7 @@ namespace Data.Generator
         public void GenerateSupervisor()
         {
             List<Person> people = ManagerRepository.PersonRepository.GetPersons().ToList();
-            for (int i = 3; i < people.Count - 700; i++)
+            for (int i = 5; i < people.Count - 700; i++)
             {
                _employeeRepository.InsertFullEmployee(SetSupervisor(i));
             }

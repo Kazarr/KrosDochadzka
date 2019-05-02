@@ -14,6 +14,11 @@ namespace AttendanceSystem
         private Empolyee _empolyee;
         private Person _person;
 
+        public MainWindowViewModel()
+        {
+
+        }
+
         public Person Person { get => _person; set {  _person = value;
                                                       Empolyee = GetEmpolyeeByPersonId(Person.Id);}}
         public Empolyee Empolyee { get => _empolyee; set => _empolyee = value; }
@@ -71,8 +76,9 @@ namespace AttendanceSystem
         public void DeleteEmployeePerson(Person person)
         {
             Empolyee e = ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(person.Id);
+            ManagerRepository.DailyResultRepository.DeleteDailyResultByIdEmployee(e.Id);
             ManagerRepository.EmployeeRepository.DeleteEmployee(e);
-            ManagerRepository.PersonRepository.DeletePerson(person);//nemusime mazat z osoby
+            //ManagerRepository.PersonRepository.DeletePerson(person);//nemusime mazat z osoby
         }
 
         public BindingList<Person> FillPlebPerson(int employeeId)
@@ -80,6 +86,10 @@ namespace AttendanceSystem
             BindingList<Person> ret = new BindingList<Person>();
             ret.Add(ManagerRepository.PersonRepository.GetPersonByIdEmployee(employeeId));
             return ret;
+        }
+        public bool ResetPassword()
+        {
+            return ManagerRepository.EmployeeRepository.ResetPassword(ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(Person.Id).Id, "0000");
         }
     }
 }
