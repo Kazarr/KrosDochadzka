@@ -100,9 +100,9 @@ namespace AttendanceTermianal
             _tick++;
             if (_tick == 25)
             {
-                lblName.Text = "Kros";
                 lblDateNow.Text = _terminalViewModel.DescriptionDate();
                 lblWorkType.Text="";
+                lblName.Text = "";
                 txtEmpId.Clear();
             }
         }
