@@ -29,16 +29,11 @@ namespace AttendanceSystem
             Person = new Person();
         }
 
-        public void AddNewEmployee(string firstName, string lastName, string phoneNumber, string adress, decimal salary, int permission, Person supervisor, string password)
+        public void AddNewEmployee(string firstName, string lastName, string phoneNumber, string adress, int permission, Person supervisor, string password)
         {
             Person p = new Person(firstName, lastName, phoneNumber, adress);
             p.Id = ManagerRepository.PersonRepository.InsertPerson(p);
-            Empolyee e = new Empolyee(password, p.Id, permission, salary);
-            //e.Password = password;
-            //e.IdPerson = p.Id;
-            //e.IdSupervisor = supervisor.Id;
-            //e.Permision = permission;
-            //e.Salary = salary;
+            Empolyee e = new Empolyee(password, p.Id, permission);
             if (supervisor == null)
             {
                 e.IdSupervisor = ManagerRepository.EmployeeRepository.InsertFullEmployee(e);
@@ -79,10 +74,9 @@ namespace AttendanceSystem
             return new BindingList<Person>(ManagerRepository.PersonRepository.GetPersonEmployeesSupervisors());
         }
 
-        public void UpdateEmployee(string firstName, string lastName, string phoneNumber, string adress, decimal salary, int permission, Person supervisor)
+        public void UpdateEmployee(string firstName, string lastName, string phoneNumber, string adress, int permission, Person supervisor)
         {
             Empolyee.Permision = permission;
-            Empolyee.Salary = salary;
             Person p = new Person(firstName, lastName, phoneNumber, adress);
             if(supervisor == null)
             {

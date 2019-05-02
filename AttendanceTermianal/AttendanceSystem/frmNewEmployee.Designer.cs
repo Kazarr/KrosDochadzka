@@ -38,7 +38,6 @@
             this.textAdress = new System.Windows.Forms.TextBox();
             this.textBoxPermisions = new System.Windows.Forms.TextBox();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
-            this.textBoxSalary = new System.Windows.Forms.TextBox();
             this.textBoxPhoneNumber = new System.Windows.Forms.TextBox();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
@@ -49,7 +48,6 @@
             this.labelPermission = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblUserPassword = new System.Windows.Forms.Label();
-            this.labelSalary = new System.Windows.Forms.Label();
             this.labelLastName = new System.Windows.Forms.Label();
             this.labelFirstName = new System.Windows.Forms.Label();
             this.cmbSupervisors = new System.Windows.Forms.ComboBox();
@@ -145,13 +143,6 @@
             this.textBoxPassword.Size = new System.Drawing.Size(196, 20);
             this.textBoxPassword.TabIndex = 45;
             // 
-            // textBoxSalary
-            // 
-            this.textBoxSalary.Location = new System.Drawing.Point(178, 210);
-            this.textBoxSalary.Name = "textBoxSalary";
-            this.textBoxSalary.Size = new System.Drawing.Size(196, 20);
-            this.textBoxSalary.TabIndex = 3;
-            // 
             // textBoxPhoneNumber
             // 
             this.textBoxPhoneNumber.Location = new System.Drawing.Point(178, 149);
@@ -245,16 +236,6 @@
             this.lblUserPassword.TabIndex = 32;
             this.lblUserPassword.Text = "Password:";
             // 
-            // labelSalary
-            // 
-            this.labelSalary.AutoSize = true;
-            this.labelSalary.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelSalary.Location = new System.Drawing.Point(92, 210);
-            this.labelSalary.Name = "labelSalary";
-            this.labelSalary.Size = new System.Drawing.Size(66, 24);
-            this.labelSalary.TabIndex = 31;
-            this.labelSalary.Text = "Salary:";
-            // 
             // labelLastName
             // 
             this.labelLastName.AutoSize = true;
@@ -308,7 +289,6 @@
             this.Controls.Add(this.textAdress);
             this.Controls.Add(this.textBoxPermisions);
             this.Controls.Add(this.textBoxPassword);
-            this.Controls.Add(this.textBoxSalary);
             this.Controls.Add(this.textBoxPhoneNumber);
             this.Controls.Add(this.textBoxLastName);
             this.Controls.Add(this.textBoxFirstName);
@@ -319,7 +299,6 @@
             this.Controls.Add(this.labelPermission);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblUserPassword);
-            this.Controls.Add(this.labelSalary);
             this.Controls.Add(this.labelLastName);
             this.Controls.Add(this.labelFirstName);
             this.Name = "frmNewEmployee";
@@ -341,7 +320,6 @@
         private System.Windows.Forms.TextBox textAdress;
         private System.Windows.Forms.TextBox textBoxPermisions;
         private System.Windows.Forms.TextBox textBoxPassword;
-        private System.Windows.Forms.TextBox textBoxSalary;
         private System.Windows.Forms.TextBox textBoxPhoneNumber;
         private System.Windows.Forms.TextBox textBoxLastName;
         private System.Windows.Forms.TextBox textBoxFirstName;
@@ -352,7 +330,6 @@
         private System.Windows.Forms.Label labelPermission;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblUserPassword;
-        private System.Windows.Forms.Label labelSalary;
         private System.Windows.Forms.Label labelLastName;
         private System.Windows.Forms.Label labelFirstName;
         private System.Windows.Forms.ComboBox cmbSupervisors;

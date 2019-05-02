@@ -35,7 +35,6 @@ namespace AttendanceSystem
             textBoxLastName.Text = _newEmployeeViewModel.Person.LastName;
             textBoxPhoneNumber.Text = _newEmployeeViewModel.Person.PhoneNumber;
             textAdress.Text = _newEmployeeViewModel.Person.Adress;
-            textBoxSalary.Text = _newEmployeeViewModel.Empolyee.Salary.ToString();
             textBoxPermisions.Text = _newEmployeeViewModel.Empolyee.Permision.ToString();
             cmbPermissions.DataSource = _newEmployeeViewModel.FillPermissions();
             cmbPermissions.SelectedItem = _newEmployeeViewModel.EmployeePermission(empolyee);
@@ -48,18 +47,16 @@ namespace AttendanceSystem
 
         private void buttonConfirm_Click_1(object sender, EventArgs e)
         {
-            decimal salary;
             int permision = _newEmployeeViewModel.EmployeePermissionId((string)cmbPermissions.SelectedItem);
-            if (decimal.TryParse(textBoxSalary.Text, out salary)) { }
             
             if (_newEmployeeViewModel.Empolyee.Id == 0)
             {
-                _newEmployeeViewModel.AddNewEmployee(textBoxFirstName.Text, textBoxLastName.Text, textBoxPhoneNumber.Text, textAdress.Text, salary, permision, (Person)cmbSupervisors.SelectedItem, textBoxPassword.Text);
+                _newEmployeeViewModel.AddNewEmployee(textBoxFirstName.Text, textBoxLastName.Text, textBoxPhoneNumber.Text, textAdress.Text, permision, (Person)cmbSupervisors.SelectedItem, textBoxPassword.Text);
                 DialogResult = DialogResult.OK;
             }
             else
             {
-                _newEmployeeViewModel.UpdateEmployee(textBoxFirstName.Text, textBoxLastName.Text, textBoxPhoneNumber.Text, textAdress.Text, salary, permision, (Person)cmbSupervisors.SelectedItem);
+                _newEmployeeViewModel.UpdateEmployee(textBoxFirstName.Text, textBoxLastName.Text, textBoxPhoneNumber.Text, textAdress.Text, permision, (Person)cmbSupervisors.SelectedItem);
                 DialogResult = DialogResult.OK;
             }
             
