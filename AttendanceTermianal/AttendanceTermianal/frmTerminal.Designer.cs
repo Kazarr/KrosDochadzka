@@ -36,13 +36,13 @@
             this.lblDate = new System.Windows.Forms.Label();
             this.lblDay = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.picEntry = new System.Windows.Forms.PictureBox();
-            this.picExit = new System.Windows.Forms.PictureBox();
-            this.picLunch = new System.Windows.Forms.PictureBox();
-            this.picDoctor = new System.Windows.Forms.PictureBox();
-            this.picPrivate = new System.Windows.Forms.PictureBox();
-            this.picTrip = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnEntry = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnLunch = new System.Windows.Forms.Button();
+            this.btnBTrip = new System.Windows.Forms.Button();
+            this.btnDoctor = new System.Windows.Forms.Button();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblWorkType = new System.Windows.Forms.Label();
@@ -50,12 +50,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.timerClear = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.picEntry)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picExit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picLunch)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picDoctor)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPrivate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picTrip)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.panel2.SuspendLayout();
@@ -68,12 +62,13 @@
             this.txtEmpId.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtEmpId.BackColor = System.Drawing.Color.White;
             this.txtEmpId.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtEmpId.Font = new System.Drawing.Font("Century Gothic", 22F, System.Drawing.FontStyle.Bold);
+            this.txtEmpId.Font = new System.Drawing.Font("Century Gothic", 23F, System.Drawing.FontStyle.Bold);
             this.txtEmpId.ForeColor = System.Drawing.Color.Black;
-            this.txtEmpId.Location = new System.Drawing.Point(84, 21);
+            this.txtEmpId.Location = new System.Drawing.Point(95, 18);
+            this.txtEmpId.MaxLength = 8;
             this.txtEmpId.Name = "txtEmpId";
-            this.txtEmpId.Size = new System.Drawing.Size(439, 36);
-            this.txtEmpId.TabIndex = 2;
+            this.txtEmpId.Size = new System.Drawing.Size(439, 38);
+            this.txtEmpId.TabIndex = 0;
             this.txtEmpId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblName
@@ -81,7 +76,7 @@
             this.lblName.Font = new System.Drawing.Font("Century Gothic", 25F, System.Drawing.FontStyle.Bold);
             this.lblName.Location = new System.Drawing.Point(3, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(498, 40);
+            this.lblName.Size = new System.Drawing.Size(519, 40);
             this.lblName.TabIndex = 9;
             this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -129,96 +124,90 @@
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // picEntry
-            // 
-            this.picEntry.Image = global::AttendanceTermianal.Properties.Resources.entry;
-            this.picEntry.Location = new System.Drawing.Point(4, 207);
-            this.picEntry.Name = "picEntry";
-            this.picEntry.Size = new System.Drawing.Size(268, 130);
-            this.picEntry.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picEntry.TabIndex = 15;
-            this.picEntry.TabStop = false;
-            this.picEntry.MouseClick += new System.Windows.Forms.MouseEventHandler(this.picEntry_MouseClick);
-            // 
-            // picExit
-            // 
-            this.picExit.Image = global::AttendanceTermianal.Properties.Resources.exit;
-            this.picExit.Location = new System.Drawing.Point(272, 207);
-            this.picExit.Name = "picExit";
-            this.picExit.Size = new System.Drawing.Size(268, 130);
-            this.picExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picExit.TabIndex = 16;
-            this.picExit.TabStop = false;
-            this.picExit.MouseClick += new System.Windows.Forms.MouseEventHandler(this.picExit_MouseClick);
-            // 
-            // picLunch
-            // 
-            this.picLunch.Image = global::AttendanceTermianal.Properties.Resources.lunch;
-            this.picLunch.Location = new System.Drawing.Point(10, 74);
-            this.picLunch.Margin = new System.Windows.Forms.Padding(0);
-            this.picLunch.Name = "picLunch";
-            this.picLunch.Size = new System.Drawing.Size(130, 130);
-            this.picLunch.TabIndex = 17;
-            this.picLunch.TabStop = false;
-            this.picLunch.MouseClick += new System.Windows.Forms.MouseEventHandler(this.picLunch_MouseClick);
-            // 
-            // picDoctor
-            // 
-            this.picDoctor.Image = global::AttendanceTermianal.Properties.Resources.doctor;
-            this.picDoctor.Location = new System.Drawing.Point(272, 74);
-            this.picDoctor.Margin = new System.Windows.Forms.Padding(0);
-            this.picDoctor.Name = "picDoctor";
-            this.picDoctor.Size = new System.Drawing.Size(130, 130);
-            this.picDoctor.TabIndex = 19;
-            this.picDoctor.TabStop = false;
-            this.picDoctor.MouseClick += new System.Windows.Forms.MouseEventHandler(this.picDoctor_MouseClick);
-            // 
-            // picPrivate
-            // 
-            this.picPrivate.Image = global::AttendanceTermianal.Properties.Resources._private;
-            this.picPrivate.Location = new System.Drawing.Point(402, 74);
-            this.picPrivate.Margin = new System.Windows.Forms.Padding(0);
-            this.picPrivate.Name = "picPrivate";
-            this.picPrivate.Size = new System.Drawing.Size(130, 130);
-            this.picPrivate.TabIndex = 20;
-            this.picPrivate.TabStop = false;
-            this.picPrivate.MouseClick += new System.Windows.Forms.MouseEventHandler(this.picPrivate_MouseClick);
-            // 
-            // picTrip
-            // 
-            this.picTrip.Image = global::AttendanceTermianal.Properties.Resources.BS_TRIP;
-            this.picTrip.Location = new System.Drawing.Point(140, 74);
-            this.picTrip.Margin = new System.Windows.Forms.Padding(0);
-            this.picTrip.Name = "picTrip";
-            this.picTrip.Size = new System.Drawing.Size(130, 130);
-            this.picTrip.TabIndex = 21;
-            this.picTrip.TabStop = false;
-            this.picTrip.MouseClick += new System.Windows.Forms.MouseEventHandler(this.picTrip_MouseClick);
-            // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnExit);
+            this.panel1.Controls.Add(this.btnEntry);
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnLunch);
+            this.panel1.Controls.Add(this.btnBTrip);
+            this.panel1.Controls.Add(this.btnDoctor);
             this.panel1.Controls.Add(this.txtEmpId);
-            this.panel1.Controls.Add(this.picLunch);
             this.panel1.Controls.Add(this.pictureBox7);
-            this.panel1.Controls.Add(this.picTrip);
-            this.panel1.Controls.Add(this.picEntry);
-            this.panel1.Controls.Add(this.picPrivate);
-            this.panel1.Controls.Add(this.picExit);
-            this.panel1.Controls.Add(this.picDoctor);
             this.panel1.ForeColor = System.Drawing.Color.White;
             this.panel1.Location = new System.Drawing.Point(5, 205);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(545, 345);
-            this.panel1.TabIndex = 22;
+            this.panel1.TabIndex = 1;
+            // 
+            // btnExit
+            // 
+            this.btnExit.Image = global::AttendanceTermianal.Properties.Resources.exit;
+            this.btnExit.Location = new System.Drawing.Point(275, 207);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(264, 130);
+            this.btnExit.TabIndex = 6;
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnEntry
+            // 
+            this.btnEntry.Image = global::AttendanceTermianal.Properties.Resources.entry;
+            this.btnEntry.Location = new System.Drawing.Point(10, 207);
+            this.btnEntry.Name = "btnEntry";
+            this.btnEntry.Size = new System.Drawing.Size(264, 130);
+            this.btnEntry.TabIndex = 1;
+            this.btnEntry.UseVisualStyleBackColor = true;
+            this.btnEntry.Click += new System.EventHandler(this.btnEntry_Click);
+            // 
+            // button1
+            // 
+            this.button1.Image = global::AttendanceTermianal.Properties.Resources._private;
+            this.button1.Location = new System.Drawing.Point(409, 74);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(130, 130);
+            this.button1.TabIndex = 5;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnLunch
+            // 
+            this.btnLunch.Image = global::AttendanceTermianal.Properties.Resources.lunch;
+            this.btnLunch.Location = new System.Drawing.Point(10, 74);
+            this.btnLunch.Name = "btnLunch";
+            this.btnLunch.Size = new System.Drawing.Size(130, 130);
+            this.btnLunch.TabIndex = 2;
+            this.btnLunch.UseVisualStyleBackColor = true;
+            this.btnLunch.Click += new System.EventHandler(this.btnLunch_Click);
+            // 
+            // btnBTrip
+            // 
+            this.btnBTrip.Image = global::AttendanceTermianal.Properties.Resources.BS_TRIP;
+            this.btnBTrip.Location = new System.Drawing.Point(143, 74);
+            this.btnBTrip.Name = "btnBTrip";
+            this.btnBTrip.Size = new System.Drawing.Size(130, 130);
+            this.btnBTrip.TabIndex = 3;
+            this.btnBTrip.UseVisualStyleBackColor = true;
+            this.btnBTrip.Click += new System.EventHandler(this.btnBTrip_Click);
+            // 
+            // btnDoctor
+            // 
+            this.btnDoctor.Image = global::AttendanceTermianal.Properties.Resources.doctor;
+            this.btnDoctor.Location = new System.Drawing.Point(276, 74);
+            this.btnDoctor.Name = "btnDoctor";
+            this.btnDoctor.Size = new System.Drawing.Size(130, 130);
+            this.btnDoctor.TabIndex = 4;
+            this.btnDoctor.UseVisualStyleBackColor = true;
+            this.btnDoctor.Click += new System.EventHandler(this.btnDoctor_Click);
             // 
             // pictureBox7
             // 
             this.pictureBox7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox7.Image = global::AttendanceTermianal.Properties.Resources.ID;
-            this.pictureBox7.Location = new System.Drawing.Point(0, 7);
+            this.pictureBox7.Location = new System.Drawing.Point(-7, 7);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(543, 67);
+            this.pictureBox7.Size = new System.Drawing.Size(563, 62);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox7.TabIndex = 23;
             this.pictureBox7.TabStop = false;
@@ -229,9 +218,9 @@
             this.panel2.Controls.Add(this.lblWorkType);
             this.panel2.Controls.Add(this.lblDateNow);
             this.panel2.Controls.Add(this.lblName);
-            this.panel2.Location = new System.Drawing.Point(22, 88);
+            this.panel2.Location = new System.Drawing.Point(15, 88);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(508, 111);
+            this.panel2.Size = new System.Drawing.Size(529, 111);
             this.panel2.TabIndex = 23;
             // 
             // lblWorkType
@@ -239,7 +228,7 @@
             this.lblWorkType.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblWorkType.Location = new System.Drawing.Point(3, 70);
             this.lblWorkType.Name = "lblWorkType";
-            this.lblWorkType.Size = new System.Drawing.Size(498, 37);
+            this.lblWorkType.Size = new System.Drawing.Size(519, 37);
             this.lblWorkType.TabIndex = 11;
             this.lblWorkType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -248,7 +237,7 @@
             this.lblDateNow.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblDateNow.Location = new System.Drawing.Point(3, 38);
             this.lblDateNow.Name = "lblDateNow";
-            this.lblDateNow.Size = new System.Drawing.Size(498, 30);
+            this.lblDateNow.Size = new System.Drawing.Size(519, 30);
             this.lblDateNow.TabIndex = 10;
             this.lblDateNow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -271,7 +260,7 @@
             this.panel4.Location = new System.Drawing.Point(5, 5);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(555, 555);
-            this.panel4.TabIndex = 25;
+            this.panel4.TabIndex = 1;
             // 
             // timerClear
             // 
@@ -287,13 +276,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmTerminal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Attendence Terminal";
-            ((System.ComponentModel.ISupportInitialize)(this.picEntry)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picExit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picLunch)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picDoctor)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picPrivate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picTrip)).EndInit();
+            this.Text = ";";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
@@ -313,12 +296,6 @@
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Label lblDay;
         private System.Windows.Forms.Timer timer;
-        private System.Windows.Forms.PictureBox picEntry;
-        private System.Windows.Forms.PictureBox picExit;
-        private System.Windows.Forms.PictureBox picLunch;
-        private System.Windows.Forms.PictureBox picDoctor;
-        private System.Windows.Forms.PictureBox picPrivate;
-        private System.Windows.Forms.PictureBox picTrip;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Panel panel2;
@@ -327,6 +304,12 @@
         private System.Windows.Forms.Label lblDateNow;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Timer timerClear;
+        private System.Windows.Forms.Button btnDoctor;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnEntry;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnLunch;
+        private System.Windows.Forms.Button btnBTrip;
     }
 }
 
