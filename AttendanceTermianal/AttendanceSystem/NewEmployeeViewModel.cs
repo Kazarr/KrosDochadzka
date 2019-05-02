@@ -54,6 +54,21 @@ namespace AttendanceSystem
 
         }
 
+        public List<string> FillPermissions()
+        {
+            return ManagerRepository.PermissionRepository.SelectPermissionName();
+        }
+
+        public string EmployeePermission(Empolyee empolyee)
+        {
+            return ManagerRepository.PermissionRepository.SelectPermissionNameById(empolyee.Permision);
+        }
+
+        public int EmployeePermissionId(string name)
+        {
+            return ManagerRepository.PermissionRepository.SelectPermissionIdByName(name);
+        }
+
         public Person GetSupervisor(int? idEmployee)
         {
             return ManagerRepository.PersonRepository.GetPersonByIdEmployee(idEmployee.Value);

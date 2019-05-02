@@ -31,8 +31,8 @@
             this.buttonConfirm = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.textBoxConfirmPassword = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblUserConfirmPassword = new System.Windows.Forms.Label();
+            this.lblPassword = new System.Windows.Forms.Label();
             this.textBoxPostalCode = new System.Windows.Forms.TextBox();
             this.textBoxCity = new System.Windows.Forms.TextBox();
             this.textAdress = new System.Windows.Forms.TextBox();
@@ -49,11 +49,12 @@
             this.labelPermission = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.labelPassword = new System.Windows.Forms.Label();
+            this.lblUserPassword = new System.Windows.Forms.Label();
             this.labelSalary = new System.Windows.Forms.Label();
             this.labelLastName = new System.Windows.Forms.Label();
             this.labelFirstName = new System.Windows.Forms.Label();
             this.cmbSupervisors = new System.Windows.Forms.ComboBox();
+            this.cmbPermissions = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // buttonConfirm
@@ -86,25 +87,25 @@
             this.textBoxConfirmPassword.Size = new System.Drawing.Size(196, 20);
             this.textBoxConfirmPassword.TabIndex = 54;
             // 
-            // label5
+            // lblUserConfirmPassword
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label5.Location = new System.Drawing.Point(357, 396);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(167, 24);
-            this.label5.TabIndex = 53;
-            this.label5.Text = "Confirm Password:";
+            this.lblUserConfirmPassword.AutoSize = true;
+            this.lblUserConfirmPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblUserConfirmPassword.Location = new System.Drawing.Point(357, 396);
+            this.lblUserConfirmPassword.Name = "lblUserConfirmPassword";
+            this.lblUserConfirmPassword.Size = new System.Drawing.Size(167, 24);
+            this.lblUserConfirmPassword.TabIndex = 53;
+            this.lblUserConfirmPassword.Text = "Confirm Password:";
             // 
-            // label4
+            // lblPassword
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(574, 291);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(92, 24);
-            this.label4.TabIndex = 52;
-            this.label4.Text = "Password";
+            this.lblPassword.AutoSize = true;
+            this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblPassword.Location = new System.Drawing.Point(574, 291);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(92, 24);
+            this.lblPassword.TabIndex = 52;
+            this.lblPassword.Text = "Password";
             // 
             // textBoxPostalCode
             // 
@@ -244,15 +245,15 @@
             this.label2.TabIndex = 33;
             this.label2.Text = "Address";
             // 
-            // labelPassword
+            // lblUserPassword
             // 
-            this.labelPassword.AutoSize = true;
-            this.labelPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelPassword.Location = new System.Drawing.Point(427, 344);
-            this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(97, 24);
-            this.labelPassword.TabIndex = 32;
-            this.labelPassword.Text = "Password:";
+            this.lblUserPassword.AutoSize = true;
+            this.lblUserPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblUserPassword.Location = new System.Drawing.Point(427, 344);
+            this.lblUserPassword.Name = "lblUserPassword";
+            this.lblUserPassword.Size = new System.Drawing.Size(97, 24);
+            this.lblUserPassword.TabIndex = 32;
+            this.lblUserPassword.Text = "Password:";
             // 
             // labelSalary
             // 
@@ -292,17 +293,26 @@
             this.cmbSupervisors.Size = new System.Drawing.Size(196, 21);
             this.cmbSupervisors.TabIndex = 57;
             // 
+            // cmbPermissions
+            // 
+            this.cmbPermissions.FormattingEnabled = true;
+            this.cmbPermissions.Location = new System.Drawing.Point(178, 266);
+            this.cmbPermissions.Name = "cmbPermissions";
+            this.cmbPermissions.Size = new System.Drawing.Size(196, 21);
+            this.cmbPermissions.TabIndex = 58;
+            // 
             // frmNewEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(813, 522);
+            this.Controls.Add(this.cmbPermissions);
             this.Controls.Add(this.cmbSupervisors);
             this.Controls.Add(this.buttonConfirm);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.textBoxConfirmPassword);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblUserConfirmPassword);
+            this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.textBoxPostalCode);
             this.Controls.Add(this.textBoxCity);
             this.Controls.Add(this.textAdress);
@@ -319,7 +329,7 @@
             this.Controls.Add(this.labelPermission);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.labelPassword);
+            this.Controls.Add(this.lblUserPassword);
             this.Controls.Add(this.labelSalary);
             this.Controls.Add(this.labelLastName);
             this.Controls.Add(this.labelFirstName);
@@ -335,8 +345,8 @@
         private System.Windows.Forms.Button buttonConfirm;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.TextBox textBoxConfirmPassword;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblUserConfirmPassword;
+        private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.TextBox textBoxPostalCode;
         private System.Windows.Forms.TextBox textBoxCity;
         private System.Windows.Forms.TextBox textAdress;
@@ -353,10 +363,11 @@
         private System.Windows.Forms.Label labelPermission;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label labelPassword;
+        private System.Windows.Forms.Label lblUserPassword;
         private System.Windows.Forms.Label labelSalary;
         private System.Windows.Forms.Label labelLastName;
         private System.Windows.Forms.Label labelFirstName;
         private System.Windows.Forms.ComboBox cmbSupervisors;
+        private System.Windows.Forms.ComboBox cmbPermissions;
     }
 }

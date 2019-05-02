@@ -37,16 +37,21 @@ namespace AttendanceSystem
             textAdress.Text = _newEmployeeViewModel.Person.Adress;
             textBoxSalary.Text = _newEmployeeViewModel.Empolyee.Salary.ToString();
             textBoxPermisions.Text = _newEmployeeViewModel.Empolyee.Permision.ToString();
-            textBoxPassword.Text = _newEmployeeViewModel.Empolyee.Password;
-            textBoxConfirmPassword.Text = _newEmployeeViewModel.Empolyee.Password;
+            cmbPermissions.DataSource = _newEmployeeViewModel.FillPermissions();
+            cmbPermissions.SelectedItem = _newEmployeeViewModel.EmployeePermission(empolyee);
+            textBoxPassword.Visible = false;
+            textBoxConfirmPassword.Visible = false;
+            lblPassword.Visible = false;
+            lblUserConfirmPassword.Visible = false;
+            lblUserPassword.Visible = false;
         }
 
         private void buttonConfirm_Click_1(object sender, EventArgs e)
         {
             decimal salary;
-            int permision;
+            int permision = _newEmployeeViewModel.EmployeePermissionId((string)cmbPermissions.SelectedItem);
             if (decimal.TryParse(textBoxSalary.Text, out salary)) { }
-            if (int.TryParse(textBoxPermisions.Text, out permision)) { }
+            
             if (_newEmployeeViewModel.Empolyee.Id == 0)
             {
                 _newEmployeeViewModel.AddNewEmployee(textBoxFirstName.Text, textBoxLastName.Text, textBoxPhoneNumber.Text, textAdress.Text, salary, permision, (Person)cmbSupervisors.SelectedItem, textBoxPassword.Text);

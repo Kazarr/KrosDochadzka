@@ -68,6 +68,7 @@
     <Compile Include="Repository\DaySummaryRepository.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />
     <Compile Include="Repository\ManagerRepository.cs" />
+    <Compile Include="Repository\PermissionRepository.cs" />
     <Compile Include="Repository\PersonRepository.cs" />
     <Compile Include="Repository\WorkTypeRepository.cs" />
     <Compile Include="Shared.cs" />
