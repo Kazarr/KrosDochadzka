@@ -27,6 +27,7 @@ namespace AttendanceTermianal
             lblDay.Text = _terminalViewModel.CurrentDay();
             lblHour.Text = _terminalViewModel.CurrentHourmin();
             lblSec.Text = _terminalViewModel.CurrentSec();
+            lblDateNow.Text = _terminalViewModel.DescriptionDate();
         }
         public bool CorrectEmp(string input)
         {
@@ -73,12 +74,90 @@ namespace AttendanceTermianal
         }
 
 
-        private void picEntry_MouseClick(object sender, MouseEventArgs e)
+        //private void picEntry_MouseClick(object sender, MouseEventArgs e)
+        //{
+        //    ChangeWorkType(EWorkType.Work);
+        //}
+
+        //private void picExit_MouseClick(object sender, MouseEventArgs e)
+        //{
+        //    if (!string.IsNullOrEmpty(txtEmpId.Text))
+        //    {
+        //        if (CorrectEmp(txtEmpId.Text))
+        //        {
+        //            _tick = 0;
+        //            int employeeId = int.Parse(txtEmpId.Text);
+        //            _terminalViewModel.FinishWork(employeeId, EWorkType.Exit);
+        //            lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
+        //            lblDateNow.Text = _terminalViewModel.DescriptionDate();
+        //            lblWorkType.Text = _terminalViewModel.DescriptionWorkType(nameof(EWorkType.Exit));
+        //            txtEmpId.Clear();
+        //            timerClear.Start();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        ShowError();
+        //    }
+        //}
+
+        //private void picLunch_MouseClick(object sender, MouseEventArgs e)
+        //{
+        //    ChangeWorkType(EWorkType.Lunch);
+        //}
+
+        //private void picTrip_MouseClick(object sender, MouseEventArgs e)
+        //{
+        //    ChangeWorkType(EWorkType.BusinessTrip);
+        //}
+
+        //private void picDoctor_MouseClick(object sender, MouseEventArgs e)
+        //{
+        //    ChangeWorkType(EWorkType.Doctor);
+        //}
+
+        //private void picPrivate_MouseClick(object sender, MouseEventArgs e)
+        //{
+        //    ChangeWorkType(EWorkType.Private);
+        //}
+
+        private void timerClear_Tick(object sender, EventArgs e)
+        {
+            _tick++;
+            if (_tick == 25)
+            {
+                lblName.Text = "Kros";
+                lblDateNow.Text = _terminalViewModel.DescriptionDate();
+                lblWorkType.Text="";
+            }
+        }
+
+        private void btnLunch_Click(object sender, EventArgs e)
+        {
+            ChangeWorkType(EWorkType.Lunch);
+        }
+
+        private void btnBTrip_Click(object sender, EventArgs e)
+        {
+            ChangeWorkType(EWorkType.BusinessTrip);
+        }
+
+        private void btnDoctor_Click(object sender, EventArgs e)
+        {
+            ChangeWorkType(EWorkType.Doctor);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ChangeWorkType(EWorkType.Private);
+        }
+
+        private void btnEntry_Click(object sender, EventArgs e)
         {
             ChangeWorkType(EWorkType.Work);
         }
 
-        private void picExit_MouseClick(object sender, MouseEventArgs e)
+        private void btnExit_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtEmpId.Text))
             {
@@ -97,37 +176,6 @@ namespace AttendanceTermianal
             else
             {
                 ShowError();
-            }
-        }
-
-        private void picLunch_MouseClick(object sender, MouseEventArgs e)
-        {
-            ChangeWorkType(EWorkType.Lunch);
-        }
-
-        private void picTrip_MouseClick(object sender, MouseEventArgs e)
-        {
-            ChangeWorkType(EWorkType.BusinessTrip);
-        }
-
-        private void picDoctor_MouseClick(object sender, MouseEventArgs e)
-        {
-            ChangeWorkType(EWorkType.Doctor);
-        }
-
-        private void picPrivate_MouseClick(object sender, MouseEventArgs e)
-        {
-            ChangeWorkType(EWorkType.Private);
-        }
-
-        private void timerClear_Tick(object sender, EventArgs e)
-        {
-            _tick++;
-            if (_tick == 25)
-            {
-                lblName.Text = "Kros";
-                lblDateNow.Text = _terminalViewModel.DescriptionDate();
-                lblWorkType.Text="";
             }
         }
     }
