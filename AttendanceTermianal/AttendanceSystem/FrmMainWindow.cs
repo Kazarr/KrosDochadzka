@@ -82,7 +82,7 @@ namespace AttendanceSystem
 
                 if (Convert.ToDateTime(row.Cells[0].Value).DayOfWeek.ToString().Equals("Sunday") || Convert.ToDateTime(row.Cells[0].Value).DayOfWeek.ToString().Equals("Saturday"))
                 {
-                    row.DefaultCellStyle.BackColor = Color.Red;
+                    row.DefaultCellStyle.BackColor = Color.Orange;
                 }
             }
        
