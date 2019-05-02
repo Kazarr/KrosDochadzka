@@ -26,5 +26,7 @@ namespace AttendanceSystem.Properties
                 return defaultInstance;
             }
         }
+
+        public string ConnectionString { get; internal set; }
     }
 }

@@ -71,7 +71,6 @@ namespace AttendanceSystem
         {
             //get name of the month from the combobox
             string selected = comboBoxMonth.GetItemText(comboBoxMonth.SelectedItem);
-            //selected = selected.Split(' ')[0];          
 
             dGVOverview.DataSource = _mainWindowViewModel.FillDataGridViewOverview(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), selected);
 
