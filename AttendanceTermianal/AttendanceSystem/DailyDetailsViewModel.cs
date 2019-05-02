@@ -24,5 +24,10 @@ namespace AttendanceSystem
         {
             return ManagerRepository.EmployeeRepository.GetEmpolyeeByID(employeeId);
         }
+
+        public DailyResult GetDailyResultById(int dailyResultId)
+        {
+            return ManagerRepository.DailyResultRepository.GetDailyResultByID(dailyResultId);
+        }
     }
 }

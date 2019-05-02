@@ -55,7 +55,7 @@ namespace AttendanceSystem
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Are you serious?", "Delete faggot", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("This action will permanently delete record are you serious?", "Delete Record", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 if (dGVDailyResultsOverview.SelectedRows.Count > 0)
@@ -94,6 +94,14 @@ namespace AttendanceSystem
             frmDailyDetailsAddEdit frmDailyDetailsAdd = new frmDailyDetailsAddEdit(_selectedEmployeeId,_thisDate);
             frmDailyDetailsAdd.ShowDialog();
             FillDataGridView();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            frmDailyDetailsAddEdit frmDailyDetailsEdit = new frmDailyDetailsAddEdit(_selectedEmployeeId,_thisDate,_dailyDetailsViewModel.GetDailyResultById(Convert.ToInt32(dGVDailyResultsOverview.Rows[dGVDailyResultsOverview.CurrentCell.RowIndex].Cells[0].Value)));
+            frmDailyDetailsEdit.ShowDialog();
+            FillDataGridView();
+
         }
     }
 }

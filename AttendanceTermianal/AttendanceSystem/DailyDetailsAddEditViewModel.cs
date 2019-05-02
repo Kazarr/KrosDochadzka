@@ -46,5 +46,15 @@ namespace AttendanceSystem
             }
             
         }
+        
+        /// <summary>
+        /// update existing Daily Result
+        /// </summary>
+        /// <param name="updatedDailyResult"></param>
+        /// <returns>true if update happend, otherwise false</returns>
+        public bool UpdateDailyResult (DailyResult updatedDailyResult)
+        {
+            return ManagerRepository.DailyResultRepository.UpdateDailyResult(updatedDailyResult);
+        }
     }
 }

@@ -72,6 +72,7 @@
             this.btnEdit.Text = "Edit record";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Visible = false;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnAdd
             // 
@@ -109,7 +110,6 @@
             this.Controls.Add(this.dGVDailyResultsOverview);
             this.Name = "frmDailyDetails";
             this.Text = "DailyDetails";
-          
             ((System.ComponentModel.ISupportInitialize)(this.dGVDailyResultsOverview)).EndInit();
             this.ResumeLayout(false);
 

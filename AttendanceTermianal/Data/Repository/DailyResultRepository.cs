@@ -253,6 +253,7 @@ namespace Data.Repository
                 }
             }
         }
+        
         /// <summary>
         /// vyhladá POSLEDNÝ finish time daného employee
         /// </summary>
@@ -323,6 +324,7 @@ namespace Data.Repository
                 }
             }
         }
+        
         /// <summary>
         /// Select posledného startu a predposledného finishu
         /// </summary>
@@ -359,6 +361,7 @@ namespace Data.Repository
                 }
             }
         }
+        
         /// <summary>
         /// Select posledných dvoch záznamov zamestnanca(Employee) 
         /// </summary>
@@ -401,6 +404,7 @@ namespace Data.Repository
                 }
             }
         }
+       
         /// <summary>
         /// Vloženie záznamu
         /// </summary>
@@ -426,6 +430,88 @@ namespace Data.Repository
                             return true;
                         }
                         return false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
+        /// <summary>
+        /// gets daily result by its ID
+        /// </summary>
+        /// <param name="employeeId"></param>
+        /// <returns>DailyRusult</returns>
+        public DailyResult GetDailyResultByID (int dailyResultId)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"select * from DailyResult where id = @id";
+                        command.Parameters.Add("@id", SqlDbType.Int).Value = dailyResultId;
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            DailyResult dailyResult = new DailyResult();
+                            if (reader.Read())
+                            {
+                                
+                                dailyResult.Id = reader.GetInt32(0);
+                                dailyResult.IdEmployee = reader.GetInt32(1);
+                                dailyResult.Start = reader.GetDateTime(2);
+                                dailyResult.Finish = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3);
+                                dailyResult.IdWorktype = reader.GetInt32(4);
+                            }
+                            return dailyResult;
+                        }
+
+
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
+        /// <summary>
+        /// this method make unicorn farts
+        /// </summary>
+        /// <param name="daily_Result"></param>
+        /// <returns>true if update happend, false if not</returns>
+        public bool UpdateDailyResult(DailyResult updatedDailyResult)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"update DailyResult 
+                                                set Start=@start,Finish=@finish,IdWorktype=@idWorkType
+                                                where id = @dailyResultID";
+                        command.Parameters.Add("@start", SqlDbType.DateTime2).Value = updatedDailyResult.Start;
+                        command.Parameters.Add("@finish", SqlDbType.DateTime2).Value = updatedDailyResult.Finish;
+                        command.Parameters.Add("@idWorkType", SqlDbType.Int).Value = updatedDailyResult.IdWorktype;
+                        command.Parameters.Add("@dailyResultID", SqlDbType.Int).Value = updatedDailyResult.Id;
+
+                        if (command.ExecuteNonQuery() > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                 }
                 catch (Exception e)

@@ -15,6 +15,7 @@ namespace AttendanceSystem
     {
         private DailyDetailsAddEditViewModel _dailyDetailsAddEditViewModel = new DailyDetailsAddEditViewModel();
         private int _selectedEmployeeId;
+        private DailyResult _dailyResultToUpdate =null;
         private DateTime _date;
 
         public frmDailyDetailsAddEdit(int selectedEmployeeID, DateTime date)
@@ -28,38 +29,78 @@ namespace AttendanceSystem
 
         }
 
+        public frmDailyDetailsAddEdit(int selectedEmployeeID, DateTime date, DailyResult dailyResultToUpdate)
+        {
+            _selectedEmployeeId = selectedEmployeeID;
+            _date = date;
+            _dailyResultToUpdate = dailyResultToUpdate;
+
+            InitializeComponent();
+            FormatTimePickers();
+            FillComboBox();
+
+        }
+
         private void FormatTimePickers()
         {
             dateTimePickerStart.Format = DateTimePickerFormat.Custom;
             dateTimePickerStart.CustomFormat = "HH:mm:ss ";
-            dateTimePickerStart.Value = _date;
             dateTimePickerFinish.Format = DateTimePickerFormat.Custom;
             dateTimePickerFinish.CustomFormat = "HH:mm:ss ";
-            dateTimePickerFinish.Value = _date.AddHours(1);
+            if (_dailyResultToUpdate == null)
+            {
+                dateTimePickerStart.Value =  _date ;
+                dateTimePickerFinish.Value = _date.AddHours(1);
+            }
+            else
+            {
+                dateTimePickerStart.Value = _dailyResultToUpdate.Start;
+                dateTimePickerFinish.Value = (_dailyResultToUpdate.Finish == null) ? _dailyResultToUpdate.Start.AddHours(1) : (DateTime)_dailyResultToUpdate.Finish;
+            }
         }
 
         private void FillComboBox()
         {
             comboBoxWorkTypes.Items.AddRange(_dailyDetailsAddEditViewModel.GetWorkTypes().ToArray());
-            comboBoxWorkTypes.SelectedIndex = 0;
+            comboBoxWorkTypes.SelectedIndex = (_dailyResultToUpdate == null) ? 0 : _dailyResultToUpdate.IdWorktype-1;
 
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-                                          
-            if (_dailyDetailsAddEditViewModel.CreateNewDailyResult(_selectedEmployeeId, dateTimePickerStart.Value,
-                dateTimePickerFinish.Value, Convert.ToInt32(comboBoxWorkTypes.Text.Split(' ')[0])))
+            if (_dailyResultToUpdate == null)
             {
-
-                MessageBox.Show("Record added succesfully");
-                DialogResult = DialogResult.OK;
+                if (_dailyDetailsAddEditViewModel.CreateNewDailyResult(_selectedEmployeeId, dateTimePickerStart.Value,
+                    dateTimePickerFinish.Value, comboBoxWorkTypes.SelectedIndex+1))
+                {
+                    MessageBox.Show("Record added succesfully");
+                    DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    MessageBox.Show("Error happend during process\n" +
+                                "try tu restart the program, check connection\n" +
+                                "if problem persists contact tech support");
+                }
             }
             else
             {
-                MessageBox.Show("Error happend during process\n" +
-                            "try tu restart the program, check connection\n" +
-                            "if problem persists contact tech support");
+                _dailyResultToUpdate.Start = dateTimePickerStart.Value;
+                _dailyResultToUpdate.Finish = dateTimePickerFinish.Value;
+                _dailyResultToUpdate.IdWorktype = comboBoxWorkTypes.SelectedIndex+1;
+
+                if (_dailyDetailsAddEditViewModel.UpdateDailyResult(_dailyResultToUpdate))
+                {
+
+                    MessageBox.Show("Record updated succesfully");
+                    DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    MessageBox.Show("Error happend during process\n" +
+                                "try tu restart the program, check connection\n" +
+                                "if problem persists contact tech support");
+                }
             }
 
         }
