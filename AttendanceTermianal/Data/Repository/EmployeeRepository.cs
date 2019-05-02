@@ -83,13 +83,11 @@ namespace Data.Repository
                     {
                         command.Connection = connection;
                         command.CommandText = @"   Update Employee
-                                                    SET	Password = @Password,
-		                                                IdPerson = @IdPerson,
+                                                    SET	IdPerson = @IdPerson,
 		                                                IdSuperVisor = @IdSupervisor,
 		                                                IdPermission = @IdPermission,
 		                                                Salary = @Salary
                                                 WHERE Id = @Id";
-                        command.Parameters.Add("@Password", SqlDbType.VarChar).Value = empolyee.Password;
                         command.Parameters.Add("@IdPerson", SqlDbType.VarChar).Value = empolyee.IdPerson;
                         command.Parameters.Add("@IdSupervisor", SqlDbType.VarChar).Value = empolyee.IdSupervisor;
                         command.Parameters.Add("@IdPermission", SqlDbType.VarChar).Value = empolyee.Permision;

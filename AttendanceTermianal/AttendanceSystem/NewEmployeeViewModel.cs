@@ -79,9 +79,8 @@ namespace AttendanceSystem
             return new BindingList<Person>(ManagerRepository.PersonRepository.GetPersonEmployeesSupervisors());
         }
 
-        public void UpdateEmployee(string firstName, string lastName, string phoneNumber, string adress, decimal salary, int permission, Person supervisor, string password)
+        public void UpdateEmployee(string firstName, string lastName, string phoneNumber, string adress, decimal salary, int permission, Person supervisor)
         {
-            Empolyee.Password = password;
             Empolyee.Permision = permission;
             Empolyee.Salary = salary;
             Person p = new Person(firstName, lastName, phoneNumber, adress);
