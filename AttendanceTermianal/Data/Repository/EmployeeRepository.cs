@@ -112,6 +112,42 @@ namespace Data.Repository
             }
         }
 
+        public bool UpdateEmployeePleb(Empolyee empolyee)
+        {
+            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = @"UPDATE Employee
+                                                  SET IdSupervisor = (SELECT id FROM Employee
+                                                  WHERE IdPermission = 3)
+                                                  WHERE id IN (SELECT id FROM Employee WHERE IdSupervisor = @idSupervisor)";
+                        command.Parameters.Add("@idSupervisor", SqlDbType.Decimal).Value = empolyee.IdSupervisor;
+                        if (command.ExecuteNonQuery() > 0)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+        /// <summary>
+        /// Recursively delete supervisor. Normal delete pleb.
+        /// </summary>
+        /// <param name="empolyee"></param>
+        /// <returns></returns>
         public bool DeleteEmployee(Empolyee empolyee)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
@@ -136,6 +172,10 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
+                    if (UpdateEmployeePleb(empolyee))
+                    {
+                        return DeleteEmployee(empolyee);
+                    }
                     return false;
                 }
             }
