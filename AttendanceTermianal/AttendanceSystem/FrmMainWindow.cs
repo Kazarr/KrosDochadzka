@@ -31,12 +31,20 @@ namespace AttendanceSystem
         /// </summary>
         private void CheckPermission()
         {
-            if (_mainWindowViewModel.GetEmployeeByID(_loggedEmployeeID).Permision >= 2)
+            if (_mainWindowViewModel.GetEmployeeByID(_loggedEmployeeID).Permision >= 1)
+            {
+                comboBoxPerson.Visible = true;
+                comboBoxPerson.DataSource = _mainWindowViewModel.FillPlebPerson(_loggedEmployeeID);
+            }
+                if (_mainWindowViewModel.GetEmployeeByID(_loggedEmployeeID).Permision >= 2)
             {
                 btnUpdateEmployee.Visible = true;
                 labelChoosePerson.Visible = true;
                 comboBoxPerson.Visible = true;
-                comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox(_loggedEmployeeID);
+                if(_mainWindowViewModel.GetEmployeeByID(_loggedEmployeeID).Permision == 2)
+                {
+                    comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox(_loggedEmployeeID);
+                }
             }
             if (_mainWindowViewModel.GetEmployeeByID(_loggedEmployeeID).Permision >= 3)
             {
@@ -142,6 +150,7 @@ namespace AttendanceSystem
                 DateTime selectedDate = Convert.ToDateTime(dGVOverview.Rows[dGVOverview.CurrentCell.RowIndex].Cells[0].Value.ToString());
                 frmDailyDetails dailyDetails = new frmDailyDetails(_loggedEmployeeID, selectedDate);
                 dailyDetails.ShowDialog();
+                fillDataGridView();
             }
         }
     }

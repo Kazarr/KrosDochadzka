@@ -108,8 +108,10 @@ namespace Data.Repository
             daySummary.TotalTimeWorked = daySummary.WorkLeavingTime - daySummary.WorkArrivalTime - daySummary.HolidayTime 
                  - daySummary.Doctor - daySummary.Private - daySummary.Other;
 
-            daySummary.TotalTimeWorked -= daySummary.LunchBreak > TimeSpan.FromMinutes(30) ? daySummary.LunchBreak : TimeSpan.FromMinutes(30);
-
+            if (daySummary.TotalTimeWorked > TimeSpan.FromHours(4))
+            {
+                daySummary.TotalTimeWorked -= daySummary.LunchBreak > TimeSpan.FromMinutes(30) ? daySummary.LunchBreak : TimeSpan.FromMinutes(30);
+            }
             return daySummary;
 
         }
