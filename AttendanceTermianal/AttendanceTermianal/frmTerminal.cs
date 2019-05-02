@@ -90,6 +90,7 @@ namespace AttendanceTermianal
             else
             {
                 lblName.Text = ShowError();
+                timerClear.Start();
             }
         }
         private void timerClear_Tick(object sender, EventArgs e)
@@ -145,8 +146,7 @@ namespace AttendanceTermianal
             else
             {
                 lblName.Text = ShowError();
-                //timerClear.Start();
-                txtEmpId.Clear();
+                timerClear.Start();
             }
         }
     }
