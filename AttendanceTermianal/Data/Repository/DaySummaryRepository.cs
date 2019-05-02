@@ -112,6 +112,10 @@ namespace Data.Repository
             {
                 daySummary.TotalTimeWorked -= daySummary.LunchBreak > TimeSpan.FromMinutes(30) ? daySummary.LunchBreak : TimeSpan.FromMinutes(30);
             }
+            else
+            {
+                daySummary.TotalTimeWorked -= daySummary.LunchBreak;
+            }
             return daySummary;
 
         }

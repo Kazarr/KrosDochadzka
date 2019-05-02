@@ -148,7 +148,7 @@ namespace AttendanceSystem
             {
                 //gets date from selectedRow
                 DateTime selectedDate = Convert.ToDateTime(dGVOverview.Rows[dGVOverview.CurrentCell.RowIndex].Cells[0].Value.ToString());
-                frmDailyDetails dailyDetails = new frmDailyDetails(_loggedEmployeeID, selectedDate);
+                frmDailyDetails dailyDetails = new frmDailyDetails(_loggedEmployeeID, selectedDate,_mainWindowViewModel.GetEmployeeIdByPerson((Data.Model.Person)comboBoxPerson.SelectedItem));
                 dailyDetails.ShowDialog();
                 fillDataGridView();
             }

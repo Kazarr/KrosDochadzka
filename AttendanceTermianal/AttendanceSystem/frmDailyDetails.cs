@@ -13,13 +13,15 @@ namespace AttendanceSystem
     public partial class frmDailyDetails : Form
     {
         private int _loggedEmployeeId;
+        private int _selectedEmployeeId;
         private DateTime _thisDate;
         private DailyDetailsViewModel _dailyDetailsViewModel = new DailyDetailsViewModel();
 
-        public frmDailyDetails(int loggedEmployeeId,DateTime date)
+        public frmDailyDetails(int loggedEmployeeId,DateTime date,int selectedEmployeeId)
         {
             _loggedEmployeeId = loggedEmployeeId;
-            _thisDate = date;          
+            _thisDate = date;
+            _selectedEmployeeId = selectedEmployeeId;
             InitializeComponent();
             FillDataGridView();
             CheckPermission();
@@ -39,7 +41,7 @@ namespace AttendanceSystem
 
         private void FillDataGridView()
         {
-            dGVDailyResultsOverview.DataSource = _dailyDetailsViewModel.GetDailyResultWithWorkTypes(_loggedEmployeeId, _thisDate);
+            dGVDailyResultsOverview.DataSource = _dailyDetailsViewModel.GetDailyResultWithWorkTypes(_selectedEmployeeId, _thisDate);
             dGVDailyResultsOverview.Columns["DailyResultID"].Visible = false;
         }
 
@@ -89,7 +91,7 @@ namespace AttendanceSystem
 
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
-            frmDailyDetailsAddEdit frmDailyDetailsAdd = new frmDailyDetailsAddEdit(_loggedEmployeeId,_thisDate);
+            frmDailyDetailsAddEdit frmDailyDetailsAdd = new frmDailyDetailsAddEdit(_selectedEmployeeId,_thisDate);
             frmDailyDetailsAdd.ShowDialog();
             FillDataGridView();
         }
