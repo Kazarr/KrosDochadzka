@@ -33,6 +33,7 @@ namespace AttendanceTermianal
             }
             else
             {
+                lblName.Text = "";
                 foreach (Control item in panelMain.Controls)
                 {
                     item.Enabled = true;
