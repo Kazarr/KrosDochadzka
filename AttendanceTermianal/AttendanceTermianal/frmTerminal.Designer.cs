@@ -36,7 +36,7 @@
             this.lblDate = new System.Windows.Forms.Label();
             this.lblDay = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelMain = new System.Windows.Forms.Panel();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnEntry = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -50,7 +50,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.timerClear = new System.Windows.Forms.Timer(this.components);
-            this.panel1.SuspendLayout();
+            this.panelMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -124,21 +124,21 @@
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // panel1
+            // panelMain
             // 
-            this.panel1.Controls.Add(this.btnExit);
-            this.panel1.Controls.Add(this.btnEntry);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.btnLunch);
-            this.panel1.Controls.Add(this.btnBTrip);
-            this.panel1.Controls.Add(this.btnDoctor);
-            this.panel1.Controls.Add(this.txtEmpId);
-            this.panel1.Controls.Add(this.pictureBox7);
-            this.panel1.ForeColor = System.Drawing.Color.White;
-            this.panel1.Location = new System.Drawing.Point(5, 205);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(545, 345);
-            this.panel1.TabIndex = 1;
+            this.panelMain.Controls.Add(this.btnExit);
+            this.panelMain.Controls.Add(this.btnEntry);
+            this.panelMain.Controls.Add(this.button1);
+            this.panelMain.Controls.Add(this.btnLunch);
+            this.panelMain.Controls.Add(this.btnBTrip);
+            this.panelMain.Controls.Add(this.btnDoctor);
+            this.panelMain.Controls.Add(this.txtEmpId);
+            this.panelMain.Controls.Add(this.pictureBox7);
+            this.panelMain.ForeColor = System.Drawing.Color.White;
+            this.panelMain.Location = new System.Drawing.Point(5, 205);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(545, 345);
+            this.panelMain.TabIndex = 1;
             // 
             // btnExit
             // 
@@ -255,7 +255,7 @@
             // panel4
             // 
             this.panel4.Controls.Add(this.panel3);
-            this.panel4.Controls.Add(this.panel1);
+            this.panel4.Controls.Add(this.panelMain);
             this.panel4.Controls.Add(this.panel2);
             this.panel4.Location = new System.Drawing.Point(5, 5);
             this.panel4.Name = "panel4";
@@ -277,8 +277,8 @@
             this.Name = "frmTerminal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ";";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelMain.ResumeLayout(false);
+            this.panelMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -296,7 +296,7 @@
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Label lblDay;
         private System.Windows.Forms.Timer timer;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;

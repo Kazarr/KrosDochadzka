@@ -18,9 +18,28 @@ namespace AttendanceTermianal
         public frmTerminal()
         {
             InitializeComponent();
-            timer.Start();
 
+            timer.Start();
         }
+        private void CheckInternetConnection()
+        {
+            if (!Data.Shared.CheckConnection())
+            {
+                lblName.Text = "Connection not established";
+                foreach (Control item in panelMain.Controls)
+                {
+                    item.Enabled = false;
+                }
+            }
+            else
+            {
+                foreach (Control item in panelMain.Controls)
+                {
+                    item.Enabled = true;
+                }
+            }           
+        }
+
         private void timer_Tick(object sender, EventArgs e)
         {
             lblDate.Text = _terminalViewModel.CurrentDate();
@@ -28,6 +47,7 @@ namespace AttendanceTermianal
             lblHour.Text = _terminalViewModel.CurrentHourmin();
             lblSec.Text = _terminalViewModel.CurrentSec();
             lblDateNow.Text = _terminalViewModel.DescriptionDate();
+            CheckInternetConnection();
         }
         public bool CorrectEmp(string input)
         {
@@ -72,55 +92,6 @@ namespace AttendanceTermianal
                 ShowError();
             }
         }
-
-
-        //private void picEntry_MouseClick(object sender, MouseEventArgs e)
-        //{
-        //    ChangeWorkType(EWorkType.Work);
-        //}
-
-        //private void picExit_MouseClick(object sender, MouseEventArgs e)
-        //{
-        //    if (!string.IsNullOrEmpty(txtEmpId.Text))
-        //    {
-        //        if (CorrectEmp(txtEmpId.Text))
-        //        {
-        //            _tick = 0;
-        //            int employeeId = int.Parse(txtEmpId.Text);
-        //            _terminalViewModel.FinishWork(employeeId, EWorkType.Exit);
-        //            lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
-        //            lblDateNow.Text = _terminalViewModel.DescriptionDate();
-        //            lblWorkType.Text = _terminalViewModel.DescriptionWorkType(nameof(EWorkType.Exit));
-        //            txtEmpId.Clear();
-        //            timerClear.Start();
-        //        }
-        //    }
-        //    else
-        //    {
-        //        ShowError();
-        //    }
-        //}
-
-        //private void picLunch_MouseClick(object sender, MouseEventArgs e)
-        //{
-        //    ChangeWorkType(EWorkType.Lunch);
-        //}
-
-        //private void picTrip_MouseClick(object sender, MouseEventArgs e)
-        //{
-        //    ChangeWorkType(EWorkType.BusinessTrip);
-        //}
-
-        //private void picDoctor_MouseClick(object sender, MouseEventArgs e)
-        //{
-        //    ChangeWorkType(EWorkType.Doctor);
-        //}
-
-        //private void picPrivate_MouseClick(object sender, MouseEventArgs e)
-        //{
-        //    ChangeWorkType(EWorkType.Private);
-        //}
-
         private void timerClear_Tick(object sender, EventArgs e)
         {
             _tick++;
