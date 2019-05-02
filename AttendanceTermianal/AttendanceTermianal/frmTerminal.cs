@@ -33,7 +33,6 @@ namespace AttendanceTermianal
             }
             else
             {
-                lblName.Text = "";
                 foreach (Control item in panelMain.Controls)
                 {
                     item.Enabled = true;
@@ -62,7 +61,7 @@ namespace AttendanceTermianal
                 }
                 else
                 {
-                    lblName.Text= ShowError();
+                    lblName.Text = ShowError();
                     timerClear.Start();
                 }
             }
@@ -85,26 +84,21 @@ namespace AttendanceTermianal
                     lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
                     lblDateNow.Text = _terminalViewModel.DescriptionDate();
                     lblWorkType.Text = _terminalViewModel.DescriptionWorkType(type.ToString());
-                    txtEmpId.Clear();
                     timerClear.Start();
                 }
             }
             else
             {
                 lblName.Text = ShowError();
-                timerClear.Start();
             }
         }
         private void timerClear_Tick(object sender, EventArgs e)
         {
-            _tick++;
-            if (_tick == 25)
-            {
-                lblDateNow.Text = _terminalViewModel.DescriptionDate();
-                lblWorkType.Text="";
-                lblName.Text = "";
-                txtEmpId.Clear();
-            }
+            lblDateNow.Text = _terminalViewModel.DescriptionDate();
+            lblWorkType.Text = "";
+            lblName.Text = "";
+            txtEmpId.Clear();
+            timerClear.Stop();
         }
 
         private void btnLunch_Click(object sender, EventArgs e)
@@ -144,14 +138,14 @@ namespace AttendanceTermianal
                     lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
                     lblDateNow.Text = _terminalViewModel.DescriptionDate();
                     lblWorkType.Text = _terminalViewModel.DescriptionWorkType(nameof(EWorkType.Exit));
-                    txtEmpId.Clear();
+                    //txtEmpId.Clear();
                     timerClear.Start();
                 }
             }
             else
             {
                 lblName.Text = ShowError();
-                timerClear.Start();
+                //timerClear.Start();
                 txtEmpId.Clear();
             }
         }

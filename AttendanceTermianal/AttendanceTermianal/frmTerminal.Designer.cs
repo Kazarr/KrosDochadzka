@@ -264,6 +264,7 @@
             // 
             // timerClear
             // 
+            this.timerClear.Interval = 2500;
             this.timerClear.Tick += new System.EventHandler(this.timerClear_Tick);
             // 
             // frmTerminal
