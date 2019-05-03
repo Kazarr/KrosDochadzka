@@ -13,7 +13,7 @@ namespace AttendanceSystem
         public List<string> GetWorkTypes()
         {
             List<string> ret = new List<string>();
-            IEnumerable<WorkType> myList= ManagerRepository.WorkTypeRepository.GetWork_Type(); 
+            IEnumerable<WorkType> myList= ManagerRepository.WorkTypeRepository.GetWorkType(); 
 
             foreach (var item in myList)
             {

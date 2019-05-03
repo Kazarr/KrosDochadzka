@@ -144,8 +144,9 @@ namespace Data.Repository
                     }
                 }
                 catch (Exception e)
-                {
-                    throw e;
+                {                    
+                    Debug.WriteLine($"Error happend during  InsertDailyResult \n Error info:{e.Message}");
+                    return 0;
                 }
             }
         }
@@ -185,7 +186,7 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    Debug.WriteLine(e.Message);
+                    Debug.WriteLine($"Error happend during  InsertNewDailyResultFromSystem \n Error info:{e.Message}");
                     return false;
                 }
             }
@@ -211,13 +212,15 @@ namespace Data.Repository
                         }
                         else
                         {
-                            return false;
+                              return false;
                         }
                     }
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  UpdateFinishDailyResult \n Error info:{e.Message}");
+                    return false;
+
                 }
             }
         }
@@ -249,7 +252,8 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  CheckIfDailyResultExist \n Error info:{e.Message}");
+                    return false;
                 }
             }
         }
@@ -280,7 +284,9 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  GetFinishDailyResult \n Error info:{e.Message}");
+
+                    return DateTime.MinValue;
                 }
             }
         }
@@ -320,7 +326,10 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+
+                    Debug.WriteLine($"Error happend during  GetMonthsWithNumberOfRecords \n Error info:{e.Message}");
+                    return null;
+
                 }
             }
         }
@@ -357,7 +366,8 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  SelectLastStartAndFinish \n Error info:{e.Message}");
+                    return null;
                 }
             }
         }
@@ -400,7 +410,8 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  SelectTwoLastResults \n Error info:{e.Message}");
+                    return null;
                 }
             }
         }
@@ -434,7 +445,8 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  InsertInBlankSpace \n Error info:{e.Message}");
+                    return false;
                 }
             }
         }
@@ -476,7 +488,9 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  GetDailyResultByID \n Error info:{e.Message}");
+                    return null;
+
                 }
             }
         }
@@ -516,7 +530,8 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  UpdateDailyResult \n Error info:{e.Message}");
+                    return false;
                 }
             }
         }
@@ -547,7 +562,8 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    Debug.WriteLine(e.Message);
+                    Debug.WriteLine($"Error happend during  DeleteDailyResultByIdEmployee \n Error info:{e.Message}");
+
                     return false;
 
                 }

@@ -44,8 +44,9 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    Debug.WriteLine(e.Message);
-                    throw e;
+                    Debug.WriteLine($"Error happend during  GetArrivalTime \n Error info:{e.Message}");
+                    return null; 
+
                 }
             }
         }
@@ -84,8 +85,9 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    Debug.WriteLine(e.Message);
-                    throw e;
+                    Debug.WriteLine($"Error happend during  GetLeavingTime \n Error info:{e.Message}");
+                    return null;
+
                 }
             }
         }
@@ -158,8 +160,8 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    Debug.WriteLine(e.Message);
-                    throw e;
+                    Debug.WriteLine($"Error happend during  GetTimeSpendOnDailyResults \n Error info:{e.Message}");
+                    return TimeSpan.Zero;
                 }
             }
         }
