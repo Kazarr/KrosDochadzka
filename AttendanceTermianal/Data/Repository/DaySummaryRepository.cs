@@ -13,7 +13,6 @@ namespace Data.Repository
     {
         private DateTime? GetArrivalTime(DateTime date, int idEmployee)
         {
-
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
             {
                 try
