@@ -151,6 +151,7 @@
             this.dGVOverview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dGVOverview.Size = new System.Drawing.Size(1151, 409);
             this.dGVOverview.TabIndex = 21;
+            this.dGVOverview.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dGVOverview_RowPrePaint);
             // 
             // buttonExit
             // 
@@ -204,6 +205,7 @@
             this.Controls.Add(this.comboBoxMonth);
             this.Name = "FrmMainWindow";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.FrmMainWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dGVOverview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

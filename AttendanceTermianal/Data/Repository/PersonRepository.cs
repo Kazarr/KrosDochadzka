@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,7 +42,8 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  GetPersons \n Error info:{e.Message}");
+                    return null;
                 }
             }
         }
@@ -80,7 +82,8 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  GetPersonEmployeesSupervisors \n Error info:{e.Message}");
+                    return null;
                 }
             }
         }
@@ -110,7 +113,8 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  DeletePerson \n Error info:{e.Message}");
+                    return false;
                 }
             }
         }
@@ -148,7 +152,9 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  GetPersonByIdEmployee \n Error info:{e.Message}");
+                    return null;
+
                 }
             }
         }
@@ -186,7 +192,9 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  GetPersonByEmployee \n Error info:{e.Message}");
+                    return null;
+
                 }
             }
         }
@@ -214,7 +222,8 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  InsertPerson \n Error info:{e.Message}");
+                    return 0;
                 }
             }
         }
@@ -248,7 +257,8 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  InsertOnlyPerson \n Error info:{e.Message}");
+                    return false;
                 }
             }
         }
@@ -285,7 +295,9 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  GetPersonsEmployees \n Error info:{e.Message}");
+                    return null;
+
                 }
             }
         }
@@ -325,7 +337,8 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  GetPersonEmployeesPlebs \n Error info:{e.Message}");
+                    return null;
                 }
             }
         }
@@ -360,7 +373,9 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  GetPersonById \n Error info:{e.Message}");
+                    return null;
+
                 }
             }
         }
