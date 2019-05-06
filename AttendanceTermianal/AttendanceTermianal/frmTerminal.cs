@@ -147,6 +147,9 @@ namespace AttendanceTermianal
             {
                 lblName.Text = ShowError();
                 timerClear.Start();
+
+
+
             }
         }
     }
