@@ -61,15 +61,16 @@ namespace AttendanceTermianal
                 }
                 else
                 {
-                    ShowError();
+                    lblName.Text = ShowError();
+                    timerClear.Start();
                 }
             }
             return false;
         }
 
-        private void ShowError()
+        private string ShowError()
         {
-            MessageBox.Show("This Id does not exist");
+            return ("This Id does not exist");
         }
         private void ChangeWorkType(EWorkType type)
         {            
@@ -83,24 +84,22 @@ namespace AttendanceTermianal
                     lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
                     lblDateNow.Text = _terminalViewModel.DescriptionDate();
                     lblWorkType.Text = _terminalViewModel.DescriptionWorkType(type.ToString());
-                    txtEmpId.Clear();
                     timerClear.Start();
                 }
             }
             else
             {
-                ShowError();
+                lblName.Text = ShowError();
+                timerClear.Start();
             }
         }
         private void timerClear_Tick(object sender, EventArgs e)
         {
-            _tick++;
-            if (_tick == 25)
-            {
-                lblName.Text = "Kros";
-                lblDateNow.Text = _terminalViewModel.DescriptionDate();
-                lblWorkType.Text="";
-            }
+            lblDateNow.Text = _terminalViewModel.DescriptionDate();
+            lblWorkType.Text = "";
+            lblName.Text = "";
+            txtEmpId.Clear();
+            timerClear.Stop();
         }
 
         private void btnLunch_Click(object sender, EventArgs e)
@@ -140,13 +139,14 @@ namespace AttendanceTermianal
                     lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
                     lblDateNow.Text = _terminalViewModel.DescriptionDate();
                     lblWorkType.Text = _terminalViewModel.DescriptionWorkType(nameof(EWorkType.Exit));
-                    txtEmpId.Clear();
+                    //txtEmpId.Clear();
                     timerClear.Start();
                 }
             }
             else
             {
-                ShowError();
+                lblName.Text = ShowError();
+                timerClear.Start();
             }
         }
     }

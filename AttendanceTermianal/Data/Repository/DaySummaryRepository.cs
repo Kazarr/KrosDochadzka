@@ -11,43 +11,67 @@ namespace Data.Repository
 {
     public class DaySummaryRepository
     {
-        private DateTime? GetArrivalTime(DateTime date, int idEmployee)
+        private SqlCommand Execute()
         {
-
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
-            {
+            SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString);
                 try
                 {
                     connection.Open();
                     using (SqlCommand command = new SqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandText = @"select min(dr.[Start]) from DailyResult as dr
-                                                where dr.IdEmployee=@idEmployee  and dr.IdWorktype=1 and convert(date,dr.start)=convert(date,@date)";
-
-                        command.Parameters.Add("@idEmployee", SqlDbType.Int).Value = idEmployee;
-                        command.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
-
-                        DateTime? resultDate = command.ExecuteScalar() as DateTime?;
-                        
-                        if (!resultDate.HasValue)
-                        {
-                            return null;
-                        }
-                        else
-                        {
-                            return resultDate.Value;
-                        }
-
-
+                        return command;
                     }
                 }
-                catch (Exception e)
+                catch (SqlException e)
                 {
-                    Debug.WriteLine(e.Message);
-                    throw e;
+                    Debug.WriteLine($"Error happend during  Execution \n Error info:{e.Message}\n{e.StackTrace}");
+                    return null;
+                }
+        }
+
+        private DateTime? GetArrivalTime(DateTime date, int idEmployee)
+        {
+
+            //using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            //{
+            //    try
+            //    {
+            //        connection.Open();
+            //        using (SqlCommand command = new SqlCommand())
+            //        {
+            //            command.Connection = connection;
+            using (SqlCommand command = Execute())
+            {
+                command.CommandText = @"select min(dr.[Start]) from DailyResult as dr
+                                                where dr.IdEmployee=@idEmployee  and dr.IdWorktype=1 and convert(date,dr.start)=convert(date,@date)";
+
+                command.Parameters.Add("@idEmployee", SqlDbType.Int).Value = idEmployee;
+                command.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
+
+                DateTime? resultDate = command.ExecuteScalar() as DateTime?;
+
+                if (!resultDate.HasValue)
+                {
+                    return null;
+                }
+                else
+                {
+                    return resultDate.Value;
                 }
             }
+                        
+
+
+                    //}
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        Debug.WriteLine($"Error happend during  GetArrivalTime \n Error info:{e.Message}");
+            //        return null;
+
+            //    }
+            //}
         }
 
         private DateTime? GetLeavingTime(DateTime date, int idEmployee)
@@ -84,8 +108,9 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    Debug.WriteLine(e.Message);
-                    throw e;
+                    Debug.WriteLine($"Error happend during  GetLeavingTime \n Error info:{e.Message}");
+                    return null;
+
                 }
             }
         }
@@ -105,7 +130,7 @@ namespace Data.Repository
             daySummary.Private = GetTimeSpendOnDailyResults(date, idEmployee, 7);
             daySummary.Other = GetTimeSpendOnDailyResults(date, idEmployee, 8);
 
-            daySummary.TotalTimeWorked = daySummary.WorkLeavingTime - daySummary.WorkArrivalTime - daySummary.HolidayTime 
+            daySummary.TotalTimeWorked = daySummary.WorkLeavingTime - daySummary.WorkArrivalTime - daySummary.HolidayTime
                  - daySummary.Doctor - daySummary.Private - daySummary.Other;
 
             if (daySummary.TotalTimeWorked > TimeSpan.FromHours(4))
@@ -158,14 +183,14 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    Debug.WriteLine(e.Message);
-                    throw e;
+                    Debug.WriteLine($"Error happend during  GetTimeSpendOnDailyResults \n Error info:{e.Message}");
+                    return TimeSpan.Zero;
                 }
             }
         }
 
-        public List<DaySummary> GetSummariesByMonth (string month, int idEmployee)
-        {            
+        public List<DaySummary> GetSummariesByMonth(string month, int idEmployee)
+        {
             List<DaySummary> myListOfDays = new List<DaySummary>();
             int numberOfMonth = DateTime.ParseExact(month, "MMMM", CultureInfo.CurrentCulture).Month;
 

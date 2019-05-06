@@ -12,7 +12,7 @@ namespace Data.Repository
 {
     public class WorkTypeRepository
     {
-        public IEnumerable<WorkType> GetWork_Type()
+        public IEnumerable<WorkType> GetWorkType()
         {
             List<WorkType> ret = new List<WorkType>();
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
@@ -39,12 +39,14 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  GetWorkType \n Error info:{e.Message}");
+                    return null;
+            
                 }
             }
         }
 
-        public bool InsertWork_Type(WorkType work_Type)
+        public bool InsertWorkType(WorkType workType)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
             {
@@ -56,7 +58,7 @@ namespace Data.Repository
                         command.Connection = connection;
                         command.CommandText = @"INSERT INTO WorkType (Name)
                                                 VALUES (@Name)";
-                        command.Parameters.Add("@Name", SqlDbType.VarChar).Value = work_Type.Name;
+                        command.Parameters.Add("@Name", SqlDbType.VarChar).Value = workType.Name;
                         if (command.ExecuteNonQuery() > 1)
                         {
                             return true;
@@ -69,7 +71,9 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  InsertWorkType \n Error info:{e.Message}");
+                    return false;
+
                 }
             }
         }
