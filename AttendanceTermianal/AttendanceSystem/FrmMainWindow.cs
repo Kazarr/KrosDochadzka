@@ -72,7 +72,7 @@ namespace AttendanceSystem
         private void fillMonthComboBox()
         {
             comboBoxMonth.DataSource = DateTimeFormatInfo.CurrentInfo.MonthNames;
-            //comboBoxMonth.SelectedIndex = int.Parse(DateTime.Now.Month.ToString())-1;
+            comboBoxMonth.SelectedIndex = int.Parse(DateTime.Now.Month.ToString())-1;
         }
 
 

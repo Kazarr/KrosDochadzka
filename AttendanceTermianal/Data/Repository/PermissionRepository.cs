@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,10 +37,14 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  SelectPermissionName \n Error info:{e.Message}");
+                    return null;
+
                 }
             }
         }
+
+
         public string SelectPermissionNameById(int id)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
@@ -57,7 +62,8 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  SelectPermissionNameById \n Error info:{e.Message}");
+                    return "";
                 }
             }
         }
@@ -78,7 +84,8 @@ namespace Data.Repository
                 }
                 catch (Exception e)
                 {
-                    throw e;
+                    Debug.WriteLine($"Error happend during  SelectPermissionIdByName \n Error info:{e.Message}");
+                    return 0;
                 }
             }
         }
