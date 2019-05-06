@@ -36,5 +36,7 @@ namespace Data.Model
         public int IdWorktype { get; set; }
 
 
+
+
     }
 }
