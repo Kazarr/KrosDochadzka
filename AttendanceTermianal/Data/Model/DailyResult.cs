@@ -33,6 +33,9 @@ namespace Data.Model
         public int IdEmployee { get; set; }
         public DateTime Start { get; set; }
         public DateTime? Finish { get; set; }
+
+
+
         public int IdWorktype { get; set; }
     }
 }
