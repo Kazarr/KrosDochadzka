@@ -144,5 +144,74 @@
   <ItemGroup>
     <None Include="Resources\ID.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\confirm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\entry.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\finish time.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\first-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\first-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\last-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\last-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\number.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pass-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pass-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\permissions-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\permissions-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\phone_number.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\start time.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\supervisor-left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\supervisor-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\work type.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new_emp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\updateResult.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
