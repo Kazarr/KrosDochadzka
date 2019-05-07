@@ -97,6 +97,7 @@ namespace Data.Repository
 
         }
 
+
         private TimeSpan GetTimeSpendOnDailyResults(DateTime date, int IdEmployee, int idWorkType)
         {
             using (SqlCommand command = Execute())

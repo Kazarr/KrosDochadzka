@@ -21,12 +21,14 @@ namespace AttendanceSystem
 
         public Person Person { get => _person; set {  _person = value;
                                                       Empolyee = GetEmpolyeeByPersonId(Person.Id);}}
+
         public Empolyee Empolyee { get => _empolyee; set => _empolyee = value; }
 
         public Empolyee GetEmployeeByID(int id)
         {
             return ManagerRepository.EmployeeRepository.GetEmpolyeeByID(id);
         }
+
 
         public BindingList<Person> FillComboBox()
         {

@@ -30,7 +30,7 @@
         {
             this.buttonConfirm = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.textAdress = new System.Windows.Forms.TextBox();
+            this.textBoxAddress = new System.Windows.Forms.TextBox();
             this.textBoxPermisions = new System.Windows.Forms.TextBox();
             this.textBoxPhoneNumber = new System.Windows.Forms.TextBox();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
@@ -72,12 +72,12 @@
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click_1);
             // 
-            // textAdress
+            // textBoxAddress
             // 
-            this.textAdress.Location = new System.Drawing.Point(197, 312);
-            this.textAdress.Name = "textAdress";
-            this.textAdress.Size = new System.Drawing.Size(196, 20);
-            this.textAdress.TabIndex = 6;
+            this.textBoxAddress.Location = new System.Drawing.Point(197, 312);
+            this.textBoxAddress.Name = "textBoxAddress";
+            this.textBoxAddress.Size = new System.Drawing.Size(196, 20);
+            this.textBoxAddress.TabIndex = 6;
             // 
             // textBoxPermisions
             // 
@@ -141,11 +141,11 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(103, 312);
+            this.label3.Location = new System.Drawing.Point(92, 312);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 24);
+            this.label3.Size = new System.Drawing.Size(85, 24);
             this.label3.TabIndex = 34;
-            this.label3.Text = "Adress:";
+            this.label3.Text = "Address:";
             // 
             // labelLastName
             // 
@@ -230,7 +230,7 @@
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.textBoxConfirmPassword);
             this.Controls.Add(this.lblUserConfirmPassword);
-            this.Controls.Add(this.textAdress);
+            this.Controls.Add(this.textBoxAddress);
             this.Controls.Add(this.textBoxPermisions);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.textBoxPhoneNumber);
@@ -257,7 +257,7 @@
 
         private System.Windows.Forms.Button buttonConfirm;
         private System.Windows.Forms.Button buttonCancel;
-        private System.Windows.Forms.TextBox textAdress;
+        private System.Windows.Forms.TextBox textBoxAddress;
         private System.Windows.Forms.TextBox textBoxPermisions;
         private System.Windows.Forms.TextBox textBoxPhoneNumber;
         private System.Windows.Forms.TextBox textBoxLastName;

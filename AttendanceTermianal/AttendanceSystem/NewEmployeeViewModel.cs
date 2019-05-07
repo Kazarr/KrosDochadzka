@@ -12,21 +12,21 @@ namespace AttendanceSystem
     public class NewEmployeeViewModel
     {
 
-        public Empolyee Empolyee { get; set; }
-        public Person Person { get; set; }
+        public Empolyee Eempolyee { get; set; }
+        public Person Pperson { get; set; }
         public Person Supervisor { get; set; }
 
         public NewEmployeeViewModel(Person person, Empolyee empolyee)
         {
-            Person = person;
-            Empolyee = empolyee;
-            Supervisor = GetSupervisor(Empolyee.Id);
+            Pperson = person;
+            Eempolyee = empolyee;
+            Supervisor = GetSupervisor(Eempolyee.Id);
         }
 
         public NewEmployeeViewModel()
         {
-            Empolyee = new Empolyee();
-            Person = new Person();
+            Eempolyee = new Empolyee();
+            Pperson = new Person();
         }
 
         public void AddNewEmployee(string firstName, string lastName, string phoneNumber, string adress, int permission, Person supervisor, string password)
@@ -44,6 +44,27 @@ namespace AttendanceSystem
             {
                 e.IdSupervisor = ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(supervisor.Id).Id;
                 ManagerRepository.EmployeeRepository.InsertFullEmployee(e);
+            }
+
+
+        }
+
+
+        public void AddNewEmployee()
+        {
+           
+            Pperson.Id = ManagerRepository.PersonRepository.InsertPerson(Pperson);
+           
+            if (Supervisor == null)
+            {
+                Eempolyee.IdSupervisor = ManagerRepository.EmployeeRepository.InsertFullEmployee(Eempolyee);
+                Eempolyee.Id = Eempolyee.IdSupervisor.Value;
+                ManagerRepository.EmployeeRepository.UpdateSupervisor(Eempolyee);
+            }
+            else
+            {
+                Eempolyee.IdSupervisor = ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(Supervisor.Id).Id;
+                ManagerRepository.EmployeeRepository.InsertFullEmployee(Eempolyee);
             }
 
 
@@ -76,17 +97,17 @@ namespace AttendanceSystem
 
         public void UpdateEmployee(string firstName, string lastName, string phoneNumber, string adress, int permission, Person supervisor)
         {
-            Empolyee.Permision = permission;
+            Eempolyee.Permision = permission;
             Person p = new Person(firstName, lastName, phoneNumber, adress);
             if(supervisor == null)
             {
-                Empolyee.IdSupervisor = Empolyee.Id;
+                Eempolyee.IdSupervisor = Eempolyee.Id;
             }
             else
             {
-                Empolyee.IdSupervisor = ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(supervisor.Id).Id;
+                Eempolyee.IdSupervisor = ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(supervisor.Id).Id;
             }
-            ManagerRepository.EmployeeRepository.UpdateEmployee(Empolyee, p);
+            ManagerRepository.EmployeeRepository.UpdateEmployee(Eempolyee, p);
             
 
         }
