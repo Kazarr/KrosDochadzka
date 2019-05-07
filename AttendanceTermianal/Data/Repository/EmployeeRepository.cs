@@ -11,101 +11,59 @@ using System.Threading.Tasks;
 
 namespace Data.Repository
 {
-    public class EmployeeRepository
+    public class EmployeeRepository:ConnectionManager
     {
         public IEnumerable<Empolyee> GetEmpolyees()
         {
             List<Empolyee> ret = new List<Empolyee>();
-            try
+            Execute((command) => 
             {
-                using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+                command.CommandText = @"SELECT * FROM Employee";
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    try
+                    while (reader.Read())
                     {
-                        connection.OpenAsync();
-                        using (SqlCommand command = new SqlCommand())
-                        {
-                            command.Connection = connection;
-                            command.CommandText = @"SELECT * FROM Employee";
-                            using (SqlDataReader reader = command.ExecuteReader())
-                            {
-                                while (reader.Read())
-                                {
-                                    int employeeId = reader.GetInt32(0);
-                                    string password = reader.GetString(1);
-                                    int idPerson = reader.GetInt32(2);
-                                    int idSupervisor = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
-                                    int permision = reader.GetInt32(4);
-                                    decimal salary = reader.GetDecimal(5);
-                                    DateTime hiredDate = reader.GetDateTime(6);
+                        int employeeId = reader.GetInt32(0);
+                        string password = reader.GetString(1);
+                        int idPerson = reader.GetInt32(2);
+                        int idSupervisor = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
+                        int permision = reader.GetInt32(4);
+                        decimal salary = reader.GetDecimal(5);
+                        DateTime hiredDate = reader.GetDateTime(6);
 
-                                    ret.Add(new Empolyee(employeeId, password, idPerson, idSupervisor, permision, salary, hiredDate));
-                                }
-                                return ret;
-                            }
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        Debug.WriteLine($"Error happend during  GetEmpolyees \n Error info:{e.Message}");
-                        return null;
+                        ret.Add(new Empolyee(employeeId, password, idPerson, idSupervisor, permision, salary, hiredDate));
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-                return null;
-            }
+            });
+            return ret;
         }
 
         public bool ResetPassword(int employeeId, string password)
         {
             password = CalculateMD5Hash(password);
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            bool success = false;
+            Execute((command) => 
             {
-                try
+                command.CommandText = @"UPDATE Employee SET Password = @password WHERE ID = @id";
+                command.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
+                command.Parameters.Add("@id", SqlDbType.VarChar).Value = employeeId;
+                if (command.ExecuteNonQuery() > 1)
                 {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = @"UPDATE Employee SET Password = @password WHERE ID = @id";
-                        command.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
-                        command.Parameters.Add("@id", SqlDbType.VarChar).Value = employeeId;
-                        if (command.ExecuteNonQuery() > 1)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-
+                    success = true;
                 }
-                catch (Exception e)
-                {
-                    Debug.WriteLine($"Error happend during  ResetPassword \n Error info:{e.Message}");
-                    return false; 
-
-                }
-            }
+            });
+            return success;
         }
 
+        //todo move update person to person repository. 
         public bool UpdateEmployee(Empolyee empolyee, Person person)
         {
+            bool success = false;
             bool updatePerson = false;
             empolyee.Password = CalculateMD5Hash(empolyee.Password);
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            Execute((command) => 
             {
-                try
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = @" UPDATE Person 
+                command.CommandText = @" UPDATE Person 
                                                   SET	FirstName = @firstname,
 		                                                Lastname = @lastName,
 		                                                PhoneNumber = @phoneNumber,
@@ -113,79 +71,53 @@ namespace Data.Repository
                                                 WHERE ID = (SELECT e.IdPerson FROM Employee AS e
 			                                                JOIN Person AS p ON e.IdPerson = p.ID
 			                                                WHERE e.Id = @employeeId)";
-                        command.Parameters.Add("@firstname", SqlDbType.VarChar).Value = person.FirstName;
-                        command.Parameters.Add("@lastName", SqlDbType.VarChar).Value = person.LastName;
-                        command.Parameters.Add("@phoneNumber", SqlDbType.VarChar).Value = person.PhoneNumber;
-                        command.Parameters.Add("@adress", SqlDbType.VarChar).Value = person.Adress;
-                        command.Parameters.Add("@employeeId", SqlDbType.Int).Value = empolyee.Id;
-                        if (command.ExecuteNonQuery() > 1)
-                        {
-                            updatePerson = true;
-                        }
-                    }
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = @"   Update Employee
+                command.Parameters.Add("@firstname", SqlDbType.VarChar).Value = person.FirstName;
+                command.Parameters.Add("@lastName", SqlDbType.VarChar).Value = person.LastName;
+                command.Parameters.Add("@phoneNumber", SqlDbType.VarChar).Value = person.PhoneNumber;
+                command.Parameters.Add("@adress", SqlDbType.VarChar).Value = person.Adress;
+                command.Parameters.Add("@employeeId", SqlDbType.Int).Value = empolyee.Id;
+                if (command.ExecuteNonQuery() > 1)
+                {
+                    updatePerson = true;
+                }
+            });
+            Execute((command) => 
+            {
+                command.CommandText = @"   Update Employee
                                                     SET	IdPerson = @IdPerson,
 		                                                IdSuperVisor = @IdSupervisor,
 		                                                IdPermission = @IdPermission,
 		                                                Salary = @Salary
                                                 WHERE Id = @Id";
-                        command.Parameters.Add("@IdPerson", SqlDbType.VarChar).Value = empolyee.IdPerson;
-                        command.Parameters.Add("@IdSupervisor", SqlDbType.VarChar).Value = empolyee.IdSupervisor;
-                        command.Parameters.Add("@IdPermission", SqlDbType.VarChar).Value = empolyee.Permision;
-                        command.Parameters.Add("@Salary", SqlDbType.Int).Value = empolyee.Salary;
-                        command.Parameters.Add("@Id", SqlDbType.Int).Value = empolyee.Id;
-                        if (command.ExecuteNonQuery() > 0 && updatePerson)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                }
-                catch (Exception e)
+                command.Parameters.Add("@IdPerson", SqlDbType.VarChar).Value = empolyee.IdPerson;
+                command.Parameters.Add("@IdSupervisor", SqlDbType.VarChar).Value = empolyee.IdSupervisor;
+                command.Parameters.Add("@IdPermission", SqlDbType.VarChar).Value = empolyee.Permision;
+                command.Parameters.Add("@Salary", SqlDbType.Int).Value = empolyee.Salary;
+                command.Parameters.Add("@Id", SqlDbType.Int).Value = empolyee.Id;
+                if (command.ExecuteNonQuery() > 0 && updatePerson)
                 {
-                    Debug.WriteLine($"Error happend during  UpdateEmployee \n Error info:{e.Message}");
-                    return false;
+                    success = true;
                 }
-            }
+            });
+            return success;
         }
 
         public bool UpdateEmployeePleb(Empolyee empolyee)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            bool success = false;
+            Execute((command) => 
             {
-                try
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = @"UPDATE Employee
+                command.CommandText = @"UPDATE Employee
                                                   SET IdSupervisor = (SELECT id FROM Employee
                                                   WHERE IdPermission = 3)
                                                   WHERE id IN (SELECT id FROM Employee WHERE IdSupervisor = @idSupervisor)";
-                        command.Parameters.Add("@idSupervisor", SqlDbType.Decimal).Value = empolyee.IdSupervisor;
-                        if (command.ExecuteNonQuery() > 0)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                }
-                catch (Exception e)
+                command.Parameters.Add("@idSupervisor", SqlDbType.Decimal).Value = empolyee.IdSupervisor;
+                if (command.ExecuteNonQuery() > 0)
                 {
-                    Debug.WriteLine($"Error happend during  UpdateEmployeePleb \n Error info:{e.Message}");
-                    return false;
+                    success = true;
                 }
-            }
+            });
+            return success;
         }
         /// <summary>
         /// Recursively delete supervisor. Normal delete pleb.
@@ -194,212 +126,129 @@ namespace Data.Repository
         /// <returns></returns>
         public bool DeleteEmployee(Empolyee empolyee)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            bool success = false;
+            Execute((command) => 
             {
-                try
+                command.CommandText = @"DELETE FROM Employee WHERE Id = @Id";
+                command.Parameters.Add("@Id", SqlDbType.Decimal).Value = empolyee.Id;
+                if (command.ExecuteNonQuery() > 0)
                 {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = @"DELETE FROM Employee WHERE Id = @Id";
-                        command.Parameters.Add("@Id", SqlDbType.Decimal).Value = empolyee.Id;
-                        if (command.ExecuteNonQuery() > 0)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
+                    success = true;
                 }
-                catch (Exception e)
-                {
-                    if (UpdateEmployeePleb(empolyee))
-                    {
-                        return DeleteEmployee(empolyee);
-                    }
-                    return false;
-                }
-            }
+            });
+            return success;
         }
 
         public int InsertFullEmployee(Empolyee employee)
         {
             employee.Password = CalculateMD5Hash(employee.Password);
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            int ret = -1;
+            Execute((command) => 
             {
-                try
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = @"INSERT INTO Employee (Salary, IdPermission, IdSupervisor, Password, IdPerson, HiredDate)
+                command.CommandText = @"INSERT INTO Employee (Salary, IdPermission, IdSupervisor, Password, IdPerson, HiredDate)
                                                 OUTPUT INSERTED.Id
                                                 VALUES (@Salary, @IdPermission, @IdSupervisor, @Password, @IdPerson, @HiredDate)";
-                        command.Parameters.Add("@Salary", SqlDbType.Decimal).Value = employee.Salary;
-                        command.Parameters.Add("@IdPermission", SqlDbType.Int).Value = employee.Permision;
-                        command.Parameters.Add("@IdSupervisor", SqlDbType.Int).Value = (object)employee.IdSupervisor ?? DBNull.Value;
-                        command.Parameters.Add("@Password", SqlDbType.VarChar).Value = employee.Password;
-                        command.Parameters.Add("@IdPerson", SqlDbType.VarChar).Value = employee.IdPerson;
-                        command.Parameters.Add("@HiredDate", SqlDbType.Date).Value = (object)employee.HiredDate ?? DateTime.Now;
-                        return (int)command.ExecuteScalar();
-                    }
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine($"Error happend during  InsertFullEmployee \n Error info:{e.Message}");
-                    return 0;
-
-                }
-            }
+                command.Parameters.Add("@Salary", SqlDbType.Decimal).Value = employee.Salary;
+                command.Parameters.Add("@IdPermission", SqlDbType.Int).Value = employee.Permision;
+                command.Parameters.Add("@IdSupervisor", SqlDbType.Int).Value = (object)employee.IdSupervisor ?? DBNull.Value;
+                command.Parameters.Add("@Password", SqlDbType.VarChar).Value = employee.Password;
+                command.Parameters.Add("@IdPerson", SqlDbType.VarChar).Value = employee.IdPerson;
+                command.Parameters.Add("@HiredDate", SqlDbType.Date).Value = (object)employee.HiredDate ?? DateTime.Now;
+                ret = (int)command.ExecuteScalar();
+            });
+            return ret;
         }
 
         public void UpdateSupervisor(Empolyee empolyee)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            Execute((command) => 
             {
-                try
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = @"UPDATE Employee
+                command.CommandText = @"UPDATE Employee
 	                                            SET IdSupervisor = @idSupervisor
 	                                            WHERE id = @idEmployee ";
-                        command.Parameters.Add("@idSupervisor", SqlDbType.Decimal).Value = empolyee.IdSupervisor;
-                        command.Parameters.Add("@idEmployee", SqlDbType.Int).Value = empolyee.Id;
+                command.Parameters.Add("@idSupervisor", SqlDbType.Decimal).Value = empolyee.IdSupervisor;
+                command.Parameters.Add("@idEmployee", SqlDbType.Int).Value = empolyee.Id;
 
-                        command.ExecuteNonQuery();
-                    }
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine($"Error happend during  UpdateSupervisor \n Error info:{e.Message}");
-                   
-
-                }
-            }
+                command.ExecuteNonQuery();
+            });
         }
         
         public Empolyee GetEmpolyeeByID(int id)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            Empolyee ret = null;
+            Execute((command) => 
             {
-                try
+                command.CommandText = @"select * from Employee where id = @id";
+                command.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
+                    if (reader.Read())
                     {
-                        command.Connection = connection;
-                        command.CommandText = @"select * from Employee where id = @id";
-                        command.Parameters.Add("@id", SqlDbType.Int).Value = id;
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            if  (reader.Read())
-                            {
-                                int employeeId = reader.GetInt32(0);
-                                string password = reader.GetString(1);
-                                int idPerson = reader.GetInt32(2);
-                                int idSupervisor = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
-                                int permision = reader.GetInt32(4);
-                                decimal salary = reader.GetDecimal(5);
-                                DateTime hiredDate = reader.GetDateTime(6);
+                        int employeeId = reader.GetInt32(0);
+                        string password = reader.GetString(1);
+                        int idPerson = reader.GetInt32(2);
+                        int idSupervisor = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
+                        int permision = reader.GetInt32(4);
+                        decimal salary = reader.GetDecimal(5);
+                        DateTime hiredDate = reader.GetDateTime(6);
 
-                                return new Empolyee(employeeId, password, idPerson, idSupervisor, permision, salary, hiredDate);
-                            }
-                            return null;
-                        }
+                        ret = new Empolyee(employeeId, password, idPerson, idSupervisor, permision, salary, hiredDate);
                     }
                 }
-                catch (Exception e)
-                {
-                    Debug.WriteLine($"Error happend during  GetEmpolyeeByID \n Error info:{e.Message}");
-                    return null;
-
-                }
-            }
+            });
+            return ret;
         }
         
         public Empolyee GetEmpolyeeByIdPerson(int id)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            Empolyee ret = null;
+            Execute((command) => 
             {
-                try
+                command.CommandText = @"select * from Employee where idPerson = @id";
+                command.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
+                    if (reader.Read())
                     {
-                        command.Connection = connection;
-                        command.CommandText = @"select * from Employee where idPerson = @id";
-                        command.Parameters.Add("@id", SqlDbType.Int).Value = id;
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                int employeeId = reader.GetInt32(0);
-                                string password = reader.GetString(1);
-                                int idPerson = reader.GetInt32(2);
-                                int idSupervisor = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
-                                int permision = reader.GetInt32(4);
-                                decimal salary = reader.GetDecimal(5);
-                                DateTime hiredDate = reader.GetDateTime(6);
+                        int employeeId = reader.GetInt32(0);
+                        string password = reader.GetString(1);
+                        int idPerson = reader.GetInt32(2);
+                        int idSupervisor = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
+                        int permision = reader.GetInt32(4);
+                        decimal salary = reader.GetDecimal(5);
+                        DateTime hiredDate = reader.GetDateTime(6);
 
-                                return new Empolyee(employeeId, password, idPerson, idSupervisor, permision, salary, hiredDate);
-                            }
-                            return null;
-                        }
+                        ret = new Empolyee(employeeId, password, idPerson, idSupervisor, permision, salary, hiredDate);
                     }
                 }
-                catch (Exception e)
-                {
-                    Debug.WriteLine($"Error happend during  GetEmpolyeeByIdPerson \n Error info:{e.Message}");
-                    return null;
-
-                }
-            }
+            });
+            return ret;
         }
 
         public Empolyee GetEmpolyeeByIdPerson(Person person)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            Empolyee ret = null;
+            Execute((command) => 
             {
-                try
+                command.CommandText = @"select * from Employee where idPerson = @id";
+                command.Parameters.Add("@id", SqlDbType.Int).Value = person.Id;
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
+                    if (reader.Read())
                     {
-                        command.Connection = connection;
-                        command.CommandText = @"select * from Employee where idPerson = @id";
-                        command.Parameters.Add("@id", SqlDbType.Int).Value = person.Id;
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                int employeeId = reader.GetInt32(0);
-                                string password = reader.GetString(1);
-                                int idPerson = reader.GetInt32(2);
-                                int idSupervisor = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
-                                int permision = reader.GetInt32(4);
-                                decimal salary = reader.GetDecimal(5);
-                                DateTime hiredDate = reader.GetDateTime(6);
+                        int employeeId = reader.GetInt32(0);
+                        string password = reader.GetString(1);
+                        int idPerson = reader.GetInt32(2);
+                        int idSupervisor = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
+                        int permision = reader.GetInt32(4);
+                        decimal salary = reader.GetDecimal(5);
+                        DateTime hiredDate = reader.GetDateTime(6);
 
-                                return new Empolyee(employeeId, password, idPerson, idSupervisor, permision, salary, hiredDate);
-                            }
-                            return null;
-                        }
+                        ret = new Empolyee(employeeId, password, idPerson, idSupervisor, permision, salary, hiredDate);
                     }
                 }
-                catch (Exception e)
-                {
-                    Debug.WriteLine($"Error happend during  GetEmpolyeeByIdPerson \n Error info:{e.Message}");
-                    return null;
-
-                }
-            }
+            });
+            return ret;
         }
 
         // this needs to be gone
@@ -454,34 +303,19 @@ namespace Data.Repository
 
         public bool InsertEmployee(Empolyee empolyee)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            bool success = false;
+            Execute((command) => 
             {
-                try
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = @"INSERT INTO Employee (Password, IdPerson)
+                command.CommandText = @"INSERT INTO Employee (Password, IdPerson)
                                                 VALUES (@Password, @IdPerson)";
-                        command.Parameters.Add("@Password", SqlDbType.VarChar).Value = empolyee.Password;
-                        command.Parameters.Add("@IdPerson", SqlDbType.VarChar).Value = empolyee.IdPerson;
-                        if (command.ExecuteNonQuery() > 1)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                }
-                catch (Exception e)
+                command.Parameters.Add("@Password", SqlDbType.VarChar).Value = empolyee.Password;
+                command.Parameters.Add("@IdPerson", SqlDbType.VarChar).Value = empolyee.IdPerson;
+                if (command.ExecuteNonQuery() > 1)
                 {
-                    Debug.WriteLine($"Error happend during  InsertEmployee \n Error info:{e.Message}");
-                    return false;
+                    success = true;
                 }
-            }
+            });
+            return success;
         }
 
     }

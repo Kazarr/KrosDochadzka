@@ -11,58 +11,37 @@ namespace Data.Repository
 {
     public class DaySummaryRepository : ConnectionManager
     {
-        /// <summary>
-        /// checks if the result of the command is null or datetime
-        /// </summary>
-        /// <param name="command"></param>
-        /// <returns></returns>
-        private DateTime? HasValue(SqlCommand command)
-        {
-            DateTime? resultDate = command.ExecuteScalar() as DateTime?;
-
-            if (!resultDate.HasValue)
-            {
-                command.Connection.Close();
-                return null;
-
-            }
-            else
-            {
-                command.Connection.Close();
-                return resultDate.Value;
-            }
-
-        }
-
-
+        
         private DateTime? GetArrivalTime(DateTime date, int idEmployee)
         {
 
-            using (SqlCommand command = Execute())
-            {
+            DateTime? ret = null;
+            Execute((command) => {
                 command.CommandText = @"select min(dr.[Start]) from DailyResult as dr
                                                 where dr.IdEmployee=@idEmployee  and dr.IdWorktype=1 and convert(date,dr.start)=convert(date,@date)";
 
                 command.Parameters.Add("@idEmployee", SqlDbType.Int).Value = idEmployee;
                 command.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
-                return HasValue(command);
+                ret = command.ExecuteScalar() as DateTime?;
 
-            }
-
+            });
+            return ret;
         }
 
 
         private DateTime? GetLeavingTime(DateTime date, int idEmployee)
         {
-            using (SqlCommand command = Execute())
+            DateTime? ret = null;
+            Execute((command) =>
             {
                 command.CommandText = @"select max(dr.[Finish]) from DailyResult as dr
                                                 where dr.IdEmployee=@idEmployee  and dr.IdWorktype=1 and convert(date,dr.start)=convert(date,@date)";
 
                 command.Parameters.Add("@idEmployee", SqlDbType.Int).Value = idEmployee;
                 command.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
-                return HasValue(command);
-            }
+                ret = command.ExecuteScalar() as DateTime?;
+            });
+            return ret;
         }
 
 
@@ -99,29 +78,28 @@ namespace Data.Repository
 
         private TimeSpan GetTimeSpendOnDailyResults(DateTime date, int IdEmployee, int idWorkType)
         {
-            using (SqlCommand command = Execute())
+            TimeSpan ret = TimeSpan.Zero;
+            Execute((command) => 
             {
-                command.CommandText = @"select dr.Start,dr.Finish from DailyResult as dr
+            command.CommandText = @"select dr.Start,dr.Finish from DailyResult as dr
                                                 where dr.IdEmployee=@IdEmployee  and dr.IdWorktype=@idWorkType 
                                                             and convert(date,dr.start)=convert(date,@date)";
 
-                command.Parameters.Add("@idEmployee", SqlDbType.Int).Value = IdEmployee;
-                command.Parameters.Add("@idWorkType", SqlDbType.Int).Value = idWorkType;
-                command.Parameters.Add("@date", SqlDbType.DateTime2).Value = date;
-                TimeSpan totalTimeWasted = TimeSpan.Zero;
-                using (SqlDataReader reader = command.ExecuteReader())
+            command.Parameters.Add("@idEmployee", SqlDbType.Int).Value = IdEmployee;
+            command.Parameters.Add("@idWorkType", SqlDbType.Int).Value = idWorkType;
+            command.Parameters.Add("@date", SqlDbType.DateTime2).Value = date;
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                while (reader.Read())
                 {
-                    while (reader.Read())
+                    if (!reader.IsDBNull(0) && !reader.IsDBNull(1))
                     {
-                        if (!reader.IsDBNull(0) && !reader.IsDBNull(1))
-                        {
-                            totalTimeWasted += (reader.GetDateTime(1) - reader.GetDateTime(0));
-                        }
+                        ret += (reader.GetDateTime(1) - reader.GetDateTime(0));
                     }
-                    command.Connection.Close();
-                    return totalTimeWasted;
                 }
             }
+            });
+            return ret;
         }
 
         //TODO prec
@@ -139,9 +117,5 @@ namespace Data.Repository
 
             return myListOfDays;
         }
-
-
-
-
     }
 }
