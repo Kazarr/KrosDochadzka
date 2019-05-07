@@ -61,13 +61,14 @@ namespace AttendanceSystem
             DataConnectionDialog dlg = new DataConnectionDialog(scsb);
             if (DialogResult.OK == dlg.ShowDialog())
             {
-                Data.Properties.Settings.Default.ConnectionString = dlg.ConnectionStringBuilder.ConnectionString;
-                // Use the connection properties
-                //using (SqlConnection conn = new SqlConnection(dlg.ConnectionStringBuilder.))
-                //{
-                //    conn.Open();
-                //    //...
-                //}
+                //Data.Properties.Settings.Default.ConnectionString = dlg.ConnectionStringBuilder.ConnectionString;
+                //Use the connection properties
+                using (SqlConnection conn = new SqlConnection(dlg.ConnectionStringBuilder.ConnectionString))
+                {
+                    Data.Properties.Settings.Default.ConnectionString = conn.ConnectionString;
+                    Data.Properties.Settings.Default.Save();
+                    //...
+                }
             }
         }
 
