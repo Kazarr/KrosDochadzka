@@ -9,38 +9,35 @@ using System.Linq;
 
 namespace Data.Repository
 {
-    public class DaySummaryRepository
+    public class DaySummaryRepository : ConnectionManager
     {
-        private SqlCommand Execute()
+        /// <summary>
+        /// checks if the result of the command is null or datetime
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
+        private DateTime? HasValue(SqlCommand command)
         {
-            SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString);
-                try
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        return command;
-                    }
-                }
-                catch (SqlException e)
-                {
-                    Debug.WriteLine($"Error happend during  Execution \n Error info:{e.Message}\n{e.StackTrace}");
-                    return null;
-                }
+            DateTime? resultDate = command.ExecuteScalar() as DateTime?;
+
+            if (!resultDate.HasValue)
+            {
+                command.Connection.Close();
+                return null;
+
+            }
+            else
+            {
+                command.Connection.Close();
+                return resultDate.Value;
+            }
+
         }
+
 
         private DateTime? GetArrivalTime(DateTime date, int idEmployee)
         {
 
-            //using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
-            //{
-            //    try
-            //    {
-            //        connection.Open();
-            //        using (SqlCommand command = new SqlCommand())
-            //        {
-            //            command.Connection = connection;
             using (SqlCommand command = Execute())
             {
                 command.CommandText = @"select min(dr.[Start]) from DailyResult as dr
@@ -48,73 +45,28 @@ namespace Data.Repository
 
                 command.Parameters.Add("@idEmployee", SqlDbType.Int).Value = idEmployee;
                 command.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
+                return HasValue(command);
 
-                DateTime? resultDate = command.ExecuteScalar() as DateTime?;
-
-                if (!resultDate.HasValue)
-                {
-                    return null;
-                }
-                else
-                {
-                    return resultDate.Value;
-                }
             }
-                        
 
-
-                    //}
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        Debug.WriteLine($"Error happend during  GetArrivalTime \n Error info:{e.Message}");
-            //        return null;
-
-            //    }
-            //}
         }
+
 
         private DateTime? GetLeavingTime(DateTime date, int idEmployee)
         {
-
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            using (SqlCommand command = Execute())
             {
-                try
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = @"select max(dr.[Finish]) from DailyResult as dr
+                command.CommandText = @"select max(dr.[Finish]) from DailyResult as dr
                                                 where dr.IdEmployee=@idEmployee  and dr.IdWorktype=1 and convert(date,dr.start)=convert(date,@date)";
 
-                        command.Parameters.Add("@idEmployee", SqlDbType.Int).Value = idEmployee;
-                        command.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
-
-                        DateTime? resultDate = command.ExecuteScalar() as DateTime?;
-
-                        if (!resultDate.HasValue)
-                        {
-                            return null;
-                        }
-                        else
-                        {
-                            return resultDate.Value;
-                        }
-;
-
-
-                    }
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine($"Error happend during  GetLeavingTime \n Error info:{e.Message}");
-                    return null;
-
-                }
+                command.Parameters.Add("@idEmployee", SqlDbType.Int).Value = idEmployee;
+                command.Parameters.Add("@date", SqlDbType.NVarChar).Value = date;
+                return HasValue(command);
             }
         }
 
+
+        // TODO prec
         public DaySummary CreateDaySummary(DateTime date, int idEmployee)
         {
             DaySummary daySummary = new DaySummary();
@@ -147,48 +99,32 @@ namespace Data.Repository
 
         private TimeSpan GetTimeSpendOnDailyResults(DateTime date, int IdEmployee, int idWorkType)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            using (SqlCommand command = Execute())
             {
-                try
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = @"select dr.Start,dr.Finish from DailyResult as dr
+                command.CommandText = @"select dr.Start,dr.Finish from DailyResult as dr
                                                 where dr.IdEmployee=@IdEmployee  and dr.IdWorktype=@idWorkType 
                                                             and convert(date,dr.start)=convert(date,@date)";
 
-                        command.Parameters.Add("@idEmployee", SqlDbType.Int).Value = IdEmployee;
-                        command.Parameters.Add("@idWorkType", SqlDbType.Int).Value = idWorkType;
-                        command.Parameters.Add("@date", SqlDbType.DateTime2).Value = date;
-                        TimeSpan totalTimeWasted = TimeSpan.Zero;
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                if (!reader.IsDBNull(0) && !reader.IsDBNull(1))
-                                {
-                                    totalTimeWasted += (reader.GetDateTime(1) - reader.GetDateTime(0));
-                                }
-                            }
-                            return totalTimeWasted;
-                        }
-
-
-;
-
-
-                    }
-                }
-                catch (Exception e)
+                command.Parameters.Add("@idEmployee", SqlDbType.Int).Value = IdEmployee;
+                command.Parameters.Add("@idWorkType", SqlDbType.Int).Value = idWorkType;
+                command.Parameters.Add("@date", SqlDbType.DateTime2).Value = date;
+                TimeSpan totalTimeWasted = TimeSpan.Zero;
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    Debug.WriteLine($"Error happend during  GetTimeSpendOnDailyResults \n Error info:{e.Message}");
-                    return TimeSpan.Zero;
+                    while (reader.Read())
+                    {
+                        if (!reader.IsDBNull(0) && !reader.IsDBNull(1))
+                        {
+                            totalTimeWasted += (reader.GetDateTime(1) - reader.GetDateTime(0));
+                        }
+                    }
+                    command.Connection.Close();
+                    return totalTimeWasted;
                 }
             }
         }
 
+        //TODO prec
         public List<DaySummary> GetSummariesByMonth(string month, int idEmployee)
         {
             List<DaySummary> myListOfDays = new List<DaySummary>();
