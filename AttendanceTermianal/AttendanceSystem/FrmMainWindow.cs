@@ -24,11 +24,7 @@ namespace AttendanceSystem
             //FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
             CheckPermission();
-            fillMonthComboBox();
-            // fillDataGridView();
 
-            dGVOverview.Columns[1].DefaultCellStyle.Format = "HH:mm:ss ";
-            dGVOverview.Columns[2].DefaultCellStyle.Format = "HH:mm:ss ";
 
 
         }
@@ -191,7 +187,11 @@ namespace AttendanceSystem
 
         private void FrmMainWindow_Load(object sender, EventArgs e)
         {
+            fillMonthComboBox();
             fillDataGridView();
+
+            dGVOverview.Columns[1].DefaultCellStyle.Format = "HH:mm:ss ";
+            dGVOverview.Columns[2].DefaultCellStyle.Format = "HH:mm:ss ";
         }
 
         /// <summary>
