@@ -22,7 +22,6 @@ namespace AttendanceSystem
         {
             _selectedEmployeeId = selectedEmployeeID;
             _date = date;
-
             InitializeComponent();
             dateTimePickerFinish.BringToFront();
             comboBoxWorkTypes.BringToFront();
