@@ -24,6 +24,8 @@ namespace AttendanceSystem
             _date = date;
 
             InitializeComponent();
+            dateTimePickerFinish.BringToFront();
+            comboBoxWorkTypes.BringToFront();
             FormatTimePickers();
             FillComboBox();
 

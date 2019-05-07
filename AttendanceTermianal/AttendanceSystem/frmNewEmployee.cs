@@ -36,13 +36,13 @@ namespace AttendanceSystem
             textBoxLastName.Text = _newEmployeeViewModel.Person.LastName;
             textBoxPhoneNumber.Text = _newEmployeeViewModel.Person.PhoneNumber;
             textAdress.Text = _newEmployeeViewModel.Person.Adress;
-            textBoxPermisions.Text = _newEmployeeViewModel.Empolyee.Permision.ToString();
+            //textBoxPermisions.Text = _newEmployeeViewModel.Empolyee.Permision.ToString();
             cmbPermissions.DataSource = _newEmployeeViewModel.FillPermissions();
             cmbPermissions.SelectedItem = _newEmployeeViewModel.EmployeePermission(empolyee);
             textBoxPassword.Visible = false;
-            textBoxConfirmPassword.Visible = false;
-            lblUserConfirmPassword.Visible = false;
-            lblUserPassword.Visible = false;
+            //textBoxConfirmPassword.Visible = false;
+            //lblUserConfirmPassword.Visible = false;
+            //lblUserPassword.Visible = false;
         }
 
         private void buttonConfirm_Click_1(object sender, EventArgs e)
