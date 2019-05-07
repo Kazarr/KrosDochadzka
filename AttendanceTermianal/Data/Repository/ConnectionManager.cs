@@ -10,25 +10,32 @@ namespace Data.Repository
 {
     public class ConnectionManager
     {
-        public  SqlCommand Execute()
+        public void Execute(Action<SqlCommand> executeAction)
         {
-            SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString);
             try
             {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand())
+                using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    command.Connection = connection;
-                    return command;
+                    connection.Open();
+                    try
+                    {
+                        using (SqlCommand command = new SqlCommand())
+                        {
+                            command.Connection = connection;
+                            executeAction.Invoke(command);
+                        }
+                    }
+                    catch (SqlException e)
+                    {
+                        Debug.WriteLine($"Error happend during  Execution \n Error info:{e.Message}\n{e.StackTrace}");
+                        //logger 
+                    }
                 }
             }
-            catch (SqlException e)
+            catch (Exception e)
             {
-                Debug.WriteLine($"Error happend during  Execution \n Error info:{e.Message}\n{e.StackTrace}");
-                //logger 
-                return null;
+                Debug.WriteLine($"Error happend during  Connecting \n Error info:{e.Message}\n{e.StackTrace}");
             }
-         
         }
 
     }

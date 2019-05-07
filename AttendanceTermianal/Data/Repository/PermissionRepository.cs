@@ -9,85 +9,49 @@ using System.Threading.Tasks;
 
 namespace Data.Repository
 {
-    public class PermissionRepository
+    public class PermissionRepository:ConnectionManager
     {
         public List<string> SelectPermissionName()
         {
             List<string> ret = new List<string>();
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            Execute((command) => 
             {
-                try
+                command.CommandText = @"Select Name from Permission";
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
+                    while (reader.Read())
                     {
-                        command.Connection = connection;
-                        command.CommandText = @"Select Name from Permission";
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                string name = reader.GetString(0);
+                        string name = reader.GetString(0);
 
-                                ret.Add(name);
-                            }
-                            return ret;
-                        }
+                        ret.Add(name);
                     }
                 }
-                catch (Exception e)
-                {
-                    Debug.WriteLine($"Error happend during  SelectPermissionName \n Error info:{e.Message}");
-                    return null;
-
-                }
-            }
+            });
+            return ret;
         }
 
 
         public string SelectPermissionNameById(int id)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            string ret = null;
+            Execute((command) => 
             {
-                try
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = @"Select Name from Permission WHERE Id = @id";
-                        command.Parameters.Add("id", SqlDbType.Int).Value = id;
-                        return (string)command.ExecuteScalar();
-                    }
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine($"Error happend during  SelectPermissionNameById \n Error info:{e.Message}");
-                    return "";
-                }
-            }
+                command.CommandText = @"Select Name from Permission WHERE Id = @id";
+                command.Parameters.Add("id", SqlDbType.Int).Value = id;
+                ret = (string)command.ExecuteScalar();
+            });
+            return ret;
         }
         public int SelectPermissionIdByName(string name)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            int ret = -1;
+            Execute((command) => 
             {
-                try
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = @"Select id from Permission WHERE Name = @name";
-                        command.Parameters.Add("@name", SqlDbType.NVarChar).Value = name;
-                        return (int)command.ExecuteScalar();
-                    }
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine($"Error happend during  SelectPermissionIdByName \n Error info:{e.Message}");
-                    return 0;
-                }
-            }
+                command.CommandText = @"Select id from Permission WHERE Name = @name";
+                command.Parameters.Add("@name", SqlDbType.NVarChar).Value = name;
+                ret = (int)command.ExecuteScalar();
+            });
+            return ret;
         }
     }
 }
