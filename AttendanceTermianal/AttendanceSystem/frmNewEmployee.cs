@@ -32,63 +32,31 @@ namespace AttendanceSystem
             _newEmployeeViewModel = new NewEmployeeViewModel(person, empolyee);
             cmbSupervisors.DataSource = _newEmployeeViewModel.FillSupervisors();
             cmbSupervisors.SelectedIndex = cmbSupervisors.FindStringExact(_newEmployeeViewModel.GetSupervisor(empolyee.IdSupervisor).ToString());
-            textBoxFirstName.Text = _newEmployeeViewModel.Pperson.FirstName;
-            textBoxLastName.Text = _newEmployeeViewModel.Pperson.LastName;
-            textBoxPhoneNumber.Text = _newEmployeeViewModel.Pperson.PhoneNumber;
-            textBoxAddress.Text = _newEmployeeViewModel.Pperson.Adress;
-            textBoxPermisions.Text = _newEmployeeViewModel.Eempolyee.Permision.ToString();
+            textBoxFirstName.Text = _newEmployeeViewModel.Person.FirstName;
+            textBoxLastName.Text = _newEmployeeViewModel.Person.LastName;
+            textBoxPhoneNumber.Text = _newEmployeeViewModel.Person.PhoneNumber;
+            textAdress.Text = _newEmployeeViewModel.Person.Adress;
+            //textBoxPermisions.Text = _newEmployeeViewModel.Empolyee.Permision.ToString();
             cmbPermissions.DataSource = _newEmployeeViewModel.FillPermissions();
             cmbPermissions.SelectedItem = _newEmployeeViewModel.EmployeePermission(empolyee);
             textBoxPassword.Visible = false;
-            textBoxConfirmPassword.Visible = false;
-            lblUserConfirmPassword.Visible = false;
-            lblUserPassword.Visible = false;
+            //textBoxConfirmPassword.Visible = false;
+            //lblUserConfirmPassword.Visible = false;
+            //lblUserPassword.Visible = false;
         }
-
-        private void BindData()
-        {
-            textBoxFirstName.DataBindings.Add(nameof(textBoxFirstName.Text), _newEmployeeViewModel,
-                nameof(_newEmployeeViewModel.Pperson.FirstName),
-                true,
-                DataSourceUpdateMode.OnValidation);
-
-            textBoxLastName.DataBindings.Add(nameof(textBoxLastName.Text), _newEmployeeViewModel,
-                nameof(_newEmployeeViewModel.Pperson.LastName),
-                true,
-                DataSourceUpdateMode.OnValidation);
-
-            textBoxPhoneNumber.DataBindings.Add(nameof(textBoxPhoneNumber.Text), _newEmployeeViewModel,
-                nameof(_newEmployeeViewModel.Pperson.PhoneNumber),
-                true,
-                DataSourceUpdateMode.OnValidation);
-
-            .DataBindings.Add(nameof(textBoxFirstName.Text), _newEmployeeViewModel,
-                nameof(_newEmployeeViewModel.Pperson.FirstName),
-                true,
-                DataSourceUpdateMode.OnValidation);
-
-            cmbPermissions.DataBindings.Add(nameof(cmbPermissions.SelectedIndex), _newEmployeeViewModel,
-                nameof(_newEmployeeViewModel.Eempolyee.Permision),
-                true,
-                DataSourceUpdateMode.OnValidation);
-
-
-        }
-
-
 
         private void buttonConfirm_Click_1(object sender, EventArgs e)
         {
             int permision = _newEmployeeViewModel.EmployeePermissionId((string)cmbPermissions.SelectedItem);
             
-            if (_newEmployeeViewModel.Eempolyee.Id == 0)
+            if (_newEmployeeViewModel.Empolyee.Id == 0)
             {
-                _newEmployeeViewModel.AddNewEmployee(textBoxFirstName.Text, textBoxLastName.Text, textBoxPhoneNumber.Text, textBoxAddress.Text, permision, (Person)cmbSupervisors.SelectedItem, textBoxPassword.Text);
+                _newEmployeeViewModel.AddNewEmployee(textBoxFirstName.Text, textBoxLastName.Text, textBoxPhoneNumber.Text, textAdress.Text, permision, (Person)cmbSupervisors.SelectedItem, textBoxPassword.Text);
                 DialogResult = DialogResult.OK;
             }
             else
             {
-                _newEmployeeViewModel.UpdateEmployee(textBoxFirstName.Text, textBoxLastName.Text, textBoxPhoneNumber.Text, textBoxAddress.Text, permision, (Person)cmbSupervisors.SelectedItem);
+                _newEmployeeViewModel.UpdateEmployee(textBoxFirstName.Text, textBoxLastName.Text, textBoxPhoneNumber.Text, textAdress.Text, permision, (Person)cmbSupervisors.SelectedItem);
                 DialogResult = DialogResult.OK;
             }
             
