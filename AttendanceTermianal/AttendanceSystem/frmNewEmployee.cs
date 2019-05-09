@@ -26,7 +26,7 @@ namespace AttendanceSystem
             _newEmployeeViewModel = new NewEmployeeViewModel();
         }
 
-        public frmNewEmployee(Person person, Empolyee empolyee)
+        public frmNewEmployee(Person person, Employee empolyee)
         {
             InitializeComponent();
             _newEmployeeViewModel = new NewEmployeeViewModel(person, empolyee);
@@ -49,7 +49,7 @@ namespace AttendanceSystem
         {
             int permision = _newEmployeeViewModel.EmployeePermissionId((string)cmbPermissions.SelectedItem);
             
-            if (_newEmployeeViewModel.Empolyee.Id == 0)
+            if (_newEmployeeViewModel.Employee.Id == 0)
             {
                 _newEmployeeViewModel.AddNewEmployee(textBoxFirstName.Text, textBoxLastName.Text, textBoxPhoneNumber.Text, textAdress.Text, permision, (Person)cmbSupervisors.SelectedItem, textBoxPassword.Text);
                 DialogResult = DialogResult.OK;

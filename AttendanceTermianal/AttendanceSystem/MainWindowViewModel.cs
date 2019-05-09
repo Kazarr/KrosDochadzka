@@ -1,17 +1,16 @@
 ﻿using Data.Model;
 using Data.Repository;
-using System;
+using Logic;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AttendanceSystem
 {
     public class MainWindowViewModel
     {
-        private Empolyee _empolyee;
+        private LogicSystem _logic = new LogicSystem();
+        private Employee _employee;
         private Person _person;
 
         public MainWindowViewModel()
@@ -22,9 +21,9 @@ namespace AttendanceSystem
         public Person Person { get => _person; set {  _person = value;
                                                       Empolyee = GetEmpolyeeByPersonId(Person.Id);}}
 
-        public Empolyee Empolyee { get => _empolyee; set => _empolyee = value; }
+        public Employee Empolyee { get => _employee; set => _employee = value; }
 
-        public Empolyee GetEmployeeByID(int id)
+        public Employee GetEmployeeByID(int id)
         {
             return ManagerRepository.EmployeeRepository.GetEmpolyeeByID(id);
         }
@@ -42,7 +41,8 @@ namespace AttendanceSystem
 
         public BindingList<DaySummary> FillDataGridViewOverview(int id, string month)
         {
-            return new BindingList<DaySummary>(ManagerRepository.DaySummaryRepository.GetSummariesByMonth(month, id));
+            
+            return new BindingList<DaySummary>(_logic.GetSummariesByMonth(month, id));
         }
 
         public IDictionary<string, int> GetMonthWithNumberOfRecords(int id)
@@ -60,12 +60,12 @@ namespace AttendanceSystem
             return ManagerRepository.PersonRepository.GetPersonByIdEmployee(person.Id);
         }
 
-        public Empolyee GetEmpolyeeByPersonId(int id)
+        public Employee GetEmpolyeeByPersonId(int id)
         {
             return ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(id);
         }
 
-        public Empolyee GetEmpolyeeByPersonId(Person person)
+        public Employee GetEmpolyeeByPersonId(Person person)
         {
             return ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(person);
         }
@@ -77,7 +77,7 @@ namespace AttendanceSystem
 
         public void DeleteEmployeePerson(Person person)
         {
-            Empolyee e = ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(person.Id);
+            Employee e = ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(person.Id);
             ManagerRepository.DailyResultRepository.DeleteDailyResultByIdEmployee(e.Id);
             ManagerRepository.EmployeeRepository.DeleteEmployee(e);
             //ManagerRepository.PersonRepository.DeletePerson(person);//nemusime mazat z osoby
@@ -85,13 +85,15 @@ namespace AttendanceSystem
 
         public BindingList<Person> FillPlebPerson(int employeeId)
         {
-            BindingList<Person> ret = new BindingList<Person>();
-            ret.Add(ManagerRepository.PersonRepository.GetPersonByIdEmployee(employeeId));
+            BindingList<Person> ret = new BindingList<Person>
+            {
+                ManagerRepository.PersonRepository.GetPersonByIdEmployee(employeeId)
+            };
             return ret;
         }
         public bool ResetPassword()
         {
-            return ManagerRepository.EmployeeRepository.ResetPassword(ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(Person.Id).Id, "0000");
+            return _logic.ResetPassword(ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(Person.Id).Id, "0000");
         }
     }
 }

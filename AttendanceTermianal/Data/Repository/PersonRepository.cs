@@ -102,7 +102,7 @@ namespace Data.Repository
             return ret;
         }
 
-        public Person GetPersonByEmployee(Empolyee empolyee)
+        public Person GetPersonByEmployee(Employee empolyee)
         {
             Person ret = null;
             Execute((command) => 

@@ -14,7 +14,7 @@ namespace AttendanceTermianal
     {
       
         private DailyResult _result = new DailyResult();
-        private Empolyee _empolyee = new Empolyee();
+        private Employee _empolyee = new Employee();
         public string CurrentDate()
         {
             string date = DateTime.Now.ToString("dd.MM.yyyy");

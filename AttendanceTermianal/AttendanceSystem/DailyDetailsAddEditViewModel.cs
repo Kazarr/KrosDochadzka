@@ -31,6 +31,7 @@ namespace AttendanceSystem
         /// <param name="workTypeID"></param>
         /// <returns> true if new daily result was added, othervise false</returns>
         public bool CreateNewDailyResult(int employeeID, DateTime startTime, DateTime finishTime,int workTypeID) {
+
             DailyResult dailyResult = new DailyResult();
             dailyResult.IdEmployee = employeeID;
             dailyResult.Start = startTime;

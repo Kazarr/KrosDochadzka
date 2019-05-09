@@ -1,5 +1,6 @@
 ﻿using Data.Model;
 using Data.Repository;
+using Logic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,63 +12,32 @@ namespace AttendanceSystem
 {
     public class NewEmployeeViewModel
     {
-
-        public Empolyee Eempolyee { get; set; }
-        public Person Pperson { get; set; }
+        private LogicSystem _logic = new LogicSystem();
+        public Employee Employee { get; set; }
+        public Person Person { get; set; }
         public Person Supervisor { get; set; }
 
-        public NewEmployeeViewModel(Person person, Empolyee empolyee)
+        public NewEmployeeViewModel(Person person, Employee empolyee)
         {
-            Pperson = person;
-            Eempolyee = empolyee;
-            Supervisor = GetSupervisor(Eempolyee.Id);
+            Person = person;
+            Employee = empolyee;
+            Supervisor = GetSupervisor(Employee.Id);
         }
 
         public NewEmployeeViewModel()
         {
-            Eempolyee = new Empolyee();
-            Pperson = new Person();
+            Employee = new Employee();
+            Person = new Person();
         }
 
-        public void AddNewEmployee(string firstName, string lastName, string phoneNumber, string adress, int permission, Person supervisor, string password)
+        public void AddNewEmployee(string firstName, string lastName, string phoneNumber, string address, int permission, Person supervisor, string password)
         {
-            Person p = new Person(firstName, lastName, phoneNumber, adress);
-            p.Id = ManagerRepository.PersonRepository.InsertPerson(p);
-            Empolyee e = new Empolyee(password, p.Id, permission);
-            if (supervisor == null)
-            {
-                e.IdSupervisor = ManagerRepository.EmployeeRepository.InsertFullEmployee(e);
-                e.Id = e.IdSupervisor.Value;
-                ManagerRepository.EmployeeRepository.UpdateSupervisor(e);
-            }
-            else
-            {
-                e.IdSupervisor = ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(supervisor.Id).Id;
-                ManagerRepository.EmployeeRepository.InsertFullEmployee(e);
-            }
-
-
+            _logic.AddNewEmployee(firstName, lastName, phoneNumber, address, permission, supervisor, password);
         }
-
 
         public void AddNewEmployee()
         {
-           
-            Pperson.Id = ManagerRepository.PersonRepository.InsertPerson(Pperson);
-           
-            if (Supervisor == null)
-            {
-                Eempolyee.IdSupervisor = ManagerRepository.EmployeeRepository.InsertFullEmployee(Eempolyee);
-                Eempolyee.Id = Eempolyee.IdSupervisor.Value;
-                ManagerRepository.EmployeeRepository.UpdateSupervisor(Eempolyee);
-            }
-            else
-            {
-                Eempolyee.IdSupervisor = ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(Supervisor.Id).Id;
-                ManagerRepository.EmployeeRepository.InsertFullEmployee(Eempolyee);
-            }
-
-
+            _logic.AddNewEmployee(Person, Employee, Supervisor);
         }
 
         public List<string> FillPermissions()
@@ -75,7 +45,7 @@ namespace AttendanceSystem
             return ManagerRepository.PermissionRepository.SelectPermissionName();
         }
 
-        public string EmployeePermission(Empolyee empolyee)
+        public string EmployeePermission(Employee empolyee)
         {
             return ManagerRepository.PermissionRepository.SelectPermissionNameById(empolyee.Permision);
         }
@@ -95,20 +65,9 @@ namespace AttendanceSystem
             return new BindingList<Person>(ManagerRepository.PersonRepository.GetPersonEmployeesSupervisors());
         }
 
-        public void UpdateEmployee(string firstName, string lastName, string phoneNumber, string adress, int permission, Person supervisor)
+        public void UpdateEmployee(string firstName, string lastName, string phoneNumber, string address, int permission, Person supervisor)
         {
-            Eempolyee.Permision = permission;
-            Person p = new Person(firstName, lastName, phoneNumber, adress);
-            if(supervisor == null)
-            {
-                Eempolyee.IdSupervisor = Eempolyee.Id;
-            }
-            else
-            {
-                Eempolyee.IdSupervisor = ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(supervisor.Id).Id;
-            }
-            ManagerRepository.EmployeeRepository.UpdateEmployee(Eempolyee, p);
-            
+            _logic.UpdateEmployee(firstName, lastName, phoneNumber, address, permission, supervisor);
 
         }
     }

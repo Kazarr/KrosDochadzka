@@ -42,6 +42,8 @@ namespace Data.Repository
             });
             return ret;
         }
+
+
         public int SelectPermissionIdByName(string name)
         {
             int ret = -1;
