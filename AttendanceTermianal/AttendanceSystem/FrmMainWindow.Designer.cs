@@ -40,13 +40,15 @@
             this.buttonExit = new System.Windows.Forms.Button();
             this.btnDetails = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
+            this.btnChangePassword = new System.Windows.Forms.Button();
+            this.comboBoxYear = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dGVOverview)).BeginInit();
             this.SuspendLayout();
             // 
             // btnShowMonth
             // 
-            this.btnShowMonth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnShowMonth.Location = new System.Drawing.Point(526, 12);
+            this.btnShowMonth.Location = new System.Drawing.Point(195, 183);
             this.btnShowMonth.Name = "btnShowMonth";
             this.btnShowMonth.Size = new System.Drawing.Size(162, 23);
             this.btnShowMonth.TabIndex = 20;
@@ -57,7 +59,7 @@
             // btnUpdateEmployee
             // 
             this.btnUpdateEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdateEmployee.Location = new System.Drawing.Point(997, 62);
+            this.btnUpdateEmployee.Location = new System.Drawing.Point(997, 41);
             this.btnUpdateEmployee.Name = "btnUpdateEmployee";
             this.btnUpdateEmployee.Size = new System.Drawing.Size(162, 23);
             this.btnUpdateEmployee.TabIndex = 17;
@@ -177,20 +179,55 @@
             // 
             this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReset.Enabled = false;
-            this.btnReset.Location = new System.Drawing.Point(997, 129);
+            this.btnReset.Location = new System.Drawing.Point(997, 70);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(162, 23);
             this.btnReset.TabIndex = 24;
-            this.btnReset.Text = "Reset Password";
+            this.btnReset.Text = "Reset Employee Password";
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Visible = false;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // btnChangePassword
+            // 
+            this.btnChangePassword.Location = new System.Drawing.Point(15, 41);
+            this.btnChangePassword.Name = "btnChangePassword";
+            this.btnChangePassword.Size = new System.Drawing.Size(162, 23);
+            this.btnChangePassword.TabIndex = 25;
+            this.btnChangePassword.Text = "Change Password";
+            this.btnChangePassword.UseVisualStyleBackColor = true;
+            this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
+            // 
+            // comboBoxYear
+            // 
+            this.comboBoxYear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxYear.FormattingEnabled = true;
+            this.comboBoxYear.Location = new System.Drawing.Point(771, 131);
+            this.comboBoxYear.Name = "comboBoxYear";
+            this.comboBoxYear.Size = new System.Drawing.Size(395, 21);
+            this.comboBoxYear.TabIndex = 26;
+            this.comboBoxYear.SelectedIndexChanged += new System.EventHandler(this.comboBoxYear_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(670, 134);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(95, 18);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Choose  Year ";
             // 
             // FrmMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1187, 531);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.comboBoxYear);
+            this.Controls.Add(this.btnChangePassword);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnDetails);
             this.Controls.Add(this.buttonExit);
@@ -226,6 +263,9 @@
         private System.Windows.Forms.Button buttonExit;
         private System.Windows.Forms.Button btnDetails;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnChangePassword;
+        private System.Windows.Forms.ComboBox comboBoxYear;
+        private System.Windows.Forms.Label label1;
     }
 }
 

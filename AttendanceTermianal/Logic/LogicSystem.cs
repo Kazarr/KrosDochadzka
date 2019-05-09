@@ -150,5 +150,23 @@ namespace Logic
 
 
         }
+
+        public List<int> GetYearsFromStart(int employeeID)
+        {
+            int firstYear = ManagerRepository.DailyResultRepository.GetYearOfFirstRecord(employeeID);
+            if(firstYear == 0)
+            {
+                firstYear = DateTime.Now.Year;
+            }
+
+            List<int> YearList = new List<int>();
+
+
+            for (int i = firstYear; i <= DateTime.Now.Year+1; i++)
+            {
+                YearList.Add(i);
+            }
+            return YearList;
+        }
     }
 }
