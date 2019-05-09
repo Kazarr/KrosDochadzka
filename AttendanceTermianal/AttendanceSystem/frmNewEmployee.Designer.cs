@@ -36,9 +36,9 @@
             this.cmbPermissions = new System.Windows.Forms.ComboBox();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.buttonConfirm = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -120,22 +120,6 @@
             this.panel1.Size = new System.Drawing.Size(529, 465);
             this.panel1.TabIndex = 55;
             // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.Transparent;
-            this.panel2.BackgroundImage = global::AttendanceSystem.Properties.Resources.new_emp;
-            this.panel2.Controls.Add(this.cmbSupervisors);
-            this.panel2.Controls.Add(this.textBoxLastName);
-            this.panel2.Controls.Add(this.textBoxFirstName);
-            this.panel2.Controls.Add(this.textAdress);
-            this.panel2.Controls.Add(this.textBoxPassword);
-            this.panel2.Controls.Add(this.textBoxPhoneNumber);
-            this.panel2.Controls.Add(this.cmbPermissions);
-            this.panel2.Location = new System.Drawing.Point(0, 14);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(529, 350);
-            this.panel2.TabIndex = 56;
-            // 
             // buttonConfirm
             // 
             this.buttonConfirm.BackgroundImage = global::AttendanceSystem.Properties.Resources.confirm;
@@ -158,6 +142,23 @@
             this.buttonCancel.TabStop = false;
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click_1);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.BackgroundImage = global::AttendanceSystem.Properties.Resources.new_emp;
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panel2.Controls.Add(this.cmbSupervisors);
+            this.panel2.Controls.Add(this.textBoxLastName);
+            this.panel2.Controls.Add(this.textBoxFirstName);
+            this.panel2.Controls.Add(this.textAdress);
+            this.panel2.Controls.Add(this.textBoxPassword);
+            this.panel2.Controls.Add(this.textBoxPhoneNumber);
+            this.panel2.Controls.Add(this.cmbPermissions);
+            this.panel2.Location = new System.Drawing.Point(0, 14);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(529, 350);
+            this.panel2.TabIndex = 56;
             // 
             // frmNewEmployee
             // 

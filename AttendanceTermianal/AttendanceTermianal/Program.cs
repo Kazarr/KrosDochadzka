@@ -18,12 +18,7 @@ namespace AttendanceTermianal
         [STAThread]
         static void Main()
         {
-            //var culture = new System.Globalization.CultureInfo("en-US");
-            //Thread.CurrentThread.CurrentCulture = culture;
-            //Thread.CurrentThread.CurrentUICulture = culture;
-            //EmployeeGenerator generator = new EmployeeGenerator();
-            //generator.GenerateSupervisor();
-            //generator.GenerateEmployee();
+
             CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en");
             CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en");
             Application.EnableVisualStyles();
