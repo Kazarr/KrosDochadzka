@@ -13,6 +13,7 @@ namespace AttendanceTermianal
     public partial class frmTerminal : Form
     {
         private TerminalViewModel _terminalViewModel = new TerminalViewModel();
+
         private int _tick;
 
         public frmTerminal()
@@ -21,6 +22,7 @@ namespace AttendanceTermianal
 
             timer.Start();
         }
+
         private void CheckInternetConnection()
         {
             if (!Data.Shared.CheckConnection())
@@ -49,6 +51,7 @@ namespace AttendanceTermianal
             lblDateNow.Text = _terminalViewModel.DescriptionDate();
             CheckInternetConnection();
         }
+
         public bool CorrectEmp(string input)
         {
             bool test = false;
@@ -72,8 +75,92 @@ namespace AttendanceTermianal
         {
             return ("This Id does not exist");
         }
-        private void ChangeWorkType(EWorkType type)
-        {            
+
+        //private void ChangeWorkType(EWorkType type)
+        //{
+        //    doSomething(type);
+        //    //if (!string.IsNullOrEmpty(txtEmpId.Text))
+        //    //{
+        //    //    if (CorrectEmp(txtEmpId.Text))
+        //    //    {
+        //    //        _tick = 0;
+        //    //        int employeeId = int.Parse(txtEmpId.Text);
+        //    //        _terminalViewModel.ChangeWorkType(employeeId, type);
+        //    //        lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
+        //    //        lblDateNow.Text = _terminalViewModel.DescriptionDate();
+        //    //        lblWorkType.Text = _terminalViewModel.DescriptionWorkType(type.ToString());
+        //    //        timerClear.Start();
+        //    //    }
+        //    //}
+        //    //else
+        //    //{
+        //    //    lblName.Text = ShowError();
+        //    //    timerClear.Start();
+        //    //}
+        //}
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            doSomething(EWorkType.Exit);
+            //if (!string.IsNullOrEmpty(txtEmpId.Text))
+            //{
+            //    if (CorrectEmp(txtEmpId.Text))
+            //    {
+            //        _tick = 0;
+            //        int employeeId = int.Parse(txtEmpId.Text);
+            //        _terminalViewModel.FinishWork(employeeId, EWorkType.Exit);
+            //        lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
+            //        lblDateNow.Text = _terminalViewModel.DescriptionDate();
+            //        lblWorkType.Text = _terminalViewModel.DescriptionWorkType(nameof(EWorkType.Exit));
+            //        timerClear.Start();
+            //    }
+            //}
+            //else
+            //{
+            //    lblName.Text = ShowError();
+            //    timerClear.Start();
+
+
+
+            //}
+        }
+
+        private void timerClear_Tick(object sender, EventArgs e)
+        {
+            lblDateNow.Text = _terminalViewModel.DescriptionDate();
+            lblWorkType.Text = "";
+            lblName.Text = "";
+            txtEmpId.Clear();
+            timerClear.Stop();
+        }
+
+        private void btnLunch_Click(object sender, EventArgs e)
+        {
+            doSomething(EWorkType.Lunch);
+        }
+
+        private void btnBTrip_Click(object sender, EventArgs e)
+        {
+            doSomething(EWorkType.BusinessTrip);
+        }
+
+        private void btnDoctor_Click(object sender, EventArgs e)
+        {
+            doSomething(EWorkType.Doctor);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            doSomething(EWorkType.Private);
+        }
+
+        private void btnEntry_Click(object sender, EventArgs e)
+        {
+            doSomething(EWorkType.Work);
+        }
+
+       private void doSomething (EWorkType type)
+        {
             if (!string.IsNullOrEmpty(txtEmpId.Text))
             {
                 if (CorrectEmp(txtEmpId.Text))
@@ -91,65 +178,6 @@ namespace AttendanceTermianal
             {
                 lblName.Text = ShowError();
                 timerClear.Start();
-            }
-        }
-        private void timerClear_Tick(object sender, EventArgs e)
-        {
-            lblDateNow.Text = _terminalViewModel.DescriptionDate();
-            lblWorkType.Text = "";
-            lblName.Text = "";
-            txtEmpId.Clear();
-            timerClear.Stop();
-        }
-
-        private void btnLunch_Click(object sender, EventArgs e)
-        {
-            ChangeWorkType(EWorkType.Lunch);
-        }
-
-        private void btnBTrip_Click(object sender, EventArgs e)
-        {
-            ChangeWorkType(EWorkType.BusinessTrip);
-        }
-
-        private void btnDoctor_Click(object sender, EventArgs e)
-        {
-            ChangeWorkType(EWorkType.Doctor);
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ChangeWorkType(EWorkType.Private);
-        }
-
-        private void btnEntry_Click(object sender, EventArgs e)
-        {
-            ChangeWorkType(EWorkType.Work);
-        }
-
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtEmpId.Text))
-            {
-                if (CorrectEmp(txtEmpId.Text))
-                {
-                    _tick = 0;
-                    int employeeId = int.Parse(txtEmpId.Text);
-                    _terminalViewModel.FinishWork(employeeId, EWorkType.Exit);
-                    lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
-                    lblDateNow.Text = _terminalViewModel.DescriptionDate();
-                    lblWorkType.Text = _terminalViewModel.DescriptionWorkType(nameof(EWorkType.Exit));
-                    //txtEmpId.Clear();
-                    timerClear.Start();
-                }
-            }
-            else
-            {
-                lblName.Text = ShowError();
-                timerClear.Start();
-
-
-
             }
         }
     }

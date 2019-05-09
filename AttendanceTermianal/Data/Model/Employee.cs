@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Data.Model
 {
-    public class Empolyee
+    public class Employee
     {
-        public Empolyee()
+        public Employee()
         {
         }
 
-        public Empolyee(string password, int idPerson, int permision, decimal salary)
+        public Employee(string password, int idPerson, int permision, decimal salary)
         {
             Password = password;
             IdPerson = idPerson;
@@ -20,7 +20,7 @@ namespace Data.Model
             Salary = salary;
         }
 
-        public Empolyee(string password, int idPerson, int idSupervisor, int permision, decimal salary)
+        public Employee(string password, int idPerson, int idSupervisor, int permision, decimal salary)
         {
             Password = password;
             IdPerson = idPerson;
@@ -29,7 +29,7 @@ namespace Data.Model
             Salary = salary;
         }
 
-        public Empolyee(string password, int id_person, int id_supervisor, int permision, decimal salary, DateTime hiredDate)
+        public Employee(string password, int id_person, int id_supervisor, int permision, decimal salary, DateTime hiredDate)
         {
             Password = password;
             IdPerson = id_person;
@@ -39,7 +39,7 @@ namespace Data.Model
             HiredDate = hiredDate;
         }
 
-        public Empolyee(string password, int id_person,  int permision, decimal salary, DateTime hiredDate)
+        public Employee(string password, int id_person,  int permision, decimal salary, DateTime hiredDate)
         {
             Password = password;
             IdPerson = id_person;
@@ -48,7 +48,7 @@ namespace Data.Model
             HiredDate = hiredDate;
         }
 
-        public Empolyee(int id, string password, int id_person, int id_supervisor, int permision, decimal salary, DateTime hiredDate)
+        public Employee(int id, string password, int id_person, int id_supervisor, int permision, decimal salary, DateTime hiredDate)
         {
             Id = id;
             Password = password;
@@ -59,7 +59,7 @@ namespace Data.Model
             HiredDate = hiredDate;
         }
 
-        public Empolyee(string password, int idPerson, int permision)
+        public Employee(string password, int idPerson, int permision)
         {
             Password = password;
             IdPerson = idPerson;

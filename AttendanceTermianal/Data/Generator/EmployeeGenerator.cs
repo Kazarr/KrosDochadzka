@@ -28,16 +28,16 @@ namespace Data.Generator
             return start.AddDays(r.Next(range));
         }
 
-        public Empolyee SetSupervisor(int i)
+        public Employee SetSupervisor(int i)
         {
             string pass = "0000";
             int idPerson = i;
             int idPermission = 2;
             decimal salary = r.Next(1400, 2300);
             DateTime date = RandomDate();
-            return new Empolyee(pass, idPerson, idPermission, salary, date);
+            return new Employee(pass, idPerson, idPermission, salary, date);
         }
-        public Empolyee SetEmployee(int i)
+        public Employee SetEmployee(int i)
         {
             string pass = "0000";
             int idPerson = i;
@@ -45,7 +45,7 @@ namespace Data.Generator
             int idPermission = 1;
             decimal salary = r.Next(1000, 2500);
             DateTime date = RandomDate();
-            return new Empolyee(pass, idPerson, idSupervisor, idPermission, salary, date);
+            return new Employee(pass, idPerson, idSupervisor, idPermission, salary, date);
         }
 
         public void GenerateSupervisor()

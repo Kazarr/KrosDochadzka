@@ -20,7 +20,7 @@ namespace AttendanceSystem
             return ManagerRepository.DailyResultRepository.DeleteDailyResult(dailyResultID);
         }
 
-        public Empolyee GetEmpolyeeById(int employeeId)
+        public Employee GetEmpolyeeById(int employeeId)
         {
             return ManagerRepository.EmployeeRepository.GetEmpolyeeByID(employeeId);
         }

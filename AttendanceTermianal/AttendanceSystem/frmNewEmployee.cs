@@ -26,7 +26,7 @@ namespace AttendanceSystem
             _newEmployeeViewModel = new NewEmployeeViewModel();
         }
 
-        public frmNewEmployee(Person person, Empolyee empolyee)
+        public frmNewEmployee(Person person, Employee empolyee)
         {
             InitializeComponent();
             _newEmployeeViewModel = new NewEmployeeViewModel(person, empolyee);
@@ -36,20 +36,18 @@ namespace AttendanceSystem
             textBoxLastName.Text = _newEmployeeViewModel.Person.LastName;
             textBoxPhoneNumber.Text = _newEmployeeViewModel.Person.PhoneNumber;
             textAdress.Text = _newEmployeeViewModel.Person.Adress;
-            //textBoxPermisions.Text = _newEmployeeViewModel.Empolyee.Permision.ToString();
             cmbPermissions.DataSource = _newEmployeeViewModel.FillPermissions();
             cmbPermissions.SelectedItem = _newEmployeeViewModel.EmployeePermission(empolyee);
             textBoxPassword.Visible = false;
-            //textBoxConfirmPassword.Visible = false;
-            //lblUserConfirmPassword.Visible = false;
-            //lblUserPassword.Visible = false;
+            panel2.Height=296;
+
         }
 
         private void buttonConfirm_Click_1(object sender, EventArgs e)
         {
             int permision = _newEmployeeViewModel.EmployeePermissionId((string)cmbPermissions.SelectedItem);
             
-            if (_newEmployeeViewModel.Empolyee.Id == 0)
+            if (_newEmployeeViewModel.Employee.Id == 0)
             {
                 _newEmployeeViewModel.AddNewEmployee(textBoxFirstName.Text, textBoxLastName.Text, textBoxPhoneNumber.Text, textAdress.Text, permision, (Person)cmbSupervisors.SelectedItem, textBoxPassword.Text);
                 DialogResult = DialogResult.OK;

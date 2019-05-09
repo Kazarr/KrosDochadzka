@@ -55,7 +55,7 @@
     <Compile Include="Model\DailyResult.cs" />
     <Compile Include="Model\DailyResultWithWorkType.cs" />
     <Compile Include="Model\DaySummary.cs" />
-    <Compile Include="Model\Empolyee.cs" />
+    <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\WorkType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

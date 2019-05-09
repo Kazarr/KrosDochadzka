@@ -140,6 +140,10 @@
       <Project>{CB5F584F-49F5-4BA1-97C7-B79B59A2071C}</Project>
       <Name>Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Logic\Logic.csproj">
+      <Project>{F09C1F49-199F-43E1-A820-A17A90153810}</Project>
+      <Name>Logic</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ID.png" />

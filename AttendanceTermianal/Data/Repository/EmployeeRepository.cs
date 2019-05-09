@@ -13,9 +13,9 @@ namespace Data.Repository
 {
     public class EmployeeRepository:ConnectionManager
     {
-        public IEnumerable<Empolyee> GetEmpolyees()
+        public IEnumerable<Employee> GetEmpolyees()
         {
-            List<Empolyee> ret = new List<Empolyee>();
+            List<Employee> ret = new List<Employee>();
             Execute((command) => 
             {
                 command.CommandText = @"SELECT * FROM Employee";
@@ -31,7 +31,7 @@ namespace Data.Repository
                         decimal salary = reader.GetDecimal(5);
                         DateTime hiredDate = reader.GetDateTime(6);
 
-                        ret.Add(new Empolyee(employeeId, password, idPerson, idSupervisor, permision, salary, hiredDate));
+                        ret.Add(new Employee(employeeId, password, idPerson, idSupervisor, permision, salary, hiredDate));
                     }
                 }
             });
@@ -40,7 +40,7 @@ namespace Data.Repository
 
         public bool ResetPassword(int employeeId, string password)
         {
-            password = CalculateMD5Hash(password);
+           
             bool success = false;
             Execute((command) => 
             {
@@ -56,25 +56,25 @@ namespace Data.Repository
         }
 
         //todo move update person to person repository. 
-        public bool UpdateEmployee(Empolyee empolyee, Person person)
+        public bool UpdateEmployee(Employee empolyee, Person person)
         {
             bool success = false;
             bool updatePerson = false;
-            empolyee.Password = CalculateMD5Hash(empolyee.Password);
+
             Execute((command) => 
             {
                 command.CommandText = @" UPDATE Person 
                                                   SET	FirstName = @firstname,
 		                                                Lastname = @lastName,
 		                                                PhoneNumber = @phoneNumber,
-		                                                Adress = @adress
+		                                                Adress = @address
                                                 WHERE ID = (SELECT e.IdPerson FROM Employee AS e
 			                                                JOIN Person AS p ON e.IdPerson = p.ID
 			                                                WHERE e.Id = @employeeId)";
                 command.Parameters.Add("@firstname", SqlDbType.VarChar).Value = person.FirstName;
                 command.Parameters.Add("@lastName", SqlDbType.VarChar).Value = person.LastName;
                 command.Parameters.Add("@phoneNumber", SqlDbType.VarChar).Value = person.PhoneNumber;
-                command.Parameters.Add("@adress", SqlDbType.VarChar).Value = person.Adress;
+                command.Parameters.Add("@address", SqlDbType.VarChar).Value = person.Adress;
                 command.Parameters.Add("@employeeId", SqlDbType.Int).Value = empolyee.Id;
                 if (command.ExecuteNonQuery() > 1)
                 {
@@ -102,7 +102,7 @@ namespace Data.Repository
             return success;
         }
 
-        public bool UpdateEmployeePleb(Empolyee empolyee)
+        public bool UpdateEmployeePleb(Employee empolyee)
         {
             bool success = false;
             Execute((command) => 
@@ -119,12 +119,13 @@ namespace Data.Repository
             });
             return success;
         }
+      
         /// <summary>
         /// Recursively delete supervisor. Normal delete pleb.
         /// </summary>
         /// <param name="empolyee"></param>
         /// <returns></returns>
-        public bool DeleteEmployee(Empolyee empolyee)
+        public bool DeleteEmployee(Employee empolyee)
         {
             bool success = false;
             Execute((command) => 
@@ -139,9 +140,9 @@ namespace Data.Repository
             return success;
         }
 
-        public int InsertFullEmployee(Empolyee employee)
+        public int InsertFullEmployee(Employee employee)
         {
-            employee.Password = CalculateMD5Hash(employee.Password);
+            //employee.Password = CalculateMD5Hash(employee.Password);
             int ret = -1;
             Execute((command) => 
             {
@@ -159,7 +160,7 @@ namespace Data.Repository
             return ret;
         }
 
-        public void UpdateSupervisor(Empolyee empolyee)
+        public void UpdateSupervisor(Employee empolyee)
         {
             Execute((command) => 
             {
@@ -173,9 +174,9 @@ namespace Data.Repository
             });
         }
         
-        public Empolyee GetEmpolyeeByID(int id)
+        public Employee GetEmpolyeeByID(int id)
         {
-            Empolyee ret = null;
+            Employee ret = null;
             Execute((command) => 
             {
                 command.CommandText = @"select * from Employee where id = @id";
@@ -192,16 +193,16 @@ namespace Data.Repository
                         decimal salary = reader.GetDecimal(5);
                         DateTime hiredDate = reader.GetDateTime(6);
 
-                        ret = new Empolyee(employeeId, password, idPerson, idSupervisor, permision, salary, hiredDate);
+                        ret = new Employee(employeeId, password, idPerson, idSupervisor, permision, salary, hiredDate);
                     }
                 }
             });
             return ret;
         }
         
-        public Empolyee GetEmpolyeeByIdPerson(int id)
+        public Employee GetEmpolyeeByIdPerson(int id)
         {
-            Empolyee ret = null;
+            Employee ret = null;
             Execute((command) => 
             {
                 command.CommandText = @"select * from Employee where idPerson = @id";
@@ -218,16 +219,16 @@ namespace Data.Repository
                         decimal salary = reader.GetDecimal(5);
                         DateTime hiredDate = reader.GetDateTime(6);
 
-                        ret = new Empolyee(employeeId, password, idPerson, idSupervisor, permision, salary, hiredDate);
+                        ret = new Employee(employeeId, password, idPerson, idSupervisor, permision, salary, hiredDate);
                     }
                 }
             });
             return ret;
         }
 
-        public Empolyee GetEmpolyeeByIdPerson(Person person)
+        public Employee GetEmpolyeeByIdPerson(Person person)
         {
-            Empolyee ret = null;
+            Employee ret = null;
             Execute((command) => 
             {
                 command.CommandText = @"select * from Employee where idPerson = @id";
@@ -244,30 +245,30 @@ namespace Data.Repository
                         decimal salary = reader.GetDecimal(5);
                         DateTime hiredDate = reader.GetDateTime(6);
 
-                        ret = new Empolyee(employeeId, password, idPerson, idSupervisor, permision, salary, hiredDate);
+                        ret = new Employee(employeeId, password, idPerson, idSupervisor, permision, salary, hiredDate);
                     }
                 }
             });
             return ret;
         }
 
-        // this needs to be gone
-        private string CalculateMD5Hash(string input)
+        //// this needs to be gone
+        //private string CalculateMD5Hash(string input)
 
-        {
-            // step 1, calculate MD5 hash from input
-            MD5 md5 = MD5.Create();
-            byte[] inputBytes =Encoding.ASCII.GetBytes(input);
-            byte[] hash = md5.ComputeHash(inputBytes);
+        //{
+        //    // step 1, calculate MD5 hash from input
+        //    MD5 md5 = MD5.Create();
+        //    byte[] inputBytes =Encoding.ASCII.GetBytes(input);
+        //    byte[] hash = md5.ComputeHash(inputBytes);
 
-            // step 2, convert byte array to hex string
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < hash.Length; i++)
-            {
-                sb.Append(hash[i].ToString("X2"));
-            }
-            return sb.ToString().ToLower();
-        }
+        //    // step 2, convert byte array to hex string
+        //    StringBuilder sb = new StringBuilder();
+        //    for (int i = 0; i < hash.Length; i++)
+        //    {
+        //        sb.Append(hash[i].ToString("X2"));
+        //    }
+        //    return sb.ToString().ToLower();
+        //}
 
 
         // this need to be gone too
@@ -277,23 +278,24 @@ namespace Data.Repository
         /// <param name="id"></param>
         /// <param name="password"></param>
         /// <returns>true if password and login match </returns>
+
+
         public bool CheckLogin(int id, string password)
         {
-            List<Empolyee> employees;
+            List<Employee> employees;
             if (GetEmpolyees() != null)
             {
-                 employees= new List<Empolyee>(GetEmpolyees());
+                 employees= new List<Employee>(GetEmpolyees());
 
             }
             else
             {
                 return false;
             }
-            Console.WriteLine(CalculateMD5Hash(password));
-            Console.WriteLine(employees[0].Password);
+
             foreach (var employee in employees)
             {
-                if ((employee.Id==id) && (employee.Password.Equals(CalculateMD5Hash(password))))
+                if ((employee.Id==id) && (employee.Password.Equals(password)))
                 {
                     return true;
                 }
@@ -301,7 +303,7 @@ namespace Data.Repository
             return false;
         }
 
-        public bool InsertEmployee(Empolyee empolyee)
+        public bool InsertEmployee(Employee empolyee)
         {
             bool success = false;
             Execute((command) => 
