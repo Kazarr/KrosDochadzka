@@ -359,5 +359,24 @@ namespace Data.Repository
             });
             return success;
         }
+
+
+        public int GetYearOfFirstRecord(int IdEmployee)
+        {
+            int year = 0;
+            Execute((command) =>
+            {
+                command.CommandText = @"select year(min (dr.Start) )
+                                                from DailyResult  as dr
+                                                where
+                                                dr.IdEmployee=@idEmployee";
+
+                command.Parameters.Add("@idEmployee", SqlDbType.Int).Value = IdEmployee;
+                Int32.TryParse(command.ExecuteScalar().ToString(), out year);
+
+            });
+            return year;
+
+        }
     }
 }

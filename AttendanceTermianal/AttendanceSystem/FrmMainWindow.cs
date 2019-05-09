@@ -17,6 +17,7 @@ namespace AttendanceSystem
     {
         private MainWindowViewModel _mainWindowViewModel = new MainWindowViewModel();
         private int _loggedEmployeeID;
+
         public FrmMainWindow(int id)
         {
             _loggedEmployeeID = id;
@@ -95,6 +96,12 @@ namespace AttendanceSystem
             }
         }
 
+
+        private void fillYearsComboBox()
+        {
+            comboBoxYear.DataSource=_mainWindowViewModel.FillYears(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem));
+            fillMonthComboBox();
+        }
 
         private void btnNewEmployee_Click_1(object sender, EventArgs e)
         {
@@ -189,6 +196,7 @@ namespace AttendanceSystem
         {
             fillMonthComboBox();
             fillDataGridView();
+            fillYearsComboBox();
 
             dGVOverview.Columns[1].DefaultCellStyle.Format = "HH:mm:ss ";
             dGVOverview.Columns[2].DefaultCellStyle.Format = "HH:mm:ss ";
@@ -233,6 +241,17 @@ namespace AttendanceSystem
                 dGVOverview.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.MediumSeaGreen;
             }
 
+        }
+
+        private void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            frmPasswordChange passwordChange = new frmPasswordChange();
+            passwordChange.ShowDialog();
+        }
+
+        private void comboBoxYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            fillYearsComboBox();
         }
     }
 }

@@ -44,6 +44,8 @@ namespace AttendanceSystem
             dGVDailyResultsOverview.DataSource = _dailyDetailsViewModel.GetDailyResultWithWorkTypes(_selectedEmployeeId, _thisDate);
             dGVDailyResultsOverview.Columns["DailyResultID"].Visible = false;
             dGVDailyResultsOverview.Columns["IdEmployee"].Visible = false;
+            dGVDailyResultsOverview.Columns["StartTime"].DefaultCellStyle.Format="MM/dd/yy HH:mm:ss";
+            dGVDailyResultsOverview.Columns["FinishTime"].DefaultCellStyle.Format = "MM/dd/yy HH:mm:ss";
         }
 
 

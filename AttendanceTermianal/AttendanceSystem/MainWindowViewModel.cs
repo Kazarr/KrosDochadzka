@@ -45,6 +45,12 @@ namespace AttendanceSystem
             return new BindingList<DaySummary>(_logic.GetSummariesByMonth(month, id));
         }
 
+        public BindingList<int> FillYears(int IdEmployee)
+        {
+            return new BindingList<int>(_logic.GetYearsFromStart(IdEmployee));
+        }
+
+
         public IDictionary<string, int> GetMonthWithNumberOfRecords(int id)
         {
             return ManagerRepository.DailyResultRepository.GetMonthsWithNumberOfRecords(id);
