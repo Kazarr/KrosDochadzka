@@ -29,6 +29,18 @@ namespace Logic
             return sb.ToString();
         }
 
+        public bool GenerateDb()
+        {
+            ManagerRepository manager = new ManagerRepository();
+            return manager.GenerateDB();
+        }
+
+        public bool GenerateTables()
+        {
+            ManagerRepository manager = new ManagerRepository();
+            return manager.GenerateTables();
+        }
+
         private DaySummary CreateDaySummary(DateTime date, int idEmployee)
         {
             DaySummary daySummary = new DaySummary();
