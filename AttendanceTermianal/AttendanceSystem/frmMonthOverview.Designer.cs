@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.buttonClose = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
+            this.labelSickDays = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.labelHoliday = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.labelSpareTime = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.labelHomeOffice = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.labelBussinessTrip = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -63,15 +63,15 @@
             this.buttonClose.UseVisualStyleBackColor = false;
             this.buttonClose.Click += new System.EventHandler(this.buttonOK_Click_1);
             // 
-            // label11
+            // labelSickDays
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label11.Location = new System.Drawing.Point(3, 208);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(129, 23);
-            this.label11.TabIndex = 30;
-            this.label11.Text = "sick days left";
+            this.labelSickDays.AutoSize = true;
+            this.labelSickDays.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelSickDays.Location = new System.Drawing.Point(3, 208);
+            this.labelSickDays.Name = "labelSickDays";
+            this.labelSickDays.Size = new System.Drawing.Size(129, 23);
+            this.labelSickDays.TabIndex = 30;
+            this.labelSickDays.Text = "sick days left";
             // 
             // label10
             // 
@@ -83,15 +83,15 @@
             this.label10.TabIndex = 29;
             this.label10.Text = "Sick Days:";
             // 
-            // label9
+            // labelHoliday
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label9.Location = new System.Drawing.Point(3, 175);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(185, 23);
-            this.label9.TabIndex = 28;
-            this.label9.Text = "Some Holiday time";
+            this.labelHoliday.AutoSize = true;
+            this.labelHoliday.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelHoliday.Location = new System.Drawing.Point(3, 175);
+            this.labelHoliday.Name = "labelHoliday";
+            this.labelHoliday.Size = new System.Drawing.Size(185, 23);
+            this.labelHoliday.TabIndex = 28;
+            this.labelHoliday.Text = "Some Holiday time";
             // 
             // label8
             // 
@@ -123,15 +123,15 @@
             this.label7.TabIndex = 25;
             this.label7.Text = "Spare time off:";
             // 
-            // label6
+            // labelHomeOffice
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label6.Location = new System.Drawing.Point(3, 109);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(228, 23);
-            this.label6.TabIndex = 24;
-            this.label6.Text = "Some homeOffice hours";
+            this.labelHomeOffice.AutoSize = true;
+            this.labelHomeOffice.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelHomeOffice.Location = new System.Drawing.Point(3, 109);
+            this.labelHomeOffice.Name = "labelHomeOffice";
+            this.labelHomeOffice.Size = new System.Drawing.Size(228, 23);
+            this.labelHomeOffice.TabIndex = 24;
+            this.labelHomeOffice.Text = "Some homeOffice hours";
             // 
             // label5
             // 
@@ -232,9 +232,9 @@
             this.panel2.Controls.Add(this.labelHours);
             this.panel2.Controls.Add(this.labelOvertime);
             this.panel2.Controls.Add(this.labelBussinessTrip);
-            this.panel2.Controls.Add(this.label11);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.labelSickDays);
+            this.panel2.Controls.Add(this.labelHomeOffice);
+            this.panel2.Controls.Add(this.labelHoliday);
             this.panel2.Controls.Add(this.labelSpareTime);
             this.panel2.Location = new System.Drawing.Point(192, 61);
             this.panel2.Name = "panel2";
@@ -266,13 +266,13 @@
         #endregion
 
         private System.Windows.Forms.Button buttonClose;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label labelSickDays;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label labelHoliday;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label labelSpareTime;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelHomeOffice;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label labelBussinessTrip;
         private System.Windows.Forms.Label label4;
