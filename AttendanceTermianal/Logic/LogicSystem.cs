@@ -61,8 +61,9 @@ namespace Logic
 
         }
 
-        private void Test() {
-
+        private void Test()
+        {
+            Console.WriteLine("Hello world");
         }
 
         public List<DaySummary> GetSummariesByMonth(string month, int idEmployee)
@@ -80,9 +81,9 @@ namespace Logic
             return myListOfDays;
         }
 
-        public bool CheckLogin (int id, string password)
+        public bool CheckLogin(int id, string password)
         {
-            return ManagerRepository.EmployeeRepository.CheckLogin(id,CalculateMD5Hash(password));
+            return ManagerRepository.EmployeeRepository.CheckLogin(id, CalculateMD5Hash(password));
         }
 
         private int InsertFullEmployee(Employee e)
@@ -92,7 +93,7 @@ namespace Logic
 
         }
 
-        public bool ResetPassword (int id, string password)
+        public bool ResetPassword(int id, string password)
         {
             return ManagerRepository.EmployeeRepository.ResetPassword(id, CalculateMD5Hash(password));
         }
@@ -160,7 +161,7 @@ namespace Logic
         public List<int> GetYearsFromStart(int employeeID)
         {
             int firstYear = ManagerRepository.DailyResultRepository.GetYearOfFirstRecord(employeeID);
-            if(firstYear == 0)
+            if (firstYear == 0)
             {
                 firstYear = DateTime.Now.Year;
             }
@@ -168,7 +169,7 @@ namespace Logic
             List<int> YearList = new List<int>();
 
 
-            for (int i = firstYear; i <= DateTime.Now.Year+1; i++)
+            for (int i = firstYear; i <= DateTime.Now.Year + 1; i++)
             {
                 YearList.Add(i);
             }
