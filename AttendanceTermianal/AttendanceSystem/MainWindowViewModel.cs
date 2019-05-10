@@ -39,10 +39,10 @@ namespace AttendanceSystem
             return new BindingList<Person>(ManagerRepository.PersonRepository.GetPersonEmployeesPlebs(idSupervisor).ToList());
         }
 
-        public BindingList<DaySummary> FillDataGridViewOverview(int id, string month)
+        public BindingList<DaySummary> FillDataGridViewOverview(int id, string date)
         {
             
-            return new BindingList<DaySummary>(_logic.GetSummariesByMonth(month, id));
+            return new BindingList<DaySummary>(_logic.GetSummariesByMonth(date, id));
         }
 
         public BindingList<int> FillYears(int IdEmployee)

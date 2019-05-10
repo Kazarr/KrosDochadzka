@@ -135,6 +135,7 @@
             this.comboBoxMonth.Size = new System.Drawing.Size(395, 21);
             this.comboBoxMonth.TabIndex = 11;
             this.comboBoxMonth.SelectedIndexChanged += new System.EventHandler(this.comboBoxMonth_SelectedIndexChanged);
+            this.comboBoxMonth.SelectionChangeCommitted += new System.EventHandler(this.comboBoxMonth_SelectionChangeCommitted);
             // 
             // dGVOverview
             // 
