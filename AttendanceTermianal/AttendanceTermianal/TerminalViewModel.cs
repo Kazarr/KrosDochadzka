@@ -1,5 +1,6 @@
 ﻿using Data.Model;
 using Data.Repository;
+using Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,7 @@ namespace AttendanceTermianal
     
     public class TerminalViewModel
     {
-      
-        private DailyResult _result = new DailyResult();
-        private Employee _empolyee = new Employee();
+        private LogicTerminal _logicTerminal = new LogicTerminal();
 
         public string CurrentDate()
         {
@@ -78,80 +77,10 @@ namespace AttendanceTermianal
                 return false;
             }      
         }
-        /// <summary>
-        /// Vloží(INSERT) do db.daily_result nový záznam
-        /// </summary>
-        /// <param name="id_employee"></param>
-        /// <param name="type"></param>
-        private void StartWork(int id_employee, EWorkType type)
+
+        public void CreateNewDailyResult(int id_employee, EnumWorkType type)
         {
-            _result.Id = ManagerRepository.DailyResultRepository.InsertDialyResult(SetResult(id_employee, type));
-        }
-        /// <summary>
-        /// Update finish time posledného záznamu v prípade ak je prázdny
-        /// </summary>
-        /// <param name="id_employee"></param>
-        /// <param name="type"></param>
-        /// <returns> true ak vykoná update</returns>
-        public bool FinishWork(int id_employee, EWorkType type)
-        {
-            //DateTime? daco = ManagerRepository.DailyResultRepository.GetFinishDailyResult(SetResult(id_employee, type));
-            if (ManagerRepository.DailyResultRepository.GetFinishDailyResult(SetResult(id_employee, type)) == null)
-            {
-                return ManagerRepository.DailyResultRepository.UpdateFinishDailyResult(SetResult(id_employee, type));
-            }
-            return false;
-        }
-        /// <summary>
-        /// výkoná update finish time posledného záznamu a vytvorí nový
-        /// </summary>
-        /// <param name="id_employee"></param>
-        /// <param name="type"></param>
-        public void ChangeWorkType(int id_employee, EWorkType type)
-        {
-            if (!CheckDailyResult(id_employee, type))
-            {
-                FinishWork(id_employee, type);
-                StartWork(id_employee, type);
-                FillBlankSpace(id_employee, type);
-            }           
-        }
-        /// <summary>
-        /// Kontroluje či existuje záznam
-        /// </summary>
-        /// <param name="id_employee"></param>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public bool CheckDailyResult(int id_employee, EWorkType type)
-        {
-            return ManagerRepository.DailyResultRepository.CheckIfDailyResultExist(SetResult(id_employee, type));
-        }
-        public DailyResult SetResult(int id_employee, EWorkType type)
-        {
-            _result.IdWorktype = (int)type;
-            _result.IdEmployee = id_employee;
-            return _result;
-        }
-        /// <summary>
-        /// Záplní okno v prípade viacnásobného príchodu a odchodu
-        /// </summary>
-        /// <param name="id_employee"></param>
-        /// <param name="type"></param>
-        public void FillBlankSpace(int id_employee, EWorkType type)
-        {
-            _result.IdEmployee = id_employee;
-            List<DailyResult> test = new List<DailyResult>();
-            test = ManagerRepository.DailyResultRepository.SelectTwoLastResults(_result);
-            if (test.Count==2)
-            {
-                if (test[0].IdWorktype == test[1].IdWorktype)
-                {
-                    _result.Finish = ManagerRepository.DailyResultRepository.SelectLastStartAndFinish(_result).Finish;
-                    _result.Start = ManagerRepository.DailyResultRepository.SelectLastStartAndFinish(_result).Start;
-                    ManagerRepository.DailyResultRepository.InsertInBlankSpace(_result);
-                }
-            }
-            
+            _logicTerminal.ChangeWorkType(id_employee,type);
         }
     }
 }
