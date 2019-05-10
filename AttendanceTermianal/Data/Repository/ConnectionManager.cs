@@ -37,6 +37,5 @@ namespace Data.Repository
                 Debug.WriteLine($"Error happend during  Connecting \n Error info:{e.Message}\n{e.StackTrace}");
             }
         }
-
     }
 }
