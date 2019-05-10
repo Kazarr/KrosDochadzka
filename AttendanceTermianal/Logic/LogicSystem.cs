@@ -99,12 +99,11 @@ namespace Logic
         {
             e.Password = CalculateMD5Hash(e.Password);
             return ManagerRepository.EmployeeRepository.InsertFullEmployee(e);
-
         }
 
-        public bool ResetPassword(int id, string password)
+        public bool ChangePassword(int id, string password)
         {
-            return ManagerRepository.EmployeeRepository.ResetPassword(id, CalculateMD5Hash(password));
+            return ManagerRepository.EmployeeRepository.ChangePassword(id, CalculateMD5Hash(password));
         }
 
         public void UpdateEmployee(string firstName, string lastName, string phoneNumber, string adress, int permission, Person supervisor)
