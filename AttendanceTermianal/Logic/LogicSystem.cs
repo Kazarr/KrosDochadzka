@@ -32,7 +32,7 @@ namespace Logic
         private DaySummary CreateDaySummary(DateTime date, int idEmployee)
         {
             DaySummary daySummary = new DaySummary();
-       
+
             daySummary.Date = date.Date.ToString("MM-dd-yyyy");
             daySummary.WorkArrivalTime = ManagerRepository.DaySummaryRepository.GetArrivalTime(date, idEmployee);
             daySummary.WorkLeavingTime = ManagerRepository.DaySummaryRepository.GetLeavingTime(date, idEmployee);
@@ -49,13 +49,19 @@ namespace Logic
 
             if (daySummary.TotalTimeWorked > TimeSpan.FromHours(4))
             {
-                daySummary.TotalTimeWorked -= daySummary.LunchBreak > TimeSpan.FromMinutes(30) ? daySummary.LunchBreak : TimeSpan.FromMinutes(30);
+                daySummary.TotalTimeWorked -= daySummary.LunchBreak > TimeSpan.FromMinutes(30)
+                    ? daySummary.LunchBreak
+                    : TimeSpan.FromMinutes(30);
             }
             else
             {
                 daySummary.TotalTimeWorked -= daySummary.LunchBreak;
             }
             return daySummary;
+
+        }
+
+        private void Test() {
 
         }
 
