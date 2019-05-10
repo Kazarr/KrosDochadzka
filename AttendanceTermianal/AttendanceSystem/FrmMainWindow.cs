@@ -24,9 +24,6 @@ namespace AttendanceSystem
             InitializeComponent();
             //FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
-            CheckPermission();
-
-
 
         }
 
@@ -66,21 +63,23 @@ namespace AttendanceSystem
         }
 
 
-        private void fillMonthComboBox()
+        private void fillComboBoxes()
         {
             comboBoxMonth.DataSource = DateTimeFormatInfo.CurrentInfo.MonthNames;
-            comboBoxMonth.SelectedIndex = int.Parse(DateTime.Now.Month.ToString())-1;
+            comboBoxYear.DataSource = _mainWindowViewModel.FillYears(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem));
+            comboBoxMonth.SelectedIndex = int.Parse(DateTime.Now.Month.ToString()) - 1;
+            comboBoxYear.SelectedIndex = 0;
         }
 
 
         private void fillDataGridView()
         {
             //get name of the month from the combobox
-            string selected = comboBoxMonth.GetItemText(comboBoxMonth.SelectedItem);
+            string selected = $"{comboBoxMonth.GetItemText(comboBoxMonth.SelectedItem)} {comboBoxYear.GetItemText(comboBoxYear.SelectedItem)}";
             dGVOverview.DataSource = _mainWindowViewModel.FillDataGridViewOverview(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), selected);
 
         }
-
+               
 
         private void btnDeleteEmployee_Click_1(object sender, EventArgs e)
         {
@@ -96,12 +95,6 @@ namespace AttendanceSystem
             }
         }
 
-
-        private void fillYearsComboBox()
-        {
-            comboBoxYear.DataSource=_mainWindowViewModel.FillYears(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem));
-            fillMonthComboBox();
-        }
 
         private void btnNewEmployee_Click_1(object sender, EventArgs e)
         {
@@ -128,47 +121,14 @@ namespace AttendanceSystem
         }
 
 
-        private void comboBoxMonth_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            fillDataGridView();
-        }
-
-
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
         {
-            frmNewEmployee newEmployee = new frmNewEmployee(_mainWindowViewModel.Person, _mainWindowViewModel.Empolyee);
+            frmNewEmployee newEmployee = new frmNewEmployee(_mainWindowViewModel.Person, _mainWindowViewModel.Employee);
             newEmployee.ShowDialog();
             if (newEmployee.DialogResult == DialogResult.OK)
             {
                 CheckPermission();
             }
-        }
-
-
-        private void comboBoxPerson_ValueMemberChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void comboBoxPerson_BindingContextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void comboBoxPerson_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void comboBoxPerson_SelectedValueChanged(object sender, EventArgs e)
-        {
-            _mainWindowViewModel.Person = (Person)comboBoxPerson.SelectedItem;
-            fillMonthComboBox();
-            comboBoxMonth.SelectedIndex = int.Parse(DateTime.Now.Month.ToString()) - 1;
-            btnReset.Enabled = true;
         }
 
 
@@ -194,9 +154,9 @@ namespace AttendanceSystem
 
         private void FrmMainWindow_Load(object sender, EventArgs e)
         {
-            fillMonthComboBox();
+            CheckPermission();
+            fillComboBoxes();
             fillDataGridView();
-            fillYearsComboBox();
 
             dGVOverview.Columns[1].DefaultCellStyle.Format = "HH:mm:ss ";
             dGVOverview.Columns[2].DefaultCellStyle.Format = "HH:mm:ss ";
@@ -224,7 +184,7 @@ namespace AttendanceSystem
             {
 
             }
-           
+
 
             else if ((TimeSpan)(dGVOverview.Rows[e.RowIndex].Cells[10].Value) > TimeSpan.FromHours(10))
             {
@@ -243,15 +203,31 @@ namespace AttendanceSystem
 
         }
 
+
         private void btnChangePassword_Click(object sender, EventArgs e)
         {
             frmPasswordChange passwordChange = new frmPasswordChange();
             passwordChange.ShowDialog();
         }
+                
+
+        private void comboBoxMonth_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            fillDataGridView();
+        }
+
 
         private void comboBoxYear_SelectedIndexChanged(object sender, EventArgs e)
         {
-            fillYearsComboBox();
+            fillDataGridView();
+        }
+
+
+        private void comboBoxPerson_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            _mainWindowViewModel.Person = (Person)comboBoxPerson.SelectedItem;
+            btnReset.Enabled = true;
+            fillDataGridView();
         }
     }
 }
