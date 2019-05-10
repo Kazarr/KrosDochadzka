@@ -190,6 +190,16 @@ namespace Data.Repository
             });
             return ret;
         }
+        public string GetDataBaseName()
+        {
+            string ret = "";
+            Execute((command) => 
+            {
+                command.CommandText = @"SELECT [name] FROM [sys].[databases] WHERE[name] = N'KROSDOCHADZKA'";
+                ret = (string)command.ExecuteScalar();
+            });
+            return ret;
+        }
                
         public static DailyResultRepository DailyResultRepository = new DailyResultRepository();
         public static EmployeeRepository EmployeeRepository = new EmployeeRepository();
