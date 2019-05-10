@@ -24,9 +24,9 @@ namespace Logic
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < hash.Length; i++)
             {
-                sb.Append(hash[i].ToString("X2"));
+                sb.Append(hash[i].ToString("x2"));
             }
-            return sb.ToString().ToLower();
+            return sb.ToString();
         }
 
         public bool GenerateDb()
@@ -44,7 +44,7 @@ namespace Logic
         private DaySummary CreateDaySummary(DateTime date, int idEmployee)
         {
             DaySummary daySummary = new DaySummary();
-       
+
             daySummary.Date = date.Date.ToString("MM-dd-yyyy");
             daySummary.WorkArrivalTime = ManagerRepository.DaySummaryRepository.GetArrivalTime(date, idEmployee);
             daySummary.WorkLeavingTime = ManagerRepository.DaySummaryRepository.GetLeavingTime(date, idEmployee);
@@ -61,7 +61,9 @@ namespace Logic
 
             if (daySummary.TotalTimeWorked > TimeSpan.FromHours(4))
             {
-                daySummary.TotalTimeWorked -= daySummary.LunchBreak > TimeSpan.FromMinutes(30) ? daySummary.LunchBreak : TimeSpan.FromMinutes(30);
+                daySummary.TotalTimeWorked -= daySummary.LunchBreak > TimeSpan.FromMinutes(30)
+                    ? daySummary.LunchBreak
+                    : TimeSpan.FromMinutes(30);
             }
             else
             {
@@ -71,12 +73,14 @@ namespace Logic
 
         }
 
-        public List<DaySummary> GetSummariesByMonth(string month, int idEmployee)
-        {
+        public List<DaySummary> GetSummariesByMonth(string monthAndYear, int idEmployee) 
+       {
+            string month = monthAndYear.Split(' ')[0];
+            int year = Convert.ToInt32(monthAndYear.Split(' ')[1]);
             List<DaySummary> myListOfDays = new List<DaySummary>();
             int numberOfMonth = DateTime.ParseExact(month, "MMMM", CultureInfo.CurrentCulture).Month;
 
-            DateTime dt = new DateTime(2019, numberOfMonth, 1);
+            DateTime dt = new DateTime(year, numberOfMonth, 1);
             while (dt.Month == numberOfMonth)
             {
                 myListOfDays.Add(CreateDaySummary(dt, idEmployee));
@@ -86,9 +90,9 @@ namespace Logic
             return myListOfDays;
         }
 
-        public bool CheckLogin (int id, string password)
+        public bool CheckLogin(int id, string password)
         {
-            return ManagerRepository.EmployeeRepository.CheckLogin(id,CalculateMD5Hash(password));
+            return ManagerRepository.EmployeeRepository.CheckLogin(id, CalculateMD5Hash(password));
         }
 
         private int InsertFullEmployee(Employee e)
@@ -98,7 +102,7 @@ namespace Logic
 
         }
 
-        public bool ResetPassword (int id, string password)
+        public bool ResetPassword(int id, string password)
         {
             return ManagerRepository.EmployeeRepository.ResetPassword(id, CalculateMD5Hash(password));
         }
@@ -166,7 +170,7 @@ namespace Logic
         public List<int> GetYearsFromStart(int employeeID)
         {
             int firstYear = ManagerRepository.DailyResultRepository.GetYearOfFirstRecord(employeeID);
-            if(firstYear == 0)
+            if (firstYear == 0)
             {
                 firstYear = DateTime.Now.Year;
             }
@@ -174,7 +178,7 @@ namespace Logic
             List<int> YearList = new List<int>();
 
 
-            for (int i = firstYear; i <= DateTime.Now.Year+1; i++)
+            for (int i = firstYear; i <= DateTime.Now.Year + 1; i++)
             {
                 YearList.Add(i);
             }

@@ -19,9 +19,9 @@ namespace AttendanceSystem
         }
 
         public Person Person { get => _person; set {  _person = value;
-                                                      Empolyee = GetEmpolyeeByPersonId(Person.Id);}}
+                                                      Employee = GetEmpolyeeByPersonId(Person.Id);}}
 
-        public Employee Empolyee { get => _employee; set => _employee = value; }
+        public Employee Employee { get => _employee; set => _employee = value; }
 
         public Employee GetEmployeeByID(int id)
         {
@@ -39,10 +39,10 @@ namespace AttendanceSystem
             return new BindingList<Person>(ManagerRepository.PersonRepository.GetPersonEmployeesPlebs(idSupervisor).ToList());
         }
 
-        public BindingList<DaySummary> FillDataGridViewOverview(int id, string month)
+        public BindingList<DaySummary> FillDataGridViewOverview(int id, string date)
         {
             
-            return new BindingList<DaySummary>(_logic.GetSummariesByMonth(month, id));
+            return new BindingList<DaySummary>(_logic.GetSummariesByMonth(date, id));
         }
 
         public BindingList<int> FillYears(int IdEmployee)
