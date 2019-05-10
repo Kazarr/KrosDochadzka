@@ -79,7 +79,7 @@ namespace AttendanceTermianal
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            doSomething(EnumWorkType.Exit);
+            DescribeAndCreateDailyResult(EnumWorkType.Exit);
         }
 
         private void timerClear_Tick(object sender, EventArgs e)
@@ -93,30 +93,30 @@ namespace AttendanceTermianal
 
         private void btnLunch_Click(object sender, EventArgs e)
         {
-            doSomething(EnumWorkType.Lunch);
+            DescribeAndCreateDailyResult(EnumWorkType.Lunch);
         }
 
         private void btnBTrip_Click(object sender, EventArgs e)
         {
-            doSomething(EnumWorkType.BusinessTrip);
+            DescribeAndCreateDailyResult(EnumWorkType.BusinessTrip);
         }
 
         private void btnDoctor_Click(object sender, EventArgs e)
         {
-            doSomething(EnumWorkType.Doctor);
+            DescribeAndCreateDailyResult(EnumWorkType.Doctor);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            doSomething(EnumWorkType.Private);
+            DescribeAndCreateDailyResult(EnumWorkType.Private);
         }
 
         private void btnEntry_Click(object sender, EventArgs e)
         {
-            doSomething(EnumWorkType.Work);
+            DescribeAndCreateDailyResult(EnumWorkType.Work);
         }
 
-       private void doSomething (EnumWorkType type)
+       private void DescribeAndCreateDailyResult (EnumWorkType type)
         {
             if (!string.IsNullOrEmpty(txtEmpId.Text))
             {
