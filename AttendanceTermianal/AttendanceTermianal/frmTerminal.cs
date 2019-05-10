@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Data.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -76,53 +77,9 @@ namespace AttendanceTermianal
             return ("This Id does not exist");
         }
 
-        //private void ChangeWorkType(EWorkType type)
-        //{
-        //    doSomething(type);
-        //    //if (!string.IsNullOrEmpty(txtEmpId.Text))
-        //    //{
-        //    //    if (CorrectEmp(txtEmpId.Text))
-        //    //    {
-        //    //        _tick = 0;
-        //    //        int employeeId = int.Parse(txtEmpId.Text);
-        //    //        _terminalViewModel.ChangeWorkType(employeeId, type);
-        //    //        lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
-        //    //        lblDateNow.Text = _terminalViewModel.DescriptionDate();
-        //    //        lblWorkType.Text = _terminalViewModel.DescriptionWorkType(type.ToString());
-        //    //        timerClear.Start();
-        //    //    }
-        //    //}
-        //    //else
-        //    //{
-        //    //    lblName.Text = ShowError();
-        //    //    timerClear.Start();
-        //    //}
-        //}
-
         private void btnExit_Click(object sender, EventArgs e)
         {
-            doSomething(EWorkType.Exit);
-            //if (!string.IsNullOrEmpty(txtEmpId.Text))
-            //{
-            //    if (CorrectEmp(txtEmpId.Text))
-            //    {
-            //        _tick = 0;
-            //        int employeeId = int.Parse(txtEmpId.Text);
-            //        _terminalViewModel.FinishWork(employeeId, EWorkType.Exit);
-            //        lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
-            //        lblDateNow.Text = _terminalViewModel.DescriptionDate();
-            //        lblWorkType.Text = _terminalViewModel.DescriptionWorkType(nameof(EWorkType.Exit));
-            //        timerClear.Start();
-            //    }
-            //}
-            //else
-            //{
-            //    lblName.Text = ShowError();
-            //    timerClear.Start();
-
-
-
-            //}
+            doSomething(EnumWorkType.Exit);
         }
 
         private void timerClear_Tick(object sender, EventArgs e)
@@ -136,30 +93,30 @@ namespace AttendanceTermianal
 
         private void btnLunch_Click(object sender, EventArgs e)
         {
-            doSomething(EWorkType.Lunch);
+            doSomething(EnumWorkType.Lunch);
         }
 
         private void btnBTrip_Click(object sender, EventArgs e)
         {
-            doSomething(EWorkType.BusinessTrip);
+            doSomething(EnumWorkType.BusinessTrip);
         }
 
         private void btnDoctor_Click(object sender, EventArgs e)
         {
-            doSomething(EWorkType.Doctor);
+            doSomething(EnumWorkType.Doctor);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            doSomething(EWorkType.Private);
+            doSomething(EnumWorkType.Private);
         }
 
         private void btnEntry_Click(object sender, EventArgs e)
         {
-            doSomething(EWorkType.Work);
+            doSomething(EnumWorkType.Work);
         }
 
-       private void doSomething (EWorkType type)
+       private void doSomething (EnumWorkType type)
         {
             if (!string.IsNullOrEmpty(txtEmpId.Text))
             {
@@ -167,7 +124,7 @@ namespace AttendanceTermianal
                 {
                     _tick = 0;
                     int employeeId = int.Parse(txtEmpId.Text);
-                    _terminalViewModel.ChangeWorkType(employeeId, type);
+                    _terminalViewModel.CreateNewDailyResult(employeeId, type);
                     lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
                     lblDateNow.Text = _terminalViewModel.DescriptionDate();
                     lblWorkType.Text = _terminalViewModel.DescriptionWorkType(type.ToString());
