@@ -15,8 +15,6 @@ namespace AttendanceTermianal
     {
         private TerminalViewModel _terminalViewModel = new TerminalViewModel();
 
-        private int _tick;
-
         public frmTerminal()
         {
             InitializeComponent();
@@ -122,7 +120,6 @@ namespace AttendanceTermianal
             {
                 if (CorrectEmp(txtEmpId.Text))
                 {
-                    _tick = 0;
                     int employeeId = int.Parse(txtEmpId.Text);
                     _terminalViewModel.CreateNewDailyResult(employeeId, type);
                     lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
