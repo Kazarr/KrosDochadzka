@@ -19,9 +19,9 @@ namespace AttendanceSystem
         }
 
         public Person Person { get => _person; set {  _person = value;
-                                                      Empolyee = GetEmpolyeeByPersonId(Person.Id);}}
+                                                      Employee = GetEmpolyeeByPersonId(Person.Id);}}
 
-        public Employee Empolyee { get => _employee; set => _employee = value; }
+        public Employee Employee { get => _employee; set => _employee = value; }
 
         public Employee GetEmployeeByID(int id)
         {
