@@ -53,27 +53,21 @@ namespace AttendanceSystem
 
         private void btnChooseServer_Click(object sender, EventArgs e)
         {
-            SqlConnectionStringBuilder scsb = new SqlConnectionStringBuilder();
-            // Set desired properties on the connection
-            scsb.IntegratedSecurity = true;
-            scsb.InitialCatalog = "master";
-            // Display the connection dialog
-            DataConnectionDialog dlg = new DataConnectionDialog(scsb);
+            DataConnectionDialog dlg = new DataConnectionDialog(_loginViewModel.GetSqlConnectionStringBuilder());
             if (DialogResult.OK == dlg.ShowDialog())
             {
                 //Use the connection properties
                 using (SqlConnection conn = new SqlConnection(dlg.ConnectionStringBuilder.ConnectionString))
                 {
-                    Data.Properties.Settings.Default.ConnectionString = conn.ConnectionString;
-                    Data.Properties.Settings.Default.Save();
-                    _loginViewModel.GenerateDb();
-                    scsb.InitialCatalog = "KROSDOCHADZKA";
-                }
-                using (SqlConnection conn = new SqlConnection(dlg.ConnectionStringBuilder.ConnectionString))
-                {
-                    Data.Properties.Settings.Default.ConnectionString = conn.ConnectionString;
-                    Data.Properties.Settings.Default.Save();
-                    _loginViewModel.GenerateTables();
+                    if (!_loginViewModel.HasDatabase())
+                    {
+                        _loginViewModel.SaveConnectionString(conn.ConnectionString);
+                        dlg.ConnectionStringBuilder.InitialCatalog = _loginViewModel.GenerateDb();
+                        _loginViewModel.SaveConnectionString(dlg.ConnectionStringBuilder.ConnectionString);
+                        _loginViewModel.GenerateTables();
+                    }
+
+                    
                 }
             }
         }
