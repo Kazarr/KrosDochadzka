@@ -26,7 +26,6 @@ namespace Logic
             {
                 sb.Append(hash[i].ToString("x2"));
             }
-
             return sb.ToString();
         }
 
