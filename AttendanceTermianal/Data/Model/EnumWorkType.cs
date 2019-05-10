@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AttendanceTermianal
+namespace Data.Model
 {
-    public enum EWorkType
+    public enum EnumWorkType
     {
         Work = 1,
         Lunch = 2,
