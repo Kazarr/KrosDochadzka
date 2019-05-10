@@ -109,10 +109,7 @@
             this.comboBoxPerson.Name = "comboBoxPerson";
             this.comboBoxPerson.Size = new System.Drawing.Size(395, 21);
             this.comboBoxPerson.TabIndex = 13;
-            this.comboBoxPerson.ValueMemberChanged += new System.EventHandler(this.comboBoxPerson_ValueMemberChanged);
-            this.comboBoxPerson.SelectedValueChanged += new System.EventHandler(this.comboBoxPerson_SelectedValueChanged);
-            this.comboBoxPerson.BindingContextChanged += new System.EventHandler(this.comboBoxPerson_BindingContextChanged);
-            this.comboBoxPerson.TextChanged += new System.EventHandler(this.comboBoxPerson_TextChanged);
+            this.comboBoxPerson.SelectionChangeCommitted += new System.EventHandler(this.comboBoxPerson_SelectionChangeCommitted);
             // 
             // labelMonth
             // 
@@ -134,7 +131,7 @@
             this.comboBoxMonth.Name = "comboBoxMonth";
             this.comboBoxMonth.Size = new System.Drawing.Size(395, 21);
             this.comboBoxMonth.TabIndex = 11;
-            this.comboBoxMonth.SelectedIndexChanged += new System.EventHandler(this.comboBoxMonth_SelectedIndexChanged);
+            this.comboBoxMonth.SelectionChangeCommitted += new System.EventHandler(this.comboBoxMonth_SelectionChangeCommitted);
             // 
             // dGVOverview
             // 

@@ -61,17 +61,14 @@ namespace Logic
 
         }
 
-        private void Test()
-        {
-            Console.WriteLine("Hello world");
-        }
-
-        public List<DaySummary> GetSummariesByMonth(string month, int idEmployee)
-        {
+        public List<DaySummary> GetSummariesByMonth(string monthAndYear, int idEmployee) 
+       {
+            string month = monthAndYear.Split(' ')[0];
+            int year = Convert.ToInt32(monthAndYear.Split(' ')[1]);
             List<DaySummary> myListOfDays = new List<DaySummary>();
             int numberOfMonth = DateTime.ParseExact(month, "MMMM", CultureInfo.CurrentCulture).Month;
 
-            DateTime dt = new DateTime(2019, numberOfMonth, 1);
+            DateTime dt = new DateTime(year, numberOfMonth, 1);
             while (dt.Month == numberOfMonth)
             {
                 myListOfDays.Add(CreateDaySummary(dt, idEmployee));
