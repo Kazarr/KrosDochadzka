@@ -88,36 +88,6 @@ namespace AttendanceSystem
         }
 
 
-        //public TimeSpan GetHours()
-        //{
-        //    TimeSpan hoursWorked = TimeSpan.Zero;
-        //    foreach (var day in _daySummaries)
-        //    {
-
-        //        if(Convert.ToDateTime( day.Date).Date < DateTime.Today.Date)
-        //        {                    
-        //            hoursWorked += (day.TotalTimeWorked == null) ? TimeSpan.Zero : (TimeSpan)day.TotalTimeWorked;
-        //        }
-        //    }
-        //    return hoursWorked;
-        //}
-
-        //public  TimeSpan GetOvertime()
-        //{
-        //    int dayCount = 0;
-        //    foreach (var day in _daySummaries)
-        //    {
-
-        //        if ((Convert.ToDateTime(day.Date).Date < DateTime.Today.Date) && 
-        //            !((Convert.ToDateTime(day.Date).DayOfWeek.ToString().Equals("Sunday"))|| 
-        //            (Convert.ToDateTime(day.Date).DayOfWeek.ToString().Equals("Saturday"))))
-        //        {
-        //            dayCount++;
-        //        }
-        //    }
-        //    return GetHours() - TimeSpan.FromHours(8 * dayCount) ;
-
-        //}
 
 
     }
