@@ -13,6 +13,7 @@ namespace Logic
 {
     public class LogicSystem
     {
+        private string DB_NAME = "KROSDOCHADZKA";
         private string CalculateMD5Hash(string input)
 
         {
@@ -40,7 +41,7 @@ namespace Logic
         {
             bool ret = false;
             ManagerRepository managerRepository = new ManagerRepository();
-            if(managerRepository.GetDataBaseName() == "KROSDOCHADZKA")
+            if(managerRepository.GetDataBaseName() == DB_NAME)
             {
                 ret = true;
             }
