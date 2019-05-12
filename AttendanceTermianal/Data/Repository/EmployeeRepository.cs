@@ -38,9 +38,8 @@ namespace Data.Repository
             return ret;
         }
 
-        public bool ResetPassword(int employeeId, string password)
-        {
-           
+        public bool ChangePassword(int employeeId, string password)
+        {           
             bool success = false;
             Execute((command) => 
             {
@@ -286,7 +285,6 @@ namespace Data.Repository
             if (GetEmpolyees() != null)
             {
                  employees= new List<Employee>(GetEmpolyees());
-
             }
             else
             {

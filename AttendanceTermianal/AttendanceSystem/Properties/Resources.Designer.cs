@@ -103,6 +103,16 @@ namespace AttendanceSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap confirmPass {
+            get {
+                object obj = ResourceManager.GetObject("confirmPass", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap entry {
             get {
                 object obj = ResourceManager.GetObject("entry", resourceCulture);
@@ -176,6 +186,16 @@ namespace AttendanceSystem.Properties {
         internal static System.Drawing.Bitmap new_emp {
             get {
                 object obj = ResourceManager.GetObject("new_emp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap newPass {
+            get {
+                object obj = ResourceManager.GetObject("newPass", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
