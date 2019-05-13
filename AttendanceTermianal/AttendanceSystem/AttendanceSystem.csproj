@@ -97,6 +97,7 @@
     <Compile Include="FrmMainWindow.Designer.cs">
       <DependentUpon>FrmMainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="PasswordChangeViewModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmDailyDetails.resx">
@@ -116,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMainWindow.resx">
       <DependentUpon>FrmMainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPasswordChange.resx">
+      <DependentUpon>frmPasswordChange.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -222,6 +226,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\updateResult.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\confirmPass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newPass.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

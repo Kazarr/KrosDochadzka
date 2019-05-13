@@ -7,11 +7,13 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Data.Repository;
+using System.Data.SqlClient;
 
 namespace Logic
 {
     public class LogicSystem
     {
+        private string DB_NAME = "KROSDOCHADZKA";
         private string CalculateMD5Hash(string input)
 
         {
@@ -29,10 +31,45 @@ namespace Logic
             return sb.ToString();
         }
 
-        public bool GenerateDb()
+        public void SaveConnectionString(string connectionString)
         {
+            Data.Properties.Settings.Default.ConnectionString = connectionString;
+            Data.Properties.Settings.Default.Save();
+        }
+
+        public bool HasDatabase()
+        {
+            bool ret = false;
+            ManagerRepository managerRepository = new ManagerRepository();
+            if(managerRepository.GetDataBaseName() == DB_NAME)
+            {
+                ret = true;
+            }
+            return ret;
+        }
+
+        public SqlConnectionStringBuilder GetSqlConnectionStringBuilder(string initialCatalog)
+        {
+            ConnectionManager connectionManager = new ConnectionManager();
+            return connectionManager.GetSqlConnectionStringBuilder(initialCatalog);
+            
+        }
+
+        public SqlConnectionStringBuilder GetSqlConnectionStringBuilder()
+        {
+            ConnectionManager connectionManager = new ConnectionManager();
+            return connectionManager.GetSqlConnectionStringBuilder("master");
+        }
+
+        public string GenerateDb()
+        {
+            string ret = "";
             ManagerRepository manager = new ManagerRepository();
-            return manager.GenerateDB();
+            if (manager.GenerateDB())
+            {
+                ret = manager.GetDataBaseName();
+            }
+            return ret;
         }
 
         public bool GenerateTables()
@@ -99,12 +136,11 @@ namespace Logic
         {
             e.Password = CalculateMD5Hash(e.Password);
             return ManagerRepository.EmployeeRepository.InsertFullEmployee(e);
-
         }
 
-        public bool ResetPassword(int id, string password)
+        public bool ChangePassword(int id, string password)
         {
-            return ManagerRepository.EmployeeRepository.ResetPassword(id, CalculateMD5Hash(password));
+            return ManagerRepository.EmployeeRepository.ChangePassword(id, CalculateMD5Hash(password));
         }
 
         public void UpdateEmployee(string firstName, string lastName, string phoneNumber, string adress, int permission, Person supervisor)

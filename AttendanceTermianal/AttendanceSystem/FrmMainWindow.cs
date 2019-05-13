@@ -210,7 +210,7 @@ namespace AttendanceSystem
 
         private void btnChangePassword_Click(object sender, EventArgs e)
         {
-            frmPasswordChange passwordChange = new frmPasswordChange();
+            frmPasswordChange passwordChange = new frmPasswordChange(_loggedEmployeeID);
             passwordChange.ShowDialog();
         }
                 
