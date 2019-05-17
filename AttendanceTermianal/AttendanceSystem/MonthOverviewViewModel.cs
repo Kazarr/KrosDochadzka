@@ -27,10 +27,10 @@ namespace AttendanceSystem
             _sickTime = TimeSpan.Zero;
             _bsTripTime = TimeSpan.Zero;
             _homeOfficeTime = TimeSpan.Zero;
-            Count();
+            FillFieldsWithTime();
         }
 
-        private void Count()
+        private void FillFieldsWithTime()
         {
             int dayCount = 0;
             foreach (var day in _daySummaries)
