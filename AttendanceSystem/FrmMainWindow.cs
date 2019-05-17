@@ -17,12 +17,12 @@ namespace AttendanceSystem
     {
         private MainWindowViewModel _mainWindowViewModel = new MainWindowViewModel();
         private int _loggedEmployeeID;
+        private string _selected = "";
 
         public FrmMainWindow(int id)
         {
             _loggedEmployeeID = id;
             InitializeComponent();
-            //FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
 
         }
@@ -75,8 +75,8 @@ namespace AttendanceSystem
         private void fillDataGridView()
         {
             //get name of the month from the combobox
-            string selected = $"{comboBoxMonth.GetItemText(comboBoxMonth.SelectedItem)} {comboBoxYear.GetItemText(comboBoxYear.SelectedItem)}";
-            dGVOverview.DataSource = _mainWindowViewModel.FillDataGridViewOverview(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), selected);
+            _selected = $"{comboBoxMonth.GetItemText(comboBoxMonth.SelectedItem)} {comboBoxYear.GetItemText(comboBoxYear.SelectedItem)}";
+            dGVOverview.DataSource = _mainWindowViewModel.FillDataGridViewOverview(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), _selected);
 
         }
                
@@ -110,7 +110,10 @@ namespace AttendanceSystem
 
         private void btnShowMonth_Click_1(object sender, EventArgs e)
         {
-            frmMonthOverview monthOverview = new frmMonthOverview();
+            List<DaySummary> daySummaries = new List<DaySummary>(
+            _mainWindowViewModel.FillDataGridViewOverview(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), _selected));
+
+            frmMonthOverview monthOverview = new frmMonthOverview(daySummaries);
             monthOverview.ShowDialog();
         }
 

@@ -7,11 +7,13 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Data.Repository;
+using System.Data.SqlClient;
 
 namespace Logic
 {
     public class LogicSystem
     {
+        private string DB_NAME = "KROSDOCHADZKA";
         private string CalculateMD5Hash(string input)
 
         {
@@ -29,10 +31,45 @@ namespace Logic
             return sb.ToString();
         }
 
-        public bool GenerateDb()
+        public void SaveConnectionString(string connectionString)
         {
+            Data.Properties.Settings.Default.ConnectionString = connectionString;
+            Data.Properties.Settings.Default.Save();
+        }
+
+        public bool HasDatabase()
+        {
+            bool ret = false;
+            ManagerRepository managerRepository = new ManagerRepository();
+            if(managerRepository.GetDataBaseName() == DB_NAME)
+            {
+                ret = true;
+            }
+            return ret;
+        }
+
+        public SqlConnectionStringBuilder GetSqlConnectionStringBuilder(string initialCatalog)
+        {
+            ConnectionManager connectionManager = new ConnectionManager();
+            return connectionManager.GetSqlConnectionStringBuilder(initialCatalog);
+            
+        }
+
+        public SqlConnectionStringBuilder GetSqlConnectionStringBuilder()
+        {
+            ConnectionManager connectionManager = new ConnectionManager();
+            return connectionManager.GetSqlConnectionStringBuilder("master");
+        }
+
+        public string GenerateDb()
+        {
+            string ret = "";
             ManagerRepository manager = new ManagerRepository();
-            return manager.GenerateDB();
+            if (manager.GenerateDB())
+            {
+                ret = manager.GetDataBaseName();
+            }
+            return ret;
         }
 
         public bool GenerateTables()

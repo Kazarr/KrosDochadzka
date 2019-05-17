@@ -57,6 +57,7 @@
     <Compile Include="Model\DaySummary.cs" />
     <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\EnumWorkType.cs" />
+    <Compile Include="Model\MonthOverview.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\WorkType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Repository\EmployeeRepository.cs" />
     <Compile Include="Repository\ManagerRepository.cs" />
     <Compile Include="Repository\ConnectionManager.cs" />
+    <Compile Include="Repository\MonthOverviewRepository.cs" />
     <Compile Include="Repository\PermissionRepository.cs" />
     <Compile Include="Repository\PersonRepository.cs" />
     <Compile Include="Repository\WorkTypeRepository.cs" />

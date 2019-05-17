@@ -146,16 +146,16 @@ namespace Data.Repository
                                     VALUES ('admin', 'admin', 'GolfBallHit')
 
                                     INSERT INTO Permission ([Name])
-                                    VALUES ('Admin')
+                                    VALUES ('Worker')
 
                                     INSERT INTO Permission ([Name])
                                     VALUES ('Supervisor')
 
                                     INSERT INTO Permission ([Name])
-                                    VALUES ('Worker')
+                                    VALUES ('Admin')
 
                                     INSERT INTO Employee ([Password], IdPerson, IdPermission)
-                                    VALUES (LOWER(CONVERT(nvarchar(40), HASHBYTES('MD5', 'GolfBallHit'),2)), 1, 1)
+                                    VALUES (LOWER(CONVERT(nvarchar(40), HASHBYTES('MD5', 'GolfBallHit'),2)), 1, 3)
 
                                     UPDATE Employee
                                     SET IdSupervisor = Id
@@ -187,6 +187,17 @@ namespace Data.Repository
                 {
                     ret = true;
                 }
+            });
+            return ret;
+        }
+
+        public string GetDataBaseName()
+        {
+            string ret = "";
+            Execute((command) => 
+            {
+                command.CommandText = @"SELECT [name] FROM [sys].[databases] WHERE[name] = N'KROSDOCHADZKA'";
+                ret = (string)command.ExecuteScalar();
             });
             return ret;
         }
