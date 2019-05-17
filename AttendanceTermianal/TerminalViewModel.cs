@@ -17,23 +17,22 @@ namespace AttendanceTermianal
 
         public string CurrentDate()
         {
-            string date = DateTime.Now.ToString("dd.MM.yyyy");
-            return date;
+            return DateTime.Now.ToString("dd.MM.yyyy");
         }
         public string CurrentDay()
         {
-            string day = DateTime.Now.ToString("dddd");
-            return day;
+            return DateTime.Now.ToString("dddd");
+            
         }
         public string CurrentHourmin()
         {
-            string day = DateTime.Now.ToString("HH:mm");
-            return day;
+            return DateTime.Now.ToString("HH:mm");
+   
         }
         public string CurrentSec()
         {
-            string day = DateTime.Now.ToString("ss");
-            return day;
+            return DateTime.Now.ToString("ss");
+            
         }
 
         public string DescriptionFullname(int id_employee)
