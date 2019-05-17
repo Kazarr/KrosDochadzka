@@ -39,6 +39,9 @@ namespace AttendanceSystem
             cmbPermissions.DataSource = _newEmployeeViewModel.FillPermissions();
             cmbPermissions.SelectedItem = _newEmployeeViewModel.EmployeePermission(empolyee);
             textBoxPassword.Visible = false;
+            /// <summary>
+            /// in case this form is used on updating info, we need to hide "Password" line, thats why this line is here and not in designer
+            /// </summary>
             panel2.Height=296;
 
         }

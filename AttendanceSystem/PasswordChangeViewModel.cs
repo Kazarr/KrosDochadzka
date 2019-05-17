@@ -13,26 +13,12 @@ namespace AttendanceSystem
 
         public bool CheckOldPass(int idEmployee, string oldPassword)
         {
-            if (_logicSystem.CheckLogin(idEmployee, oldPassword))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (_logicSystem.CheckLogin(idEmployee, oldPassword));
         }
 
         public bool CompareNewPass(string newPass, string confirmPass)
         {
-            if (newPass.Equals(confirmPass))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (newPass.Equals(confirmPass));
         }
 
         public void ChangePassword(int idEmployee, string newPass)
