@@ -1,0 +1,12 @@
+C:\Users\transformer1\source\repos\KrosDochadzka\AttendanceTermianal\AttendanceSystem\AttendanceSystem\AttendanceSystem\bin\Debug\AttendanceSystem.exe.config
+C:\Users\transformer1\source\repos\KrosDochadzka\AttendanceTermianal\AttendanceSystem\AttendanceSystem\AttendanceSystem\bin\Debug\AttendanceSystem.exe
+C:\Users\transformer1\source\repos\KrosDochadzka\AttendanceTermianal\AttendanceSystem\AttendanceSystem\AttendanceSystem\bin\Debug\AttendanceSystem.pdb
+C:\Users\transformer1\source\repos\KrosDochadzka\AttendanceTermianal\AttendanceSystem\AttendanceSystem\AttendanceSystem\obj\Debug\AttendanceSystem.csprojAssemblyReference.cache
+C:\Users\transformer1\source\repos\KrosDochadzka\AttendanceTermianal\AttendanceSystem\AttendanceSystem\AttendanceSystem\obj\Debug\AttendanceSystem.Properties.Resources.resources
+C:\Users\transformer1\source\repos\KrosDochadzka\AttendanceTermianal\AttendanceSystem\AttendanceSystem\AttendanceSystem\obj\Debug\AttendanceSystem.csproj.GenerateResource.cache
+C:\Users\transformer1\source\repos\KrosDochadzka\AttendanceTermianal\AttendanceSystem\AttendanceSystem\AttendanceSystem\obj\Debug\AttendanceSystem.csproj.CoreCompileInputs.cache
+C:\Users\transformer1\source\repos\KrosDochadzka\AttendanceTermianal\AttendanceSystem\AttendanceSystem\AttendanceSystem\obj\Debug\AttendanceSystem.exe
+C:\Users\transformer1\source\repos\KrosDochadzka\AttendanceTermianal\AttendanceSystem\AttendanceSystem\AttendanceSystem\obj\Debug\AttendanceSystem.pdb
+C:\Users\transformer1\source\repos\KrosDochadzka\AttendanceTermianal\AttendanceSystem\AttendanceSystem\AttendanceSystem\obj\Debug\AttendanceSystem.FrmMainWindow.resources
+C:\Users\transformer1\source\repos\KrosDochadzka\AttendanceTermianal\AttendanceSystem\AttendanceSystem\AttendanceSystem\obj\Debug\AttendanceSystem.frmNewEmployee.resources
+C:\Users\transformer1\source\repos\KrosDochadzka\AttendanceTermianal\AttendanceSystem\AttendanceSystem\AttendanceSystem\obj\Debug\AttendanceSystem.frmMonthOverview.resources
