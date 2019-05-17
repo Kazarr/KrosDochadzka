@@ -25,5 +25,6 @@ namespace AttendanceSystem
         {
             _logicSystem.ChangePassword(idEmployee, newPass);
         }
+
     }
 }
