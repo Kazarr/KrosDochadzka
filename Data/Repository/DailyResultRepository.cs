@@ -276,8 +276,8 @@ namespace Data.Repository
             bool success = false;
             Execute((command) => 
             {
-                command.CommandText = @"Insert into DailyResult (IdEmployee,[Start],Finish,IdWorktype) 
-                                    values (@Id_Employee,@start,@finish,8)";
+                command.CommandText = $@"Insert into DailyResult (IdEmployee,[Start],Finish,IdWorktype) 
+                                    values (@Id_Employee,@start,@finish,{(int)EnumWorkType.Other})";
                 command.Parameters.Add("@Id_Employee", SqlDbType.VarChar).Value = dailyResult.IdEmployee;
                 command.Parameters.Add("@start", SqlDbType.DateTime2).Value = dailyResult.Start;
                 command.Parameters.Add("@finish", SqlDbType.DateTime2).Value = dailyResult.Finish;

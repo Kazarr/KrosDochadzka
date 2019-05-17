@@ -47,11 +47,12 @@ namespace Logic
         public void FillBlankSpace(int id_employee, EnumWorkType type)
         {
             _result.IdEmployee = id_employee;
-            List<DailyResult> test = new List<DailyResult>();
-            test = ManagerRepository.DailyResultRepository.SelectTwoLastResults(_result);
-            if (test.Count == 2)
+            List<DailyResult> twoLastResult = new List<DailyResult>();
+            twoLastResult = ManagerRepository.DailyResultRepository.SelectTwoLastResults(_result);
+            // Ak sa do listu uložia presne 2 záznamy s rovnakým WorkType(work) znamená to že zamestnanec za jeden deň viackrát prišiel a odišiel z roboty
+            if (twoLastResult.Count == 2)
             {
-                if (test[0].IdWorktype == test[1].IdWorktype)
+                if (twoLastResult[0].IdWorktype == twoLastResult[1].IdWorktype)
                 {
                     _result.Finish = ManagerRepository.DailyResultRepository.SelectLastStartAndFinish(_result).Finish;
                     _result.Start = ManagerRepository.DailyResultRepository.SelectLastStartAndFinish(_result).Start;
