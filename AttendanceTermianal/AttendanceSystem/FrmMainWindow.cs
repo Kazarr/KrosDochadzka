@@ -23,7 +23,6 @@ namespace AttendanceSystem
         {
             _loggedEmployeeID = id;
             InitializeComponent();
-            //FormBorderStyle = FormBorderStyle.None;
             WindowState = FormWindowState.Maximized;
 
         }
