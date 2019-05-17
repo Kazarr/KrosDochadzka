@@ -92,11 +92,13 @@ namespace Data.Repository
             int ret = -1;
             Execute((command) => 
             {
-                command.CommandText = @"INSERT INTO DailyResult (IdEmployee, IdWorktype)
+                command.CommandText = @"INSERT INTO DailyResult (IdEmployee, IdWorktype, [Start], [Finish])
                                         OUTPUT INSERTED.Id
-                                        VALUES (@Id_Employee, @Id_Worktype)";
+                                        VALUES (@Id_Employee, @Id_Worktype , @Start, @Finish)";
                 command.Parameters.Add("@Id_Employee", SqlDbType.VarChar).Value = dailyResult.IdEmployee;
                 command.Parameters.Add("@Id_Worktype", SqlDbType.VarChar).Value = dailyResult.IdWorktype;
+                command.Parameters.Add("@Start", SqlDbType.DateTime2).Value = dailyResult.Start;
+                command.Parameters.Add("@Finish", SqlDbType.DateTime2).Value = dailyResult.Finish;
                 ret = (int)command.ExecuteScalar();
 
             });
@@ -128,22 +130,22 @@ namespace Data.Repository
             return success;
         }
 
-        public bool UpdateFinishDailyResult(DailyResult daily_Result)
-        {
-            bool success = false;
-            Execute((command) => 
-            {
-                command.CommandText = @"UPDATE DailyResult
-                                        SET Finish = GETDATE()
-                                        WHERE ID = @ID";
-                command.Parameters.Add("@ID", SqlDbType.VarChar).Value = daily_Result.Id;
-                if (command.ExecuteNonQuery() > 1)
-                {
-                    success = true;
-                }
-            });
-            return success;
-        }
+        //public bool UpdateDailyasdasdResult(DailyResult daily_Result)
+        //{
+        //    bool success = false;
+        //    Execute((command) => 
+        //    {
+        //        command.CommandText = @"UPDATE DailyResult
+        //                                SET Finish = GETDATE()
+        //                                WHERE ID = @ID";
+        //        command.Parameters.Add("@ID", SqlDbType.VarChar).Value = daily_Result.Id;
+        //        if (command.ExecuteNonQuery() > 1)
+        //        {
+        //            success = true;
+        //        }
+        //    });
+        //    return success;
+        //}
 
         public bool CheckIfDailyResultExist(DailyResult daily_Result)
         {

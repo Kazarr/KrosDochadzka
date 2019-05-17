@@ -10,26 +10,30 @@ namespace Logic
 {
     public class LogicTerminal
     {
-        private DailyResult _result = new DailyResult();
-        private Employee _empolyee = new Employee();
+        //private DailyResult _result; 
+        //private Employee _empolyee = new Employee();
 
-        public DailyResult SetDailyResult(int id_employee, EnumWorkType type)
-        {
-            _result.IdWorktype = (int)type;
-            _result.IdEmployee = id_employee;
-            return _result;
-        }
+        //public DailyResult SetDailyResult(int id_employee, EnumWorkType type)
+        //{
+        //    _result.IdWorktype = (int)type;
+        //    _result.IdEmployee = id_employee;
+        //    return _result;
+        //}
 
-        private void StartWork(int id_employee, EnumWorkType type)
+        private void StartWork(int idEmployee, EnumWorkType type)
         {
-            _result.Id = ManagerRepository.DailyResultRepository.InsertDialyResult(SetDailyResult(id_employee, type));
+            DailyResult result = new DailyResult();
+            result.Start = DateTime.Now;
+            result.Finish = null;
+            result.IdEmployee = idEmployee;
+            ManagerRepository.DailyResultRepository.InsertDialyResult(result);
         }
 
         public bool FinishWork(int id_employee, EnumWorkType type)
         {
             if (ManagerRepository.DailyResultRepository.GetFinishDailyResult(SetDailyResult(id_employee, type)) == null)
             {
-                return ManagerRepository.DailyResultRepository.UpdateFinishDailyResult(SetDailyResult(id_employee, type));
+                return ManagerRepository.DailyResultRepository.UpdateDailyasdasdResult(SetDailyResult(id_employee, type));
             }
             return false;
         }
