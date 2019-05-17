@@ -22,3 +22,7 @@ C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceTermianal\Logic\o
 C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceTermianal\Logic\obj\Debug\Logic.csproj.CopyComplete
 C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceTermianal\Logic\obj\Debug\Logic.exe
 C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceTermianal\Logic\obj\Debug\Logic.pdb
+C:\Users\transformer2\source\repos\git\KrosDochadzka\Logic\obj\Debug\Logic.csprojAssemblyReference.cache
+C:\Users\transformer2\source\repos\git\KrosDochadzka\Logic\obj\Debug\Logic.csproj.CoreCompileInputs.cache
+C:\Users\transformer2\source\repos\git\KrosDochadzka\Logic\obj\Debug\Logic.exe
+C:\Users\transformer2\source\repos\git\KrosDochadzka\Logic\obj\Debug\Logic.pdb
