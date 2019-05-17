@@ -48,16 +48,3 @@ C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceTermianal\Attenda
 C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceTermianal\AttendanceSystem\obj\Debug\AttendanceSystem.csproj.CopyComplete
 C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceTermianal\AttendanceSystem\obj\Debug\AttendanceSystem.exe
 C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceTermianal\AttendanceSystem\obj\Debug\AttendanceSystem.pdb
-C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceSystem\obj\Debug\AttendanceSystem.csprojAssemblyReference.cache
-C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceSystem\obj\Debug\AttendanceSystem.frmDailyDetails.resources
-C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceSystem\obj\Debug\AttendanceSystem.frmDailyDetailsAddEdit.resources
-C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceSystem\obj\Debug\AttendanceSystem.frmLogin.resources
-C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceSystem\obj\Debug\AttendanceSystem.frmNewEmployee.resources
-C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceSystem\obj\Debug\AttendanceSystem.frmMonthOverview.resources
-C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceSystem\obj\Debug\AttendanceSystem.FrmMainWindow.resources
-C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceSystem\obj\Debug\AttendanceSystem.frmPasswordChange.resources
-C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceSystem\obj\Debug\AttendanceSystem.Properties.Resources.resources
-C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceSystem\obj\Debug\AttendanceSystem.csproj.GenerateResource.cache
-C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceSystem\obj\Debug\AttendanceSystem.csproj.CoreCompileInputs.cache
-C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceSystem\obj\Debug\AttendanceSystem.exe
-C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceSystem\obj\Debug\AttendanceSystem.pdb

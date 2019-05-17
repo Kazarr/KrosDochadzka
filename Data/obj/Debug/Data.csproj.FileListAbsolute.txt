@@ -18,7 +18,3 @@ C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceTermianal\Data\ob
 C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceTermianal\Data\obj\Debug\Data.csproj.CopyComplete
 C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceTermianal\Data\obj\Debug\Data.dll
 C:\Users\transformer2\source\repos\git\KrosDochadzka\AttendanceTermianal\Data\obj\Debug\Data.pdb
-C:\Users\transformer2\source\repos\git\KrosDochadzka\Data\obj\Debug\Data.csprojAssemblyReference.cache
-C:\Users\transformer2\source\repos\git\KrosDochadzka\Data\obj\Debug\Data.csproj.CoreCompileInputs.cache
-C:\Users\transformer2\source\repos\git\KrosDochadzka\Data\obj\Debug\Data.dll
-C:\Users\transformer2\source\repos\git\KrosDochadzka\Data\obj\Debug\Data.pdb
