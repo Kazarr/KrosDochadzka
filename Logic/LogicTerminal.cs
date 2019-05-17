@@ -28,6 +28,8 @@ namespace Logic
             result.IdEmployee = idEmployee;
             ManagerRepository.DailyResultRepository.InsertDialyResult(result);
         }
+        // toto kurva urob
+       //načítať dailyResult na zaklade id zamestnanca pre dnešný deň, kde je finish null a ten následne updatetovať
 
         public bool FinishWork(int id_employee, EnumWorkType type)
         {
