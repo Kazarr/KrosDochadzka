@@ -77,7 +77,7 @@ namespace AttendanceTermianal
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            DescribeAndCreateDailyResult(EnumWorkType.Exit);
+            DescribeAndExitDailyResult(EnumWorkType.Exit);
         }
 
         private void timerClear_Tick(object sender, EventArgs e)
@@ -122,9 +122,7 @@ namespace AttendanceTermianal
                 {
                     int employeeId = int.Parse(txtEmpId.Text);
                     _terminalViewModel.CreateNewDailyResult(employeeId, type);
-                    lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
-                    lblDateNow.Text = _terminalViewModel.DescriptionDate();
-                    lblWorkType.Text = _terminalViewModel.DescriptionWorkType(type.ToString());
+                    Describe(employeeId, type);
                     timerClear.Start();
                 }
             }
@@ -133,6 +131,31 @@ namespace AttendanceTermianal
                 lblName.Text = ShowError();
                 timerClear.Start();
             }
+        }
+
+        private void DescribeAndExitDailyResult(EnumWorkType type)
+        {
+            if (!string.IsNullOrEmpty(txtEmpId.Text))
+            {
+                if (CorrectEmp(txtEmpId.Text))
+                {
+                    int employeeId = int.Parse(txtEmpId.Text);
+                    _terminalViewModel.ExitDailyResult(employeeId);
+                    Describe(employeeId, type);
+                    timerClear.Start();
+                }
+            }
+            else
+            {
+                lblName.Text = ShowError();
+                timerClear.Start();
+            }
+        }
+        private void Describe(int employeeId, EnumWorkType type)
+        {
+            lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
+            lblDateNow.Text = _terminalViewModel.DescriptionDate();
+            lblWorkType.Text = _terminalViewModel.DescriptionWorkType(type);
         }
     }
 }
