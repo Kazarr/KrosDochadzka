@@ -12,10 +12,11 @@ namespace AttendanceSystem
         private LogicSystem _logic = new LogicSystem();
         private Employee _employee;
         private Person _person;
+        private RepositoryFactory _repositoryFactory;
 
         public MainWindowViewModel()
         {
-
+            _repositoryFactory = new RepositoryFactory();
         }
 
         public Person Person { get => _person; set {  _person = value;
@@ -27,18 +28,18 @@ namespace AttendanceSystem
 
         public Employee GetEmployeeByID(int id)
         {
-            return ManagerRepository.EmployeeRepository.GetEmpolyeeByID(id);
+            return _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByID(id);
         }
 
 
         public BindingList<Person> FillComboBox()
         {
-            return new BindingList<Person>(ManagerRepository.PersonRepository.GetPersonsEmployees().ToList());
+            return new BindingList<Person>(_repositoryFactory.GetPersonRepository().GetPersonsEmployees().ToList());
         }
 
         public BindingList<Person> FillComboBox(int idSupervisor)
         {
-            return new BindingList<Person>(ManagerRepository.PersonRepository.GetPersonEmployeesPlebs(idSupervisor).ToList());
+            return new BindingList<Person>(_repositoryFactory.GetPersonRepository().GetPersonEmployeesPlebs(idSupervisor).ToList());
         }
 
         public BindingList<DaySummary> FillDataGridViewOverview(int id, string date)
@@ -55,52 +56,55 @@ namespace AttendanceSystem
 
         public IDictionary<string, int> GetMonthWithNumberOfRecords(int id)
         {
-            return ManagerRepository.DailyResultRepository.GetMonthsWithNumberOfRecords(id);
+            return _repositoryFactory.GetDailyResultRepository().GetMonthsWithNumberOfRecords(id);
         }
 
         public Person GetPersonByEmployeeId(int employeeId)
         {
-            return ManagerRepository.PersonRepository.GetPersonByIdEmployee(employeeId);
+            return _repositoryFactory.GetPersonRepository().GetPersonByIdEmployee(employeeId);
         }
 
         public Person GetPersonByEmployee(Person person)
         {
-            return ManagerRepository.PersonRepository.GetPersonByIdEmployee(person.Id);
+            return _repositoryFactory.GetPersonRepository().GetPersonByIdEmployee(person.Id);
         }
 
         public Employee GetEmpolyeeByPersonId(int id)
         {
-            return ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(id);
+            return _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByIdPerson(id);
         }
 
         public Employee GetEmpolyeeByPersonId(Person person)
         {
-            return ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(person);
+            return _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByIdPerson(person);
         }
 
         public int GetEmployeeIdByPerson(Person selectedItem)
         {
-            return ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(selectedItem.Id).Id;
+            return _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByIdPerson(selectedItem.Id).Id;
         }
 
         public void DeleteEmployeePerson(Person person)
         {
-            Employee e = ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(person.Id);
-            ManagerRepository.DailyResultRepository.DeleteDailyResultByIdEmployee(e.Id);
-            ManagerRepository.EmployeeRepository.DeleteEmployee(e);
+
+            Employee e = _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByIdPerson(person.Id);
+            _repositoryFactory.GetDailyResultRepository().DeleteDailyResultByIdEmployee(e.Id);
+            _repositoryFactory.GetEmployeeRepository().DeleteEmployee(e);
+            //ManagerRepository.PersonRepository.DeletePerson(person);//nemusime mazat z osoby
+
         }
 
         public BindingList<Person> FillPlebPerson(int employeeId)
         {
             BindingList<Person> ret = new BindingList<Person>
             {
-                ManagerRepository.PersonRepository.GetPersonByIdEmployee(employeeId)
+                _repositoryFactory.GetPersonRepository().GetPersonByIdEmployee(employeeId)
             };
             return ret;
         }
         public bool ResetPassword()
         {
-            return _logic.ChangePassword(ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(Person.Id).Id, "0000");
+            return _logic.ChangePassword(_repositoryFactory.GetEmployeeRepository().GetEmpolyeeByIdPerson(Person.Id).Id, "0000");
         }
     }
 }
