@@ -28,14 +28,14 @@ namespace AttendanceSystem
         {
             int permssion = _mainWindowViewModel.GetEmployeeByID(_loggedEmployeeID).Permision;
 
-            if (permssion == 1)
+            if (permssion == (int)EnumPermissions.Employee)
             {
                 btnDeleteEmployee.Visible = false;
                 btnNewEmployee.Visible = false;
                 btnUpdateEmployee.Visible = false;
                 comboBoxPerson.DataSource = _mainWindowViewModel.FillPlebPerson(_loggedEmployeeID);
             }
-            else if (permssion == 2)
+            else if (permssion == (int)EnumPermissions.Supervisor)
             {
 
                 btnDeleteEmployee.Visible = false;
@@ -44,7 +44,7 @@ namespace AttendanceSystem
                 comboBoxPerson.DataSource = _mainWindowViewModel.FillPlebPerson(_loggedEmployeeID);
                 comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox(_loggedEmployeeID);
             }
-            else if (permssion == 3)
+            else if (permssion == (int)EnumPermissions.Admin)
             {
                 comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox();
                 btnReset.Visible = true;

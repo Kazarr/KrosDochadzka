@@ -52,6 +52,7 @@
     <Compile Include="Generator\EmployeeGenerator.cs" />
     <Compile Include="Generator\PasswordGenerator.cs" />
     <Compile Include="Generator\PersonGenerator.cs" />
+    <Compile Include="Model\EnumPermissions.cs" />
     <Compile Include="Model\DailyResult.cs" />
     <Compile Include="Model\DailyResultWithWorkType.cs" />
     <Compile Include="Model\DaySummary.cs" />
