@@ -32,11 +32,11 @@ namespace AttendanceTermianal
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            lblDate.Text = _terminalViewModel.CurrentDate();
-            lblDay.Text = _terminalViewModel.CurrentDay();
-            lblHour.Text = _terminalViewModel.CurrentHourmin();
-            lblSec.Text = _terminalViewModel.CurrentSec();
-            lblDateNow.Text = _terminalViewModel.DescriptionDate();
+            lblDate.Text = DateTime.Now.DateFormat();
+            lblDay.Text = DateTime.Now.DayFormat();
+            lblHour.Text = DateTime.Now.HourMinFormat();
+            lblSec.Text = DateTime.Now.SecondsFormat();
+            lblDateNow.Text = DateTime.Now.DateDescription();
             CheckInternetConnection();
         }
 
@@ -66,7 +66,7 @@ namespace AttendanceTermianal
 
         private void TimerClear_Tick(object sender, EventArgs e)
         {
-            lblDateNow.Text = _terminalViewModel.DescriptionDate();
+            lblDateNow.Text = DateTime.Now.DateDescription();
             lblWorkType.Text = "";
             lblName.Text = "";
             txtEmpId.Clear();
@@ -102,8 +102,8 @@ namespace AttendanceTermianal
         private void Describe(int employeeId, EnumWorkType type)
         {
             lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
-            lblDateNow.Text = _terminalViewModel.DescriptionDate();
-            lblWorkType.Text = _terminalViewModel.DescriptionWorkType(type);
+            lblDateNow.Text = DateTime.Now.DateDescription();
+            lblWorkType.Text = type.ToString();
         }
         
         #region Buttons

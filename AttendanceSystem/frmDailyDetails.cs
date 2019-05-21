@@ -77,7 +77,8 @@ namespace AttendanceSystem
             }
         }
 
-        
+
+
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
             FrmDailyDetailsAddEdit frmDailyDetailsAdd = new FrmDailyDetailsAddEdit(_selectedEmployeeId, _thisDate, _logic);
