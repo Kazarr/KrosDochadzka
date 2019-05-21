@@ -12,6 +12,12 @@ namespace Logic
     {
         private DailyResult _result = new DailyResult();
         private Employee _empolyee = new Employee();
+        private RepositoryFactory _repositoryFactory;
+
+        public LogicTerminal()
+        {
+            _repositoryFactory = new RepositoryFactory();
+        }
 
         public DailyResult SetDailyResult(int id_employee, EnumWorkType type)
         {
@@ -22,21 +28,21 @@ namespace Logic
 
         private void StartWork(int id_employee, EnumWorkType type)
         {
-            _result.Id = RepositoryFactory.DailyResultRepository.InsertDialyResult(SetDailyResult(id_employee, type));
+            _result.Id = _repositoryFactory.GetDailyResultRepository().InsertDialyResult(SetDailyResult(id_employee, type));
         }
 
         public bool FinishWork(int id_employee, EnumWorkType type)
         {
-            if (RepositoryFactory.DailyResultRepository.GetFinishDailyResult(SetDailyResult(id_employee, type)) == null)
+            if (_repositoryFactory.GetDailyResultRepository().GetFinishDailyResult(SetDailyResult(id_employee, type)) == null)
             {
-                return RepositoryFactory.DailyResultRepository.UpdateFinishDailyResult(SetDailyResult(id_employee, type));
+                return _repositoryFactory.GetDailyResultRepository().UpdateFinishDailyResult(SetDailyResult(id_employee, type));
             }
             return false;
         }
 
         public bool CheckIfDailyResultExist(int id_employee, EnumWorkType type)
         {
-            return RepositoryFactory.DailyResultRepository.CheckIfDailyResultExist(SetDailyResult(id_employee, type));
+            return _repositoryFactory.GetDailyResultRepository().CheckIfDailyResultExist(SetDailyResult(id_employee, type));
         }
 
         /// <summary>
@@ -48,14 +54,14 @@ namespace Logic
         {
             _result.IdEmployee = id_employee;
             List<DailyResult> test = new List<DailyResult>();
-            test = RepositoryFactory.DailyResultRepository.SelectTwoLastResults(_result);
+            test = _repositoryFactory.GetDailyResultRepository().SelectTwoLastResults(_result);
             if (test.Count == 2)
             {
                 if (test[0].IdWorktype == test[1].IdWorktype)
                 {
-                    _result.Finish = RepositoryFactory.DailyResultRepository.SelectLastStartAndFinish(_result).Finish;
-                    _result.Start = RepositoryFactory.DailyResultRepository.SelectLastStartAndFinish(_result).Start;
-                    RepositoryFactory.DailyResultRepository.InsertInBlankSpace(_result);
+                    _result.Finish = _repositoryFactory.GetDailyResultRepository().SelectLastStartAndFinish(_result).Finish;
+                    _result.Start = _repositoryFactory.GetDailyResultRepository().SelectLastStartAndFinish(_result).Start;
+                    _repositoryFactory.GetDailyResultRepository().InsertInBlankSpace(_result);
                 }
             }
         }
