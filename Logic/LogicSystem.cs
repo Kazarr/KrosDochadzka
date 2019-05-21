@@ -253,7 +253,6 @@ namespace Logic
         public void AddNewEmployee(Person person, Employee employee, Person supervisor)
         {
 
-            person.Id = _personRepository.InsertPerson(person);
             //najvyssi supervisor bude mat ako supervisora seba, aby si tiez mohol upravovat svoje zaznamy
             if (supervisor == null)
             {
