@@ -1,5 +1,4 @@
 ﻿using Data.Model;
-using Data.Repository;
 using Logic;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -103,7 +102,7 @@ namespace AttendanceSystem
         public bool ResetPassword()
         {
             // 0000 je základne resetovacie heslo
-            return _logic.ChangePassword(_logic.GetEmpolyeeByIdPerson(Person.Id).Id, "0000");
+            return _logic.ChangePasswordByEmployeeId(_logic.GetEmpolyeeByIdPerson(Person.Id).Id, "0000");
         }
     }
 }

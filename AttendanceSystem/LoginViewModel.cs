@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Logic;
 using System.Data.SqlClient;
-using Data.Repository;
-using Logic;
 
 namespace AttendanceSystem
-{  
+{
     class LoginViewModel
     {
        private LogicSystem _logic;

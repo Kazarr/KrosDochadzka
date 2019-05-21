@@ -14,7 +14,6 @@ namespace Logic
         private string DB_NAME = "KROSDOCHADZKA";
         private const int MINHOURSFORLUNCHBREAKTIME = 4;
         private const int LUNCHBREAKTIME = 30;
-        private RepositoryFactory _repositoryFactory;
 
         private DaySummaryRepository _daySummaryRepository;
         private EmployeeRepository _employeeRepository;
@@ -221,13 +220,13 @@ namespace Logic
 
         private int InsertFullEmployee(Employee employee)
         {
-            employee.Password = CalculateMD5Hash(e.Password);
-            return _employeeRepository.InsertFullEmployee(e);
+            employee.Password = CalculateMD5Hash(employee.Password);
+            return _employeeRepository.InsertFullEmployee(employee);
         }
 
         public bool ChangePasswordByEmployeeId(int employeeID, string password)
         {
-            return _employeeRepository.ChangePassword(id, CalculateMD5Hash(password));
+            return _employeeRepository.ChangePassword(employeeID, CalculateMD5Hash(password));
         }
 
         public void UpdateEmployee(string firstName, string lastName, string phoneNumber, string adress, int permission, Person supervisor)
@@ -294,7 +293,7 @@ namespace Logic
 
         public List<int> GetYearsFromEmploymentStartByEmployee(int employeeID)
         {
-            int firstYear = _dailyRecordRepository.GetYearOfFirstRecord(employeeID);
+            int firstYear = _dailyRecordRepository.GetYearOfEmploymentStartByEmployee(employeeID);
             //v pripade ze metoda vrati 0, zamestnanec nema ziadne zaznamy (len teraz zacal pracovat), tak mu nadstavime terajsi rok ako 
             //jeho prvy rok
             if (firstYear == 0)

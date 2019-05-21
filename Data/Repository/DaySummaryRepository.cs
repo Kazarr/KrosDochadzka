@@ -1,11 +1,6 @@
-﻿using Data.Model;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
 
 namespace Data.Repository
 {

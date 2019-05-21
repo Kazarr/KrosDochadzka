@@ -1,9 +1,4 @@
 ﻿using Logic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AttendanceSystem
 {
@@ -28,7 +23,7 @@ namespace AttendanceSystem
 
         public void ChangePassword(int idEmployee, string newPass)
         {
-            _logic.ChangePassword(idEmployee, newPass);
+            _logic.ChangePasswordByEmployeeId(idEmployee, newPass);
         }
 
     }
