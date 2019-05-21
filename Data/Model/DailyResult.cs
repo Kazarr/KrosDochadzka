@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Data.Model
 {
-    public class DailyResult
+    public class DailyRecord
     {
-        public DailyResult()
+        public DailyRecord()
         {
         }
 
-        public DailyResult(int id_employee, DateTime start, DateTime finish, int id_worktype)
+        public DailyRecord(int id_employee, DateTime start, DateTime finish, int id_worktype)
         {
             IdEmployee = id_employee;
             Start = start;
@@ -20,7 +20,7 @@ namespace Data.Model
             IdWorktype = id_worktype;
         }
 
-        public DailyResult(int id, int id_employee, DateTime start, DateTime finish, int id_worktype)
+        public DailyRecord(int id, int id_employee, DateTime start, DateTime finish, int id_worktype)
         {
             Id = id;
             IdEmployee = id_employee;

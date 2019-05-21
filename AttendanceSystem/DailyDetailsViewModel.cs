@@ -30,7 +30,7 @@ namespace AttendanceSystem
             return _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByID(employeeId);
         }
 
-        public DailyResult GetDailyResultById(int dailyResultId)
+        public DailyRecord GetDailyResultById(int dailyResultId)
         {
             return _repositoryFactory.GetDailyResultRepository().GetDailyResultByID(dailyResultId);
         }

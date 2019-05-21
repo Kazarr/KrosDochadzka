@@ -10,7 +10,7 @@ namespace Logic
 {
     public class LogicTerminal
     {
-        private DailyResult _result = new DailyResult();
+        private DailyRecord _result = new DailyRecord();
         private Employee _empolyee = new Employee();
         private RepositoryFactory _repositoryFactory;
 
@@ -19,7 +19,7 @@ namespace Logic
             _repositoryFactory = new RepositoryFactory();
         }
 
-        public DailyResult SetDailyResult(int id_employee, EnumWorkType type)
+        public DailyRecord SetDailyResult(int id_employee, EnumWorkType type)
         {
             _result.IdWorktype = (int)type;
             _result.IdEmployee = id_employee;
@@ -53,7 +53,7 @@ namespace Logic
         public void FillBlankSpace(int id_employee, EnumWorkType type)
         {
             _result.IdEmployee = id_employee;
-            List<DailyResult> test = new List<DailyResult>();
+            List<DailyRecord> test = new List<DailyRecord>();
             test = _repositoryFactory.GetDailyResultRepository().SelectTwoLastResults(_result);
             if (test.Count == 2)
             {

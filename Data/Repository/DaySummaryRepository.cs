@@ -17,7 +17,7 @@ namespace Data.Repository
 
             DateTime? ret = null;
             Execute((command) => {
-                command.CommandText = @"select min(dr.[Start]) from DailyResult as dr
+                command.CommandText = @"select min(dr.[Start]) from DailyRecord as dr
                                                 where dr.IdEmployee=@idEmployee  and dr.IdWorktype=1 and convert(date,dr.start)=convert(date,@date)";
 
                 command.Parameters.Add("@idEmployee", SqlDbType.Int).Value = idEmployee;
@@ -34,7 +34,7 @@ namespace Data.Repository
             DateTime? ret = null;
             Execute((command) =>
             {
-                command.CommandText = @"select max(dr.[Finish]) from DailyResult as dr
+                command.CommandText = @"select max(dr.[Finish]) from DailyRecord as dr
                                                 where dr.IdEmployee=@idEmployee  and dr.IdWorktype=1 and convert(date,dr.start)=convert(date,@date)";
 
                 command.Parameters.Add("@idEmployee", SqlDbType.Int).Value = idEmployee;
@@ -50,7 +50,7 @@ namespace Data.Repository
             TimeSpan ret = TimeSpan.Zero;
             Execute((command) => 
             {
-            command.CommandText = @"select dr.Start,dr.Finish from DailyResult as dr
+            command.CommandText = @"select dr.Start,dr.Finish from DailyRecord as dr
                                                 where dr.IdEmployee=@IdEmployee  and dr.IdWorktype=@idWorkType 
                                                             and convert(date,dr.start)=convert(date,@date)";
 

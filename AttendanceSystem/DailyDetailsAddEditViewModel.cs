@@ -38,7 +38,7 @@ namespace AttendanceSystem
         /// <returns> true if new daily result was added, othervise false</returns>
         public bool CreateNewDailyResult(int employeeID, DateTime startTime, DateTime finishTime,int workTypeID) {
 
-            DailyResult dailyResult = new DailyResult();
+            DailyRecord dailyResult = new DailyRecord();
             dailyResult.IdEmployee = employeeID;
             dailyResult.Start = startTime;
             dailyResult.Finish = finishTime;
@@ -53,7 +53,7 @@ namespace AttendanceSystem
         /// </summary>
         /// <param name="updatedDailyResult"></param>
         /// <returns>true if update happend, otherwise false</returns>
-        public bool UpdateDailyResult (DailyResult updatedDailyResult)
+        public bool UpdateDailyResult (DailyRecord updatedDailyResult)
         {
             return _repositoryFactory.GetDailyResultRepository().UpdateDailyResult(updatedDailyResult);
         }
