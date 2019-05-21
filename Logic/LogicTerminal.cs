@@ -10,63 +10,68 @@ namespace Logic
 {
     public class LogicTerminal
     {
-        private DailyResult _result = new DailyResult();
-        private Employee _empolyee = new Employee();
 
-        public DailyResult SetDailyResult(int id_employee, EnumWorkType type)
+        private void StartWork(int idEmployee, EnumWorkType type)
         {
-            _result.IdWorktype = (int)type;
-            _result.IdEmployee = id_employee;
-            return _result;
+            DailyResult result = new DailyResult();
+            result.Start = DateTime.Now;
+            result.Finish = null;
+            result.IdEmployee = idEmployee;
+            result.IdWorktype = (int)type;
+            ManagerRepository.DailyResultRepository.InsertDialyResult(result);
         }
 
-        private void StartWork(int id_employee, EnumWorkType type)
+        public void FinishWork(int idEmployee)
         {
-            _result.Id = ManagerRepository.DailyResultRepository.InsertDialyResult(SetDailyResult(id_employee, type));
-        }
-
-        public bool FinishWork(int id_employee, EnumWorkType type)
-        {
-            if (ManagerRepository.DailyResultRepository.GetFinishDailyResult(SetDailyResult(id_employee, type)) == null)
+            DailyResult result = ManagerRepository.DailyResultRepository.GetResultByIdWithoutFinishInCurrentDay(idEmployee);
+            if (result != null)
             {
-                return ManagerRepository.DailyResultRepository.UpdateFinishDailyResult(SetDailyResult(id_employee, type));
+                result.Finish = DateTime.Now;
+                ManagerRepository.DailyResultRepository.UpdateDailyResult(result);
             }
-            return false;
         }
 
-        public bool CheckIfDailyResultExist(int id_employee, EnumWorkType type)
+        public bool CheckIfDailyResultExist(int idEmployee, EnumWorkType type)
         {
-            return ManagerRepository.DailyResultRepository.CheckIfDailyResultExist(SetDailyResult(id_employee, type));
+            DailyResult result = new DailyResult();
+            result.IdEmployee = idEmployee;
+            result.IdWorktype = (int)type;
+            return ManagerRepository.DailyResultRepository.CheckIfDailyResultExist(result);
         }
 
         /// <summary>
         /// Záplní okno v prípade viacnásobného príchodu a odchodu
         /// </summary>
-        /// <param name="id_employee"></param>
+        /// <param name="idEmployee"></param>
         /// <param name="type"></param>
-        public void FillBlankSpace(int id_employee, EnumWorkType type)
+        public void FillBlankSpace(int idEmployee, EnumWorkType type)
         {
-            _result.IdEmployee = id_employee;
-            List<DailyResult> test = new List<DailyResult>();
-            test = ManagerRepository.DailyResultRepository.SelectTwoLastResults(_result);
-            if (test.Count == 2)
+            DailyResult result = new DailyResult();
+            result.IdEmployee = idEmployee;
+            result.IdWorktype = (int)type;
+            List<DailyResult> twoLastResult = new List<DailyResult>();
+            twoLastResult = ManagerRepository.DailyResultRepository.SelectTwoLastResults(result);
+            // Ak sa do listu uložia presne 2 záznamy s rovnakým WorkType(work) znamená to že zamestnanec za jeden deň viackrát prišiel a odišiel z roboty
+            if (twoLastResult.Count == 2)
             {
-                if (test[0].IdWorktype == test[1].IdWorktype)
+                if (twoLastResult[0].IdWorktype == twoLastResult[1].IdWorktype)
                 {
-                    _result.Finish = ManagerRepository.DailyResultRepository.SelectLastStartAndFinish(_result).Finish;
-                    _result.Start = ManagerRepository.DailyResultRepository.SelectLastStartAndFinish(_result).Start;
-                    ManagerRepository.DailyResultRepository.InsertInBlankSpace(_result);
+                    DailyResult newResult = new DailyResult();
+                    newResult.IdEmployee = idEmployee;
+                    newResult.Finish = ManagerRepository.DailyResultRepository.SelectLastStartAndFinish(result).Finish;
+                    newResult.Start = ManagerRepository.DailyResultRepository.SelectLastStartAndFinish(result).Start;
+                    ManagerRepository.DailyResultRepository.InsertInBlankSpace(newResult);
                 }
             }
         }
 
-        public void ChangeWorkType(int id_employee, EnumWorkType type)
+        public void ChangeWorkType(int idEmployee, EnumWorkType type)
         {
-            if (!CheckIfDailyResultExist(id_employee, type))
+            if (!CheckIfDailyResultExist(idEmployee, type))
             {
-                FinishWork(id_employee, type);
-                StartWork(id_employee, type);
-                FillBlankSpace(id_employee, type);
+                FinishWork(idEmployee);
+                StartWork(idEmployee, type);
+                FillBlankSpace(idEmployee, type);
             }
         }
     }

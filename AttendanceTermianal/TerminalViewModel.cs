@@ -41,9 +41,9 @@ namespace AttendanceTermianal
                                 $"{ManagerRepository.PersonRepository.GetPersonByIdEmployee(id_employee).LastName} ";
             return fullName;
         }
-        public string DescriptionWorkType(string wokrType)
+        public string DescriptionWorkType(EnumWorkType type)
         {
-            string workT = $"{wokrType} ";
+            string workT = type.ToString();
             return workT;
         }
         public string DescriptionDate()
@@ -71,9 +71,14 @@ namespace AttendanceTermianal
             }      
         }
 
-        public void CreateNewDailyResult(int id_employee, EnumWorkType type)
+        public void ExitDailyResult(int idEmployee)
         {
-            _logicTerminal.ChangeWorkType(id_employee,type);
+            _logicTerminal.FinishWork(idEmployee);
+        }
+
+        public void CreateNewDailyResult(int idEmployee, EnumWorkType type)
+        {
+            _logicTerminal.ChangeWorkType(idEmployee,type);
         }
     }
 }
