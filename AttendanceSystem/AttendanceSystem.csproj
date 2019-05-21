@@ -51,75 +51,75 @@
   <ItemGroup>
     <Compile Include="DailyDetailsAddEditViewModel.cs" />
     <Compile Include="DailyDetailsViewModel.cs" />
-    <Compile Include="FrmDailyDetails.cs">
+    <Compile Include="DailyDetailsView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmDailyDetails.Designer.cs">
-      <DependentUpon>FrmDailyDetails.cs</DependentUpon>
+    <Compile Include="DailyDetailsView.Designer.cs">
+      <DependentUpon>DailyDetailsView.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmDailyDetailsAddEdit.cs">
+    <Compile Include="DailyDetailsAddEditView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmDailyDetailsAddEdit.Designer.cs">
-      <DependentUpon>FrmDailyDetailsAddEdit.cs</DependentUpon>
+    <Compile Include="DailyDetailsAddEditView.Designer.cs">
+      <DependentUpon>DailyDetailsAddEditView.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmLogin.cs">
+    <Compile Include="LoginView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmLogin.Designer.cs">
-      <DependentUpon>FrmLogin.cs</DependentUpon>
+    <Compile Include="LoginView.Designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmPasswordChange.cs">
+    <Compile Include="PasswordChangeView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmPasswordChange.Designer.cs">
-      <DependentUpon>FrmPasswordChange.cs</DependentUpon>
+    <Compile Include="PasswordChangeView.Designer.cs">
+      <DependentUpon>PasswordChangeView.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="MonthOverviewViewModel.cs" />
     <Compile Include="NewEmployeeViewModel.cs" />
-    <Compile Include="FrmNewEmployee.cs">
+    <Compile Include="NewEmployeeView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmNewEmployee.Designer.cs">
-      <DependentUpon>FrmNewEmployee.cs</DependentUpon>
+    <Compile Include="NewEmployeeView.Designer.cs">
+      <DependentUpon>NewEmployeeView.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmMonthOverview.cs">
+    <Compile Include="MonthOverviewView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmMonthOverview.Designer.cs">
-      <DependentUpon>FrmMonthOverview.cs</DependentUpon>
+    <Compile Include="MonthOverviewView.Designer.cs">
+      <DependentUpon>MonthOverviewView.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmMainWindow.cs">
+    <Compile Include="MainWindowView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmMainWindow.Designer.cs">
-      <DependentUpon>FrmMainWindow.cs</DependentUpon>
+    <Compile Include="MainWindowView.Designer.cs">
+      <DependentUpon>MainWindowView.cs</DependentUpon>
     </Compile>
     <Compile Include="PasswordChangeViewModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FrmDailyDetails.resx">
-      <DependentUpon>FrmDailyDetails.cs</DependentUpon>
+    <EmbeddedResource Include="DailyDetailsView.resx">
+      <DependentUpon>DailyDetailsView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmDailyDetailsAddEdit.resx">
-      <DependentUpon>FrmDailyDetailsAddEdit.cs</DependentUpon>
+    <EmbeddedResource Include="DailyDetailsAddEditView.resx">
+      <DependentUpon>DailyDetailsAddEditView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmLogin.resx">
-      <DependentUpon>FrmLogin.cs</DependentUpon>
+    <EmbeddedResource Include="LoginView.resx">
+      <DependentUpon>LoginView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmNewEmployee.resx">
-      <DependentUpon>FrmNewEmployee.cs</DependentUpon>
+    <EmbeddedResource Include="NewEmployeeView.resx">
+      <DependentUpon>NewEmployeeView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmMonthOverview.resx">
-      <DependentUpon>FrmMonthOverview.cs</DependentUpon>
+    <EmbeddedResource Include="MonthOverviewView.resx">
+      <DependentUpon>MonthOverviewView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmMainWindow.resx">
-      <DependentUpon>FrmMainWindow.cs</DependentUpon>
+    <EmbeddedResource Include="MainWindowView.resx">
+      <DependentUpon>MainWindowView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmPasswordChange.resx">
-      <DependentUpon>FrmPasswordChange.cs</DependentUpon>
+    <EmbeddedResource Include="PasswordChangeView.resx">
+      <DependentUpon>PasswordChangeView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

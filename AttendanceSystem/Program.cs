@@ -17,7 +17,7 @@ namespace AttendanceSystem
             CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmLogin(new LogicSystem()));
+            Application.Run(new LoginView(new LogicSystem()));
         }
     }
 }

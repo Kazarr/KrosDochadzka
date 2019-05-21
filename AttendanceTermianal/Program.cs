@@ -24,7 +24,7 @@ namespace AttendanceTermianal
             CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmTerminal(new LogicTerminal()));
+            Application.Run(new TerminalView(new LogicTerminal()));
 
         }
 

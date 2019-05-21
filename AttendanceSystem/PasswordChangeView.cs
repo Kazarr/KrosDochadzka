@@ -4,12 +4,12 @@ using System.Windows.Forms;
 
 namespace AttendanceSystem
 {
-    public partial class FrmPasswordChange : Form
+    public partial class PasswordChangeView : Form
     {
         private int _employeeId;
         private PasswordChangeViewModel _passwordChangeViewModel;
         private LogicSystem _logic;
-        public FrmPasswordChange(int id, LogicSystem logic)
+        public PasswordChangeView(int id, LogicSystem logic)
         {
             InitializeComponent();
             _logic = logic;

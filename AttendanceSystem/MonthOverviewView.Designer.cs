@@ -1,6 +1,6 @@
 ﻿namespace AttendanceSystem
 {
-    partial class FrmMonthOverview
+    partial class MonthOverviewView
     {
         /// <summary>
         /// Required designer variable.

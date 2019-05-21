@@ -6,12 +6,12 @@ using System.Windows.Forms;
 namespace AttendanceSystem
 {
 
-    public partial class FrmNewEmployee : Form
+    public partial class NewEmployeeView : Form
     {
         private NewEmployeeViewModel _newEmployeeViewModel;
         private LogicSystem _logic;
 
-        public FrmNewEmployee(LogicSystem logic)
+        public NewEmployeeView(LogicSystem logic)
         {
             InitializeComponent();
             _logic = logic;
@@ -21,7 +21,7 @@ namespace AttendanceSystem
             _newEmployeeViewModel = new NewEmployeeViewModel();
         }
 
-        public FrmNewEmployee(Person person, Employee empolyee, LogicSystem logic)
+        public NewEmployeeView(Person person, Employee empolyee, LogicSystem logic)
         {
             InitializeComponent();
             _logic = logic;

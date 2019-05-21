@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace AttendanceSystem
 {
-    public partial class FrmDailyDetailsAddEdit : Form
+    public partial class DailyDetailsAddEditView : Form
     {
         private DailyDetailsAddEditViewModel _dailyDetailsAddEditViewModel;
         private LogicSystem _logic;
@@ -13,7 +13,7 @@ namespace AttendanceSystem
         private DailyRecord _dailyResultToUpdate =null;
         private DateTime _date;
 
-        public FrmDailyDetailsAddEdit(int selectedEmployeeID, DateTime date, LogicSystem logic)
+        public DailyDetailsAddEditView(int selectedEmployeeID, DateTime date, LogicSystem logic)
         {
             InitializeComponent();
             _logic = logic;
@@ -27,7 +27,7 @@ namespace AttendanceSystem
 
         }
 
-        public FrmDailyDetailsAddEdit(int selectedEmployeeID, DateTime date, DailyRecord dailyResultToUpdate, LogicSystem logic)
+        public DailyDetailsAddEditView(int selectedEmployeeID, DateTime date, DailyRecord dailyResultToUpdate, LogicSystem logic)
         {
             InitializeComponent();
             _logic = logic;

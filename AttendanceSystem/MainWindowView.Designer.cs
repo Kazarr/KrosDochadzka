@@ -1,6 +1,6 @@
 ﻿namespace AttendanceSystem
 {
-    partial class FrmMainWindow
+    partial class MainWindowView
     {
         /// <summary>
         /// Required designer variable.
