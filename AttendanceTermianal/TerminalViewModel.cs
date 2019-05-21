@@ -14,6 +14,12 @@ namespace AttendanceTermianal
     public class TerminalViewModel
     {
         private LogicTerminal _logicTerminal = new LogicTerminal();
+        private RepositoryFactory _repositoryFactory;
+
+        public TerminalViewModel()
+        {
+            _repositoryFactory = new RepositoryFactory();
+        }
 
         public string CurrentDate()
         {
@@ -37,8 +43,8 @@ namespace AttendanceTermianal
 
         public string DescriptionFullname(int id_employee)
         {
-            string fullName = $"{ManagerRepository.PersonRepository.GetPersonByIdEmployee(id_employee).FirstName} " +
-                                $"{ManagerRepository.PersonRepository.GetPersonByIdEmployee(id_employee).LastName} ";
+            string fullName = $"{_repositoryFactory.GetPersonRepository().GetPersonByIdEmployee(id_employee).FirstName} " +
+                                $"{_repositoryFactory.GetPersonRepository().GetPersonByIdEmployee(id_employee).LastName} ";
             return fullName;
         }
         public string DescriptionWorkType(string wokrType)
@@ -61,7 +67,7 @@ namespace AttendanceTermianal
         {
             try
             {
-                var empoloyee = ManagerRepository.EmployeeRepository.GetEmpolyeeByID(int.Parse(input));
+                var empoloyee = _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByID(int.Parse(input));
                 if (empoloyee != null && empoloyee.Id.Equals(int.Parse(input)))
                 {
                     return true;

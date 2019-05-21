@@ -22,21 +22,21 @@ namespace Logic
 
         private void StartWork(int id_employee, EnumWorkType type)
         {
-            _result.Id = ManagerRepository.DailyResultRepository.InsertDialyResult(SetDailyResult(id_employee, type));
+            _result.Id = RepositoryFactory.DailyResultRepository.InsertDialyResult(SetDailyResult(id_employee, type));
         }
 
         public bool FinishWork(int id_employee, EnumWorkType type)
         {
-            if (ManagerRepository.DailyResultRepository.GetFinishDailyResult(SetDailyResult(id_employee, type)) == null)
+            if (RepositoryFactory.DailyResultRepository.GetFinishDailyResult(SetDailyResult(id_employee, type)) == null)
             {
-                return ManagerRepository.DailyResultRepository.UpdateFinishDailyResult(SetDailyResult(id_employee, type));
+                return RepositoryFactory.DailyResultRepository.UpdateFinishDailyResult(SetDailyResult(id_employee, type));
             }
             return false;
         }
 
         public bool CheckIfDailyResultExist(int id_employee, EnumWorkType type)
         {
-            return ManagerRepository.DailyResultRepository.CheckIfDailyResultExist(SetDailyResult(id_employee, type));
+            return RepositoryFactory.DailyResultRepository.CheckIfDailyResultExist(SetDailyResult(id_employee, type));
         }
 
         /// <summary>
@@ -48,14 +48,14 @@ namespace Logic
         {
             _result.IdEmployee = id_employee;
             List<DailyResult> test = new List<DailyResult>();
-            test = ManagerRepository.DailyResultRepository.SelectTwoLastResults(_result);
+            test = RepositoryFactory.DailyResultRepository.SelectTwoLastResults(_result);
             if (test.Count == 2)
             {
                 if (test[0].IdWorktype == test[1].IdWorktype)
                 {
-                    _result.Finish = ManagerRepository.DailyResultRepository.SelectLastStartAndFinish(_result).Finish;
-                    _result.Start = ManagerRepository.DailyResultRepository.SelectLastStartAndFinish(_result).Start;
-                    ManagerRepository.DailyResultRepository.InsertInBlankSpace(_result);
+                    _result.Finish = RepositoryFactory.DailyResultRepository.SelectLastStartAndFinish(_result).Finish;
+                    _result.Start = RepositoryFactory.DailyResultRepository.SelectLastStartAndFinish(_result).Start;
+                    RepositoryFactory.DailyResultRepository.InsertInBlankSpace(_result);
                 }
             }
         }

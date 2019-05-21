@@ -10,10 +10,16 @@ namespace AttendanceSystem
 {
     class DailyDetailsAddEditViewModel
     {
+        private RepositoryFactory _repositoryFactory;
+
+        public DailyDetailsAddEditViewModel()
+        {
+            _repositoryFactory = new RepositoryFactory();
+        }
         public List<string> GetWorkTypes()
         {
             List<string> ret = new List<string>();
-            IEnumerable<WorkType> myList= ManagerRepository.WorkTypeRepository.GetWorkType(); 
+            IEnumerable<WorkType> myList= _repositoryFactory.GetWorkTypeRepository().GetWorkType(); 
 
             foreach (var item in myList)
             {
@@ -37,7 +43,7 @@ namespace AttendanceSystem
             dailyResult.Start = startTime;
             dailyResult.Finish = finishTime;
             dailyResult.IdWorktype = workTypeID;
-            return (ManagerRepository.DailyResultRepository.InsertNewDailyResultFromSystem(dailyResult));
+            return (_repositoryFactory.GetDailyResultRepository().InsertNewDailyResultFromSystem(dailyResult));
 
 
         }
@@ -49,7 +55,7 @@ namespace AttendanceSystem
         /// <returns>true if update happend, otherwise false</returns>
         public bool UpdateDailyResult (DailyResult updatedDailyResult)
         {
-            return ManagerRepository.DailyResultRepository.UpdateDailyResult(updatedDailyResult);
+            return _repositoryFactory.GetDailyResultRepository().UpdateDailyResult(updatedDailyResult);
         }
     }
 }

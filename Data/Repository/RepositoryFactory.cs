@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Data.Repository
 {
-    public class ManagerRepository:ConnectionManager
+    public class RepositoryFactory:ConnectionManager
     {
         public bool GenerateDB()
         {
@@ -202,11 +202,11 @@ namespace Data.Repository
             return ret;
         }
                
-        public static DailyResultRepository DailyResultRepository = new DailyResultRepository();
-        public static EmployeeRepository EmployeeRepository = new EmployeeRepository();
-        public static PersonRepository PersonRepository = new PersonRepository();
-        public static WorkTypeRepository WorkTypeRepository = new WorkTypeRepository();
-        public static DaySummaryRepository DaySummaryRepository = new DaySummaryRepository();
-        public static PermissionRepository PermissionRepository = new PermissionRepository();
+        public DailyResultRepository GetDailyResultRepository() => new DailyResultRepository();
+        public EmployeeRepository GetEmployeeRepository() => new EmployeeRepository();
+        public PersonRepository GetPersonRepository() => new PersonRepository();
+        public WorkTypeRepository GetWorkTypeRepository() => new WorkTypeRepository();
+        public DaySummaryRepository GetDaySummaryRepository() => new DaySummaryRepository();
+        public PermissionRepository GetPermissionRepository() => new PermissionRepository();
     }
 }

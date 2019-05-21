@@ -10,24 +10,29 @@ namespace AttendanceSystem
 {
     class DailyDetailsViewModel
     {
+        private RepositoryFactory _repositoryFactory;
+        public DailyDetailsViewModel()
+        {
+            _repositoryFactory = new RepositoryFactory();
+        }
         public IEnumerable<DailyResultWithWorkType> GetDailyResultWithWorkTypes (int employeeID, DateTime date)
         {
-            return ManagerRepository.DailyResultRepository.GetSpecifficDailyResult(employeeID, date);
+            return _repositoryFactory.GetDailyResultRepository().GetSpecifficDailyResult(employeeID, date);
         }
 
         public bool DeleteDailyResultByID (int dailyResultID)
         {
-            return ManagerRepository.DailyResultRepository.DeleteDailyResult(dailyResultID);
+            return _repositoryFactory.GetDailyResultRepository().DeleteDailyResult(dailyResultID);
         }
 
         public Employee GetEmpolyeeById(int employeeId)
         {
-            return ManagerRepository.EmployeeRepository.GetEmpolyeeByID(employeeId);
+            return _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByID(employeeId);
         }
 
         public DailyResult GetDailyResultById(int dailyResultId)
         {
-            return ManagerRepository.DailyResultRepository.GetDailyResultByID(dailyResultId);
+            return _repositoryFactory.GetDailyResultRepository().GetDailyResultByID(dailyResultId);
         }
     }
 }

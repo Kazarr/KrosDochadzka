@@ -69,7 +69,7 @@
     <Compile Include="Repository\DailyResultRepository.cs" />
     <Compile Include="Repository\DaySummaryRepository.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />
-    <Compile Include="Repository\ManagerRepository.cs" />
+    <Compile Include="Repository\RepositoryFactory.cs" />
     <Compile Include="Repository\ConnectionManager.cs" />
     <Compile Include="Repository\MonthOverviewRepository.cs" />
     <Compile Include="Repository\PermissionRepository.cs" />

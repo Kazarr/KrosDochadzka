@@ -50,7 +50,7 @@ namespace Data.Generator
 
         public void GenerateSupervisor()
         {
-            List<Person> people = ManagerRepository.PersonRepository.GetPersons().ToList();
+            List<Person> people = RepositoryFactory.PersonRepository.GetPersons().ToList();
             for (int i = 5; i < people.Count - 700; i++)
             {
                _employeeRepository.InsertFullEmployee(SetSupervisor(i));
@@ -59,7 +59,7 @@ namespace Data.Generator
 
         public void GenerateEmployee()
         {
-            List<Person> people = ManagerRepository.PersonRepository.GetPersons().ToList();
+            List<Person> people = RepositoryFactory.PersonRepository.GetPersons().ToList();
             for (int i = 200; i < people.Count-1 ; i++)
             {
                 _employeeRepository.InsertFullEmployee(SetEmployee(i));
