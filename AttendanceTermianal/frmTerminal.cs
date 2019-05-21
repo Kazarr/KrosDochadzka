@@ -1,13 +1,6 @@
 ﻿using Data.Model;
 using Logic;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AttendanceTermianal
@@ -86,7 +79,7 @@ namespace AttendanceTermianal
             timerClear.Stop();
         }       
 
-        private void DescribeAndCreateDailyResult(EnumWorkType type)
+        private void DescribeAndProcessAction(EnumWorkType type)
         {
             if (!string.IsNullOrEmpty(txtEmpId.Text))
             {
@@ -95,11 +88,11 @@ namespace AttendanceTermianal
                     int employeeId = int.Parse(txtEmpId.Text);
                     if (type == EnumWorkType.Exit)
                     {
-                        _terminalViewModel.ExitDailyResult(employeeId);
+                        _terminalViewModel.ExitDailyRecord(employeeId);
                     }
                     else
                     {
-                        _terminalViewModel.CreateNewDailyResult(employeeId, type);
+                        _terminalViewModel.CreateNewAndFinishPreviousRecord(employeeId, type);
                     }
                     Describe(employeeId, type);
                     timerClear.Start();
@@ -122,31 +115,31 @@ namespace AttendanceTermianal
         #region Buttons
         private void btnExit_Click(object sender, EventArgs e)
         {
-            DescribeAndCreateDailyResult(EnumWorkType.Exit);
+            DescribeAndProcessAction(EnumWorkType.Exit);
         }
         private void btnLunch_Click(object sender, EventArgs e)
         {
-            DescribeAndCreateDailyResult(EnumWorkType.Lunch);
+            DescribeAndProcessAction(EnumWorkType.Lunch);
         }
 
         private void btnBTrip_Click(object sender, EventArgs e)
         {
-            DescribeAndCreateDailyResult(EnumWorkType.BusinessTrip);
+            DescribeAndProcessAction(EnumWorkType.BusinessTrip);
         }
 
         private void btnDoctor_Click(object sender, EventArgs e)
         {
-            DescribeAndCreateDailyResult(EnumWorkType.Doctor);
+            DescribeAndProcessAction(EnumWorkType.Doctor);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DescribeAndCreateDailyResult(EnumWorkType.Private);
+            DescribeAndProcessAction(EnumWorkType.Private);
         }
 
         private void btnEntry_Click(object sender, EventArgs e)
         {
-            DescribeAndCreateDailyResult(EnumWorkType.Work);
+            DescribeAndProcessAction(EnumWorkType.Work);
         }
         #endregion
     }

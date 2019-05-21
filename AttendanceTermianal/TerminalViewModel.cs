@@ -40,10 +40,10 @@ namespace AttendanceTermianal
             
         }
 
-        public string DescriptionFullname(int id_employee)
+        public string DescriptionFullname(int employeeId)
         {
-            string fullName = $"{_logic.GetPersonByIdEmployee(id_employee).FirstName} " +
-                                $"{_logic.GetPersonByIdEmployee(id_employee).LastName} ";
+            string fullName = $"{_logic.GetPersonByIdEmployee(employeeId).FirstName} " +
+                                $"{_logic.GetPersonByIdEmployee(employeeId).LastName} ";
             return fullName;
         }
         public string DescriptionWorkType(EnumWorkType type)
@@ -74,15 +74,27 @@ namespace AttendanceTermianal
                 return false;
             }      
         }
-
-        public void ExitDailyResult(int idEmployee)
+        /// <summary>
+        /// Ak pre daného zamestnanca neexistuje žiaden záznam pre dnešný deň, vytvorím nový záznam
+        /// v ktorom mu nastavím start a finish time na aktuálny |||||DOVOD|||| - aby som nestratil čas odchodu,ak si zamestnanec nedal príchod
+        /// </summary>
+        /// <param name="employeeId"></param>
+        public void ExitDailyRecord(int employeeId)
         {
-            _logic.FinishWork(idEmployee);
+            DailyRecord dailyRecord = _logic.GetLastDailyRecordByEmployeeId(employeeId);
+            if (dailyRecord == null)
+            {
+                _logic.CreateNewTimeBlock(employeeId, EnumWorkType.Other, DateTime.Now,DateTime.Now);
+            }
+            else
+            {
+                _logic.UpdateFinishInTimeBlock(dailyRecord,DateTime.Now);
+            }
         }
 
-        public void CreateNewDailyResult(int idEmployee, EnumWorkType type)
+        public void CreateNewAndFinishPreviousRecord(int employeeId, EnumWorkType type)
         {
-            _logic.ChangeWorkType(idEmployee,type);
+            _logic.CreateNewAndFinishPreviousRecord(employeeId,type);
         }
     }
 }
