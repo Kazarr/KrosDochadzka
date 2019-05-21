@@ -1,6 +1,6 @@
 ﻿namespace AttendanceTermianal
 {
-    partial class frmTerminal
+    partial class FrmTerminal
     {
         /// <summary>
         /// Required designer variable.
@@ -122,7 +122,7 @@
             // 
             // timer
             // 
-            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            this.timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
             // panelBtnsAndTxtBox
             // 
@@ -265,7 +265,7 @@
             // timerClear
             // 
             this.timerClear.Interval = 2500;
-            this.timerClear.Tick += new System.EventHandler(this.timerClear_Tick);
+            this.timerClear.Tick += new System.EventHandler(this.TimerClear_Tick);
             // 
             // frmTerminal
             // 

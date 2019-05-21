@@ -26,12 +26,14 @@ namespace Data.Repository
                 {
                     while (reader.Read())
                     {
-                        DailyResultWithWorkType dailyResultWithWork = new DailyResultWithWorkType();
-                        dailyResultWithWork.DailyResultID = reader.GetInt32(0);
-                        dailyResultWithWork.IdEmployee = reader.GetInt32(1);
-                        dailyResultWithWork.StartTime = reader.IsDBNull(2) ? (DateTime?)null : reader.GetDateTime(2);
-                        dailyResultWithWork.FinishTime = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3);
-                        dailyResultWithWork.WorkType = reader.IsDBNull(4) ? "" : reader.GetString(4);
+                        DailyResultWithWorkType dailyResultWithWork = new DailyResultWithWorkType
+                        {
+                            DailyResultID = reader.GetInt32(0),
+                            IdEmployee = reader.GetInt32(1),
+                            StartTime = reader.IsDBNull(2) ? (DateTime?)null : reader.GetDateTime(2),
+                            FinishTime = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3),
+                            WorkType = reader.IsDBNull(4) ? "" : reader.GetString(4)
+                        };
 
                         ret.Add(dailyResultWithWork);
 
@@ -190,12 +192,14 @@ namespace Data.Repository
                 {
                     if (reader.Read())
                     {
-                        selectedResult = new DailyRecord();
-                        selectedResult.Id = reader.GetInt32(0);
-                        selectedResult.IdEmployee = reader.GetInt32(1);
-                        selectedResult.Start = reader.GetDateTime(2);
-                        selectedResult.Finish = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3);
-                        selectedResult.IdWorktype = reader.GetInt32(4);
+                        selectedResult = new DailyRecord
+                        {
+                            Id = reader.GetInt32(0),
+                            IdEmployee = reader.GetInt32(1),
+                            Start = reader.GetDateTime(2),
+                            Finish = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3),
+                            IdWorktype = reader.GetInt32(4)
+                        };
                     }
                 }
             });
@@ -271,12 +275,14 @@ namespace Data.Repository
                 {
                     while (reader.Read())
                     {
-                        DailyRecord dr = new DailyRecord();
-                        dr.Id = reader.GetInt32(0);
-                        dr.IdEmployee = reader.GetInt32(1);
-                        dr.Start = reader.GetDateTime(2);
-                        dr.Finish = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3);
-                        dr.IdWorktype = reader.GetInt32(4);
+                        DailyRecord dr = new DailyRecord
+                        {
+                            Id = reader.GetInt32(0),
+                            IdEmployee = reader.GetInt32(1),
+                            Start = reader.GetDateTime(2),
+                            Finish = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3),
+                            IdWorktype = reader.GetInt32(4)
+                        };
                         ret.Add(dr);
                     }
                 }

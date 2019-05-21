@@ -35,11 +35,13 @@ namespace AttendanceSystem
         /// <returns> true if new daily result was added, othervise false</returns>
         public bool CreateNewDailyResult(int employeeID, DateTime startTime, DateTime finishTime,int workTypeID) {
 
-            DailyRecord dailyResult = new DailyRecord();
-            dailyResult.IdEmployee = employeeID;
-            dailyResult.Start = startTime;
-            dailyResult.Finish = finishTime;
-            dailyResult.IdWorktype = workTypeID;
+            DailyRecord dailyResult = new DailyRecord
+            {
+                IdEmployee = employeeID,
+                Start = startTime,
+                Finish = finishTime,
+                IdWorktype = workTypeID
+            };
             return (_logic.InsertNewDailyResultFromSystem(dailyResult));
 
 

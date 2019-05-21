@@ -1,6 +1,6 @@
 ﻿namespace AttendanceSystem
 {
-    partial class frmNewEmployee
+    partial class FrmNewEmployee
     {
         /// <summary>
         /// Required designer variable.
@@ -174,7 +174,7 @@
             this.Name = "frmNewEmployee";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form2";
-            this.Load += new System.EventHandler(this.frmNewEmployee_Load);
+            this.Load += new System.EventHandler(this.FrmNewEmployee_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

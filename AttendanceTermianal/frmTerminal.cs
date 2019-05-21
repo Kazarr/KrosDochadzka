@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace AttendanceTermianal
 {
-    public partial class frmTerminal : Form
+    public partial class FrmTerminal : Form
     {
         private TerminalViewModel _terminalViewModel;
         private LogicTerminal _logic;
-        public frmTerminal(LogicTerminal logic)
+        public FrmTerminal(LogicTerminal logic)
         {
             InitializeComponent();
             _logic = logic;
@@ -30,7 +30,7 @@ namespace AttendanceTermianal
             }
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
             lblDate.Text = _terminalViewModel.CurrentDate();
             lblDay.Text = _terminalViewModel.CurrentDay();
@@ -64,7 +64,7 @@ namespace AttendanceTermianal
             return ("This Id does not exist");
         }
 
-        private void timerClear_Tick(object sender, EventArgs e)
+        private void TimerClear_Tick(object sender, EventArgs e)
         {
             lblDateNow.Text = _terminalViewModel.DescriptionDate();
             lblWorkType.Text = "";
