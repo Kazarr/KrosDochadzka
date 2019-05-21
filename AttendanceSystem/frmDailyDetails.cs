@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AttendanceSystem
@@ -17,7 +10,7 @@ namespace AttendanceSystem
         private DateTime _thisDate;
         private DailyDetailsViewModel _dailyDetailsViewModel = new DailyDetailsViewModel();
 
-        public frmDailyDetails(int loggedEmployeeId,DateTime date,int selectedEmployeeId)
+        public frmDailyDetails(int loggedEmployeeId, DateTime date, int selectedEmployeeId)
         {
             _loggedEmployeeId = loggedEmployeeId;
             _thisDate = date;
@@ -26,12 +19,13 @@ namespace AttendanceSystem
             FillDataGridView();
             CheckPermission();
         }
+
         /// <summary>
         /// checks if the logged person got rights to edit
         /// </summary>
         private void CheckPermission()
         {
-            if (_dailyDetailsViewModel.GetEmpolyeeById(_loggedEmployeeId).Permision>1)
+            if (_dailyDetailsViewModel.GetEmpolyeeById(_loggedEmployeeId).Permision > 1)
             {
                 btnAdd.Visible = true;
                 btnDelete.Visible = true;
@@ -41,19 +35,15 @@ namespace AttendanceSystem
 
         private void FillDataGridView()
         {
-            dGVDailyResultsOverview.DataSource = _dailyDetailsViewModel.GetDailyResultWithWorkTypes(_selectedEmployeeId, _thisDate);
-            dGVDailyResultsOverview.Columns["DailyResultID"].Visible = false;
-            dGVDailyResultsOverview.Columns["IdEmployee"].Visible = false;
-            dGVDailyResultsOverview.Columns["StartTime"].DefaultCellStyle.Format="MM/dd/yy HH:mm:ss";
-            dGVDailyResultsOverview.Columns["FinishTime"].DefaultCellStyle.Format = "MM/dd/yy HH:mm:ss";
+            bindingSource1.DataSource = _dailyDetailsViewModel.GetDailyResultWithWorkTypes(_selectedEmployeeId, _thisDate);
         }
 
 
- 
+
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            DialogResult  = DialogResult.OK;
+            DialogResult = DialogResult.OK;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -63,7 +53,7 @@ namespace AttendanceSystem
             {
                 if (dGVDailyResultsOverview.SelectedRows.Count > 0)
                 {
-                    
+
                     int selectedID = Convert.ToInt32(dGVDailyResultsOverview.Rows[dGVDailyResultsOverview.CurrentCell.RowIndex].Cells[0].Value.ToString());
                     if (_dailyDetailsViewModel.DeleteDailyResultByID(selectedID))
                     {
@@ -76,35 +66,29 @@ namespace AttendanceSystem
                             "if problem persists contact tech support");
                     }
                     FillDataGridView();
-
                 }
                 else
                 {
                     MessageBox.Show("Select record first");
                 }
-                
-            }
-            else if (dialogResult == DialogResult.No)
-            {
-                //do something else
             }
         }
 
-   
+
 
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
-            frmDailyDetailsAddEdit frmDailyDetailsAdd = new frmDailyDetailsAddEdit(_selectedEmployeeId,_thisDate);
+            frmDailyDetailsAddEdit frmDailyDetailsAdd = new frmDailyDetailsAddEdit(_selectedEmployeeId, _thisDate);
             frmDailyDetailsAdd.ShowDialog();
             FillDataGridView();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            frmDailyDetailsAddEdit frmDailyDetailsEdit = new frmDailyDetailsAddEdit(_selectedEmployeeId,_thisDate,_dailyDetailsViewModel.GetDailyResultById(Convert.ToInt32(dGVDailyResultsOverview.Rows[dGVDailyResultsOverview.CurrentCell.RowIndex].Cells[0].Value)));
+            frmDailyDetailsAddEdit frmDailyDetailsEdit = new frmDailyDetailsAddEdit(_selectedEmployeeId, _thisDate, _dailyDetailsViewModel.GetDailyResultById(Convert.ToInt32(dGVDailyResultsOverview.Rows[dGVDailyResultsOverview.CurrentCell.RowIndex].Cells[0].Value)));
             frmDailyDetailsEdit.ShowDialog();
             FillDataGridView();
-
         }
+
     }
 }

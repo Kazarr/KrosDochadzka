@@ -251,33 +251,6 @@ namespace Data.Repository
             return ret;
         }
 
-        //// this needs to be gone
-        //private string CalculateMD5Hash(string input)
-
-        //{
-        //    // step 1, calculate MD5 hash from input
-        //    MD5 md5 = MD5.Create();
-        //    byte[] inputBytes =Encoding.ASCII.GetBytes(input);
-        //    byte[] hash = md5.ComputeHash(inputBytes);
-
-        //    // step 2, convert byte array to hex string
-        //    StringBuilder sb = new StringBuilder();
-        //    for (int i = 0; i < hash.Length; i++)
-        //    {
-        //        sb.Append(hash[i].ToString("X2"));
-        //    }
-        //    return sb.ToString().ToLower();
-        //}
-
-
-        // this need to be gone too
-        /// <summary>
-        /// checks if id and hashed password match and are in our database
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="password"></param>
-        /// <returns>true if password and login match </returns>
-
 
         public bool CheckLogin(int id, string password)
         {

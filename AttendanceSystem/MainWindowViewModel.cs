@@ -22,7 +22,9 @@ namespace AttendanceSystem
         public Person Person { get => _person; set {  _person = value;
                                                       Employee = GetEmpolyeeByPersonId(Person.Id);}}
 
+
         public Employee Employee { get => _employee; set => _employee = value; }
+
 
         public Employee GetEmployeeByID(int id)
         {
@@ -84,10 +86,12 @@ namespace AttendanceSystem
 
         public void DeleteEmployeePerson(Person person)
         {
+
             Employee e = _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByIdPerson(person.Id);
             _repositoryFactory.GetDailyResultRepository().DeleteDailyResultByIdEmployee(e.Id);
             _repositoryFactory.GetEmployeeRepository().DeleteEmployee(e);
             //ManagerRepository.PersonRepository.DeletePerson(person);//nemusime mazat z osoby
+
         }
 
         public BindingList<Person> FillPlebPerson(int employeeId)

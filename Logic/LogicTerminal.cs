@@ -10,69 +10,73 @@ namespace Logic
 {
     public class LogicTerminal
     {
-        private DailyRecord _result = new DailyRecord();
-        private Employee _empolyee = new Employee();
         private RepositoryFactory _repositoryFactory;
 
         public LogicTerminal()
         {
             _repositoryFactory = new RepositoryFactory();
         }
-
-        public DailyRecord SetDailyResult(int id_employee, EnumWorkType type)
+        private void StartWork(int idEmployee, EnumWorkType type)
         {
-            _result.IdWorktype = (int)type;
-            _result.IdEmployee = id_employee;
-            return _result;
+            DailyResult result = new DailyResult();
+            result.Start = DateTime.Now;
+            result.Finish = null;
+            result.IdEmployee = idEmployee;
+            result.IdWorktype = (int)type;
+            ManagerRepository.DailyResultRepository.InsertDialyResult(result);
         }
 
-        private void StartWork(int id_employee, EnumWorkType type)
+        public void FinishWork(int idEmployee)
         {
-            _result.Id = _repositoryFactory.GetDailyResultRepository().InsertDialyResult(SetDailyResult(id_employee, type));
-        }
-
-        public bool FinishWork(int id_employee, EnumWorkType type)
-        {
-            if (_repositoryFactory.GetDailyResultRepository().GetFinishDailyResult(SetDailyResult(id_employee, type)) == null)
+            DailyResult result = _repositoryFactory.GetDailyResultRepository().GetResultByIdWithoutFinishInCurrentDay(idEmployee);
+            if (result != null)
             {
-                return _repositoryFactory.GetDailyResultRepository().UpdateFinishDailyResult(SetDailyResult(id_employee, type));
+                result.Finish = DateTime.Now;
+                _repositoryFactory.GetDailyResultRepository().UpdateDailyResult(result);
             }
-            return false;
         }
 
-        public bool CheckIfDailyResultExist(int id_employee, EnumWorkType type)
+        public bool CheckIfDailyResultExist(int idEmployee, EnumWorkType type)
         {
-            return _repositoryFactory.GetDailyResultRepository().CheckIfDailyResultExist(SetDailyResult(id_employee, type));
+            DailyResult result = new DailyResult();
+            result.IdEmployee = idEmployee;
+            result.IdWorktype = (int)type;
+            return repositoryFactory.GetDailyResultRepository().CheckIfDailyResultExist(result);
         }
 
         /// <summary>
         /// Záplní okno v prípade viacnásobného príchodu a odchodu
         /// </summary>
-        /// <param name="id_employee"></param>
+        /// <param name="idEmployee"></param>
         /// <param name="type"></param>
-        public void FillBlankSpace(int id_employee, EnumWorkType type)
+        public void FillBlankSpace(int idEmployee, EnumWorkType type)
         {
-            _result.IdEmployee = id_employee;
-            List<DailyRecord> test = new List<DailyRecord>();
-            test = _repositoryFactory.GetDailyResultRepository().SelectTwoLastResults(_result);
-            if (test.Count == 2)
+            DailyResult result = new DailyResult();
+            result.IdEmployee = idEmployee;
+            result.IdWorktype = (int)type;
+            List<DailyResult> twoLastResult = new List<DailyResult>();
+            twoLastResult = _repositoryFactory.GetDailyResultRepository().SelectTwoLastResults(result);
+            // Ak sa do listu uložia presne 2 záznamy s rovnakým WorkType(work) znamená to že zamestnanec za jeden deň viackrát prišiel a odišiel z roboty
+            if (twoLastResult.Count == 2)
             {
-                if (test[0].IdWorktype == test[1].IdWorktype)
+                if (twoLastResult[0].IdWorktype == twoLastResult[1].IdWorktype)
                 {
-                    _result.Finish = _repositoryFactory.GetDailyResultRepository().SelectLastStartAndFinish(_result).Finish;
-                    _result.Start = _repositoryFactory.GetDailyResultRepository().SelectLastStartAndFinish(_result).Start;
-                    _repositoryFactory.GetDailyResultRepository().InsertInBlankSpace(_result);
+                    DailyResult newResult = new DailyResult();
+                    newResult.IdEmployee = idEmployee;
+                    newResult.Finish =_repositoryFactory.GetDailyResultRepository().SelectLastStartAndFinish(result).Finish;
+                    newResult.Start = _repositoryFactory.GetDailyResultRepository().SelectLastStartAndFinish(result).Start;
+                    _repositoryFactory.GetDailyResultRepository().DailyResultRepository.InsertInBlankSpace(newResult);
                 }
             }
         }
 
-        public void ChangeWorkType(int id_employee, EnumWorkType type)
+        public void ChangeWorkType(int idEmployee, EnumWorkType type)
         {
-            if (!CheckIfDailyResultExist(id_employee, type))
+            if (!CheckIfDailyResultExist(idEmployee, type))
             {
-                FinishWork(id_employee, type);
-                StartWork(id_employee, type);
-                FillBlankSpace(id_employee, type);
+                FinishWork(idEmployee);
+                StartWork(idEmployee, type);
+                FillBlankSpace(idEmployee, type);
             }
         }
     }
