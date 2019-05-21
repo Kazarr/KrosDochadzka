@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Logic;
+using System;
 using System.Windows.Forms;
 
 namespace AttendanceSystem
@@ -13,10 +7,13 @@ namespace AttendanceSystem
     public partial class frmPasswordChange : Form
     {
         private int _employeeId;
-        private PasswordChangeViewModel _passwordChangeViewModel = new PasswordChangeViewModel();
-        public frmPasswordChange(int id)
+        private PasswordChangeViewModel _passwordChangeViewModel;
+        private LogicSystem _logic;
+        public frmPasswordChange(int id, LogicSystem logic)
         {
             InitializeComponent();
+            _logic = logic;
+            _passwordChangeViewModel = new PasswordChangeViewModel(_logic);
             _employeeId = id;
         }
 

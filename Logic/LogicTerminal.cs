@@ -1,83 +1,70 @@
 ﻿using Data.Model;
 using Data.Repository;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logic
 {
     public class LogicTerminal
     {
-        private RepositoryFactory _repositoryFactory;
+        private DialyRecordRepository _dailyRecordRepository;
+        private PersonRepository _personRepository;
+        private EmployeeRepository _employeeRepository;
 
         public LogicTerminal()
         {
-            _repositoryFactory = new RepositoryFactory();
+            _dailyRecordRepository = new RepositoryFactory().GetDailyRecordRepository();
+            _personRepository = new RepositoryFactory().GetPersonRepository();
+            _employeeRepository = new RepositoryFactory().GetEmployeeRepository();
         }
-        private void StartWork(int idEmployee, EnumWorkType type)
+        public void CreateNewTimeBlock(int idEmployee, EnumWorkType type, DateTime startTime, DateTime? finishTime = null)
         {
-            DailyRecord result = new DailyRecord();
-            result.Start = DateTime.Now;
-            result.Finish = null;
-            result.IdEmployee = idEmployee;
-            result.IdWorktype = (int)type;
-            _repositoryFactory.GetDailyRecordRepository().InsertDialyResult(result);
-        }
-
-        public void FinishWork(int idEmployee)
-        {
-            DailyRecord result = _repositoryFactory.GetDailyRecordRepository().GetResultByIdWithoutFinishInCurrentDay(idEmployee);
-            if (result != null)
+            DailyRecord dailyRecord = new DailyRecord
             {
-                result.Finish = DateTime.Now;
-                _repositoryFactory.GetDailyRecordRepository().UpdateDailyResult(result);
-            }
+                Start = startTime,
+                Finish = finishTime,
+                IdEmployee = idEmployee,
+                IdWorktype = (int)type
+            };
+            _dailyRecordRepository.InsertDialyRecord(dailyRecord);
         }
 
-        public bool CheckIfDailyResultExist(int idEmployee, EnumWorkType type)
+        public Person GetPersonByIdEmployee(int employeeId)
         {
-            DailyRecord result = new DailyRecord();
-            result.IdEmployee = idEmployee;
-            result.IdWorktype = (int)type;
-            return _repositoryFactory.GetDailyRecordRepository().CheckIfDailyResultExist(result);
+            return _personRepository.GetPersonByIdEmployee(employeeId);
         }
 
-        /// <summary>
-        /// Záplní okno v prípade viacnásobného príchodu a odchodu
-        /// </summary>
-        /// <param name="idEmployee"></param>
-        /// <param name="type"></param>
-        public void FillBlankSpace(int idEmployee, EnumWorkType type)
+        public void UpdateFinishInTimeBlock(DailyRecord dailyRecord, DateTime finishTime)
         {
-            DailyRecord result = new DailyRecord();
-            result.IdEmployee = idEmployee;
-            result.IdWorktype = (int)type;
-            List<DailyRecord> twoLastResult = new List<DailyRecord>();
-            twoLastResult = _repositoryFactory.GetDailyRecordRepository().SelectTwoLastResults(result);
-            // Ak sa do listu uložia presne 2 záznamy s rovnakým WorkType(work) znamená to že zamestnanec za jeden deň viackrát prišiel a odišiel z roboty
-            if (twoLastResult.Count == 2)
+                dailyRecord.Finish = finishTime;
+                _dailyRecordRepository.UpdateDailyRecord(dailyRecord);            
+        }
+
+        public void CreateNewAndFinishPreviousRecord(int employeeId, EnumWorkType type)
+        {
+            DateTime currentTime = DateTime.Now;
+            DailyRecord dailyRecord = _dailyRecordRepository.GetLastDailyRecordByEmployeeId(employeeId);
+            if (dailyRecord != null)
             {
-                if (twoLastResult[0].IdWorktype == twoLastResult[1].IdWorktype)
+                if (dailyRecord.Finish == null)
                 {
-                    DailyRecord newResult = new DailyRecord();
-                    newResult.IdEmployee = idEmployee;
-                    newResult.Finish =_repositoryFactory.GetDailyRecordRepository().SelectLastStartAndFinish(result).Finish;
-                    newResult.Start = _repositoryFactory.GetDailyRecordRepository().SelectLastStartAndFinish(result).Start;
-                    _repositoryFactory.GetDailyRecordRepository().InsertInBlankSpace(newResult);
+                    UpdateFinishInTimeBlock(dailyRecord, currentTime);
                 }
+                else
+                {
+                    CreateNewTimeBlock(employeeId, EnumWorkType.Other, (DateTime)dailyRecord.Finish, currentTime);   
+                }               
             }
+            CreateNewTimeBlock(employeeId, type, currentTime);
         }
 
-        public void ChangeWorkType(int idEmployee, EnumWorkType type)
+        public Employee GetEmpolyeeByID(int v)
         {
-            if (!CheckIfDailyResultExist(idEmployee, type))
-            {
-                FinishWork(idEmployee);
-                StartWork(idEmployee, type);
-                FillBlankSpace(idEmployee, type);
-            }
+            return _employeeRepository.GetEmpolyeeByID(v);
+        }
+
+        public DailyRecord GetLastDailyRecordByEmployeeId(int employeeId)
+        {
+            return _dailyRecordRepository.GetLastDailyRecordByEmployeeId(employeeId);
         }
     }
 }

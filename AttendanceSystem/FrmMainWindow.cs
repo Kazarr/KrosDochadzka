@@ -1,4 +1,5 @@
 ﻿using Data.Model;
+using Logic;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,14 +10,17 @@ namespace AttendanceSystem
 {
     public partial class FrmMainWindow : Form
     {
-        private MainWindowViewModel _mainWindowViewModel = new MainWindowViewModel();
+        private MainWindowViewModel _mainWindowViewModel;
+        private LogicSystem _logic;
         private int _loggedEmployeeID;
         private string _selected = "";
 
-        public FrmMainWindow(int id)
+        public FrmMainWindow(int id, LogicSystem logic)
         {
-            _loggedEmployeeID = id;
             InitializeComponent();
+            _loggedEmployeeID = id;
+            _logic = logic;
+            _mainWindowViewModel = new MainWindowViewModel(_logic);
             WindowState = FormWindowState.Maximized;
 
         }
@@ -85,7 +89,7 @@ namespace AttendanceSystem
 
         private void btnNewEmployee_Click_1(object sender, EventArgs e)
         {
-            frmNewEmployee newEmployee = new frmNewEmployee();
+            frmNewEmployee newEmployee = new frmNewEmployee(_logic);
             newEmployee.ShowDialog();
 
             if (newEmployee.DialogResult == DialogResult.OK)
@@ -113,7 +117,7 @@ namespace AttendanceSystem
 
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
         {
-            frmNewEmployee newEmployee = new frmNewEmployee(_mainWindowViewModel.Person, _mainWindowViewModel.Employee);
+            frmNewEmployee newEmployee = new frmNewEmployee(_mainWindowViewModel.Person, _mainWindowViewModel.Employee, _logic);
             newEmployee.ShowDialog();
             if (newEmployee.DialogResult == DialogResult.OK)
             {
@@ -129,7 +133,8 @@ namespace AttendanceSystem
             {
                 //gets date from selectedRow
                 DateTime selectedDate = Convert.ToDateTime(dGVOverview.Rows[dGVOverview.CurrentCell.RowIndex].Cells["Date"].Value.ToString());
-                frmDailyDetails dailyDetails = new frmDailyDetails(_loggedEmployeeID, selectedDate, _mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem));
+                frmDailyDetails dailyDetails = new frmDailyDetails(
+                    _loggedEmployeeID, selectedDate, _mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), _logic);
                 dailyDetails.ShowDialog();
                 fillDataGridView();
             }
@@ -192,7 +197,7 @@ namespace AttendanceSystem
 
         private void btnChangePassword_Click(object sender, EventArgs e)
         {
-            frmPasswordChange passwordChange = new frmPasswordChange(_loggedEmployeeID);
+            frmPasswordChange passwordChange = new frmPasswordChange(_loggedEmployeeID, _logic);
             passwordChange.ShowDialog();
         }
                 

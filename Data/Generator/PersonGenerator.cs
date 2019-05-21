@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Data.Model;
-using RandomNameGeneratorLibrary;
-using Faker;
+﻿using Data.Model;
 using Data.Repository;
+using System;
 
 namespace Data.Generator
 {
