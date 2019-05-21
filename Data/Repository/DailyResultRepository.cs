@@ -147,27 +147,7 @@ namespace Data.Repository
                 }
             });
             return success;
-        }
-        
-        /// <summary>
-        /// vyhladá POSLEDNÝ finish time daného employee
-        /// </summary>
-        /// <param name="daily_Result"></param>
-        /// <returns> vráti finish time buď null alebo hodnotu </returns>
-        public DateTime? GetFinishDailyResult(int idEmployee)
-        {
-            DateTime? ret = null;
-            Execute((command) => 
-            {
-                command.CommandText = @"SELECT finish FROM [KROSDOCHADZKA].[dbo].[DailyResult]
-                                    where IdEmployee=@IdEmp 
-                                    and CONVERT(date,[Start]) = CONVERT(date,GETDATE()) order by [start] desc ";
-                command.Parameters.Add("@IdEmp", SqlDbType.Int).Value = idEmployee;
-                ret = command.ExecuteScalar() as DateTime?;
-
-            });
-            return ret;    
-        }
+        } 
 
         public DailyResult GetResultByIdWithoutFinishInCurrentDay(int idEmployee)
         {
