@@ -19,17 +19,11 @@ namespace AttendanceTermianal
         /// nastavenie dizajnu, rozne fonty pre rozne casove zlozky
         /// </summary>
         /// <returns></returns>
-
-
-
         public string DescriptionFullname(int employeeId)
         {
             return $"{_logic.GetPersonByIdEmployee(employeeId).FirstName} " +
                                 $"{_logic.GetPersonByIdEmployee(employeeId).LastName} ";
         }
-
-     
-
 
         /// <summary>
         /// kontroluje či pod zadaným ID existuje nejaký employee
