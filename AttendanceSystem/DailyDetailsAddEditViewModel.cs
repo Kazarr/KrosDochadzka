@@ -55,7 +55,7 @@ namespace AttendanceSystem
         /// <returns>true if update happend, otherwise false</returns>
         public bool UpdateDailyResult (DailyRecord updatedDailyResult)
         {
-            return _repositoryFactory.GetDailyRecordRepository().UpdateDailyResult(updatedDailyResult);
+            return _repositoryFactory.GetDailyRecordRepository().UpdateDailyRecord(updatedDailyResult);
         }
     }
 }

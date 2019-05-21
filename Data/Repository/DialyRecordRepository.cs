@@ -87,7 +87,7 @@ namespace Data.Repository
             return ret;
         }
 
-        public bool InsertDialyResult(DailyRecord dailyResult)
+        public bool InsertDialyRecord(DailyRecord dailyResult)
         {
             bool succes = false;
             Execute((command) => 
@@ -176,14 +176,18 @@ namespace Data.Repository
         /// <param name="daily_Result"></param>
         /// <returns> vráti finish time buď null alebo hodnotu </returns>
 
-        public DailyRecord GetResultByIdWithoutFinishInCurrentDay(int idEmployee)
+        public DailyRecord GetLastDailyRecordByEmployeeId(int idEmployee)
         {
             DailyRecord selectedResult = null;
             Execute((command) =>
             {
+                //command.CommandText = @"Select [ID], [IdEmployee], [Start], [Finish], [IdWorktype] 
+                //                        from [dbo].[DailyRecord] 
+                //                        where IdEmployee= @IdEmployee and [Finish] is null 
+                //                         and CONVERT(date,[Start]) = CONVERT(date,GETDATE()) order by [start] desc";
                 command.CommandText = @"Select [ID], [IdEmployee], [Start], [Finish], [IdWorktype] 
                                         from [dbo].[DailyRecord] 
-                                        where IdEmployee= @IdEmployee and [Finish] is null 
+                                        where IdEmployee= @IdEmployee
                                          and CONVERT(date,[Start]) = CONVERT(date,GETDATE()) order by [start] desc";
                 command.Parameters.Add("@IdEmployee", SqlDbType.Int).Value = idEmployee;
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -234,39 +238,39 @@ namespace Data.Repository
         /// </summary>
         /// <param name="dailyResult"></param>
         /// <returns>start a finish time</returns>
-        public DailyRecord SelectLastStartAndFinish(DailyRecord dailyResult)
-        {
-            DailyRecord ret = new DailyRecord();
-            Execute((command) => 
-            {
-                command.CommandText = @"select max([start]), min(finish) from DailyRecord where id in
-                    (select top 2 id from DailyRecord where IdEmployee=@IdEmp and IdWorktype=1 order by [Start] desc) ";
-                command.Parameters.Add("@IdEmp", SqlDbType.Int).Value = dailyResult.IdEmployee;
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        ret.Finish = reader.GetDateTime(0);
-                        ret.Start = reader.GetDateTime(1);
-                    }
-                }
-            });
-            return ret;
-        }
+        //public DailyRecord SelectLastStartAndFinish(int employeeId)
+        //{
+        //    DailyRecord ret = new DailyRecord();
+        //    Execute((command) => 
+        //    {
+        //        command.CommandText = $@"select max([start]), min(finish) from DailyRecord where id in
+        //            (select top 2 id from DailyRecord where IdEmployee=@IdEmp and IdWorktype=1 order by [Start] desc) ";
+        //        command.Parameters.Add("@IdEmp", SqlDbType.Int).Value = employeeId;
+        //        using (SqlDataReader reader = command.ExecuteReader())
+        //        {
+        //            if (reader.Read())
+        //            {
+        //                ret.Finish = reader.GetDateTime(0);
+        //                ret.Start = reader.GetDateTime(1);
+        //            }
+        //        }
+        //    });
+        //    return ret;
+        //}
         
         /// <summary>
         /// Select posledných dvoch záznamov zamestnanca(Employee) 
         /// </summary>
         /// <param name="dailyResult"></param>
         /// <returns>List posledných dvoch záznamov </returns>
-        public List<DailyRecord> SelectTwoLastResults(DailyRecord dailyResult)
+        public List<DailyRecord> SelectTwoLastResults(int employeeId)
         {
             List<DailyRecord> ret = new List<DailyRecord>();
             Execute((command) => 
             {
                 command.CommandText = @"  select top 2 * from DailyRecord where IdEmployee = @IdEmpl 
                         and CONVERT(date,[Start]) = CONVERT(date,GETDATE()) order by [start] desc";
-                command.Parameters.Add("@IdEmpl", SqlDbType.Int).Value = dailyResult.IdEmployee;
+                command.Parameters.Add("@IdEmpl", SqlDbType.Int).Value = employeeId;
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -340,7 +344,7 @@ namespace Data.Repository
         /// </summary>
         /// <param name="daily_Result"></param>
         /// <returns>true if update happend, false if not</returns>
-        public bool UpdateDailyResult(DailyRecord updatedDailyResult)
+        public bool UpdateDailyRecord(DailyRecord updatedDailyResult)
         {
             bool success = false;
             Execute((command) => 
