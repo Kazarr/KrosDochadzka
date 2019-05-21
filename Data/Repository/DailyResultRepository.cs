@@ -87,20 +87,23 @@ namespace Data.Repository
             return ret;
         }
 
-        public int InsertDialyResult(DailyResult dailyResult)
+        public bool InsertDialyResult(DailyResult dailyResult)
         {
-            int ret = -1;
+            bool succes = false;
             Execute((command) => 
             {
-                command.CommandText = @"INSERT INTO DailyResult (IdEmployee, IdWorktype)
-                                        OUTPUT INSERTED.Id
-                                        VALUES (@Id_Employee, @Id_Worktype)";
+                command.CommandText = @"INSERT INTO DailyResult (IdEmployee, IdWorktype, [Start], [Finish])
+                                        VALUES (@Id_Employee, @Id_Worktype , @Start, @Finish)";
                 command.Parameters.Add("@Id_Employee", SqlDbType.VarChar).Value = dailyResult.IdEmployee;
                 command.Parameters.Add("@Id_Worktype", SqlDbType.VarChar).Value = dailyResult.IdWorktype;
-                ret = (int)command.ExecuteScalar();
-
+                command.Parameters.Add("@Start", SqlDbType.DateTime2).Value = dailyResult.Start;
+                command.Parameters.Add("@Finish", SqlDbType.DateTime2).Value = dailyResult.Finish == null ? DBNull.Value:(object)dailyResult.Finish;
+                if (command.ExecuteNonQuery()>0)
+                {
+                    succes = true;
+                }
             });
-            return ret;
+            return succes;
         }
         
         /// <summary>
@@ -128,23 +131,6 @@ namespace Data.Repository
             return success;
         }
 
-        public bool UpdateFinishDailyResult(DailyResult daily_Result)
-        {
-            bool success = false;
-            Execute((command) => 
-            {
-                command.CommandText = @"UPDATE DailyResult
-                                        SET Finish = GETDATE()
-                                        WHERE ID = @ID";
-                command.Parameters.Add("@ID", SqlDbType.VarChar).Value = daily_Result.Id;
-                if (command.ExecuteNonQuery() > 1)
-                {
-                    success = true;
-                }
-            });
-            return success;
-        }
-
         public bool CheckIfDailyResultExist(DailyResult daily_Result)
         {
             bool success = false;
@@ -161,26 +147,32 @@ namespace Data.Repository
                 }
             });
             return success;
-        }
-        
-        /// <summary>
-        /// vyhladá POSLEDNÝ finish time daného employee
-        /// </summary>
-        /// <param name="daily_Result"></param>
-        /// <returns> vráti finish time buď null alebo hodnotu </returns>
-        public DateTime? GetFinishDailyResult(DailyResult daily_Result)
-        {
-            DateTime? ret = null;
-            Execute((command) => 
-            {
-                command.CommandText = @"SELECT finish FROM [KROSDOCHADZKA].[dbo].[DailyResult]
-                                    where IdEmployee=@IdEmp 
-                                    and CONVERT(date,[Start]) = CONVERT(date,GETDATE()) order by [start] desc ";
-                command.Parameters.Add("@IdEmp", SqlDbType.Int).Value = daily_Result.IdEmployee;
-                ret = command.ExecuteScalar() as DateTime?;
+        } 
 
+        public DailyResult GetResultByIdWithoutFinishInCurrentDay(int idEmployee)
+        {
+            DailyResult selectedResult = null;
+            Execute((command) =>
+            {
+                command.CommandText = @"Select [ID], [IdEmployee], [Start], [Finish], [IdWorktype] 
+                                        from [KROSDOCHADZKA].[dbo].[DailyResult] 
+                                        where IdEmployee= @IdEmployee and [Finish] is null 
+                                         and CONVERT(date,[Start]) = CONVERT(date,GETDATE()) order by [start] desc";
+                command.Parameters.Add("@IdEmployee", SqlDbType.Int).Value = idEmployee;
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        selectedResult = new DailyResult();
+                        selectedResult.Id = reader.GetInt32(0);
+                        selectedResult.IdEmployee = reader.GetInt32(1);
+                        selectedResult.Start = reader.GetDateTime(2);
+                        selectedResult.Finish = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3);
+                        selectedResult.IdWorktype = reader.GetInt32(4);
+                    }
+                }
             });
-            return ret;    
+            return selectedResult;
         }
 
         /// <summary>
@@ -258,7 +250,6 @@ namespace Data.Repository
                         dr.Start = reader.GetDateTime(2);
                         dr.Finish = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3);
                         dr.IdWorktype = reader.GetInt32(4);
-
                         ret.Add(dr);
                     }
                 }
@@ -276,8 +267,8 @@ namespace Data.Repository
             bool success = false;
             Execute((command) => 
             {
-                command.CommandText = @"Insert into DailyResult (IdEmployee,[Start],Finish,IdWorktype) 
-                                    values (@Id_Employee,@start,@finish,8)";
+                command.CommandText = $@"Insert into DailyResult (IdEmployee,[Start],Finish,IdWorktype) 
+                                    values (@Id_Employee,@start,@finish,{(int)EnumWorkType.Other})";
                 command.Parameters.Add("@Id_Employee", SqlDbType.VarChar).Value = dailyResult.IdEmployee;
                 command.Parameters.Add("@start", SqlDbType.DateTime2).Value = dailyResult.Start;
                 command.Parameters.Add("@finish", SqlDbType.DateTime2).Value = dailyResult.Finish;
