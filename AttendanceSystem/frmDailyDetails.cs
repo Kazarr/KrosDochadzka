@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logic;
+using System;
 using System.Windows.Forms;
 
 namespace AttendanceSystem
@@ -9,13 +10,15 @@ namespace AttendanceSystem
         private int _selectedEmployeeId;
         private DateTime _thisDate;
         private DailyDetailsViewModel _dailyDetailsViewModel = new DailyDetailsViewModel();
+        private LogicSystem _logic;
 
-        public frmDailyDetails(int loggedEmployeeId, DateTime date, int selectedEmployeeId)
+        public frmDailyDetails(int loggedEmployeeId, DateTime date, int selectedEmployeeId, LogicSystem logic)
         {
+            InitializeComponent();
+            _logic = logic;
             _loggedEmployeeId = loggedEmployeeId;
             _thisDate = date;
             _selectedEmployeeId = selectedEmployeeId;
-            InitializeComponent();
             FillDataGridView();
             CheckPermission();
         }
@@ -78,14 +81,18 @@ namespace AttendanceSystem
 
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
-            frmDailyDetailsAddEdit frmDailyDetailsAdd = new frmDailyDetailsAddEdit(_selectedEmployeeId, _thisDate);
+            frmDailyDetailsAddEdit frmDailyDetailsAdd = new frmDailyDetailsAddEdit(_selectedEmployeeId, _thisDate, _logic);
             frmDailyDetailsAdd.ShowDialog();
             FillDataGridView();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            frmDailyDetailsAddEdit frmDailyDetailsEdit = new frmDailyDetailsAddEdit(_selectedEmployeeId, _thisDate, _dailyDetailsViewModel.GetDailyResultById(Convert.ToInt32(dGVDailyResultsOverview.Rows[dGVDailyResultsOverview.CurrentCell.RowIndex].Cells[0].Value)));
+            frmDailyDetailsAddEdit frmDailyDetailsEdit = new frmDailyDetailsAddEdit(
+                _selectedEmployeeId, 
+                _thisDate, 
+                _dailyDetailsViewModel.GetDailyResultById(Convert.ToInt32(dGVDailyResultsOverview.Rows[dGVDailyResultsOverview.CurrentCell.RowIndex].Cells[0].Value)),
+                _logic);
             frmDailyDetailsEdit.ShowDialog();
             FillDataGridView();
         }

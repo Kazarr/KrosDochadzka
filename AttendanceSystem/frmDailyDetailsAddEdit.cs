@@ -1,28 +1,25 @@
 ﻿using Data.Model;
+using Logic;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AttendanceSystem
 {
     public partial class frmDailyDetailsAddEdit : Form
     {
-        private DailyDetailsAddEditViewModel _dailyDetailsAddEditViewModel = new DailyDetailsAddEditViewModel();
+        private DailyDetailsAddEditViewModel _dailyDetailsAddEditViewModel;
+        private LogicSystem _logic;
         private int _selectedEmployeeId;
         private DailyRecord _dailyResultToUpdate =null;
         private DateTime _date;
 
-        public frmDailyDetailsAddEdit(int selectedEmployeeID, DateTime date)
+        public frmDailyDetailsAddEdit(int selectedEmployeeID, DateTime date, LogicSystem logic)
         {
+            InitializeComponent();
+            _logic = logic;
+            _dailyDetailsAddEditViewModel = new DailyDetailsAddEditViewModel(_logic);
             _selectedEmployeeId = selectedEmployeeID;
             _date = date;
-            InitializeComponent();
             dateTimePickerFinish.BringToFront();
             comboBoxWorkTypes.BringToFront();
             FormatTimePickers();
@@ -30,13 +27,15 @@ namespace AttendanceSystem
 
         }
 
-        public frmDailyDetailsAddEdit(int selectedEmployeeID, DateTime date, DailyRecord dailyResultToUpdate)
+        public frmDailyDetailsAddEdit(int selectedEmployeeID, DateTime date, DailyRecord dailyResultToUpdate, LogicSystem logic)
         {
+            InitializeComponent();
+            _logic = logic;
             _selectedEmployeeId = selectedEmployeeID;
             _date = date;
             _dailyResultToUpdate = dailyResultToUpdate;
 
-            InitializeComponent();
+            
             FormatTimePickers();
             FillComboBox();
 
