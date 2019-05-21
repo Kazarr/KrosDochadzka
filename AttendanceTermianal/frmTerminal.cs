@@ -1,4 +1,5 @@
 ﻿using Data.Model;
+using Logic;
 using System;
 using System.Windows.Forms;
 
@@ -6,12 +7,13 @@ namespace AttendanceTermianal
 {
     public partial class frmTerminal : Form
     {
-        private TerminalViewModel _terminalViewModel = new TerminalViewModel();
-
-        public frmTerminal()
+        private TerminalViewModel _terminalViewModel;
+        private LogicTerminal _logic;
+        public frmTerminal(LogicTerminal logic)
         {
             InitializeComponent();
-
+            _logic = logic;
+            _terminalViewModel = new TerminalViewModel(_logic);
             timer.Start();
         }
 

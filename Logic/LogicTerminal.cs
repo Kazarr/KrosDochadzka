@@ -6,11 +6,15 @@ namespace Logic
 {
     public class LogicTerminal
     {
-        private RepositoryFactory _repositoryFactory;
+        private DialyRecordRepository _dailyRecordRepository;
+        private PersonRepository _personRepository;
+        private EmployeeRepository _employeeRepository;
 
         public LogicTerminal()
         {
-            _repositoryFactory = new RepositoryFactory();
+            _dailyRecordRepository = new RepositoryFactory().GetDailyRecordRepository();
+            _personRepository = new RepositoryFactory().GetPersonRepository();
+            _employeeRepository = new RepositoryFactory().GetEmployeeRepository();
         }
         public void CreateNewTimeBlock(int idEmployee, EnumWorkType type, DateTime startTime, DateTime? finishTime = null)
         {
@@ -27,13 +31,13 @@ namespace Logic
         public void UpdateFinishInTimeBlock(DailyRecord dailyRecord, DateTime finishTime)
         {
                 dailyRecord.Finish = finishTime;
-                _repositoryFactory.GetDailyRecordRepository().UpdateDailyRecord(dailyRecord);            
+                _dailyRecordRepository.UpdateDailyRecord(dailyRecord);            
         }
 
         public void CreateNewAndFinishPreviousRecord(int employeeId, EnumWorkType type)
         {
             DateTime currentTime = DateTime.Now;
-            DailyRecord dailyRecord = _repositoryFactory.GetDailyRecordRepository().GetLastDailyRecordByEmployeeId(employeeId);
+            DailyRecord dailyRecord = _dailyRecordRepository.GetLastDailyRecordByEmployeeId(employeeId);
             if (dailyRecord != null)
             {
                 if (dailyRecord.Finish == null)

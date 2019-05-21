@@ -13,12 +13,11 @@ namespace AttendanceTermianal
     
     public class TerminalViewModel
     {
-        private LogicTerminal _logicTerminal = new LogicTerminal();
-        private RepositoryFactory _repositoryFactory;
+        private LogicTerminal _logic;
 
-        public TerminalViewModel()
+        public TerminalViewModel(LogicTerminal logic)
         {
-            _repositoryFactory = new RepositoryFactory();
+            _logic = logic;
         }
 
         public string CurrentDate()
@@ -43,8 +42,8 @@ namespace AttendanceTermianal
 
         public string DescriptionFullname(int employeeId)
         {
-            string fullName = $"{_repositoryFactory.GetPersonRepository().GetPersonByIdEmployee(employeeId).FirstName} " +
-                                $"{_repositoryFactory.GetPersonRepository().GetPersonByIdEmployee(employeeId).LastName} ";
+            string fullName = $"{_logic.GetPersonByIdEmployee(employeeId).FirstName} " +
+                                $"{_logic.GetPersonByIdEmployee(employeeId).LastName} ";
             return fullName;
         }
         public string DescriptionWorkType(EnumWorkType type)
@@ -67,7 +66,7 @@ namespace AttendanceTermianal
         {
             try
             {
-                var empoloyee = _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByID(int.Parse(input));
+                var empoloyee = _logic.GetEmpolyeeByID(int.Parse(input));
                 return empoloyee != null && empoloyee.Id.Equals(int.Parse(input));
             }
             catch (FormatException)
@@ -82,20 +81,20 @@ namespace AttendanceTermianal
         /// <param name="employeeId"></param>
         public void ExitDailyRecord(int employeeId)
         {
-            DailyRecord dailyRecord = _repositoryFactory.GetDailyRecordRepository().GetLastDailyRecordByEmployeeId(employeeId);
+            DailyRecord dailyRecord = _logic.GetLastDailyRecordByEmployeeId(employeeId);
             if (dailyRecord == null)
             {
-                _logicTerminal.CreateNewTimeBlock(employeeId, EnumWorkType.Other, DateTime.Now,DateTime.Now);
+                _logic.CreateNewTimeBlock(employeeId, EnumWorkType.Other, DateTime.Now,DateTime.Now);
             }
             else
             {
-                _logicTerminal.UpdateFinishInTimeBlock(dailyRecord,DateTime.Now);
+                _logic.UpdateFinishInTimeBlock(dailyRecord,DateTime.Now);
             }
         }
 
         public void CreateNewAndFinishPreviousRecord(int employeeId, EnumWorkType type)
         {
-            _logicTerminal.CreateNewAndFinishPreviousRecord(employeeId,type);
+            _logic.CreateNewAndFinishPreviousRecord(employeeId,type);
         }
     }
 }

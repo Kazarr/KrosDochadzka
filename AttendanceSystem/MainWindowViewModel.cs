@@ -1,5 +1,4 @@
 ﻿using Data.Model;
-using Data.Repository;
 using Logic;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,14 +8,13 @@ namespace AttendanceSystem
 {
     public class MainWindowViewModel
     {
-        private LogicSystem _logic = new LogicSystem();
+        private LogicSystem _logic;
         private Employee _employee;
         private Person _person;
-        private RepositoryFactory _repositoryFactory;
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(LogicSystem logic)
         {
-            _repositoryFactory = new RepositoryFactory();
+            _logic = logic;
         }
 
         public Person Person { get => _person; set {  _person = value;
@@ -28,18 +26,18 @@ namespace AttendanceSystem
 
         public Employee GetEmployeeByID(int id)
         {
-            return _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByID(id);
+            return _logic.GetEmpolyeeByID(id);
         }
 
 
         public BindingList<Person> FillComboBox()
         {
-            return new BindingList<Person>(_repositoryFactory.GetPersonRepository().GetPersonsEmployees().ToList());
+            return new BindingList<Person>(_logic.GetPersonsEmployees().ToList());
         }
 
         public BindingList<Person> FillComboBox(int idSupervisor)
         {
-            return new BindingList<Person>(_repositoryFactory.GetPersonRepository().GetPersonEmployeesPlebs(idSupervisor).ToList());
+            return new BindingList<Person>(_logic.GetPersonEmployeesPlebs(idSupervisor).ToList());
         }
 
         public BindingList<DaySummary> FillDataGridViewOverview(int id, string date)
@@ -50,47 +48,46 @@ namespace AttendanceSystem
 
         public BindingList<int> FillYears(int IdEmployee)
         {
-            return new BindingList<int>(_logic.GetYearsFromStart(IdEmployee));
+            return new BindingList<int>(_logic.GetYearsFromEmploymentStartByEmployee(IdEmployee));
         }
 
 
         public IDictionary<string, int> GetMonthWithNumberOfRecords(int id)
         {
-            return _repositoryFactory.GetDailyRecordRepository().GetMonthsWithNumberOfRecords(id);
+            return _logic.GetMonthsWithNumberOfRecords(id);
         }
 
         public Person GetPersonByEmployeeId(int employeeId)
         {
-            return _repositoryFactory.GetPersonRepository().GetPersonByIdEmployee(employeeId);
+            return _logic.GetPersonByIdEmployee(employeeId);
         }
 
         public Person GetPersonByEmployee(Person person)
         {
-            return _repositoryFactory.GetPersonRepository().GetPersonByIdEmployee(person.Id);
+            return _logic.GetPersonByIdEmployee(person.Id);
         }
 
         public Employee GetEmpolyeeByPersonId(int id)
         {
-            return _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByIdPerson(id);
+            return _logic.GetEmpolyeeByIdPerson(id);
         }
 
         public Employee GetEmpolyeeByPersonId(Person person)
         {
-            return _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByIdPerson(person);
+            return _logic.GetEmpolyeeByIdPerson(person);
         }
 
         public int GetEmployeeIdByPerson(Person selectedItem)
         {
-            return _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByIdPerson(selectedItem.Id).Id;
+            return _logic.GetEmpolyeeByIdPerson(selectedItem.Id).Id;
         }
 
         public void DeleteEmployeePerson(Person person)
         {
 
-            Employee e = _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByIdPerson(person.Id);
-            _repositoryFactory.GetDailyRecordRepository().DeleteDailyResultByIdEmployee(e.Id);
-            _repositoryFactory.GetEmployeeRepository().DeleteEmployee(e);
-            //ManagerRepository.PersonRepository.DeletePerson(person);//nemusime mazat z osoby
+            Employee employee = _logic.GetEmpolyeeByIdPerson(person.Id);
+            _logic.DeleteDailyResultByIdEmployee(employee.Id);
+            _logic.DeleteEmployee(employee);
 
         }
 
@@ -98,13 +95,14 @@ namespace AttendanceSystem
         {
             BindingList<Person> ret = new BindingList<Person>
             {
-                _repositoryFactory.GetPersonRepository().GetPersonByIdEmployee(employeeId)
+                _logic.GetPersonByIdEmployee(employeeId)
             };
             return ret;
         }
         public bool ResetPassword()
         {
-            return _logic.ChangePassword(_repositoryFactory.GetEmployeeRepository().GetEmpolyeeByIdPerson(Person.Id).Id, "0000");
+            // 0000 je základne resetovacie heslo
+            return _logic.ChangePasswordByEmployeeId(_logic.GetEmpolyeeByIdPerson(Person.Id).Id, "0000");
         }
     }
 }
