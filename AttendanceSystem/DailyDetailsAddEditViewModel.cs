@@ -37,15 +37,9 @@ namespace AttendanceSystem
             dailyResult.Start = startTime;
             dailyResult.Finish = finishTime;
             dailyResult.IdWorktype = workTypeID;
-            if (ManagerRepository.DailyResultRepository.InsertNewDailyResultFromSystem(dailyResult))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-            
+            return (ManagerRepository.DailyResultRepository.InsertNewDailyResultFromSystem(dailyResult));
+
+
         }
         
         /// <summary>
