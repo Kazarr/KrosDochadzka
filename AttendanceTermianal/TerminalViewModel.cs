@@ -67,7 +67,7 @@ namespace AttendanceTermianal
         {
             try
             {
-                var empoloyee = repositoryFactory.GetEmployeeRepository().GetEmpolyeeByID(int.Parse(input));
+                var empoloyee = _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByID(int.Parse(input));
                 return empoloyee != null && empoloyee.Id.Equals(int.Parse(input));
             }
             catch (FormatException)

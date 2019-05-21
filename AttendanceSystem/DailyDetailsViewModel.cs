@@ -17,12 +17,12 @@ namespace AttendanceSystem
         }
         public IEnumerable<DailyResultWithWorkType> GetDailyResultWithWorkTypes (int employeeID, DateTime date)
         {
-            return _repositoryFactory.GetDailyResultRepository().GetSpecifficDailyResult(employeeID, date);
+            return _repositoryFactory.GetDailyRecordRepository().GetSpecifficDailyResult(employeeID, date);
         }
 
         public bool DeleteDailyResultByID (int dailyResultID)
         {
-            return _repositoryFactory.GetDailyResultRepository().DeleteDailyResult(dailyResultID);
+            return _repositoryFactory.GetDailyRecordRepository().DeleteDailyResult(dailyResultID);
         }
 
         public Employee GetEmpolyeeById(int employeeId)
@@ -32,7 +32,7 @@ namespace AttendanceSystem
 
         public DailyRecord GetDailyResultById(int dailyResultId)
         {
-            return _repositoryFactory.GetDailyResultRepository().GetDailyResultByID(dailyResultId);
+            return _repositoryFactory.GetDailyRecordRepository().GetDailyResultByID(dailyResultId);
         }
     }
 }

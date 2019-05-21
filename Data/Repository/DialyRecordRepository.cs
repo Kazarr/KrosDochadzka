@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Data.Repository
 {
-    public class DailyResultRepository:ConnectionManager
+    public class DialyRecordRepository:ConnectionManager
     {
 
         public IEnumerable<DailyResultWithWorkType> GetSpecifficDailyResult(int employeeID,DateTime date)
@@ -87,13 +87,13 @@ namespace Data.Repository
             return ret;
         }
 
-        public bool InsertDialyResult(DailyResult dailyResult)
+        public bool InsertDialyResult(DailyRecord dailyResult)
         {
             bool succes = false;
             Execute((command) => 
             {
 
-                command.CommandText = @"INSERT INTO DailyResult (IdEmployee, IdWorktype, [Start], [Finish])
+                command.CommandText = @"INSERT INTO DailyRecord (IdEmployee, IdWorktype, [Start], [Finish])
                                         VALUES (@Id_Employee, @Id_Worktype , @Start, @Finish)";
 
                 command.Parameters.Add("@Id_Employee", SqlDbType.VarChar).Value = dailyResult.IdEmployee;
@@ -118,7 +118,8 @@ namespace Data.Repository
             bool success = false;
             Execute((command) => 
             {
-                command.CommandText = @"insert into DailyRecord 
+                command.CommandText = @"insert into DailyRecord
+
                                         values (@IdEmployee,@StartTime,@FinishTime,@WorkTypeID)";
                 command.Parameters.Add("@IdEmployee", SqlDbType.Int).Value = dailyResult.IdEmployee;
                 command.Parameters.Add("@WorkTypeID", SqlDbType.Int).Value = dailyResult.IdWorktype;
@@ -151,12 +152,12 @@ namespace Data.Repository
             return success;
         }
 
-        public bool CheckIfDailyResultExist(DailyResult daily_Result)
+        public bool CheckIfDailyResultExist(DailyRecord daily_Result)
         {
             bool success = false;
             Execute((command) => 
             {
-                command.CommandText = @"SELECT id  FROM [KROSDOCHADZKA].[dbo].[DailyRecord]
+                command.CommandText = @"SELECT id  FROM [dbo].[DailyRecord]
                                     where IdEmployee=@IdEmp and IdWorktype=@IdWT and  Finish is null";
                 command.Parameters.Add("@IdEmp", SqlDbType.Int).Value = daily_Result.IdEmployee;
                 command.Parameters.Add("@IdWT", SqlDbType.Int).Value = daily_Result.IdWorktype;
@@ -175,13 +176,13 @@ namespace Data.Repository
         /// <param name="daily_Result"></param>
         /// <returns> vráti finish time buď null alebo hodnotu </returns>
 
-        public DailyResult GetResultByIdWithoutFinishInCurrentDay(int idEmployee)
+        public DailyRecord GetResultByIdWithoutFinishInCurrentDay(int idEmployee)
         {
-            DailyResult selectedResult = null;
+            DailyRecord selectedResult = null;
             Execute((command) =>
             {
                 command.CommandText = @"Select [ID], [IdEmployee], [Start], [Finish], [IdWorktype] 
-                                        from [KROSDOCHADZKA].[dbo].[DailyResult] 
+                                        from [dbo].[DailyRecord] 
                                         where IdEmployee= @IdEmployee and [Finish] is null 
                                          and CONVERT(date,[Start]) = CONVERT(date,GETDATE()) order by [start] desc";
                 command.Parameters.Add("@IdEmployee", SqlDbType.Int).Value = idEmployee;
@@ -189,7 +190,7 @@ namespace Data.Repository
                 {
                     if (reader.Read())
                     {
-                        selectedResult = new DailyResult();
+                        selectedResult = new DailyRecord();
                         selectedResult.Id = reader.GetInt32(0);
                         selectedResult.IdEmployee = reader.GetInt32(1);
                         selectedResult.Start = reader.GetDateTime(2);
@@ -238,7 +239,7 @@ namespace Data.Repository
             DailyRecord ret = new DailyRecord();
             Execute((command) => 
             {
-                command.CommandText = @"select max([start]), min(finish) from dailyresult where id in
+                command.CommandText = @"select max([start]), min(finish) from DailyRecord where id in
                     (select top 2 id from DailyRecord where IdEmployee=@IdEmp and IdWorktype=1 order by [Start] desc) ";
                 command.Parameters.Add("@IdEmp", SqlDbType.Int).Value = dailyResult.IdEmployee;
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -293,7 +294,7 @@ namespace Data.Repository
             bool success = false;
             Execute((command) => 
             {
-                command.CommandText = $@"Insert into DailyResult (IdEmployee,[Start],Finish,IdWorktype) 
+                command.CommandText = $@"Insert into DailyRecord (IdEmployee,[Start],Finish,IdWorktype) 
                                     values (@Id_Employee,@start,@finish,{(int)EnumWorkType.Other})";
                 command.Parameters.Add("@Id_Employee", SqlDbType.VarChar).Value = dailyResult.IdEmployee;
                 command.Parameters.Add("@start", SqlDbType.DateTime2).Value = dailyResult.Start;

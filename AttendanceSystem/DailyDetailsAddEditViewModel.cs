@@ -43,7 +43,7 @@ namespace AttendanceSystem
             dailyResult.Start = startTime;
             dailyResult.Finish = finishTime;
             dailyResult.IdWorktype = workTypeID;
-            return (_repositoryFactory.GetDailyResultRepository().InsertNewDailyResultFromSystem(dailyResult));
+            return (_repositoryFactory.GetDailyRecordRepository().InsertNewDailyResultFromSystem(dailyResult));
 
 
         }
@@ -55,7 +55,7 @@ namespace AttendanceSystem
         /// <returns>true if update happend, otherwise false</returns>
         public bool UpdateDailyResult (DailyRecord updatedDailyResult)
         {
-            return _repositoryFactory.GetDailyResultRepository().UpdateDailyResult(updatedDailyResult);
+            return _repositoryFactory.GetDailyRecordRepository().UpdateDailyResult(updatedDailyResult);
         }
     }
 }

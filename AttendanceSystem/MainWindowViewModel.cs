@@ -56,7 +56,7 @@ namespace AttendanceSystem
 
         public IDictionary<string, int> GetMonthWithNumberOfRecords(int id)
         {
-            return _repositoryFactory.GetDailyResultRepository().GetMonthsWithNumberOfRecords(id);
+            return _repositoryFactory.GetDailyRecordRepository().GetMonthsWithNumberOfRecords(id);
         }
 
         public Person GetPersonByEmployeeId(int employeeId)
@@ -88,7 +88,7 @@ namespace AttendanceSystem
         {
 
             Employee e = _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByIdPerson(person.Id);
-            _repositoryFactory.GetDailyResultRepository().DeleteDailyResultByIdEmployee(e.Id);
+            _repositoryFactory.GetDailyRecordRepository().DeleteDailyResultByIdEmployee(e.Id);
             _repositoryFactory.GetEmployeeRepository().DeleteEmployee(e);
             //ManagerRepository.PersonRepository.DeletePerson(person);//nemusime mazat z osoby
 

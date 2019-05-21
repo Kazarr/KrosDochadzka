@@ -210,7 +210,7 @@ namespace Logic
 
         public List<int> GetYearsFromStart(int employeeID)
         {
-            int firstYear = _repositoryFactory.GetDailyResultRepository().GetYearOfFirstRecord(employeeID);
+            int firstYear = _repositoryFactory.GetDailyRecordRepository().GetYearOfFirstRecord(employeeID);
             if (firstYear == 0)
             {
                 firstYear = DateTime.Now.Year;

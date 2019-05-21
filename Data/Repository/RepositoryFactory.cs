@@ -202,7 +202,7 @@ namespace Data.Repository
             return ret;
         }
                
-        public DailyResultRepository GetDailyResultRepository() => new DailyResultRepository();
+        public DialyRecordRepository GetDailyRecordRepository() => new DialyRecordRepository();
         public EmployeeRepository GetEmployeeRepository() => new EmployeeRepository();
         public PersonRepository GetPersonRepository() => new PersonRepository();
         public WorkTypeRepository GetWorkTypeRepository() => new WorkTypeRepository();
