@@ -50,7 +50,7 @@ namespace AttendanceSystem
 
         public BindingList<int> FillYears(int IdEmployee)
         {
-            return new BindingList<int>(_logic.GetYearsFromStart(IdEmployee));
+            return new BindingList<int>(_logic.GetYearsFromEmploymentStartByEmployee(IdEmployee));
         }
 
 
@@ -86,12 +86,9 @@ namespace AttendanceSystem
 
         public void DeleteEmployeePerson(Person person)
         {
-
             Employee e = _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByIdPerson(person.Id);
             _repositoryFactory.GetDailyRecordRepository().DeleteDailyResultByIdEmployee(e.Id);
             _repositoryFactory.GetEmployeeRepository().DeleteEmployee(e);
-            //ManagerRepository.PersonRepository.DeletePerson(person);//nemusime mazat z osoby
-
         }
 
         public BindingList<Person> FillPlebPerson(int employeeId)
@@ -104,7 +101,8 @@ namespace AttendanceSystem
         }
         public bool ResetPassword()
         {
-            return _logic.ChangePassword(_repositoryFactory.GetEmployeeRepository().GetEmpolyeeByIdPerson(Person.Id).Id, "0000");
+            // 0000 je základne resetovacie heslo
+            return _logic.ChangePasswordByEmployeeId(_repositoryFactory.GetEmployeeRepository().GetEmpolyeeByIdPerson(Person.Id).Id, "0000");
         }
     }
 }

@@ -379,7 +379,7 @@ namespace Data.Repository
         }
 
 
-        public int GetYearOfFirstRecord(int IdEmployee)
+        public int GetYearOfEmploymentStartByEmployee(int IdEmployee)
         {
             int year = 0;
             Execute((command) =>

@@ -23,7 +23,7 @@ namespace AttendanceSystem
 
         public void ChangePassword(int idEmployee, string newPass)
         {
-            _logicSystem.ChangePassword(idEmployee, newPass);
+            _logicSystem.ChangePasswordByEmployeeId(idEmployee, newPass);
         }
 
     }
