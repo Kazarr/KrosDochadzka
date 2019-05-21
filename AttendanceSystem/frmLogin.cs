@@ -59,6 +59,7 @@ namespace AttendanceSystem
                 //Use the connection properties
                 using (SqlConnection conn = new SqlConnection(dlg.ConnectionStringBuilder.ConnectionString))
                 {
+                    _loginViewModel.SaveConnectionString(conn.ConnectionString);
                     if (!_loginViewModel.HasDatabase())
                     {
                         _loginViewModel.SaveConnectionString(conn.ConnectionString);
@@ -66,8 +67,8 @@ namespace AttendanceSystem
                         _loginViewModel.SaveConnectionString(dlg.ConnectionStringBuilder.ConnectionString);
                         _loginViewModel.GenerateTables();
                     }
-
-                    
+                    dlg.ConnectionStringBuilder.InitialCatalog = _loginViewModel.GenerateDb();
+                    _loginViewModel.SaveConnectionString(dlg.ConnectionStringBuilder.ConnectionString);
                 }
             }
         }
