@@ -171,7 +171,7 @@ namespace Data.Repository
 
         public DailyResult GetResultByIdWithoutFinishInCurrentDay(int idEmployee)
         {
-            DailyResult selectedResult = new DailyResult();
+            DailyResult selectedResult = null;
             Execute((command) =>
             {
                 command.CommandText = @"Select [ID], [IdEmployee], [Start], [Finish], [IdWorktype] 
@@ -183,6 +183,7 @@ namespace Data.Repository
                 {
                     if (reader.Read())
                     {
+                        selectedResult = new DailyResult();
                         selectedResult.Id = reader.GetInt32(0);
                         selectedResult.IdEmployee = reader.GetInt32(1);
                         selectedResult.Start = reader.GetDateTime(2);
@@ -269,7 +270,6 @@ namespace Data.Repository
                         dr.Start = reader.GetDateTime(2);
                         dr.Finish = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3);
                         dr.IdWorktype = reader.GetInt32(4);
-
                         ret.Add(dr);
                     }
                 }

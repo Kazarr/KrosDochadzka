@@ -10,15 +10,6 @@ namespace Logic
 {
     public class LogicTerminal
     {
-        //private DailyResult _result; 
-        //private Employee _empolyee = new Employee();
-
-        //public DailyResult SetDailyResult(int id_employee, EnumWorkType type)
-        //{
-        //    _result.IdWorktype = (int)type;
-        //    _result.IdEmployee = id_employee;
-        //    return _result;
-        //}
 
         private void StartWork(int idEmployee, EnumWorkType type)
         {
@@ -29,18 +20,15 @@ namespace Logic
             result.IdWorktype = (int)type;
             ManagerRepository.DailyResultRepository.InsertDialyResult(result);
         }
-        // toto kurva urob
-       //načítať dailyResult na zaklade id zamestnanca pre dnešný deň, kde je finish null a ten následne updatetovať
 
         public void FinishWork(int idEmployee)
         {
-            if (ManagerRepository.DailyResultRepository.GetFinishDailyResult(idEmployee) == null)
+            DailyResult result = ManagerRepository.DailyResultRepository.GetResultByIdWithoutFinishInCurrentDay(idEmployee);
+            if (result != null)
             {
-                DailyResult result = new DailyResult();
-                result = ManagerRepository.DailyResultRepository.GetResultByIdWithoutFinishInCurrentDay(idEmployee);
                 result.Finish = DateTime.Now;
                 ManagerRepository.DailyResultRepository.UpdateDailyResult(result);
-            }            
+            }
         }
 
         public bool CheckIfDailyResultExist(int idEmployee, EnumWorkType type)

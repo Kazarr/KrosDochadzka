@@ -38,7 +38,7 @@ namespace AttendanceTermianal
                 {
                     item.Enabled = true;
                 }
-            }           
+            }
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -75,11 +75,6 @@ namespace AttendanceTermianal
             return ("This Id does not exist");
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            DescribeAndExitDailyResult(EnumWorkType.Exit);
-        }
-
         private void timerClear_Tick(object sender, EventArgs e)
         {
             lblDateNow.Text = _terminalViewModel.DescriptionDate();
@@ -87,8 +82,46 @@ namespace AttendanceTermianal
             lblName.Text = "";
             txtEmpId.Clear();
             timerClear.Stop();
+        }       
+
+        private void DescribeAndCreateDailyResult(EnumWorkType type)
+        {
+            if (!string.IsNullOrEmpty(txtEmpId.Text))
+            {
+                if (CorrectEmp(txtEmpId.Text))
+                {
+                    int employeeId = int.Parse(txtEmpId.Text);
+                    if (type == EnumWorkType.Exit)
+                    {
+                        _terminalViewModel.ExitDailyResult(employeeId);
+                    }
+                    else
+                    {
+                        _terminalViewModel.CreateNewDailyResult(employeeId, type);
+                    }
+                    Describe(employeeId, type);
+                    timerClear.Start();
+                }
+            }
+            else
+            {
+                lblName.Text = ShowError();
+                timerClear.Start();
+            }
         }
 
+        private void Describe(int employeeId, EnumWorkType type)
+        {
+            lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
+            lblDateNow.Text = _terminalViewModel.DescriptionDate();
+            lblWorkType.Text = _terminalViewModel.DescriptionWorkType(type);
+        }
+        
+        #region Buttons
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            DescribeAndCreateDailyResult(EnumWorkType.Exit);
+        }
         private void btnLunch_Click(object sender, EventArgs e)
         {
             DescribeAndCreateDailyResult(EnumWorkType.Lunch);
@@ -113,49 +146,6 @@ namespace AttendanceTermianal
         {
             DescribeAndCreateDailyResult(EnumWorkType.Work);
         }
-
-       private void DescribeAndCreateDailyResult (EnumWorkType type)
-        {
-            if (!string.IsNullOrEmpty(txtEmpId.Text))
-            {
-                if (CorrectEmp(txtEmpId.Text))
-                {
-                    int employeeId = int.Parse(txtEmpId.Text);
-                    _terminalViewModel.CreateNewDailyResult(employeeId, type);
-                    Describe(employeeId, type);
-                    timerClear.Start();
-                }
-            }
-            else
-            {
-                lblName.Text = ShowError();
-                timerClear.Start();
-            }
-        }
-
-        private void DescribeAndExitDailyResult(EnumWorkType type)
-        {
-            if (!string.IsNullOrEmpty(txtEmpId.Text))
-            {
-                if (CorrectEmp(txtEmpId.Text))
-                {
-                    int employeeId = int.Parse(txtEmpId.Text);
-                    _terminalViewModel.ExitDailyResult(employeeId);
-                    Describe(employeeId, type);
-                    timerClear.Start();
-                }
-            }
-            else
-            {
-                lblName.Text = ShowError();
-                timerClear.Start();
-            }
-        }
-        private void Describe(int employeeId, EnumWorkType type)
-        {
-            lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
-            lblDateNow.Text = _terminalViewModel.DescriptionDate();
-            lblWorkType.Text = _terminalViewModel.DescriptionWorkType(type);
-        }
+        #endregion
     }
 }
