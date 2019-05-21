@@ -277,7 +277,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmTerminal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = ";";
+            this.Text = "Terminal";
             this.panelBtnsAndTxtBox.ResumeLayout(false);
             this.panelBtnsAndTxtBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
