@@ -62,14 +62,8 @@ namespace AttendanceTermianal
             try
             {
                 var empoloyee = ManagerRepository.EmployeeRepository.GetEmpolyeeByID(int.Parse(input));
-                if (empoloyee != null && empoloyee.Id.Equals(int.Parse(input)))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }               
+                return empoloyee != null && empoloyee.Id.Equals(int.Parse(input));
+                           
             }
             catch (FormatException)
             {

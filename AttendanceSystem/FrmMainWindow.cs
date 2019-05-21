@@ -1,14 +1,8 @@
 ﻿using Data.Model;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AttendanceSystem
@@ -56,10 +50,6 @@ namespace AttendanceSystem
                 btnReset.Visible = true;
             }
 
-
-
-
-
         }
 
 
@@ -76,7 +66,7 @@ namespace AttendanceSystem
         {
             //get name of the month from the combobox
             _selected = $"{comboBoxMonth.GetItemText(comboBoxMonth.SelectedItem)} {comboBoxYear.GetItemText(comboBoxYear.SelectedItem)}";
-            dGVOverview.DataSource = _mainWindowViewModel.FillDataGridViewOverview(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), _selected);
+            bindingSource1.DataSource = _mainWindowViewModel.FillDataGridViewOverview(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), _selected);
 
         }
                
@@ -89,10 +79,7 @@ namespace AttendanceSystem
                 _mainWindowViewModel.DeleteEmployeePerson((Person)comboBoxPerson.SelectedItem);
                 comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox();
             }
-            else if (dialogResult == DialogResult.No)
-            {
-                //do something else
-            }
+
         }
 
 
@@ -141,8 +128,8 @@ namespace AttendanceSystem
             if (dGVOverview.SelectedRows.Count > 0)
             {
                 //gets date from selectedRow
-                DateTime selectedDate = Convert.ToDateTime(dGVOverview.Rows[dGVOverview.CurrentCell.RowIndex].Cells[0].Value.ToString());
-                frmDailyDetails dailyDetails = new frmDailyDetails(_loggedEmployeeID, selectedDate, _mainWindowViewModel.GetEmployeeIdByPerson((Data.Model.Person)comboBoxPerson.SelectedItem));
+                DateTime selectedDate = Convert.ToDateTime(dGVOverview.Rows[dGVOverview.CurrentCell.RowIndex].Cells["Date"].Value.ToString());
+                frmDailyDetails dailyDetails = new frmDailyDetails(_loggedEmployeeID, selectedDate, _mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem));
                 dailyDetails.ShowDialog();
                 fillDataGridView();
             }
@@ -160,9 +147,6 @@ namespace AttendanceSystem
             CheckPermission();
             fillComboBoxes();
             fillDataGridView();
-
-            dGVOverview.Columns[1].DefaultCellStyle.Format = "HH:mm:ss ";
-            dGVOverview.Columns[2].DefaultCellStyle.Format = "HH:mm:ss ";
         }
 
         /// <summary>
@@ -172,12 +156,12 @@ namespace AttendanceSystem
         /// <param name="e"></param>
         private void dGVOverview_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
-            if (Convert.ToDateTime(dGVOverview.Rows[e.RowIndex].Cells[0].Value).DayOfWeek.ToString().Equals("Sunday") ||
-                Convert.ToDateTime(dGVOverview.Rows[e.RowIndex].Cells[0].Value).DayOfWeek.ToString().Equals("Saturday"))
+            if (Convert.ToDateTime(dGVOverview.Rows[e.RowIndex].Cells["Date"].Value).DayOfWeek.ToString().Equals("Sunday") ||
+                Convert.ToDateTime(dGVOverview.Rows[e.RowIndex].Cells["Date"].Value).DayOfWeek.ToString().Equals("Saturday"))
             {
                 dGVOverview.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightSkyBlue;
             }
-            else if (dGVOverview.Rows[e.RowIndex].Cells[1].Value != null && dGVOverview.Rows[e.RowIndex].Cells[2].Value == null)
+            else if (dGVOverview.Rows[e.RowIndex].Cells["WorkArrivalTime"].Value != null && dGVOverview.Rows[e.RowIndex].Cells["WorkLeavingTime"].Value == null)
             {
 
                 dGVOverview.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.DarkRed;
@@ -185,16 +169,15 @@ namespace AttendanceSystem
 
             else if (dGVOverview.Rows[e.RowIndex].Cells[10].Value == null)
             {
-
+                //nic sa nestane if je tu len preto aby dalsie nepadli
             }
 
-
-            else if ((TimeSpan)(dGVOverview.Rows[e.RowIndex].Cells[10].Value) > TimeSpan.FromHours(10))
+            else if ((TimeSpan)(dGVOverview.Rows[e.RowIndex].Cells["TotalTimeWorked"].Value) > TimeSpan.FromHours(10))
             {
                 dGVOverview.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.MediumPurple;
             }
 
-            else if ((TimeSpan)(dGVOverview.Rows[e.RowIndex].Cells[10].Value) < TimeSpan.FromHours(6))
+            else if ((TimeSpan)(dGVOverview.Rows[e.RowIndex].Cells["TotalTimeWorked"].Value) < TimeSpan.FromHours(6))
             {
                 dGVOverview.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightPink;
             }
@@ -231,6 +214,11 @@ namespace AttendanceSystem
             _mainWindowViewModel.Person = (Person)comboBoxPerson.SelectedItem;
             btnReset.Enabled = true;
             fillDataGridView();
+        }
+
+        private void bindingSource1_CurrentChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
