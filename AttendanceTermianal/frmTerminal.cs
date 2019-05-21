@@ -22,17 +22,11 @@ namespace AttendanceTermianal
             if (!Data.Shared.CheckConnection())
             {
                 lblName.Text = "Connection not established";
-                foreach (Control item in panelMain.Controls)
-                {
-                    item.Enabled = false;
-                }
+                panelBtnsAndTxtBox.Enabled = false;
             }
             else
             {
-                foreach (Control item in panelMain.Controls)
-                {
-                    item.Enabled = true;
-                }
+                panelBtnsAndTxtBox.Enabled = true;
             }
         }
 

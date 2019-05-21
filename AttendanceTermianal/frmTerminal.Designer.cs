@@ -36,7 +36,7 @@
             this.lblDate = new System.Windows.Forms.Label();
             this.lblDay = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.panelMain = new System.Windows.Forms.Panel();
+            this.panelBtnsAndTxtBox = new System.Windows.Forms.Panel();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnEntry = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -50,7 +50,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.timerClear = new System.Windows.Forms.Timer(this.components);
-            this.panelMain.SuspendLayout();
+            this.panelBtnsAndTxtBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -124,21 +124,21 @@
             // 
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // panelMain
+            // panelBtnsAndTxtBox
             // 
-            this.panelMain.Controls.Add(this.btnExit);
-            this.panelMain.Controls.Add(this.btnEntry);
-            this.panelMain.Controls.Add(this.button1);
-            this.panelMain.Controls.Add(this.btnLunch);
-            this.panelMain.Controls.Add(this.btnBTrip);
-            this.panelMain.Controls.Add(this.btnDoctor);
-            this.panelMain.Controls.Add(this.txtEmpId);
-            this.panelMain.Controls.Add(this.pictureBox7);
-            this.panelMain.ForeColor = System.Drawing.Color.White;
-            this.panelMain.Location = new System.Drawing.Point(5, 205);
-            this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(545, 345);
-            this.panelMain.TabIndex = 1;
+            this.panelBtnsAndTxtBox.Controls.Add(this.btnExit);
+            this.panelBtnsAndTxtBox.Controls.Add(this.btnEntry);
+            this.panelBtnsAndTxtBox.Controls.Add(this.button1);
+            this.panelBtnsAndTxtBox.Controls.Add(this.btnLunch);
+            this.panelBtnsAndTxtBox.Controls.Add(this.btnBTrip);
+            this.panelBtnsAndTxtBox.Controls.Add(this.btnDoctor);
+            this.panelBtnsAndTxtBox.Controls.Add(this.txtEmpId);
+            this.panelBtnsAndTxtBox.Controls.Add(this.pictureBox7);
+            this.panelBtnsAndTxtBox.ForeColor = System.Drawing.Color.White;
+            this.panelBtnsAndTxtBox.Location = new System.Drawing.Point(5, 205);
+            this.panelBtnsAndTxtBox.Name = "panelBtnsAndTxtBox";
+            this.panelBtnsAndTxtBox.Size = new System.Drawing.Size(545, 345);
+            this.panelBtnsAndTxtBox.TabIndex = 1;
             // 
             // btnExit
             // 
@@ -255,7 +255,7 @@
             // panel4
             // 
             this.panel4.Controls.Add(this.panel3);
-            this.panel4.Controls.Add(this.panelMain);
+            this.panel4.Controls.Add(this.panelBtnsAndTxtBox);
             this.panel4.Controls.Add(this.panel2);
             this.panel4.Location = new System.Drawing.Point(5, 5);
             this.panel4.Name = "panel4";
@@ -278,8 +278,8 @@
             this.Name = "frmTerminal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = ";";
-            this.panelMain.ResumeLayout(false);
-            this.panelMain.PerformLayout();
+            this.panelBtnsAndTxtBox.ResumeLayout(false);
+            this.panelBtnsAndTxtBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -297,7 +297,7 @@
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Label lblDay;
         private System.Windows.Forms.Timer timer;
-        private System.Windows.Forms.Panel panelMain;
+        private System.Windows.Forms.Panel panelBtnsAndTxtBox;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
