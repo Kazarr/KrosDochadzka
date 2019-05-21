@@ -12,7 +12,6 @@ namespace Data.Generator
     public class EmployeeGenerator
     {
         private EmployeeRepository _employeeRepository ;
-        private PersonRepository _personRepository;
 
         public EmployeeGenerator()
         {

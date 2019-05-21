@@ -132,6 +132,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Data.Model.DailyResult.datasource" />
+    <None Include="Properties\DataSources\Data.Model.DailyResultWithWorkType.datasource" />
+    <None Include="Properties\DataSources\Data.Model.DaySummary.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

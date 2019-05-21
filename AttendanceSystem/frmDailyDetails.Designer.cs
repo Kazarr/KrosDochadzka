@@ -28,20 +28,38 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dGVDailyResultsOverview = new System.Windows.Forms.DataGridView();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.dailyResultIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idEmployeeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.startTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.finishTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.workTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dGVDailyResultsOverview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // dGVDailyResultsOverview
             // 
             this.dGVDailyResultsOverview.AllowUserToAddRows = false;
             this.dGVDailyResultsOverview.AllowUserToDeleteRows = false;
+            this.dGVDailyResultsOverview.AutoGenerateColumns = false;
             this.dGVDailyResultsOverview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dGVDailyResultsOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGVDailyResultsOverview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dailyResultIDDataGridViewTextBoxColumn,
+            this.idEmployeeDataGridViewTextBoxColumn,
+            this.startTimeDataGridViewTextBoxColumn,
+            this.finishTimeDataGridViewTextBoxColumn,
+            this.workTypeDataGridViewTextBoxColumn});
+            this.dGVDailyResultsOverview.DataSource = this.bindingSource1;
             this.dGVDailyResultsOverview.Location = new System.Drawing.Point(12, 105);
             this.dGVDailyResultsOverview.MultiSelect = false;
             this.dGVDailyResultsOverview.Name = "dGVDailyResultsOverview";
@@ -98,6 +116,54 @@
             this.btnDelete.Visible = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(Data.Model.DailyResultWithWorkType);
+            // 
+            // dailyResultIDDataGridViewTextBoxColumn
+            // 
+            this.dailyResultIDDataGridViewTextBoxColumn.DataPropertyName = "DailyResultID";
+            this.dailyResultIDDataGridViewTextBoxColumn.HeaderText = "DailyResultID";
+            this.dailyResultIDDataGridViewTextBoxColumn.Name = "dailyResultIDDataGridViewTextBoxColumn";
+            this.dailyResultIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dailyResultIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // idEmployeeDataGridViewTextBoxColumn
+            // 
+            this.idEmployeeDataGridViewTextBoxColumn.DataPropertyName = "IdEmployee";
+            this.idEmployeeDataGridViewTextBoxColumn.HeaderText = "IdEmployee";
+            this.idEmployeeDataGridViewTextBoxColumn.Name = "idEmployeeDataGridViewTextBoxColumn";
+            this.idEmployeeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idEmployeeDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // startTimeDataGridViewTextBoxColumn
+            // 
+            this.startTimeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.startTimeDataGridViewTextBoxColumn.DataPropertyName = "StartTime";
+            dataGridViewCellStyle1.Format = "MM/dd/yy HH:mm:ss";
+            this.startTimeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.startTimeDataGridViewTextBoxColumn.HeaderText = "StartTime";
+            this.startTimeDataGridViewTextBoxColumn.Name = "startTimeDataGridViewTextBoxColumn";
+            this.startTimeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // finishTimeDataGridViewTextBoxColumn
+            // 
+            this.finishTimeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.finishTimeDataGridViewTextBoxColumn.DataPropertyName = "FinishTime";
+            dataGridViewCellStyle2.Format = "MM/dd/yy HH:mm:ss";
+            this.finishTimeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.finishTimeDataGridViewTextBoxColumn.HeaderText = "FinishTime";
+            this.finishTimeDataGridViewTextBoxColumn.Name = "finishTimeDataGridViewTextBoxColumn";
+            this.finishTimeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // workTypeDataGridViewTextBoxColumn
+            // 
+            this.workTypeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.workTypeDataGridViewTextBoxColumn.DataPropertyName = "WorkType";
+            this.workTypeDataGridViewTextBoxColumn.HeaderText = "WorkType";
+            this.workTypeDataGridViewTextBoxColumn.Name = "workTypeDataGridViewTextBoxColumn";
+            this.workTypeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // frmDailyDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -111,6 +177,7 @@
             this.Name = "frmDailyDetails";
             this.Text = "DailyDetails";
             ((System.ComponentModel.ISupportInitialize)(this.dGVDailyResultsOverview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -122,5 +189,11 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dailyResultIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idEmployeeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn startTimeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn finishTimeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn workTypeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource bindingSource1;
     }
 }

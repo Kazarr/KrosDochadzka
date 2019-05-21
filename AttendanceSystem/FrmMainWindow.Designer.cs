@@ -28,6 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnShowMonth = new System.Windows.Forms.Button();
             this.btnUpdateEmployee = new System.Windows.Forms.Button();
             this.btnDeleteEmployee = new System.Windows.Forms.Button();
@@ -43,7 +54,20 @@
             this.btnChangePassword = new System.Windows.Forms.Button();
             this.comboBoxYear = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WorkArrivalTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WorkLeavingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lunchBreakDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.holidayTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.homeOfficeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.businessTripDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.doctorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.privateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.otherDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalTimeWorked = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dGVOverview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnShowMonth
@@ -140,8 +164,22 @@
             this.dGVOverview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dGVOverview.AutoGenerateColumns = false;
             this.dGVOverview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dGVOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGVOverview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Date,
+            this.WorkArrivalTime,
+            this.WorkLeavingTime,
+            this.lunchBreakDataGridViewTextBoxColumn,
+            this.holidayTimeDataGridViewTextBoxColumn,
+            this.homeOfficeDataGridViewTextBoxColumn,
+            this.businessTripDataGridViewTextBoxColumn,
+            this.doctorDataGridViewTextBoxColumn,
+            this.privateDataGridViewTextBoxColumn,
+            this.otherDataGridViewTextBoxColumn,
+            this.TotalTimeWorked});
+            this.dGVOverview.DataSource = this.bindingSource1;
             this.dGVOverview.Location = new System.Drawing.Point(15, 212);
             this.dGVOverview.MultiSelect = false;
             this.dGVOverview.Name = "dGVOverview";
@@ -217,6 +255,119 @@
             this.label1.TabIndex = 27;
             this.label1.Text = "Choose  Year ";
             // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(Data.Model.DaySummary);
+            this.bindingSource1.CurrentChanged += new System.EventHandler(this.bindingSource1_CurrentChanged);
+            // 
+            // Date
+            // 
+            this.Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Date.DataPropertyName = "Date";
+            this.Date.HeaderText = "Date";
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
+            // 
+            // WorkArrivalTime
+            // 
+            this.WorkArrivalTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.WorkArrivalTime.DataPropertyName = "WorkArrivalTime";
+            dataGridViewCellStyle1.Format = "HH:mm:ss";
+            this.WorkArrivalTime.DefaultCellStyle = dataGridViewCellStyle1;
+            this.WorkArrivalTime.HeaderText = "Arrive Time";
+            this.WorkArrivalTime.Name = "WorkArrivalTime";
+            this.WorkArrivalTime.ReadOnly = true;
+            // 
+            // WorkLeavingTime
+            // 
+            this.WorkLeavingTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.WorkLeavingTime.DataPropertyName = "WorkLeavingTime";
+            dataGridViewCellStyle2.Format = "HH:mm:ss";
+            this.WorkLeavingTime.DefaultCellStyle = dataGridViewCellStyle2;
+            this.WorkLeavingTime.HeaderText = "Leaving Time";
+            this.WorkLeavingTime.Name = "WorkLeavingTime";
+            this.WorkLeavingTime.ReadOnly = true;
+            // 
+            // lunchBreakDataGridViewTextBoxColumn
+            // 
+            this.lunchBreakDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.lunchBreakDataGridViewTextBoxColumn.DataPropertyName = "LunchBreak";
+            dataGridViewCellStyle3.Format = "hh\\:mm\\:ss";
+            this.lunchBreakDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.lunchBreakDataGridViewTextBoxColumn.HeaderText = "Lunchbreak";
+            this.lunchBreakDataGridViewTextBoxColumn.Name = "lunchBreakDataGridViewTextBoxColumn";
+            this.lunchBreakDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // holidayTimeDataGridViewTextBoxColumn
+            // 
+            this.holidayTimeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.holidayTimeDataGridViewTextBoxColumn.DataPropertyName = "HolidayTime";
+            dataGridViewCellStyle4.Format = "hh\\:mm\\:ss";
+            this.holidayTimeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.holidayTimeDataGridViewTextBoxColumn.HeaderText = "Holiday";
+            this.holidayTimeDataGridViewTextBoxColumn.Name = "holidayTimeDataGridViewTextBoxColumn";
+            this.holidayTimeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // homeOfficeDataGridViewTextBoxColumn
+            // 
+            this.homeOfficeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.homeOfficeDataGridViewTextBoxColumn.DataPropertyName = "HomeOffice";
+            dataGridViewCellStyle5.Format = "hh\\:mm\\:ss";
+            this.homeOfficeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.homeOfficeDataGridViewTextBoxColumn.HeaderText = "Home Office";
+            this.homeOfficeDataGridViewTextBoxColumn.Name = "homeOfficeDataGridViewTextBoxColumn";
+            this.homeOfficeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // businessTripDataGridViewTextBoxColumn
+            // 
+            this.businessTripDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.businessTripDataGridViewTextBoxColumn.DataPropertyName = "BusinessTrip";
+            dataGridViewCellStyle6.Format = "hh\\:mm\\:ss";
+            this.businessTripDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            this.businessTripDataGridViewTextBoxColumn.HeaderText = "Business Trip";
+            this.businessTripDataGridViewTextBoxColumn.Name = "businessTripDataGridViewTextBoxColumn";
+            this.businessTripDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // doctorDataGridViewTextBoxColumn
+            // 
+            this.doctorDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.doctorDataGridViewTextBoxColumn.DataPropertyName = "Doctor";
+            dataGridViewCellStyle7.Format = "hh\\:mm\\:ss";
+            this.doctorDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            this.doctorDataGridViewTextBoxColumn.HeaderText = "Doctor";
+            this.doctorDataGridViewTextBoxColumn.Name = "doctorDataGridViewTextBoxColumn";
+            this.doctorDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // privateDataGridViewTextBoxColumn
+            // 
+            this.privateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.privateDataGridViewTextBoxColumn.DataPropertyName = "Private";
+            dataGridViewCellStyle8.Format = "hh\\:mm\\:ss";
+            this.privateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            this.privateDataGridViewTextBoxColumn.HeaderText = "Private";
+            this.privateDataGridViewTextBoxColumn.Name = "privateDataGridViewTextBoxColumn";
+            this.privateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // otherDataGridViewTextBoxColumn
+            // 
+            this.otherDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.otherDataGridViewTextBoxColumn.DataPropertyName = "Other";
+            dataGridViewCellStyle9.Format = "hh\\:mm\\:ss";
+            this.otherDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            this.otherDataGridViewTextBoxColumn.HeaderText = "Other";
+            this.otherDataGridViewTextBoxColumn.Name = "otherDataGridViewTextBoxColumn";
+            this.otherDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // TotalTimeWorked
+            // 
+            this.TotalTimeWorked.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TotalTimeWorked.DataPropertyName = "TotalTimeWorked";
+            dataGridViewCellStyle10.Format = "hh\\:mm\\:ss";
+            this.TotalTimeWorked.DefaultCellStyle = dataGridViewCellStyle10;
+            this.TotalTimeWorked.HeaderText = "Total Time Worked";
+            this.TotalTimeWorked.Name = "TotalTimeWorked";
+            this.TotalTimeWorked.ReadOnly = true;
+            // 
             // FrmMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -241,6 +392,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.FrmMainWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dGVOverview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -263,6 +415,18 @@
         private System.Windows.Forms.Button btnChangePassword;
         private System.Windows.Forms.ComboBox comboBoxYear;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WorkArrivalTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WorkLeavingTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lunchBreakDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn holidayTimeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn homeOfficeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn businessTripDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn doctorDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn privateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn otherDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalTimeWorked;
     }
 }
 

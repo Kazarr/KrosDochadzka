@@ -21,7 +21,9 @@ namespace AttendanceSystem
         public Person Person { get => _person; set {  _person = value;
                                                       Employee = GetEmpolyeeByPersonId(Person.Id);}}
 
+
         public Employee Employee { get => _employee; set => _employee = value; }
+
 
         public Employee GetEmployeeByID(int id)
         {
@@ -86,7 +88,6 @@ namespace AttendanceSystem
             Employee e = ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(person.Id);
             ManagerRepository.DailyResultRepository.DeleteDailyResultByIdEmployee(e.Id);
             ManagerRepository.EmployeeRepository.DeleteEmployee(e);
-            //ManagerRepository.PersonRepository.DeletePerson(person);//nemusime mazat z osoby
         }
 
         public BindingList<Person> FillPlebPerson(int employeeId)
