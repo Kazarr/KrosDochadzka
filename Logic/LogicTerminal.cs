@@ -25,7 +25,12 @@ namespace Logic
                 IdEmployee = idEmployee,
                 IdWorktype = (int)type
             };
-            _repositoryFactory.GetDailyRecordRepository().InsertDialyRecord(dailyRecord);
+            _dailyRecordRepository.InsertDialyRecord(dailyRecord);
+        }
+
+        public Person GetPersonByIdEmployee(int employeeId)
+        {
+            return _personRepository.GetPersonByIdEmployee(employeeId);
         }
 
         public void UpdateFinishInTimeBlock(DailyRecord dailyRecord, DateTime finishTime)
@@ -50,6 +55,16 @@ namespace Logic
                 }               
             }
             CreateNewTimeBlock(employeeId, type, currentTime);
+        }
+
+        public Employee GetEmpolyeeByID(int v)
+        {
+            return _employeeRepository.GetEmpolyeeByID(v);
+        }
+
+        public DailyRecord GetLastDailyRecordByEmployeeId(int employeeId)
+        {
+            return _dailyRecordRepository.GetLastDailyRecordByEmployeeId(employeeId);
         }
     }
 }

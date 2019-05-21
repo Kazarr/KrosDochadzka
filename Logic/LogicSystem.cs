@@ -68,7 +68,7 @@ namespace Logic
 
         public bool UpdateDailyResult(DailyRecord updatedDailyResult)
         {
-            return _dailyRecordRepository.UpdateDailyResult(updatedDailyResult);
+            return _dailyRecordRepository.UpdateFinishDailyResult(updatedDailyResult);
         }
 
         public IDictionary<string, int> GetMonthsWithNumberOfRecords(int id)
