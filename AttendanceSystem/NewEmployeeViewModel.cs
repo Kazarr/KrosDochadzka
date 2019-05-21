@@ -16,16 +16,19 @@ namespace AttendanceSystem
         public Employee Employee { get; set; }
         public Person Person { get; set; }
         public Person Supervisor { get; set; }
+        private RepositoryFactory _repositoryFactory;
 
         public NewEmployeeViewModel(Person person, Employee empolyee)
         {
             Person = person;
             Employee = empolyee;
             Supervisor = GetSupervisor(Employee.Id);
+            _repositoryFactory = new RepositoryFactory();
         }
 
         public NewEmployeeViewModel()
         {
+            _repositoryFactory = new RepositoryFactory();
             Employee = new Employee();
             Person = new Person();
         }
@@ -42,27 +45,27 @@ namespace AttendanceSystem
 
         public List<string> FillPermissions()
         {
-            return ManagerRepository.PermissionRepository.SelectPermissionName();
+            return _repositoryFactory.GetPermissionRepository().SelectPermissionName();
         }
 
         public string EmployeePermission(Employee empolyee)
         {
-            return ManagerRepository.PermissionRepository.SelectPermissionNameById(empolyee.Permision);
+            return _repositoryFactory.GetPermissionRepository().SelectPermissionNameById(empolyee.Permision);
         }
 
         public int EmployeePermissionId(string name)
         {
-            return ManagerRepository.PermissionRepository.SelectPermissionIdByName(name);
+            return _repositoryFactory.GetPermissionRepository().SelectPermissionIdByName(name);
         }
 
         public Person GetSupervisor(int? idEmployee)
         {
-            return ManagerRepository.PersonRepository.GetPersonByIdEmployee(idEmployee.Value);
+            return _repositoryFactory.GetPersonRepository().GetPersonByIdEmployee(idEmployee.Value);
         }
 
         public BindingList<Person> FillSupervisors()
         {
-            return new BindingList<Person>(ManagerRepository.PersonRepository.GetPersonEmployeesSupervisors());
+            return new BindingList<Person>(_repositoryFactory.GetPersonRepository().GetPersonEmployeesSupervisors());
         }
 
         public void UpdateEmployee(string firstName, string lastName, string phoneNumber, string address, int permission, Person supervisor)

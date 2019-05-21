@@ -10,7 +10,12 @@ namespace Logic
 {
     public class LogicTerminal
     {
+        private RepositoryFactory _repositoryFactory;
 
+        public LogicTerminal()
+        {
+            _repositoryFactory = new RepositoryFactory();
+        }
         private void StartWork(int idEmployee, EnumWorkType type)
         {
             DailyResult result = new DailyResult();
@@ -23,11 +28,11 @@ namespace Logic
 
         public void FinishWork(int idEmployee)
         {
-            DailyResult result = ManagerRepository.DailyResultRepository.GetResultByIdWithoutFinishInCurrentDay(idEmployee);
+            DailyResult result = _repositoryFactory.GetDailyResultRepository().GetResultByIdWithoutFinishInCurrentDay(idEmployee);
             if (result != null)
             {
                 result.Finish = DateTime.Now;
-                ManagerRepository.DailyResultRepository.UpdateDailyResult(result);
+                _repositoryFactory.GetDailyResultRepository().UpdateDailyResult(result);
             }
         }
 
@@ -36,7 +41,7 @@ namespace Logic
             DailyResult result = new DailyResult();
             result.IdEmployee = idEmployee;
             result.IdWorktype = (int)type;
-            return ManagerRepository.DailyResultRepository.CheckIfDailyResultExist(result);
+            return repositoryFactory.GetDailyResultRepository().CheckIfDailyResultExist(result);
         }
 
         /// <summary>
@@ -50,7 +55,7 @@ namespace Logic
             result.IdEmployee = idEmployee;
             result.IdWorktype = (int)type;
             List<DailyResult> twoLastResult = new List<DailyResult>();
-            twoLastResult = ManagerRepository.DailyResultRepository.SelectTwoLastResults(result);
+            twoLastResult = _repositoryFactory.GetDailyResultRepository().SelectTwoLastResults(result);
             // Ak sa do listu uložia presne 2 záznamy s rovnakým WorkType(work) znamená to že zamestnanec za jeden deň viackrát prišiel a odišiel z roboty
             if (twoLastResult.Count == 2)
             {
@@ -58,9 +63,9 @@ namespace Logic
                 {
                     DailyResult newResult = new DailyResult();
                     newResult.IdEmployee = idEmployee;
-                    newResult.Finish = ManagerRepository.DailyResultRepository.SelectLastStartAndFinish(result).Finish;
-                    newResult.Start = ManagerRepository.DailyResultRepository.SelectLastStartAndFinish(result).Start;
-                    ManagerRepository.DailyResultRepository.InsertInBlankSpace(newResult);
+                    newResult.Finish =_repositoryFactory.GetDailyResultRepository().SelectLastStartAndFinish(result).Finish;
+                    newResult.Start = _repositoryFactory.GetDailyResultRepository().SelectLastStartAndFinish(result).Start;
+                    _repositoryFactory.GetDailyResultRepository().DailyResultRepository.InsertInBlankSpace(newResult);
                 }
             }
         }

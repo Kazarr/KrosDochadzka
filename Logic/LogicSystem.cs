@@ -14,8 +14,13 @@ namespace Logic
     public class LogicSystem
     {
         private string DB_NAME = "KROSDOCHADZKA";
-        private string CalculateMD5Hash(string input)
+        private RepositoryFactory _repositoryFactory;
 
+        public LogicSystem()
+        {
+            _repositoryFactory = new RepositoryFactory();
+        }
+        private string CalculateMD5Hash(string input)
         {
             // step 1, calculate MD5 hash from input
             MD5 md5 = MD5.Create();
@@ -40,7 +45,7 @@ namespace Logic
         public bool HasDatabase()
         {
             bool ret = false;
-            ManagerRepository managerRepository = new ManagerRepository();
+            RepositoryFactory managerRepository = new RepositoryFactory();
             if(managerRepository.GetDataBaseName() == DB_NAME)
             {
                 ret = true;
@@ -64,7 +69,7 @@ namespace Logic
         public string GenerateDb()
         {
             string ret = "";
-            ManagerRepository manager = new ManagerRepository();
+            RepositoryFactory manager = new RepositoryFactory();
             if (manager.GenerateDB())
             {
                 ret = manager.GetDataBaseName();
@@ -74,7 +79,7 @@ namespace Logic
 
         public bool GenerateTables()
         {
-            ManagerRepository manager = new ManagerRepository();
+            RepositoryFactory manager = new RepositoryFactory();
             return manager.GenerateTables();
         }
 
@@ -83,15 +88,15 @@ namespace Logic
             DaySummary daySummary = new DaySummary();
 
             daySummary.Date = date.Date.ToString("MM-dd-yyyy");
-            daySummary.WorkArrivalTime = ManagerRepository.DaySummaryRepository.GetArrivalTime(date, idEmployee);
-            daySummary.WorkLeavingTime = ManagerRepository.DaySummaryRepository.GetLeavingTime(date, idEmployee);
-            daySummary.LunchBreak = ManagerRepository.DaySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, 2);
-            daySummary.HolidayTime = ManagerRepository.DaySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, 3);
-            daySummary.HomeOffice = ManagerRepository.DaySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, 4);
-            daySummary.BusinessTrip = ManagerRepository.DaySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, 5);
-            daySummary.Doctor = ManagerRepository.DaySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, 6);
-            daySummary.Private = ManagerRepository.DaySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, 7);
-            daySummary.Other = ManagerRepository.DaySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, 8);
+            daySummary.WorkArrivalTime = _repositoryFactory.GetDaySummaryRepository().GetArrivalTime(date, idEmployee);
+            daySummary.WorkLeavingTime = _repositoryFactory.GetDaySummaryRepository().GetLeavingTime(date, idEmployee);
+            daySummary.LunchBreak = _repositoryFactory.GetDaySummaryRepository().GetTimeSpendOnDailyResults(date, idEmployee, 2);
+            daySummary.HolidayTime = _repositoryFactory.GetDaySummaryRepository().GetTimeSpendOnDailyResults(date, idEmployee, 3);
+            daySummary.HomeOffice = _repositoryFactory.GetDaySummaryRepository().GetTimeSpendOnDailyResults(date, idEmployee, 4);
+            daySummary.BusinessTrip = _repositoryFactory.GetDaySummaryRepository().GetTimeSpendOnDailyResults(date, idEmployee, 5);
+            daySummary.Doctor = _repositoryFactory.GetDaySummaryRepository().GetTimeSpendOnDailyResults(date, idEmployee, 6);
+            daySummary.Private = _repositoryFactory.GetDaySummaryRepository().GetTimeSpendOnDailyResults(date, idEmployee, 7);
+            daySummary.Other = _repositoryFactory.GetDaySummaryRepository().GetTimeSpendOnDailyResults(date, idEmployee, 8);
 
             daySummary.TotalTimeWorked = daySummary.WorkLeavingTime - daySummary.WorkArrivalTime - daySummary.HolidayTime
                  - daySummary.Doctor - daySummary.Private - daySummary.Other;
@@ -129,18 +134,18 @@ namespace Logic
 
         public bool CheckLogin(int id, string password)
         {
-            return ManagerRepository.EmployeeRepository.CheckLogin(id, CalculateMD5Hash(password));
+            return _repositoryFactory.GetEmployeeRepository().CheckLogin(id, CalculateMD5Hash(password));
         }
 
         private int InsertFullEmployee(Employee e)
         {
             e.Password = CalculateMD5Hash(e.Password);
-            return ManagerRepository.EmployeeRepository.InsertFullEmployee(e);
+            return _repositoryFactory.GetEmployeeRepository().InsertFullEmployee(e);
         }
 
         public bool ChangePassword(int id, string password)
         {
-            return ManagerRepository.EmployeeRepository.ChangePassword(id, CalculateMD5Hash(password));
+            return _repositoryFactory.GetEmployeeRepository().ChangePassword(id, CalculateMD5Hash(password));
         }
 
         public void UpdateEmployee(string firstName, string lastName, string phoneNumber, string adress, int permission, Person supervisor)
@@ -156,9 +161,9 @@ namespace Logic
             }
             else
             {
-                employee.IdSupervisor = ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(supervisor.Id).Id;
+                employee.IdSupervisor = _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByIdPerson(supervisor.Id).Id;
             }
-            ManagerRepository.EmployeeRepository.UpdateEmployee(employee, p);
+            _repositoryFactory.GetEmployeeRepository().UpdateEmployee(employee, p);
 
 
         }
@@ -166,17 +171,17 @@ namespace Logic
         public void AddNewEmployee(Person person, Employee employee, Person supervisor)
         {
 
-            person.Id = ManagerRepository.PersonRepository.InsertPerson(person);
+            person.Id = _repositoryFactory.GetPersonRepository().InsertPerson(person);
 
             if (supervisor == null)
             {
                 employee.IdSupervisor = InsertFullEmployee(employee);
                 employee.Id = employee.IdSupervisor.Value;
-                ManagerRepository.EmployeeRepository.UpdateSupervisor(employee);
+                _repositoryFactory.GetEmployeeRepository().UpdateSupervisor(employee);
             }
             else
             {
-                employee.IdSupervisor = ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(supervisor.Id).Id;
+                employee.IdSupervisor = _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByIdPerson(supervisor.Id).Id;
                 InsertFullEmployee(employee);
             }
 
@@ -186,17 +191,17 @@ namespace Logic
         public void AddNewEmployee(string firstName, string lastName, string phoneNumber, string adress, int permission, Person supervisor, string password)
         {
             Person p = new Person(firstName, lastName, phoneNumber, adress);
-            p.Id = ManagerRepository.PersonRepository.InsertPerson(p);
+            p.Id = _repositoryFactory.GetPersonRepository().InsertPerson(p);
             Employee e = new Employee(password, p.Id, permission);
             if (supervisor == null)
             {
                 e.IdSupervisor = InsertFullEmployee(e);
                 e.Id = e.IdSupervisor.Value;
-                ManagerRepository.EmployeeRepository.UpdateSupervisor(e);
+                _repositoryFactory.GetEmployeeRepository().UpdateSupervisor(e);
             }
             else
             {
-                e.IdSupervisor = ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(supervisor.Id).Id;
+                e.IdSupervisor = _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByIdPerson(supervisor.Id).Id;
                 InsertFullEmployee(e);
             }
 
@@ -205,7 +210,7 @@ namespace Logic
 
         public List<int> GetYearsFromStart(int employeeID)
         {
-            int firstYear = ManagerRepository.DailyResultRepository.GetYearOfFirstRecord(employeeID);
+            int firstYear = _repositoryFactory.GetDailyResultRepository().GetYearOfFirstRecord(employeeID);
             if (firstYear == 0)
             {
                 firstYear = DateTime.Now.Year;

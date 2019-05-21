@@ -11,11 +11,11 @@ namespace Data.Generator
 {
     public class EmployeeGenerator
     {
-        private EmployeeRepository _employeeRepository ;
-
+        private RepositoryFactory _repositoryFactory;
         public EmployeeGenerator()
         {
-            _employeeRepository = new EmployeeRepository();
+            _repositoryFactory = new RepositoryFactory();
+
         }
 
         Random r = new Random();
@@ -49,19 +49,19 @@ namespace Data.Generator
 
         public void GenerateSupervisor()
         {
-            List<Person> people = ManagerRepository.PersonRepository.GetPersons().ToList();
+            List<Person> people = _repositoryFactory.GetPersonRepository().GetPersons().ToList();
             for (int i = 5; i < people.Count - 700; i++)
             {
-               _employeeRepository.InsertFullEmployee(SetSupervisor(i));
+               _repositoryFactory.GetEmployeeRepository().InsertFullEmployee(SetSupervisor(i));
             }
         }
 
         public void GenerateEmployee()
         {
-            List<Person> people = ManagerRepository.PersonRepository.GetPersons().ToList();
+            List<Person> people = _repositoryFactory.GetPersonRepository().GetPersons().ToList();
             for (int i = 200; i < people.Count-1 ; i++)
             {
-                _employeeRepository.InsertFullEmployee(SetEmployee(i));
+                _repositoryFactory.GetEmployeeRepository().InsertFullEmployee(SetEmployee(i));
             }
         }
     }

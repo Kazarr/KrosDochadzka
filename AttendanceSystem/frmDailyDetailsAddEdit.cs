@@ -15,7 +15,7 @@ namespace AttendanceSystem
     {
         private DailyDetailsAddEditViewModel _dailyDetailsAddEditViewModel = new DailyDetailsAddEditViewModel();
         private int _selectedEmployeeId;
-        private DailyResult _dailyResultToUpdate =null;
+        private DailyRecord _dailyResultToUpdate =null;
         private DateTime _date;
 
         public frmDailyDetailsAddEdit(int selectedEmployeeID, DateTime date)
@@ -30,7 +30,7 @@ namespace AttendanceSystem
 
         }
 
-        public frmDailyDetailsAddEdit(int selectedEmployeeID, DateTime date, DailyResult dailyResultToUpdate)
+        public frmDailyDetailsAddEdit(int selectedEmployeeID, DateTime date, DailyRecord dailyResultToUpdate)
         {
             _selectedEmployeeId = selectedEmployeeID;
             _date = date;

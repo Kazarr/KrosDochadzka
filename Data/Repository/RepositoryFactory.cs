@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Data.Repository
 {
-    public class ManagerRepository:ConnectionManager
+    public class RepositoryFactory:ConnectionManager
     {
         public bool GenerateDB()
         {
@@ -37,9 +37,9 @@ namespace Data.Repository
             bool ret = false;
             Execute((command) => 
             {
-                command.CommandText = @"IF NOT EXISTS (SELECT [name] FROM sys.tables WHERE [name] = 'DailyResult')
+                command.CommandText = @"IF NOT EXISTS (SELECT [name] FROM sys.tables WHERE [name] = 'DailyRecord')
 	                                    BEGIN
-		                                    CREATE TABLE [DailyResult](
+		                                    CREATE TABLE [DailyRecord](
 			                                    [Id] [int] IDENTITY(1,1) NOT NULL,
 			                                    [IdEmployee] [int] NOT NULL,
 			                                    [Start] [datetime2](7) NOT NULL,
@@ -123,14 +123,14 @@ namespace Data.Repository
                                                     ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 		                                    ) ON [PRIMARY]
 	                                    END
-                                    ALTER TABLE [DailyResult] ADD  CONSTRAINT [DF_Daily_Result_Start]  DEFAULT (getdate()) FOR [Start]
+                                    ALTER TABLE [DailyRecord] ADD  CONSTRAINT [DF_Daily_Result_Start]  DEFAULT (getdate()) FOR [Start]
                                     ALTER TABLE [Employee] ADD  CONSTRAINT [DF_Employee_Salary]  DEFAULT ((0)) FOR [Salary]
                                     ALTER TABLE [Employee] ADD  CONSTRAINT [DF_Employee_HiredDate]  DEFAULT (getdate()) FOR [HiredDate]
-                                    ALTER TABLE [DailyResult]  WITH CHECK ADD FOREIGN KEY([IdWorktype])
+                                    ALTER TABLE [DailyRecord]  WITH CHECK ADD FOREIGN KEY([IdWorktype])
                                     REFERENCES [WorkType] ([Id])
-                                    ALTER TABLE [DailyResult]  WITH CHECK ADD  CONSTRAINT [FK_Daily_Result_Login] FOREIGN KEY([IdEmployee])
+                                    ALTER TABLE [DailyRecord]  WITH CHECK ADD  CONSTRAINT [FK_Daily_Result_Login] FOREIGN KEY([IdEmployee])
                                     REFERENCES [Employee] ([Id])
-                                    ALTER TABLE [DailyResult] CHECK CONSTRAINT [FK_Daily_Result_Login]
+                                    ALTER TABLE [DailyRecord] CHECK CONSTRAINT [FK_Daily_Result_Login]
                                     ALTER TABLE [Employee]  WITH CHECK ADD  CONSTRAINT [FK_Employee_Employee] FOREIGN KEY([IdSupervisor])
                                     REFERENCES [Employee] ([Id])
                                     ALTER TABLE [Employee] CHECK CONSTRAINT [FK_Employee_Employee]
@@ -202,11 +202,11 @@ namespace Data.Repository
             return ret;
         }
                
-        public static DailyResultRepository DailyResultRepository = new DailyResultRepository();
-        public static EmployeeRepository EmployeeRepository = new EmployeeRepository();
-        public static PersonRepository PersonRepository = new PersonRepository();
-        public static WorkTypeRepository WorkTypeRepository = new WorkTypeRepository();
-        public static DaySummaryRepository DaySummaryRepository = new DaySummaryRepository();
-        public static PermissionRepository PermissionRepository = new PermissionRepository();
+        public DailyResultRepository GetDailyResultRepository() => new DailyResultRepository();
+        public EmployeeRepository GetEmployeeRepository() => new EmployeeRepository();
+        public PersonRepository GetPersonRepository() => new PersonRepository();
+        public WorkTypeRepository GetWorkTypeRepository() => new WorkTypeRepository();
+        public DaySummaryRepository GetDaySummaryRepository() => new DaySummaryRepository();
+        public PermissionRepository GetPermissionRepository() => new PermissionRepository();
     }
 }
