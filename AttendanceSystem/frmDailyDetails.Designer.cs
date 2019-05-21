@@ -78,7 +78,7 @@
             this.btnConfirm.TabIndex = 1;
             this.btnConfirm.Text = "Confirm";
             this.btnConfirm.UseVisualStyleBackColor = true;
-            this.btnConfirm.Click += new System.EventHandler(this.BtnConfirm_Click);
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // btnEdit
             // 
@@ -114,7 +114,7 @@
             this.btnDelete.Text = "Delete record";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Visible = false;
-            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // bindingSource1
             // 

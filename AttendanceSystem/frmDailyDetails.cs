@@ -44,12 +44,12 @@ namespace AttendanceSystem
 
 
 
-        private void BtnConfirm_Click(object sender, EventArgs e)
+        private void btnConfirm_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
         }
 
-        private void BtnDelete_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("This action will permanently delete record are you serious?", "Delete Record", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
