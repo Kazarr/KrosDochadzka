@@ -100,7 +100,7 @@ namespace AttendanceSystem
         }
         public bool ResetPassword()
         {
-            return _logic.ChangePassword(ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(Person.Id).Id, "0000");
+            return _logic.ChangePasswordByEmployeeId(ManagerRepository.EmployeeRepository.GetEmpolyeeByIdPerson(Person.Id).Id, "0000");
         }
     }
 }

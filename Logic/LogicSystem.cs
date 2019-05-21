@@ -1,13 +1,11 @@
 ﻿using Data.Model;
+using Data.Repository;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Globalization;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using Data.Repository;
-using System.Data.SqlClient;
 
 namespace Logic
 {
@@ -41,7 +39,7 @@ namespace Logic
         {
             bool ret = false;
             ManagerRepository managerRepository = new ManagerRepository();
-            if(managerRepository.GetDataBaseName() == DB_NAME)
+            if (managerRepository.GetDataBaseName() == DB_NAME)
             {
                 ret = true;
             }
@@ -52,7 +50,7 @@ namespace Logic
         {
             ConnectionManager connectionManager = new ConnectionManager();
             return connectionManager.GetSqlConnectionStringBuilder(initialCatalog);
-            
+
         }
 
         public SqlConnectionStringBuilder GetSqlConnectionStringBuilder()
@@ -80,38 +78,46 @@ namespace Logic
 
         private DaySummary CreateDaySummary(DateTime date, int idEmployee)
         {
-            DaySummary daySummary = new DaySummary();
-
-            daySummary.Date = date.Date.ToString("MM-dd-yyyy");
-            daySummary.WorkArrivalTime = ManagerRepository.DaySummaryRepository.GetArrivalTime(date, idEmployee);
-            daySummary.WorkLeavingTime = ManagerRepository.DaySummaryRepository.GetLeavingTime(date, idEmployee);
-            daySummary.LunchBreak = ManagerRepository.DaySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, 2);
-            daySummary.HolidayTime = ManagerRepository.DaySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, 3);
-            daySummary.HomeOffice = ManagerRepository.DaySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, 4);
-            daySummary.BusinessTrip = ManagerRepository.DaySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, 5);
-            daySummary.Doctor = ManagerRepository.DaySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, 6);
-            daySummary.Private = ManagerRepository.DaySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, 7);
-            daySummary.Other = ManagerRepository.DaySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, 8);
+            DaySummary daySummary = new DaySummary
+            {
+                Date = date.Date.ToString("MM-dd-yyyy"),
+                WorkArrivalTime = ManagerRepository.DaySummaryRepository.GetArrivalTime(date, idEmployee),
+                WorkLeavingTime = ManagerRepository.DaySummaryRepository.GetLeavingTime(date, idEmployee),
+                LunchBreak = ManagerRepository.DaySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.Lunch),
+                HolidayTime = ManagerRepository.DaySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.Holiday),
+                HomeOffice = ManagerRepository.DaySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.HomeOffice),
+                BusinessTrip = ManagerRepository.DaySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.BusinessTrip),
+                Doctor = ManagerRepository.DaySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.Doctor),
+                Private = ManagerRepository.DaySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.Private),
+                Other = ManagerRepository.DaySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.Other)
+            };
 
             daySummary.TotalTimeWorked = daySummary.WorkLeavingTime - daySummary.WorkArrivalTime - daySummary.HolidayTime
                  - daySummary.Doctor - daySummary.Private - daySummary.Other;
 
-            if (daySummary.TotalTimeWorked > TimeSpan.FromHours(4))
-            {
-                daySummary.TotalTimeWorked -= daySummary.LunchBreak > TimeSpan.FromMinutes(30)
-                    ? daySummary.LunchBreak
-                    : TimeSpan.FromMinutes(30);
-            }
-            else
-            {
-                daySummary.TotalTimeWorked -= daySummary.LunchBreak;
-            }
+            daySummary.TotalTimeWorked = CheckForLunchBreak(daySummary.TotalTimeWorked, daySummary.LunchBreak);
+           
             return daySummary;
 
         }
 
-        public List<DaySummary> GetSummariesByMonth(string monthAndYear, int idEmployee) 
-       {
+        private TimeSpan? CheckForLunchBreak(TimeSpan? timeWorked,TimeSpan timeLunchBreak)
+        {
+            if (timeWorked > TimeSpan.FromHours(4))
+            {
+                timeWorked -= timeLunchBreak > TimeSpan.FromMinutes(30)
+                    ? timeLunchBreak
+                    : TimeSpan.FromMinutes(30);
+            }
+            else
+            {
+                timeWorked -= timeLunchBreak;
+            }
+            return timeWorked;
+        }
+
+        public List<DaySummary> GetSummariesByMonth(string monthAndYear, int idEmployee)
+        {
             string month = monthAndYear.Split(' ')[0];
             int year = Convert.ToInt32(monthAndYear.Split(' ')[1]);
             List<DaySummary> myListOfDays = new List<DaySummary>();
@@ -132,13 +138,13 @@ namespace Logic
             return ManagerRepository.EmployeeRepository.CheckLogin(id, CalculateMD5Hash(password));
         }
 
-        private int InsertFullEmployee(Employee e)
+        private int InsertFullEmployee(Employee employee)
         {
-            e.Password = CalculateMD5Hash(e.Password);
-            return ManagerRepository.EmployeeRepository.InsertFullEmployee(e);
+            employee.Password = CalculateMD5Hash(employee.Password);
+            return ManagerRepository.EmployeeRepository.InsertFullEmployee(employee);
         }
 
-        public bool ChangePassword(int id, string password)
+        public bool ChangePasswordByEmployeeId(int id, string password)
         {
             return ManagerRepository.EmployeeRepository.ChangePassword(id, CalculateMD5Hash(password));
         }
