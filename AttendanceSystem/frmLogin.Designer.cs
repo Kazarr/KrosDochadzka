@@ -1,6 +1,6 @@
 ﻿namespace AttendanceSystem
 {
-    partial class frmLogin
+    partial class FrmLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -144,7 +144,7 @@
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "frmLogin";
-            this.Load += new System.EventHandler(this.frmLogin_Load);
+            this.Load += new System.EventHandler(this.FrmLogin_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

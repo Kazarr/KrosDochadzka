@@ -6,12 +6,12 @@ using System.Windows.Forms;
 
 namespace AttendanceSystem
 {
-    public partial class frmLogin : Form
+    public partial class FrmLogin : Form
     {
         private LoginViewModel _loginViewModel;
         private LogicSystem _logic;
 
-        public frmLogin(LogicSystem logic)
+        public FrmLogin(LogicSystem logic)
         {
             InitializeComponent();
             _logic = logic;
@@ -44,7 +44,7 @@ namespace AttendanceSystem
             }
         }
 
-        private void frmLogin_Load(object sender, EventArgs e)
+        private void FrmLogin_Load(object sender, EventArgs e)
         {
 
         }

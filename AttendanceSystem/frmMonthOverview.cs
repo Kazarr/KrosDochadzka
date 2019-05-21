@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace AttendanceSystem
 {
-    public partial class frmMonthOverview : Form
+    public partial class FrmMonthOverview : Form
     {
         private MonthOverviewViewModel _monthOverviewView;
 
-        public frmMonthOverview(List<DaySummary> daySummaries)
+        public FrmMonthOverview(List<DaySummary> daySummaries)
         {
             InitializeComponent();
             _monthOverviewView = new MonthOverviewViewModel(daySummaries);
