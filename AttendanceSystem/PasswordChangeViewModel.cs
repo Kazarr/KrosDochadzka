@@ -9,11 +9,16 @@ namespace AttendanceSystem
 {
     public class PasswordChangeViewModel
     {
-        private LogicSystem _logicSystem = new LogicSystem();
+        private LogicSystem _logic;
+
+        public PasswordChangeViewModel(LogicSystem logic)
+        {
+            _logic = logic;
+        }
 
         public bool CheckOldPass(int idEmployee, string oldPassword)
         {
-            return (_logicSystem.CheckLogin(idEmployee, oldPassword));
+            return (_logic.CheckLogin(idEmployee, oldPassword));
         }
 
         public bool CompareNewPass(string newPass, string confirmPass)
@@ -23,7 +28,7 @@ namespace AttendanceSystem
 
         public void ChangePassword(int idEmployee, string newPass)
         {
-            _logicSystem.ChangePassword(idEmployee, newPass);
+            _logic.ChangePassword(idEmployee, newPass);
         }
 
     }

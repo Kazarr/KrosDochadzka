@@ -1,5 +1,6 @@
 ﻿using Data.Model;
 using Data.Repository;
+using Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +11,16 @@ namespace AttendanceSystem
 {
     class DailyDetailsAddEditViewModel
     {
-        private RepositoryFactory _repositoryFactory;
+        private LogicSystem _logic;
 
-        public DailyDetailsAddEditViewModel()
+        public DailyDetailsAddEditViewModel(LogicSystem logic)
         {
-            _repositoryFactory = new RepositoryFactory();
+            _logic = logic;
         }
         public List<string> GetWorkTypes()
         {
             List<string> ret = new List<string>();
-            IEnumerable<WorkType> myList= _repositoryFactory.GetWorkTypeRepository().GetWorkType(); 
+            IEnumerable<WorkType> myList= _logic.GetWorkType(); 
 
             foreach (var item in myList)
             {
@@ -43,7 +44,7 @@ namespace AttendanceSystem
             dailyResult.Start = startTime;
             dailyResult.Finish = finishTime;
             dailyResult.IdWorktype = workTypeID;
-            return (_repositoryFactory.GetDailyRecordRepository().InsertNewDailyResultFromSystem(dailyResult));
+            return (_logic.InsertNewDailyResultFromSystem(dailyResult));
 
 
         }
@@ -55,7 +56,7 @@ namespace AttendanceSystem
         /// <returns>true if update happend, otherwise false</returns>
         public bool UpdateDailyResult (DailyRecord updatedDailyResult)
         {
-            return _repositoryFactory.GetDailyRecordRepository().UpdateDailyResult(updatedDailyResult);
+            return _logic.UpdateDailyResult(updatedDailyResult);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Data.Model;
+using Logic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,20 +16,22 @@ namespace AttendanceSystem
     public partial class frmNewEmployee : Form
     {
         private NewEmployeeViewModel _newEmployeeViewModel;
+        private LogicSystem _logic;
 
-
-        public frmNewEmployee()
+        public frmNewEmployee(LogicSystem logic)
         {
             InitializeComponent();
+            _logic = logic;
             _newEmployeeViewModel = new NewEmployeeViewModel();
             cmbSupervisors.DataSource = _newEmployeeViewModel.FillSupervisors();
             cmbPermissions.DataSource = _newEmployeeViewModel.FillPermissions();
             _newEmployeeViewModel = new NewEmployeeViewModel();
         }
 
-        public frmNewEmployee(Person person, Employee empolyee)
+        public frmNewEmployee(Person person, Employee empolyee, LogicSystem logic)
         {
             InitializeComponent();
+            _logic = logic;
             _newEmployeeViewModel = new NewEmployeeViewModel(person, empolyee);
             cmbSupervisors.DataSource = _newEmployeeViewModel.FillSupervisors();
             cmbSupervisors.SelectedIndex = cmbSupervisors.FindStringExact(_newEmployeeViewModel.GetSupervisor(empolyee.IdSupervisor).ToString());

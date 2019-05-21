@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Data.Generator;
 using System.Configuration;
+using Logic;
 
 namespace AttendanceTermianal
 {
@@ -23,7 +24,7 @@ namespace AttendanceTermianal
             CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmTerminal());
+            Application.Run(new frmTerminal(new LogicTerminal()));
 
         }
 

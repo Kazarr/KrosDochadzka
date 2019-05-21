@@ -14,12 +14,27 @@ namespace Logic
     public class LogicSystem
     {
         private string DB_NAME = "KROSDOCHADZKA";
-        private RepositoryFactory _repositoryFactory;
+
+        private DaySummaryRepository _daySummaryRepository;
+        private EmployeeRepository _employeeRepository;
+        private PersonRepository _personRepository;
+        private WorkTypeRepository _workTypeRepository;
+        private DialyRecordRepository _dailyRecordRepository;
 
         public LogicSystem()
         {
-            _repositoryFactory = new RepositoryFactory();
+            _daySummaryRepository = new RepositoryFactory().GetDaySummaryRepository();
+            _employeeRepository = new RepositoryFactory().GetEmployeeRepository();
+            _personRepository = new RepositoryFactory().GetPersonRepository();
+            _workTypeRepository = new RepositoryFactory().GetWorkTypeRepository();
+            _dailyRecordRepository = new RepositoryFactory().GetDailyRecordRepository();
         }
+
+        public IEnumerable<WorkType> GetWorkType()
+        {
+            return _workTypeRepository.GetWorkType();
+        }
+
         private string CalculateMD5Hash(string input)
         {
             // step 1, calculate MD5 hash from input
@@ -36,10 +51,65 @@ namespace Logic
             return sb.ToString();
         }
 
+        public IEnumerable<Person> GetPersonEmployeesPlebs(int idSupervisor)
+        {
+            return _personRepository.GetPersonEmployeesPlebs(idSupervisor);
+        }
+
+        public bool InsertNewDailyResultFromSystem(DailyRecord dailyResult)
+        {
+            return _dailyRecordRepository.InsertNewDailyResultFromSystem(dailyResult);
+        }
+
+        public IEnumerable<Person> GetPersonsEmployees()
+        {
+            return _personRepository.GetPersonsEmployees();
+        }
+
+        public bool UpdateDailyResult(DailyRecord updatedDailyResult)
+        {
+            return _dailyRecordRepository.UpdateDailyResult(updatedDailyResult);
+        }
+
+        public IDictionary<string, int> GetMonthsWithNumberOfRecords(int id)
+        {
+            return _dailyRecordRepository.GetMonthsWithNumberOfRecords(id);
+        }
+
+        public Person GetPersonByIdEmployee(int employeeId)
+        {
+            return _personRepository.GetPersonByIdEmployee(employeeId);
+        }
+
+        public Employee GetEmpolyeeByID(int id)
+        {
+            return _employeeRepository.GetEmpolyeeByID(id);
+        }
+
+        public Employee GetEmpolyeeByIdPerson(int id)
+        {
+            return _employeeRepository.GetEmpolyeeByIdPerson(id);
+        }
+
+        public Employee GetEmpolyeeByIdPerson(Person person)
+        {
+            return _employeeRepository.GetEmpolyeeByIdPerson(person.Id);
+        }
+
         public void SaveConnectionString(string connectionString)
         {
             Data.Properties.Settings.Default.ConnectionString = connectionString;
             Data.Properties.Settings.Default.Save();
+        }
+
+        public void DeleteEmployee(Employee e)
+        {
+            _employeeRepository.DeleteEmployee(e);
+        }
+
+        public void DeleteDailyResultByIdEmployee(int id)
+        {
+            _dailyRecordRepository.DeleteDailyResultByIdEmployee(id);
         }
 
         public bool HasDatabase()
@@ -88,15 +158,15 @@ namespace Logic
             DaySummary daySummary = new DaySummary();
 
             daySummary.Date = date.Date.ToString("MM-dd-yyyy");
-            daySummary.WorkArrivalTime = _repositoryFactory.GetDaySummaryRepository().GetArrivalTime(date, idEmployee);
-            daySummary.WorkLeavingTime = _repositoryFactory.GetDaySummaryRepository().GetLeavingTime(date, idEmployee);
-            daySummary.LunchBreak = _repositoryFactory.GetDaySummaryRepository().GetTimeSpendOnDailyResults(date, idEmployee, 2);
-            daySummary.HolidayTime = _repositoryFactory.GetDaySummaryRepository().GetTimeSpendOnDailyResults(date, idEmployee, 3);
-            daySummary.HomeOffice = _repositoryFactory.GetDaySummaryRepository().GetTimeSpendOnDailyResults(date, idEmployee, 4);
-            daySummary.BusinessTrip = _repositoryFactory.GetDaySummaryRepository().GetTimeSpendOnDailyResults(date, idEmployee, 5);
-            daySummary.Doctor = _repositoryFactory.GetDaySummaryRepository().GetTimeSpendOnDailyResults(date, idEmployee, 6);
-            daySummary.Private = _repositoryFactory.GetDaySummaryRepository().GetTimeSpendOnDailyResults(date, idEmployee, 7);
-            daySummary.Other = _repositoryFactory.GetDaySummaryRepository().GetTimeSpendOnDailyResults(date, idEmployee, 8);
+            daySummary.WorkArrivalTime = _daySummaryRepository.GetArrivalTime(date, idEmployee);
+            daySummary.WorkLeavingTime = _daySummaryRepository.GetLeavingTime(date, idEmployee);
+            daySummary.LunchBreak = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, 2);
+            daySummary.HolidayTime = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, 3);
+            daySummary.HomeOffice = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, 4);
+            daySummary.BusinessTrip = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, 5);
+            daySummary.Doctor = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, 6);
+            daySummary.Private = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, 7);
+            daySummary.Other = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, 8);
 
             daySummary.TotalTimeWorked = daySummary.WorkLeavingTime - daySummary.WorkArrivalTime - daySummary.HolidayTime
                  - daySummary.Doctor - daySummary.Private - daySummary.Other;
@@ -134,18 +204,18 @@ namespace Logic
 
         public bool CheckLogin(int id, string password)
         {
-            return _repositoryFactory.GetEmployeeRepository().CheckLogin(id, CalculateMD5Hash(password));
+            return _employeeRepository.CheckLogin(id, CalculateMD5Hash(password));
         }
 
         private int InsertFullEmployee(Employee e)
         {
             e.Password = CalculateMD5Hash(e.Password);
-            return _repositoryFactory.GetEmployeeRepository().InsertFullEmployee(e);
+            return _employeeRepository.InsertFullEmployee(e);
         }
 
         public bool ChangePassword(int id, string password)
         {
-            return _repositoryFactory.GetEmployeeRepository().ChangePassword(id, CalculateMD5Hash(password));
+            return _employeeRepository.ChangePassword(id, CalculateMD5Hash(password));
         }
 
         public void UpdateEmployee(string firstName, string lastName, string phoneNumber, string adress, int permission, Person supervisor)
@@ -161,9 +231,9 @@ namespace Logic
             }
             else
             {
-                employee.IdSupervisor = _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByIdPerson(supervisor.Id).Id;
+                employee.IdSupervisor = _employeeRepository.GetEmpolyeeByIdPerson(supervisor.Id).Id;
             }
-            _repositoryFactory.GetEmployeeRepository().UpdateEmployee(employee, p);
+            _employeeRepository.UpdateEmployee(employee, p);
 
 
         }
@@ -171,17 +241,17 @@ namespace Logic
         public void AddNewEmployee(Person person, Employee employee, Person supervisor)
         {
 
-            person.Id = _repositoryFactory.GetPersonRepository().InsertPerson(person);
+            person.Id = _personRepository.InsertPerson(person);
 
             if (supervisor == null)
             {
                 employee.IdSupervisor = InsertFullEmployee(employee);
                 employee.Id = employee.IdSupervisor.Value;
-                _repositoryFactory.GetEmployeeRepository().UpdateSupervisor(employee);
+                _employeeRepository.UpdateSupervisor(employee);
             }
             else
             {
-                employee.IdSupervisor = _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByIdPerson(supervisor.Id).Id;
+                employee.IdSupervisor = _employeeRepository.GetEmpolyeeByIdPerson(supervisor.Id).Id;
                 InsertFullEmployee(employee);
             }
 
@@ -191,17 +261,17 @@ namespace Logic
         public void AddNewEmployee(string firstName, string lastName, string phoneNumber, string adress, int permission, Person supervisor, string password)
         {
             Person p = new Person(firstName, lastName, phoneNumber, adress);
-            p.Id = _repositoryFactory.GetPersonRepository().InsertPerson(p);
+            p.Id = _personRepository.InsertPerson(p);
             Employee e = new Employee(password, p.Id, permission);
             if (supervisor == null)
             {
                 e.IdSupervisor = InsertFullEmployee(e);
                 e.Id = e.IdSupervisor.Value;
-                _repositoryFactory.GetEmployeeRepository().UpdateSupervisor(e);
+                _employeeRepository.UpdateSupervisor(e);
             }
             else
             {
-                e.IdSupervisor = _repositoryFactory.GetEmployeeRepository().GetEmpolyeeByIdPerson(supervisor.Id).Id;
+                e.IdSupervisor = _employeeRepository.GetEmpolyeeByIdPerson(supervisor.Id).Id;
                 InsertFullEmployee(e);
             }
 
@@ -210,7 +280,7 @@ namespace Logic
 
         public List<int> GetYearsFromStart(int employeeID)
         {
-            int firstYear = _repositoryFactory.GetDailyRecordRepository().GetYearOfFirstRecord(employeeID);
+            int firstYear = _dailyRecordRepository.GetYearOfFirstRecord(employeeID);
             if (firstYear == 0)
             {
                 firstYear = DateTime.Now.Year;

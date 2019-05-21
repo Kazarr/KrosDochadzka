@@ -1,4 +1,5 @@
 ﻿using com.rusanu.dataconnectiondialog;
+using Logic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,10 +15,14 @@ namespace AttendanceSystem
 {
     public partial class frmLogin : Form
     {
-        LoginViewModel _loginViewModel = new LoginViewModel();
-        public frmLogin()
+        private LoginViewModel _loginViewModel;
+        private LogicSystem _logic;
+
+        public frmLogin(LogicSystem logic)
         {
             InitializeComponent();
+            _logic = logic;
+            _loginViewModel = new LoginViewModel(_logic);
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -31,7 +36,7 @@ namespace AttendanceSystem
             {
                 if (_loginViewModel.CheckLogin(Convert.ToInt32(textBoxLogin.Text), textBoxPassword.Text))
                 {
-                    FrmMainWindow frmMainWindow = new FrmMainWindow(Convert.ToInt32(textBoxLogin.Text));
+                    FrmMainWindow frmMainWindow = new FrmMainWindow(Convert.ToInt32(textBoxLogin.Text), _logic);
                     frmMainWindow.ShowDialog();
 
                 }

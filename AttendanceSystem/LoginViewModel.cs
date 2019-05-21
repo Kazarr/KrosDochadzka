@@ -7,8 +7,12 @@ namespace AttendanceSystem
 {  
     class LoginViewModel
     {
-       private LogicSystem _logic = new LogicSystem();
+       private LogicSystem _logic;
 
+        public LoginViewModel(LogicSystem logic)
+        {
+            _logic = logic;
+        }
         public bool CheckLogin(int id, string password)
         {
             return _logic.CheckLogin(id,password);
