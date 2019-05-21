@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace AttendanceSystem
 {
-    public partial class frmDailyDetails : Form
+    public partial class FrmDailyDetails : Form
     {
         private int _loggedEmployeeId;
         private int _selectedEmployeeId;
@@ -12,7 +12,7 @@ namespace AttendanceSystem
         private DailyDetailsViewModel _dailyDetailsViewModel = new DailyDetailsViewModel();
         private LogicSystem _logic;
 
-        public frmDailyDetails(int loggedEmployeeId, DateTime date, int selectedEmployeeId, LogicSystem logic)
+        public FrmDailyDetails(int loggedEmployeeId, DateTime date, int selectedEmployeeId, LogicSystem logic)
         {
             InitializeComponent();
             _logic = logic;
@@ -44,12 +44,12 @@ namespace AttendanceSystem
 
 
 
-        private void btnConfirm_Click(object sender, EventArgs e)
+        private void BtnConfirm_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void BtnDelete_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("This action will permanently delete record are you serious?", "Delete Record", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
@@ -81,14 +81,14 @@ namespace AttendanceSystem
 
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
-            frmDailyDetailsAddEdit frmDailyDetailsAdd = new frmDailyDetailsAddEdit(_selectedEmployeeId, _thisDate, _logic);
+            FrmDailyDetailsAddEdit frmDailyDetailsAdd = new FrmDailyDetailsAddEdit(_selectedEmployeeId, _thisDate, _logic);
             frmDailyDetailsAdd.ShowDialog();
             FillDataGridView();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            frmDailyDetailsAddEdit frmDailyDetailsEdit = new frmDailyDetailsAddEdit(
+            FrmDailyDetailsAddEdit frmDailyDetailsEdit = new FrmDailyDetailsAddEdit(
                 _selectedEmployeeId, 
                 _thisDate, 
                 _dailyDetailsViewModel.GetDailyResultById(Convert.ToInt32(dGVDailyResultsOverview.Rows[dGVDailyResultsOverview.CurrentCell.RowIndex].Cells[0].Value)),

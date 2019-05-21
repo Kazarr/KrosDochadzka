@@ -6,12 +6,12 @@ using System.Windows.Forms;
 namespace AttendanceSystem
 {
 
-    public partial class frmNewEmployee : Form
+    public partial class FrmNewEmployee : Form
     {
         private NewEmployeeViewModel _newEmployeeViewModel;
         private LogicSystem _logic;
 
-        public frmNewEmployee(LogicSystem logic)
+        public FrmNewEmployee(LogicSystem logic)
         {
             InitializeComponent();
             _logic = logic;
@@ -21,7 +21,7 @@ namespace AttendanceSystem
             _newEmployeeViewModel = new NewEmployeeViewModel();
         }
 
-        public frmNewEmployee(Person person, Employee empolyee, LogicSystem logic)
+        public FrmNewEmployee(Person person, Employee empolyee, LogicSystem logic)
         {
             InitializeComponent();
             _logic = logic;
@@ -64,7 +64,7 @@ namespace AttendanceSystem
             DialogResult = DialogResult.Cancel;
         }
 
-        private void frmNewEmployee_Load(object sender, EventArgs e)
+        private void FrmNewEmployee_Load(object sender, EventArgs e)
         {
 
         }

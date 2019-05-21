@@ -1,6 +1,6 @@
 ﻿namespace AttendanceSystem
 {
-    partial class frmDailyDetailsAddEdit
+    partial class FrmDailyDetailsAddEdit
     {
         /// <summary>
         /// Required designer variable.
@@ -84,7 +84,7 @@
             this.comboBoxWorkTypes.Name = "comboBoxWorkTypes";
             this.comboBoxWorkTypes.Size = new System.Drawing.Size(339, 36);
             this.comboBoxWorkTypes.TabIndex = 9;
-            this.comboBoxWorkTypes.SelectedIndexChanged += new System.EventHandler(this.comboBoxWorkTypes_SelectedIndexChanged);
+            this.comboBoxWorkTypes.SelectedIndexChanged += new System.EventHandler(this.ComboBoxWorkTypes_SelectedIndexChanged);
             // 
             // dateTimePickerFinish
             // 

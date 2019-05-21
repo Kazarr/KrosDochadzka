@@ -57,7 +57,7 @@ namespace AttendanceSystem
         }
 
 
-        private void fillComboBoxes()
+        private void FillComboBoxes()
         {
             comboBoxMonth.DataSource = DateTimeFormatInfo.CurrentInfo.MonthNames;
             comboBoxYear.DataSource = _mainWindowViewModel.FillYears(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem));
@@ -66,7 +66,7 @@ namespace AttendanceSystem
         }
 
 
-        private void fillDataGridView()
+        private void FillDataGridView()
         {
             //get name of the month from the combobox
             _selected = $"{comboBoxMonth.GetItemText(comboBoxMonth.SelectedItem)} {comboBoxYear.GetItemText(comboBoxYear.SelectedItem)}";
@@ -89,7 +89,7 @@ namespace AttendanceSystem
 
         private void btnNewEmployee_Click_1(object sender, EventArgs e)
         {
-            frmNewEmployee newEmployee = new frmNewEmployee(_logic);
+            FrmNewEmployee newEmployee = new FrmNewEmployee(_logic);
             newEmployee.ShowDialog();
 
             if (newEmployee.DialogResult == DialogResult.OK)
@@ -104,7 +104,7 @@ namespace AttendanceSystem
             List<DaySummary> daySummaries = new List<DaySummary>(
             _mainWindowViewModel.FillDataGridViewOverview(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), _selected));
 
-            frmMonthOverview monthOverview = new frmMonthOverview(daySummaries);
+            FrmMonthOverview monthOverview = new FrmMonthOverview(daySummaries);
             monthOverview.ShowDialog();
         }
 
@@ -117,7 +117,7 @@ namespace AttendanceSystem
 
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
         {
-            frmNewEmployee newEmployee = new frmNewEmployee(_mainWindowViewModel.Person, _mainWindowViewModel.Employee, _logic);
+            FrmNewEmployee newEmployee = new FrmNewEmployee(_mainWindowViewModel.Person, _mainWindowViewModel.Employee, _logic);
             newEmployee.ShowDialog();
             if (newEmployee.DialogResult == DialogResult.OK)
             {
@@ -133,10 +133,10 @@ namespace AttendanceSystem
             {
                 //gets date from selectedRow
                 DateTime selectedDate = Convert.ToDateTime(dGVOverview.Rows[dGVOverview.CurrentCell.RowIndex].Cells["Date"].Value.ToString());
-                frmDailyDetails dailyDetails = new frmDailyDetails(
+                FrmDailyDetails dailyDetails = new FrmDailyDetails(
                     _loggedEmployeeID, selectedDate, _mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), _logic);
                 dailyDetails.ShowDialog();
-                fillDataGridView();
+                FillDataGridView();
             }
         }
 
@@ -150,8 +150,8 @@ namespace AttendanceSystem
         private void FrmMainWindow_Load(object sender, EventArgs e)
         {
             CheckPermission();
-            fillComboBoxes();
-            fillDataGridView();
+            FillComboBoxes();
+            FillDataGridView();
         }
 
         /// <summary>
@@ -197,20 +197,20 @@ namespace AttendanceSystem
 
         private void btnChangePassword_Click(object sender, EventArgs e)
         {
-            frmPasswordChange passwordChange = new frmPasswordChange(_loggedEmployeeID, _logic);
+            FrmPasswordChange passwordChange = new FrmPasswordChange(_loggedEmployeeID, _logic);
             passwordChange.ShowDialog();
         }
                 
 
         private void comboBoxMonth_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            fillDataGridView();
+            FillDataGridView();
         }
 
 
         private void comboBoxYear_SelectedIndexChanged(object sender, EventArgs e)
         {
-            fillDataGridView();
+            FillDataGridView();
         }
 
 
@@ -218,7 +218,7 @@ namespace AttendanceSystem
         {
             _mainWindowViewModel.Person = (Person)comboBoxPerson.SelectedItem;
             btnReset.Enabled = true;
-            fillDataGridView();
+            FillDataGridView();
         }
 
         private void bindingSource1_CurrentChanged(object sender, EventArgs e)
