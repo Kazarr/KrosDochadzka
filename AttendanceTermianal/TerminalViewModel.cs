@@ -20,16 +20,11 @@ namespace AttendanceTermianal
         /// </summary>
         /// <returns></returns>
 
-
-
         public string DescriptionFullname(int employeeId)
         {
             return $"{_logic.GetPersonByIdEmployee(employeeId).FirstName} " +
-                                $"{_logic.GetPersonByIdEmployee(employeeId).LastName} ";
+                   $"{_logic.GetPersonByIdEmployee(employeeId).LastName} ";
         }
-
-
-
 
         /// <summary>
         /// kontroluje či pod zadaným ID existuje nejaký employee
