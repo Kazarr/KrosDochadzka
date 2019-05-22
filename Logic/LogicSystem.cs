@@ -160,19 +160,64 @@ namespace Logic
 
         private DaySummary CreateDaySummary(DateTime date, int idEmployee)
         {
-            DaySummary daySummary = new DaySummary
+            List<DailyRecord> dailyRecords = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee);
+            DaySummary daySummary = new DaySummary();
+            daySummary.Date = date.Date.ToString("MM-dd-yyyy");
+            foreach (var item in dailyRecords)
             {
-                Date = date.Date.ToString("MM-dd-yyyy"),
-                WorkArrivalTime = _daySummaryRepository.GetArrivalTime(date, idEmployee),
-                WorkLeavingTime = _daySummaryRepository.GetLeavingTime(date, idEmployee),
-                LunchBreak = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.Lunch),
-                HolidayTime = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.Holiday),
-                HomeOffice = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.HomeOffice),
-                BusinessTrip = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.BusinessTrip),
-                Doctor = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.Doctor),
-                Private = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.Private),
-                Other = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.Other)
-            };
+                if (item.IdWorktype == (int)EnumWorkType.Work)
+                {
+                    daySummary.WorkArrivalTime = item.Start;
+                    daySummary.WorkLeavingTime = item.Finish;
+                }
+                if (item.IdWorktype == (int)EnumWorkType.Lunch)
+                {
+                    daySummary.LunchBreak = (TimeSpan)(item.Finish-item.Start);
+                }
+                if (item.IdWorktype == (int)EnumWorkType.Holiday)
+                {
+                    daySummary.HolidayTime = (TimeSpan)(item.Finish - item.Start);
+                }
+                if (item.IdWorktype == (int)EnumWorkType.HomeOffice)
+                {
+                    daySummary.HomeOffice = (TimeSpan)(item.Finish - item.Start);
+                }
+                if (item.IdWorktype == (int)EnumWorkType.Holiday)
+                {
+                    daySummary.HolidayTime = (TimeSpan)(item.Finish - item.Start);
+                }
+                if (item.IdWorktype == (int)EnumWorkType.BusinessTrip)
+                {
+                    daySummary.BusinessTrip = (TimeSpan)(item.Finish - item.Start);
+                }
+                if (item.IdWorktype == (int)EnumWorkType.Doctor)
+                {
+                    daySummary.Doctor = (TimeSpan)(item.Finish - item.Start);
+                }
+                if (item.IdWorktype == (int)EnumWorkType.Private)
+                {
+                    daySummary.Private = (TimeSpan)(item.Finish - item.Start);
+                }
+                if (item.IdWorktype == (int)EnumWorkType.Other)
+                {
+                    daySummary.Other = (TimeSpan)(item.Finish - item.Start);
+                }
+
+
+            }
+            //DaySummary daySummary = new DaySummary
+            //{
+            //    ,
+            //    WorkArrivalTime = _daySummaryRepository.GetArrivalTime(date, idEmployee),
+            //    WorkLeavingTime = _daySummaryRepository.GetLeavingTime(date, idEmployee),
+            //    LunchBreak = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.Lunch),
+            //    HolidayTime = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.Holiday),
+            //    HomeOffice = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.HomeOffice),
+            //    BusinessTrip = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.BusinessTrip),
+            //    Doctor = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.Doctor),
+            //    Private = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.Private),
+            //    Other = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.Other)
+            //};
 
             daySummary.TotalTimeWorked = CalculateWorkedTime(daySummary);
 
@@ -251,7 +296,7 @@ namespace Logic
 
 
         }
-        
+
         public void AddNewEmployee(string firstName, string lastName, string phoneNumber, string adress, int permission, Person supervisor, string password)
         {
             Person person = new Person() { FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress };
@@ -283,7 +328,7 @@ namespace Logic
             }
 
             List<int> YearList = new List<int>();
-            
+
             for (int i = firstYear; i <= DateTime.Now.Year + 1; i++)
             {
                 YearList.Add(i);

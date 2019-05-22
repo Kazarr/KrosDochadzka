@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Data.Model;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -37,30 +39,35 @@ namespace Data.Repository
             return ret;
         }
 
-        public  TimeSpan GetTimeSpendOnDailyResults(DateTime date, int IdEmployee, int idWorkType)
+        public  List<DailyRecord> GetTimeSpendOnDailyResults(DateTime date, int IdEmployee)
         {
-            TimeSpan ret = TimeSpan.Zero;
+            List<DailyRecord> listDailyRecords = new List<DailyRecord>();
             Execute((command) => 
             {
-            command.CommandText = @"select dr.Start,dr.Finish from DailyRecord as dr
-                                                where dr.IdEmployee=@IdEmployee  and dr.IdWorktype=@idWorkType 
-                                                            and convert(date,dr.start)=convert(date,@date)";
-
+            command.CommandText = @"select dr.Id, dr.Start,dr.Finish, dr.IdWorkType from DailyRecord as dr
+where dr.IdEmployee=@IdEmployee and convert(date,dr.start)=convert(date,@date)";
             command.Parameters.Add("@idEmployee", SqlDbType.Int).Value = IdEmployee;
-            command.Parameters.Add("@idWorkType", SqlDbType.Int).Value = idWorkType;
             command.Parameters.Add("@date", SqlDbType.DateTime2).Value = date;
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 while (reader.Read())
-                {
-                    if (!reader.IsDBNull(0) && !reader.IsDBNull(1))
+                {                      
+                    if (!reader.IsDBNull(reader.GetOrdinal("Start")) && !reader.IsDBNull(reader.GetOrdinal("Finish")))
                     {
-                        ret += (reader.GetDateTime(1) - reader.GetDateTime(0));
-                    }
+                            DailyRecord dailyRecord = new DailyRecord
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                Start = reader.GetDateTime(reader.GetOrdinal("Start")),
+                                Finish = reader.GetDateTime(reader.GetOrdinal("Finish")),
+                                IdWorktype = reader.GetInt32(reader.GetOrdinal("IdWorkType")),
+                                IdEmployee = IdEmployee
+                            };
+                            listDailyRecords.Add(dailyRecord);
+                        }
                 }
             }
             });
-            return ret;
+            return listDailyRecords;
         }
     }
 }
