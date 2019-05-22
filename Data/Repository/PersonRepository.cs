@@ -55,22 +55,7 @@ namespace Data.Repository
             });
             return ret;
         }
-
-        public bool DeletePerson(Person person)
-        {
-            bool success = false;
-            Execute((command) => 
-            {
-                command.CommandText = @"DELETE FROM Person WHERE Id = @Id";
-                command.Parameters.Add("@Id", SqlDbType.Int).Value = person.Id;
-                if (command.ExecuteNonQuery() > 0)
-                {
-                    success = true;
-                }
-            });
-            return success;
-        }
-
+        
         public Person GetPersonByIdEmployee(int employeeId)
         {
             Person ret = null;
@@ -96,33 +81,7 @@ namespace Data.Repository
             });
             return ret;
         }
-
-        public Person GetPersonByEmployee(Employee empolyee)
-        {
-            Person ret = null;
-            Execute((command) => 
-            {
-                command.CommandText = @"SELECT * FROM Person as p
-                                                JOIN Employee as e ON p.Id = e.IdPerson
-                                                WHERE e.IdPerson = @employeeId";
-                command.Parameters.Add("@employeeId", SqlDbType.Int).Value = empolyee.Id;
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        int personId = reader.GetInt32(0);
-                        string firstName = reader.GetString(1);
-                        string lastName = reader.GetString(2);
-                        string phoneNumber = reader.GetString(3);
-                        string adress = reader.IsDBNull(4) ? "" : reader.GetString(4);
-
-                        ret = new Person() { Id = personId, FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress };
-                    }
-                }
-            });
-            return ret;
-        }
-
+        
         public int InsertPerson(Person person)
         {
             int ret = -1;
@@ -209,28 +168,6 @@ namespace Data.Repository
             });
             return ret;
         }
-
-        public Person GetPersonById(int personId)
-        {
-            Person ret = null;
-            Execute((command) => 
-            {
-                command.CommandText = @"SELECT * FROM Person WHERE Id = @id";
-                command.Parameters.Add("@id", SqlDbType.Int).Value = personId;
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        int id = reader.GetInt32(0);
-                        string firstName = reader.GetString(1);
-                        string lastName = reader.GetString(2);
-                        string phoneNumber = reader.GetString(3);
-                        string adress = reader.IsDBNull(4) ? "" : reader.GetString(4);
-                        ret =  new Person() { Id = id, FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress };
-                    }
-                }
-            });
-            return ret;
-        }
+       
     }
 }

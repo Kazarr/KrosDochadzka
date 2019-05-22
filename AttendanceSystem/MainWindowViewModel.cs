@@ -17,18 +17,22 @@ namespace AttendanceSystem
             _logic = logic;
         }
 
-        public Person Person { get => _person; set {  _person = value;
-                                                      Employee = GetEmpolyeeByPersonId(Person.Id);}}
+        public Person Person
+        {
+            get => _person; set
+            {
+                _person = value;
+                Employee = GetEmpolyeeByPersonId(Person.Id);
+            }
+        }
 
 
         public Employee Employee { get => _employee; set => _employee = value; }
-
 
         public Employee GetEmployeeByID(int id)
         {
             return _logic.GetEmpolyeeByID(id);
         }
-
 
         public BindingList<Person> FillComboBox()
         {
@@ -42,7 +46,7 @@ namespace AttendanceSystem
 
         public BindingList<DaySummary> FillDataGridViewOverview(int id, string date)
         {
-            
+
             return new BindingList<DaySummary>(_logic.GetSummariesByMonth(date, id));
         }
 
@@ -51,30 +55,9 @@ namespace AttendanceSystem
             return new BindingList<int>(_logic.GetYearsFromEmploymentStartByEmployee(IdEmployee));
         }
 
-
-        public IDictionary<string, int> GetMonthWithNumberOfRecords(int id)
-        {
-            return _logic.GetMonthsWithNumberOfRecords(id);
-        }
-
-        public Person GetPersonByEmployeeId(int employeeId)
-        {
-            return _logic.GetPersonByIdEmployee(employeeId);
-        }
-
-        public Person GetPersonByEmployee(Person person)
-        {
-            return _logic.GetPersonByIdEmployee(person.Id);
-        }
-
         public Employee GetEmpolyeeByPersonId(int id)
         {
             return _logic.GetEmpolyeeByIdPerson(id);
-        }
-
-        public Employee GetEmpolyeeByPersonId(Person person)
-        {
-            return _logic.GetEmpolyeeByIdPerson(person);
         }
 
         public int GetEmployeeIdByPerson(Person selectedItem)
@@ -99,6 +82,7 @@ namespace AttendanceSystem
             };
             return ret;
         }
+
         public bool ResetPassword()
         {
             // 0000 je základne resetovacie heslo

@@ -6,13 +6,13 @@ using System.Data.SqlClient;
 
 namespace Data.Repository
 {
-    public class DialyRecordRepository:ConnectionManager
+    public class DialyRecordRepository : ConnectionManager
     {
 
-        public IEnumerable<DailyResultWithWorkType> GetSpecifficDailyResult(int employeeID,DateTime date)
+        public IEnumerable<DailyResultWithWorkType> GetSpecifficDailyResult(int employeeID, DateTime date)
         {
             List<DailyResultWithWorkType> ret = new List<DailyResultWithWorkType>();
-            Execute((command) => 
+            Execute((command) =>
             {
                 command.CommandText = @"select dr.id,dr.idEmployee,dr.Start,dr.Finish,w.Name 
                                         from DailyRecord as dr
@@ -41,13 +41,13 @@ namespace Data.Repository
                 }
             });
             return ret;
-               
+
         }
 
-        public bool DeleteDailyResult (int dailyResultID)
+        public bool DeleteDailyResult(int dailyResultID)
         {
             bool success = false;
-            Execute((command) => 
+            Execute((command) =>
             {
                 command.CommandText = @"delete from DailyRecord
                                                 where id = @dailyResultID";
@@ -61,34 +61,10 @@ namespace Data.Repository
             return success;
         }
 
-        public IEnumerable<DailyRecord> GetDailyResult()
-        {
-            List<DailyRecord> ret = new List<DailyRecord>();
-            Execute((command) => 
-            {
-                command.CommandText = @"SELECT * FROM DailyRecord";
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        int dailyResultId = reader.GetInt32(0);
-                        int employeeId = reader.GetInt32(1);
-                        DateTime start = reader.GetDateTime(2);
-                        DateTime finish = reader.GetDateTime(3);
-                        int workTypeId = reader.GetInt32(4);
-
-                        ret.Add(new DailyRecord() { Id = dailyResultId, IdEmployee = employeeId, Start = start, Finish = finish, IdWorktype = workTypeId });
-                    }
-
-                }
-            });
-            return ret;
-        }
-
         public bool InsertDialyRecord(DailyRecord dailyResult)
         {
             bool succes = false;
-            Execute((command) => 
+            Execute((command) =>
             {
 
                 command.CommandText = @"INSERT INTO DailyRecord (IdEmployee, IdWorktype, [Start], [Finish])
@@ -97,24 +73,24 @@ namespace Data.Repository
                 command.Parameters.Add("@Id_Employee", SqlDbType.VarChar).Value = dailyResult.IdEmployee;
                 command.Parameters.Add("@Id_Worktype", SqlDbType.VarChar).Value = dailyResult.IdWorktype;
                 command.Parameters.Add("@Start", SqlDbType.DateTime2).Value = dailyResult.Start;
-                command.Parameters.Add("@Finish", SqlDbType.DateTime2).Value = dailyResult.Finish == null ? DBNull.Value:(object)dailyResult.Finish;
-                if (command.ExecuteNonQuery()>0)
+                command.Parameters.Add("@Finish", SqlDbType.DateTime2).Value = dailyResult.Finish == null ? DBNull.Value : (object)dailyResult.Finish;
+                if (command.ExecuteNonQuery() > 0)
                 {
                     succes = true;
                 }
             });
             return succes;
         }
-        
+
         /// <summary>
         /// insert new Daily result entered from system
         /// </summary>
         /// <param name="dailyResult"></param>
         /// <returns></returns>
-        public bool InsertNewDailyResultFromSystem (DailyRecord dailyResult)
+        public bool InsertNewDailyResultFromSystem(DailyRecord dailyResult)
         {
             bool success = false;
-            Execute((command) => 
+            Execute((command) =>
             {
                 command.CommandText = @"insert into DailyRecord
 
@@ -136,7 +112,7 @@ namespace Data.Repository
         public bool UpdateFinishDailyResult(DailyRecord daily_Result)
         {
             bool success = false;
-            Execute((command) => 
+            Execute((command) =>
             {
                 command.CommandText = @"UPDATE DailyRecord
                                         SET Finish = GETDATE()
@@ -150,24 +126,6 @@ namespace Data.Repository
             return success;
         }
 
-        public bool CheckIfDailyResultExist(DailyRecord daily_Result)
-        {
-            bool success = false;
-            Execute((command) => 
-            {
-                command.CommandText = @"SELECT id  FROM [dbo].[DailyRecord]
-                                    where IdEmployee=@IdEmp and IdWorktype=@IdWT and  Finish is null";
-                command.Parameters.Add("@IdEmp", SqlDbType.Int).Value = daily_Result.IdEmployee;
-                command.Parameters.Add("@IdWT", SqlDbType.Int).Value = daily_Result.IdWorktype;
-
-                if (command.ExecuteScalar() != null)
-                {
-                    success = true;
-                }
-            });
-            return success;
-        }
-        
         /// <summary>
         /// vyhladá POSLEDNÝ finish time daného employee
         /// </summary>
@@ -214,7 +172,7 @@ namespace Data.Repository
         public Dictionary<string, int> GetMonthsWithNumberOfRecords(int id)
         {
             Dictionary<string, int> myDictionary = new Dictionary<string, int>();
-            Execute((command) => 
+            Execute((command) =>
             {
                 command.CommandText = @"select distinct datename (month, d.Start), count(*)
                                         from [dbo].[DailyRecord] as d
@@ -232,7 +190,7 @@ namespace Data.Repository
             });
             return myDictionary;
         }
-        
+
         /// <summary>
         /// Select posledného startu a predposledného finishu
         /// </summary>
@@ -257,71 +215,22 @@ namespace Data.Repository
         //    });
         //    return ret;
         //}
-        
+
         /// <summary>
         /// Select posledných dvoch záznamov zamestnanca(Employee) 
         /// </summary>
         /// <param name="dailyResult"></param>
         /// <returns>List posledných dvoch záznamov </returns>
-        public List<DailyRecord> SelectTwoLastResults(int employeeId)
-        {
-            List<DailyRecord> ret = new List<DailyRecord>();
-            Execute((command) => 
-            {
-                command.CommandText = @"  select top 2 * from DailyRecord where IdEmployee = @IdEmpl 
-                        and CONVERT(date,[Start]) = CONVERT(date,GETDATE()) order by [start] desc";
-                command.Parameters.Add("@IdEmpl", SqlDbType.Int).Value = employeeId;
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        DailyRecord dr = new DailyRecord
-                        {
-                            Id = reader.GetInt32(0),
-                            IdEmployee = reader.GetInt32(1),
-                            Start = reader.GetDateTime(2),
-                            Finish = reader.IsDBNull(3) ? (DateTime?)null : reader.GetDateTime(3),
-                            IdWorktype = reader.GetInt32(4)
-                        };
-                        ret.Add(dr);
-                    }
-                }
-            });
-            return ret;
-        }
-       
-        /// <summary>
-        /// Vloženie záznamu
-        /// </summary>
-        /// <param name="dailyResult"> obsahuje IdEmployee, start a finish </param>
-        /// <returns>true alebo false v prípade úspešneho uloženia</returns>
-        public bool InsertInBlankSpace(DailyRecord dailyResult)
-        {
-            bool success = false;
-            Execute((command) => 
-            {
-                command.CommandText = $@"Insert into DailyRecord (IdEmployee,[Start],Finish,IdWorktype) 
-                                    values (@Id_Employee,@start,@finish,{(int)EnumWorkType.Other})";
-                command.Parameters.Add("@Id_Employee", SqlDbType.VarChar).Value = dailyResult.IdEmployee;
-                command.Parameters.Add("@start", SqlDbType.DateTime2).Value = dailyResult.Start;
-                command.Parameters.Add("@finish", SqlDbType.DateTime2).Value = dailyResult.Finish;
-                if (command.ExecuteNonQuery() > 0)
-                {
-                    success = true;
-                }
-            });
-            return success;
-        }
 
         /// <summary>
         /// gets daily result by its ID
         /// </summary>
         /// <param name="employeeId"></param>
         /// <returns>DailyRusult</returns>
-        public DailyRecord GetDailyResultByID (int dailyResultId)
+        public DailyRecord GetDailyResultByID(int dailyResultId)
         {
             DailyRecord ret = new DailyRecord();
-            Execute((command) => 
+            Execute((command) =>
             {
                 command.CommandText = @"select * from DailyRecord where id = @id";
                 command.Parameters.Add("@id", SqlDbType.Int).Value = dailyResultId;
@@ -349,7 +258,7 @@ namespace Data.Repository
         public bool UpdateDailyRecord(DailyRecord updatedDailyResult)
         {
             bool success = false;
-            Execute((command) => 
+            Execute((command) =>
             {
                 command.CommandText = @"update DailyRecord 
                                         set Start=@start,Finish=@finish,IdWorktype=@idWorkType
@@ -370,7 +279,7 @@ namespace Data.Repository
         public bool DeleteDailyResultByIdEmployee(int idEmployee)
         {
             bool success = false;
-            Execute((command) => 
+            Execute((command) =>
             {
                 command.CommandText = @"DELETE FROM DailyRecord
                                         WHERE idEmployee = @didEmployee";
@@ -383,8 +292,7 @@ namespace Data.Repository
             });
             return success;
         }
-
-
+        
         public int GetYearOfEmploymentStartByEmployee(int IdEmployee)
         {
             int year = 0;
