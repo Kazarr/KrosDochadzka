@@ -6,6 +6,7 @@ namespace Data.Repository
 {
     public class ConnectionManager
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public void Execute(Action<SqlCommand> executeAction)
         {
             try
@@ -19,18 +20,20 @@ namespace Data.Repository
                         {
                             command.Connection = connection;
                             executeAction.Invoke(command);
+                            log.Info(command.CommandText);
                         }
                     }
                     catch (SqlException e)
                     {
                         Debug.WriteLine($"Error happend during  Execution \n Error info:{e.Message}\n{e.StackTrace}");
-                        //logger 
+                        log.Error(e);
                     }
                 }
             }
             catch (Exception e)
             {
                 Debug.WriteLine($"Error happend during  Connecting \n Error info:{e.Message}\n{e.StackTrace}");
+                log.Error(e);
             }
         }
         
