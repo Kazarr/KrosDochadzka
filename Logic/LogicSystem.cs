@@ -20,6 +20,7 @@ namespace Logic
         private PersonRepository _personRepository;
         private WorkTypeRepository _workTypeRepository;
         private DailyRecordRepository _dailyRecordRepository;
+        private PermissionRepository _permissionRepository;
 
         public LogicSystem()
         {
@@ -28,11 +29,32 @@ namespace Logic
             _personRepository = new RepositoryFactory().GetPersonRepository();
             _workTypeRepository = new RepositoryFactory().GetWorkTypeRepository();
             _dailyRecordRepository = new RepositoryFactory().GetDailyRecordRepository();
+            _permissionRepository = new RepositoryFactory().GetPermissionRepository();
+        }
+
+        public string SelectPermissionNameById(int permision)
+        {
+            return _permissionRepository.SelectPermissionNameById(permision);
+        }
+
+        public int SelectPermissionIdByName(string name)
+        {
+            return _permissionRepository.SelectPermissionIdByName(name);
         }
 
         public IEnumerable<WorkType> GetWorkType()
         {
             return _workTypeRepository.GetWorkType();
+        }
+
+        public IList<Person> GetPersonEmployeesSupervisors()
+        {
+            return _personRepository.GetPersonEmployeesSupervisors();
+        }
+
+        public List<string> SelectPermissionName()
+        {
+            return _permissionRepository.SelectPermissionName();
         }
 
         private string CalculateMD5Hash(string input)
