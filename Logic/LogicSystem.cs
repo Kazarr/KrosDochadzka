@@ -122,13 +122,7 @@ namespace Logic
             }
             return ret;
         }
-
-        public SqlConnectionStringBuilder GetSqlConnectionStringBuilder(string initialCatalog)
-        {
-            ConnectionManager connectionManager = new ConnectionManager();
-            return connectionManager.GetSqlConnectionStringBuilder(initialCatalog);
-
-        }
+                
 
         public SqlConnectionStringBuilder GetSqlConnectionStringBuilder()
         {

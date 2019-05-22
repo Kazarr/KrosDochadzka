@@ -95,26 +95,8 @@ namespace Data.Repository
             });
             return success;
         }
-
-        public bool UpdateEmployeePleb(Employee empolyee)
-        {
-            bool success = false;
-            Execute((command) => 
-            {
-                command.CommandText = @"UPDATE Employee
-                                                  SET IdSupervisor = (SELECT id FROM Employee
-                                                  WHERE IdPermission = 3)
-                                                  WHERE id IN (SELECT id FROM Employee WHERE IdSupervisor = @idSupervisor)";
-                command.Parameters.Add("@idSupervisor", SqlDbType.Decimal).Value = empolyee.IdSupervisor;
-                if (command.ExecuteNonQuery() > 0)
-                {
-                    success = true;
-                }
-            });
-            return success;
-        }
       
-        /// <summary>
+              /// <summary>
         /// Recursively delete supervisor. Normal delete pleb.
         /// </summary>
         /// <param name="empolyee"></param>
@@ -219,34 +201,7 @@ namespace Data.Repository
             });
             return ret;
         }
-
-        public Employee GetEmpolyeeByIdPerson(Person person)
-        {
-            Employee ret = null;
-            Execute((command) => 
-            {
-                command.CommandText = @"select * from Employee where idPerson = @id";
-                command.Parameters.Add("@id", SqlDbType.Int).Value = person.Id;
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        int employeeId = reader.GetInt32(0);
-                        string password = reader.GetString(1);
-                        int idPerson = reader.GetInt32(2);
-                        int idSupervisor = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
-                        int permision = reader.GetInt32(4);
-                        decimal salary = reader.GetDecimal(5);
-                        DateTime hiredDate = reader.GetDateTime(6);
-
-                        ret = new Employee() { Id = employeeId, Password = password, IdPerson = idPerson, IdSupervisor = idSupervisor, Permision = permision, Salary = salary, HiredDate = hiredDate };
-                    }
-                }
-            });
-            return ret;
-        }
-
-
+        
         public bool CheckLogin(int id, string password)
         {
             List<Employee> employees;
@@ -269,22 +224,7 @@ namespace Data.Repository
             return false;
         }
 
-        public bool InsertEmployee(Employee empolyee)
-        {
-            bool success = false;
-            Execute((command) => 
-            {
-                command.CommandText = @"INSERT INTO Employee (Password, IdPerson)
-                                                VALUES (@Password, @IdPerson)";
-                command.Parameters.Add("@Password", SqlDbType.VarChar).Value = empolyee.Password;
-                command.Parameters.Add("@IdPerson", SqlDbType.VarChar).Value = empolyee.IdPerson;
-                if (command.ExecuteNonQuery() > 1)
-                {
-                    success = true;
-                }
-            });
-            return success;
-        }
+       
 
     }
 }
