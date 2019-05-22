@@ -49,7 +49,7 @@ namespace AttendanceTermianal
         /// v ktorom mu nastavím start a finish time na aktuálny |||||DOVOD|||| - aby som nestratil čas odchodu,ak si zamestnanec nedal príchod
         /// </summary>
         /// <param name="employeeId"></param>
-        public void ExitDailyRecord(int employeeId)
+        private void ExitDailyRecord(int employeeId)
         {
             DailyRecord dailyRecord = _logic.GetLastDailyRecordByEmployeeId(employeeId);
             if (dailyRecord == null)
@@ -67,11 +67,6 @@ namespace AttendanceTermianal
         /// </summary>
         /// <param name="employeeId"></param>
         /// <param name="type"></param>
-        public void CreateNewAndFinishPreviousRecord(int employeeId, EnumWorkType type)
-        {
-            _logic.CreateNewAndFinishPreviousRecord(employeeId, type);
-        }
-
         public void ProcessAction(int employeeId, EnumWorkType type)
         {
             if (type == EnumWorkType.Exit)
@@ -80,7 +75,7 @@ namespace AttendanceTermianal
             }
             else
             {
-                CreateNewAndFinishPreviousRecord(employeeId, type);
+                _logic.CreateNewAndFinishPreviousRecord(employeeId, type);
             }
         }
     }
