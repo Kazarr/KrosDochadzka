@@ -190,13 +190,12 @@ namespace Logic
                 myListOfDays.Add(CreateDaySummary(dt, employeeID));
                 dt = dt.AddDays(1);
             }
-
             return myListOfDays;
         }
 
-        public bool CheckLogin(int id, string password)
+        public bool CheckLogin(int employeeId, string password)
         {
-            return _employeeRepository.CheckLogin(id, CalculateMD5Hash(password));
+            return _employeeRepository.CheckLogin(employeeId, CalculateMD5Hash(password));
         }
 
         private int InsertFullEmployee(Employee employee)

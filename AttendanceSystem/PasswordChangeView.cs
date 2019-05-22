@@ -10,17 +10,41 @@ namespace AttendanceSystem
         private PasswordChangeViewModel _passwordChangeViewModel;
         private LogicSystem _logic;
 
-        public PasswordChangeView(int id, LogicSystem logic)
+        public PasswordChangeView(int employeeId, LogicSystem logic)
         {
             InitializeComponent();
             _logic = logic;
-            _passwordChangeViewModel = new PasswordChangeViewModel(_logic);
-            _employeeId = id;
+            _passwordChangeViewModel = new PasswordChangeViewModel(_logic, employeeId);
+            _employeeId = employeeId;
+            BindControls();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void BindControls()
         {
-            Close();
+            lblMessage.DataBindings.Add
+                (nameof(lblMessage.Text),
+                _passwordChangeViewModel,
+                nameof(_passwordChangeViewModel.UserMessage),
+                false,
+                DataSourceUpdateMode.OnValidation);
+
+            txtOldPass.DataBindings.Add
+                (nameof(txtOldPass.Text),
+                _passwordChangeViewModel,
+                nameof(_passwordChangeViewModel.OldPass),
+                false, DataSourceUpdateMode.OnValidation);
+
+            txtNewPass.DataBindings.Add
+                (nameof(txtNewPass.Text),
+                _passwordChangeViewModel,
+                nameof(_passwordChangeViewModel.NewPass),
+                false, DataSourceUpdateMode.OnValidation);
+
+            txtConfirmPass.DataBindings.Add
+                (nameof(txtConfirmPass.Text),
+                _passwordChangeViewModel,
+                nameof(_passwordChangeViewModel.ConfirmPass),
+                false, DataSourceUpdateMode.OnValidation);
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -30,60 +54,12 @@ namespace AttendanceSystem
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            ChangePass(_employeeId,txtOldPass.Text,txtNewPass.Text,txtConfirmPass.Text);
+            _passwordChangeViewModel.ChangePassword();
         }
 
-        private bool CheckCurrentPass(int idEmploye, string oldPass)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-            if (_passwordChangeViewModel.CheckOldPass(idEmploye,oldPass))
-            {
-                return true;
-            }
-            else
-            {
-                lblMessage.ForeColor = System.Drawing.Color.Red;
-                lblMessage.Text = MessageWrongOldPass();
-                return false;
-            }
-        }
-
-        private bool CompareNewPass(string newPass, string confirmPass)
-        {
-            if (_passwordChangeViewModel.CompareNewPass(newPass,confirmPass))
-            {
-                return true;
-            }
-            else
-            {
-                lblMessage.ForeColor = System.Drawing.Color.Red;
-                lblMessage.Text = MessageNewPassDontMatch();
-                return false;
-            }
-        }
-
-        private void ChangePass(int idEmploye, string oldPass, string newPass, string confirmPass)
-        {
-            if (CheckCurrentPass(idEmploye, oldPass) && CompareNewPass(newPass, confirmPass))
-            {
-                _passwordChangeViewModel.ChangePassword(idEmploye, newPass);
-                lblMessage.ForeColor = System.Drawing.Color.Green;
-                lblMessage.Text= MessageChangedSuccessfully();
-            }
-        }
-
-        private string MessageWrongOldPass()
-        {
-            return ("Current password is wrong");
-        }
-
-        private string MessageNewPassDontMatch()
-        {
-            return ("The new password does not match");
-        }
-
-        private string MessageChangedSuccessfully()
-        {
-            return ("Password has been changed successfully");
+            Close();
         }
     }
 }
