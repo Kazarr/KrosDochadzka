@@ -15,17 +15,17 @@ namespace AttendanceSystem
         {
             InitializeComponent();
             _logic = logic;
-            _newEmployeeViewModel = new NewEmployeeViewModel();
+            _newEmployeeViewModel = new NewEmployeeViewModel(_logic);
             cmbSupervisors.DataSource = _newEmployeeViewModel.FillSupervisors();
             cmbPermissions.DataSource = _newEmployeeViewModel.FillPermissions();
-            _newEmployeeViewModel = new NewEmployeeViewModel();
+            _newEmployeeViewModel = new NewEmployeeViewModel(_logic);
         }
 
         public NewEmployeeView(Person person, Employee empolyee, LogicSystem logic)
         {
             InitializeComponent();
             _logic = logic;
-            _newEmployeeViewModel = new NewEmployeeViewModel(person, empolyee);
+            _newEmployeeViewModel = new NewEmployeeViewModel(person, empolyee, _logic);
             cmbSupervisors.DataSource = _newEmployeeViewModel.FillSupervisors();
             cmbSupervisors.SelectedIndex = cmbSupervisors.FindStringExact(_newEmployeeViewModel.GetSupervisor(empolyee.IdSupervisor).ToString());
             textBoxFirstName.Text = _newEmployeeViewModel.Person.FirstName;

@@ -8,23 +8,23 @@ namespace AttendanceSystem
 {
     public class NewEmployeeViewModel
     {
-        private LogicSystem _logic = new LogicSystem();
+        private LogicSystem _logic;
         public Employee Employee { get; set; }
         public Person Person { get; set; }
         public Person Supervisor { get; set; }
-        private RepositoryFactory _repositoryFactory;
 
-        public NewEmployeeViewModel(Person person, Employee empolyee)
+        public NewEmployeeViewModel(Person person, Employee empolyee, LogicSystem logic)
         {
+            _logic = logic;
             Person = person;
             Employee = empolyee;
             Supervisor = GetSupervisor(Employee.Id);
-            _repositoryFactory = new RepositoryFactory();
+
         }
 
-        public NewEmployeeViewModel()
+        public NewEmployeeViewModel(LogicSystem logic)
         {
-            _repositoryFactory = new RepositoryFactory();
+            _logic = logic;
             Employee = new Employee();
             Person = new Person();
         }
@@ -36,27 +36,27 @@ namespace AttendanceSystem
 
         public List<string> FillPermissions()
         {
-            return _repositoryFactory.GetPermissionRepository().SelectPermissionName();
+            return _logic.SelectPermissionName();
         }
 
         public string EmployeePermission(Employee empolyee)
         {
-            return _repositoryFactory.GetPermissionRepository().SelectPermissionNameById(empolyee.Permision);
+            return _logic.SelectPermissionNameById(empolyee.Permision);
         }
 
         public int EmployeePermissionId(string name)
         {
-            return _repositoryFactory.GetPermissionRepository().SelectPermissionIdByName(name);
+            return _logic.SelectPermissionIdByName(name);
         }
 
         public Person GetSupervisor(int? idEmployee)
         {
-            return _repositoryFactory.GetPersonRepository().GetPersonByIdEmployee(idEmployee.Value);
+            return _logic.GetPersonByIdEmployee(idEmployee.Value);
         }
 
         public BindingList<Person> FillSupervisors()
         {
-            return new BindingList<Person>(_repositoryFactory.GetPersonRepository().GetPersonEmployeesSupervisors());
+            return new BindingList<Person>(_logic.GetPersonEmployeesSupervisors());
         }
 
         public void UpdateEmployee(string firstName, string lastName, string phoneNumber, string address, int permission, Person supervisor)
