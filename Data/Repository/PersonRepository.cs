@@ -23,7 +23,7 @@ namespace Data.Repository
                         string phoneNumber = reader.GetString(3);
                         string adress = reader.GetString(4);
 
-                        ret.Add(new Person(personId, firstName, lastName, phoneNumber, adress));
+                        ret.Add(new Person() { Id = personId, FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress });
                     }
                 }
             });
@@ -49,7 +49,7 @@ namespace Data.Repository
                         string phoneNumber = reader.GetString(3);
                         string adress = reader.IsDBNull(4) ? "" : reader.GetString(4);
 
-                        ret.Add(new Person(personId, firstName, lastName, phoneNumber, adress));
+                        ret.Add(new Person() { Id = personId, FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress });
                     }
                 }
             });
@@ -90,7 +90,7 @@ namespace Data.Repository
                         string phoneNumber = reader.GetString(3);
                         string adress = reader.IsDBNull(4) ? "" : reader.GetString(4);
 
-                        ret = new Person(personId, firstName, lastName, phoneNumber, adress);
+                        ret = new Person() { Id = personId, FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress };
                     }
                 }
             });
@@ -116,7 +116,7 @@ namespace Data.Repository
                         string phoneNumber = reader.GetString(3);
                         string adress = reader.IsDBNull(4) ? "" : reader.GetString(4);
 
-                        ret = new Person(personId, firstName, lastName, phoneNumber, adress);
+                        ret = new Person() { Id = personId, FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress };
                     }
                 }
             });
@@ -176,7 +176,7 @@ namespace Data.Repository
                         string phoneNumber = reader.GetString(3);
                         string adress = reader.IsDBNull(4) ? "" : reader.GetString(4);
 
-                        ret.Add(new Person(personId, firstName, lastName, phoneNumber, adress));
+                        ret.Add(new Person() { Id = personId, FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress });
                     }
                 }
             });
@@ -203,7 +203,7 @@ namespace Data.Repository
                         string phoneNumber = reader.GetString(3);
                         string adress = reader.IsDBNull(4) ? "" : reader.GetString(4);
 
-                        ret.Add(new Person(personId, firstName, lastName, phoneNumber, adress));
+                        ret.Add(new Person() { Id = personId, FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress });
                     }
                 }
             });
@@ -226,7 +226,7 @@ namespace Data.Repository
                         string lastName = reader.GetString(2);
                         string phoneNumber = reader.GetString(3);
                         string adress = reader.IsDBNull(4) ? "" : reader.GetString(4);
-                        ret =  new Person(id, firstName, lastName, phoneNumber, adress);
+                        ret =  new Person() { Id = id, FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress };
                     }
                 }
             });

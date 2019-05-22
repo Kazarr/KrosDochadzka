@@ -236,7 +236,7 @@ namespace Logic
                 Permision = permission
             };
 
-            Person p = new Person(firstName, lastName, phoneNumber, adress);
+            Person p = new Person() { FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress };
             if (supervisor == null)
             {
                 employee.IdSupervisor = employee.Id;
@@ -272,9 +272,9 @@ namespace Logic
 
         public void AddNewEmployee(string firstName, string lastName, string phoneNumber, string adress, int permission, Person supervisor, string password)
         {
-            Person person = new Person(firstName, lastName, phoneNumber, adress);
+            Person person = new Person() { FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress };
             person.Id = _personRepository.InsertPerson(person);
-            Employee employee = new Employee(password, person.Id, permission);
+            Employee employee = new Employee() { Password = password, IdPerson = person.Id, Permision = permission };
             if (supervisor == null)
             {
                 employee.IdSupervisor = InsertFullEmployee(employee);

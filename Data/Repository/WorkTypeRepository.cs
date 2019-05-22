@@ -28,7 +28,7 @@ namespace Data.Repository
                                 int workTypeId = reader.GetInt32(0);
                                 string name = reader.GetString(1);                               
 
-                                ret.Add(new WorkType(workTypeId, name));
+                                ret.Add(new WorkType() { Id = workTypeId, Name = name });
                             }
                             return ret;
                         }

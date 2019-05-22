@@ -20,7 +20,7 @@ namespace Data.Generator
             string lastName = Faker.Name.Last();
             string adress = Faker.Address.StreetName();
             string phoneNumber = "0905" + r.Next(1000000).ToString();
-            return new Person(firstName, lastName, phoneNumber, adress);
+            return new Person() { FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress };
         }
 
         public void GenerateRandomPersons()
