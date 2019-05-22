@@ -62,7 +62,8 @@ namespace AttendanceSystem
 
         public void UpdateEmployee(string firstName, string lastName, string phoneNumber, string address, int permission, Person supervisor)
         {
-            _logic.UpdateEmployee(firstName, lastName, phoneNumber, address, permission, supervisor);
+            Person person = new Person() { FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = address };
+            _logic.UpdateEmployee(person, permission, supervisor);
 
         }
 
