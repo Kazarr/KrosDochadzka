@@ -210,14 +210,14 @@ namespace Logic
             return _employeeRepository.ChangePassword(employeeID, CalculateMD5Hash(password));
         }
 
-        public void UpdateEmployee(string firstName, string lastName, string phoneNumber, string adress, int permission, Person supervisor)
+        public void UpdateEmployee(Person person, int permission, Person supervisor)
         {
             Employee employee = new Employee
             {
                 Permision = permission
             };
 
-            Person p = new Person() { FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress };
+            //Person p = new Person() { FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress };
             if (supervisor == null)
             {
                 employee.IdSupervisor = employee.Id;
@@ -226,7 +226,7 @@ namespace Logic
             {
                 employee.IdSupervisor = _employeeRepository.GetEmpolyeeByIdPerson(supervisor.Id).Id;
             }
-            _employeeRepository.UpdateEmployee(employee, p);
+            _employeeRepository.UpdateEmployee(employee, person);
 
 
         }
