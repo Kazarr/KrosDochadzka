@@ -75,9 +75,9 @@ namespace Logic
             }
         }
 
-        public Employee GetEmpolyeeByID(int v)
+        public Employee GetEmpolyeeByID(int employeeId)
         {
-            return _employeeRepository.GetEmpolyeeByID(v);
+            return _employeeRepository.GetEmpolyeeByID(employeeId);
         }
 
         public DailyRecord GetLastDailyRecordByEmployeeId(int employeeId)

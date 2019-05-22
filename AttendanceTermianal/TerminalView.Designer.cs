@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.txtEmpId = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
             this.lblHour = new System.Windows.Forms.Label();
             this.lblSec = new System.Windows.Forms.Label();
@@ -37,6 +36,7 @@
             this.lblDay = new System.Windows.Forms.Label();
             this.timerCurrentDateTime = new System.Windows.Forms.Timer(this.components);
             this.panelBtnsAndTxtBox = new System.Windows.Forms.Panel();
+            this.numEmployeeID = new System.Windows.Forms.NumericUpDown();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnEntry = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -51,25 +51,12 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.timerClearDisplay = new System.Windows.Forms.Timer(this.components);
             this.panelBtnsAndTxtBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numEmployeeID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // txtEmpId
-            // 
-            this.txtEmpId.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtEmpId.BackColor = System.Drawing.Color.White;
-            this.txtEmpId.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtEmpId.Font = new System.Drawing.Font("Century Gothic", 23F, System.Drawing.FontStyle.Bold);
-            this.txtEmpId.ForeColor = System.Drawing.Color.Black;
-            this.txtEmpId.Location = new System.Drawing.Point(95, 18);
-            this.txtEmpId.MaxLength = 8;
-            this.txtEmpId.Name = "txtEmpId";
-            this.txtEmpId.Size = new System.Drawing.Size(439, 38);
-            this.txtEmpId.TabIndex = 0;
-            this.txtEmpId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblName
             // 
@@ -127,19 +114,34 @@
             // 
             // panelBtnsAndTxtBox
             // 
+            this.panelBtnsAndTxtBox.Controls.Add(this.numEmployeeID);
             this.panelBtnsAndTxtBox.Controls.Add(this.btnExit);
             this.panelBtnsAndTxtBox.Controls.Add(this.btnEntry);
             this.panelBtnsAndTxtBox.Controls.Add(this.button1);
             this.panelBtnsAndTxtBox.Controls.Add(this.btnLunch);
             this.panelBtnsAndTxtBox.Controls.Add(this.btnBTrip);
             this.panelBtnsAndTxtBox.Controls.Add(this.btnDoctor);
-            this.panelBtnsAndTxtBox.Controls.Add(this.txtEmpId);
             this.panelBtnsAndTxtBox.Controls.Add(this.pictureBox7);
             this.panelBtnsAndTxtBox.ForeColor = System.Drawing.Color.White;
             this.panelBtnsAndTxtBox.Location = new System.Drawing.Point(5, 205);
             this.panelBtnsAndTxtBox.Name = "panelBtnsAndTxtBox";
             this.panelBtnsAndTxtBox.Size = new System.Drawing.Size(545, 345);
             this.panelBtnsAndTxtBox.TabIndex = 1;
+            // 
+            // numEmployeeID
+            // 
+            this.numEmployeeID.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.numEmployeeID.Font = new System.Drawing.Font("Century Gothic", 19F, System.Drawing.FontStyle.Bold);
+            this.numEmployeeID.Location = new System.Drawing.Point(90, 20);
+            this.numEmployeeID.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.numEmployeeID.Name = "numEmployeeID";
+            this.numEmployeeID.Size = new System.Drawing.Size(444, 35);
+            this.numEmployeeID.TabIndex = 24;
+            this.numEmployeeID.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnExit
             // 
@@ -184,7 +186,7 @@
             // btnBTrip
             // 
             this.btnBTrip.Image = global::AttendanceTermianal.Properties.Resources.BS_TRIP;
-            this.btnBTrip.Location = new System.Drawing.Point(143, 74);
+            this.btnBTrip.Location = new System.Drawing.Point(275, 74);
             this.btnBTrip.Name = "btnBTrip";
             this.btnBTrip.Size = new System.Drawing.Size(130, 130);
             this.btnBTrip.TabIndex = 3;
@@ -194,7 +196,7 @@
             // btnDoctor
             // 
             this.btnDoctor.Image = global::AttendanceTermianal.Properties.Resources.doctor;
-            this.btnDoctor.Location = new System.Drawing.Point(276, 74);
+            this.btnDoctor.Location = new System.Drawing.Point(143, 74);
             this.btnDoctor.Name = "btnDoctor";
             this.btnDoctor.Size = new System.Drawing.Size(130, 130);
             this.btnDoctor.TabIndex = 4;
@@ -280,7 +282,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Terminal";
             this.panelBtnsAndTxtBox.ResumeLayout(false);
-            this.panelBtnsAndTxtBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numEmployeeID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -291,7 +293,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox txtEmpId;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblHour;
         private System.Windows.Forms.Label lblSec;
@@ -312,6 +313,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnLunch;
         private System.Windows.Forms.Button btnBTrip;
+        private System.Windows.Forms.NumericUpDown numEmployeeID;
     }
 }
 

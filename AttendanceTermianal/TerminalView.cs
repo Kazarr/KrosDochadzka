@@ -50,18 +50,18 @@ namespace AttendanceTermianal
             lblDateNow.Text = DateTime.Now.DateDescription();
             lblWorkType.Text = "";
             lblName.Text = "";
-            txtEmpId.Clear();
+            numEmployeeID.Value=0;
             timerClearDisplay.Stop();
-        }       
+        }
 
         private void DescribeAndProcessAction(EnumWorkType type)
         {
-            if (_terminalViewModel.IsCorrectEmp(txtEmpId.Text))
-            {
-                    int employeeId = int.Parse(txtEmpId.Text);
-                    _terminalViewModel.ProcessAction(employeeId, type);
-                    Describe(employeeId, type);
-                    timerClearDisplay.Start();
+            int employeeId = (int)numEmployeeID.Value;
+            if (_terminalViewModel.IsCorrectEmp(employeeId))
+            {                
+                _terminalViewModel.ProcessAction(employeeId, type);
+                Describe(employeeId, type);
+                timerClearDisplay.Start();
             }
             else
             {
@@ -76,7 +76,7 @@ namespace AttendanceTermianal
             lblDateNow.Text = DateTime.Now.DateDescription();
             lblWorkType.Text = type.ToString();
         }
-        
+
         #region Buttons
         private void btnExit_Click(object sender, EventArgs e)
         {
