@@ -35,7 +35,7 @@
             this.lblSec = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.lblDay = new System.Windows.Forms.Label();
-            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.timerCurrentDateTime = new System.Windows.Forms.Timer(this.components);
             this.panelBtnsAndTxtBox = new System.Windows.Forms.Panel();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnEntry = new System.Windows.Forms.Button();
@@ -49,7 +49,7 @@
             this.lblDateNow = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.timerClear = new System.Windows.Forms.Timer(this.components);
+            this.timerClearDisplay = new System.Windows.Forms.Timer(this.components);
             this.panelBtnsAndTxtBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.panel2.SuspendLayout();
@@ -120,9 +120,10 @@
             this.lblDay.Text = "Piatok";
             this.lblDay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // timer
+            // timerCurrentDateTime
             // 
-            this.timer.Tick += new System.EventHandler(this.Timer_Tick);
+            this.timerCurrentDateTime.Interval = 1000;
+            this.timerCurrentDateTime.Tick += new System.EventHandler(this.timerCurrentDateTime_Tick);
             // 
             // panelBtnsAndTxtBox
             // 
@@ -262,12 +263,12 @@
             this.panel4.Size = new System.Drawing.Size(555, 555);
             this.panel4.TabIndex = 1;
             // 
-            // timerClear
+            // timerClearDisplay
             // 
-            this.timerClear.Interval = 2500;
-            this.timerClear.Tick += new System.EventHandler(this.TimerClear_Tick);
+            this.timerClearDisplay.Interval = 2500;
+            this.timerClearDisplay.Tick += new System.EventHandler(this.TimerClear_Tick);
             // 
-            // frmTerminal
+            // TerminalView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -275,7 +276,7 @@
             this.ClientSize = new System.Drawing.Size(565, 565);
             this.Controls.Add(this.panel4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmTerminal";
+            this.Name = "TerminalView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Terminal";
             this.panelBtnsAndTxtBox.ResumeLayout(false);
@@ -296,7 +297,7 @@
         private System.Windows.Forms.Label lblSec;
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Label lblDay;
-        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.Timer timerCurrentDateTime;
         private System.Windows.Forms.Panel panelBtnsAndTxtBox;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Panel panel2;
@@ -304,7 +305,7 @@
         private System.Windows.Forms.Label lblWorkType;
         private System.Windows.Forms.Label lblDateNow;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Timer timerClear;
+        private System.Windows.Forms.Timer timerClearDisplay;
         private System.Windows.Forms.Button btnDoctor;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnEntry;

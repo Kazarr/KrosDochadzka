@@ -14,7 +14,7 @@ namespace AttendanceTermianal
             InitializeComponent();
             _logic = logic;
             _terminalViewModel = new TerminalViewModel(_logic);
-            timer.Start();
+            timerCurrentDateTime.Start();
         }
 
         private void CheckInternetConnection()
@@ -30,7 +30,7 @@ namespace AttendanceTermianal
             }
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
+        private void timerCurrentDateTime_Tick(object sender, EventArgs e)
         {
             lblDate.Text = DateTime.Now.DateFormat();
             lblDay.Text = DateTime.Now.DayFormat();
@@ -51,7 +51,7 @@ namespace AttendanceTermianal
             lblWorkType.Text = "";
             lblName.Text = "";
             txtEmpId.Clear();
-            timerClear.Stop();
+            timerClearDisplay.Stop();
         }       
 
         private void DescribeAndProcessAction(EnumWorkType type)
@@ -61,12 +61,12 @@ namespace AttendanceTermianal
                     int employeeId = int.Parse(txtEmpId.Text);
                     _terminalViewModel.ProcessAction(employeeId, type);
                     Describe(employeeId, type);
-                    timerClear.Start();
+                    timerClearDisplay.Start();
             }
             else
             {
                 lblName.Text = ShowError();
-                timerClear.Start();
+                timerClearDisplay.Start();
             }
         }
 
