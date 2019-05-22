@@ -1,6 +1,6 @@
 ﻿namespace AttendanceTermianal
 {
-    partial class FrmTerminal
+    partial class TerminalView
     {
         /// <summary>
         /// Required designer variable.

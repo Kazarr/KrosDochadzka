@@ -8,14 +8,14 @@ using System.Windows.Forms;
 
 namespace AttendanceSystem
 {
-    public partial class FrmMainWindow : Form
+    public partial class MainWindowView : Form
     {
         private MainWindowViewModel _mainWindowViewModel;
         private LogicSystem _logic;
         private int _loggedEmployeeID;
         private string _selected = "";
 
-        public FrmMainWindow(int id, LogicSystem logic)
+        public MainWindowView(int id, LogicSystem logic)
         {
             InitializeComponent();
             _loggedEmployeeID = id;
@@ -89,7 +89,7 @@ namespace AttendanceSystem
 
         private void btnNewEmployee_Click_1(object sender, EventArgs e)
         {
-            FrmNewEmployee newEmployee = new FrmNewEmployee(_logic);
+            NewEmployeeView newEmployee = new NewEmployeeView(_logic);
             newEmployee.ShowDialog();
 
             if (newEmployee.DialogResult == DialogResult.OK)
@@ -104,7 +104,7 @@ namespace AttendanceSystem
             List<DaySummary> daySummaries = new List<DaySummary>(
             _mainWindowViewModel.FillDataGridViewOverview(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), _selected));
 
-            FrmMonthOverview monthOverview = new FrmMonthOverview(daySummaries);
+            MonthOverviewView monthOverview = new MonthOverviewView(daySummaries);
             monthOverview.ShowDialog();
         }
 
@@ -117,7 +117,7 @@ namespace AttendanceSystem
 
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
         {
-            FrmNewEmployee newEmployee = new FrmNewEmployee(_mainWindowViewModel.Person, _mainWindowViewModel.Employee, _logic);
+            NewEmployeeView newEmployee = new NewEmployeeView(_mainWindowViewModel.Person, _mainWindowViewModel.Employee, _logic);
             newEmployee.ShowDialog();
             if (newEmployee.DialogResult == DialogResult.OK)
             {
@@ -197,7 +197,7 @@ namespace AttendanceSystem
 
         private void btnChangePassword_Click(object sender, EventArgs e)
         {
-            FrmPasswordChange passwordChange = new FrmPasswordChange(_loggedEmployeeID, _logic);
+            PasswordChangeView passwordChange = new PasswordChangeView(_loggedEmployeeID, _logic);
             passwordChange.ShowDialog();
         }
                 

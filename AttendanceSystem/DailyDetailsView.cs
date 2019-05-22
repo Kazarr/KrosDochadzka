@@ -81,14 +81,14 @@ namespace AttendanceSystem
 
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
-            FrmDailyDetailsAddEdit frmDailyDetailsAdd = new FrmDailyDetailsAddEdit(_selectedEmployeeId, _thisDate, _logic);
+            DailyDetailsAddEditView frmDailyDetailsAdd = new DailyDetailsAddEditView(_selectedEmployeeId, _thisDate, _logic);
             frmDailyDetailsAdd.ShowDialog();
             FillDataGridView();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            FrmDailyDetailsAddEdit frmDailyDetailsEdit = new FrmDailyDetailsAddEdit(
+            DailyDetailsAddEditView frmDailyDetailsEdit = new DailyDetailsAddEditView(
                 _selectedEmployeeId, 
                 _thisDate, 
                 _dailyDetailsViewModel.GetDailyResultById(Convert.ToInt32(dGVDailyResultsOverview.Rows[dGVDailyResultsOverview.CurrentCell.RowIndex].Cells[0].Value)),

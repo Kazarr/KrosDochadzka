@@ -1,6 +1,6 @@
 ﻿namespace AttendanceSystem
 {
-    partial class FrmDailyDetailsAddEdit
+    partial class DailyDetailsAddEditView
     {
         /// <summary>
         /// Required designer variable.

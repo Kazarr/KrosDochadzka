@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace AttendanceTermianal
 {
-    public partial class FrmTerminal : Form
+    public partial class TerminalView : Form
     {
         private TerminalViewModel _terminalViewModel;
         private LogicTerminal _logic;
-        public FrmTerminal(LogicTerminal logic)
+        public TerminalView(LogicTerminal logic)
         {
             InitializeComponent();
             _logic = logic;

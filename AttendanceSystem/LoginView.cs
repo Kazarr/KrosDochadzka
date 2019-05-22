@@ -6,12 +6,12 @@ using System.Windows.Forms;
 
 namespace AttendanceSystem
 {
-    public partial class FrmLogin : Form
+    public partial class LoginView : Form
     {
         private LoginViewModel _loginViewModel;
         private LogicSystem _logic;
 
-        public FrmLogin(LogicSystem logic)
+        public LoginView(LogicSystem logic)
         {
             InitializeComponent();
             _logic = logic;
@@ -29,7 +29,7 @@ namespace AttendanceSystem
             {
                 if (_loginViewModel.CheckLogin(Convert.ToInt32(textBoxLogin.Text), textBoxPassword.Text))
                 {
-                    FrmMainWindow frmMainWindow = new FrmMainWindow(Convert.ToInt32(textBoxLogin.Text), _logic);
+                    MainWindowView frmMainWindow = new MainWindowView(Convert.ToInt32(textBoxLogin.Text), _logic);
                     frmMainWindow.ShowDialog();
 
                 }

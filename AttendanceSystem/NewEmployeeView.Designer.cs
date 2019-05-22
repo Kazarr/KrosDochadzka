@@ -1,6 +1,6 @@
 ﻿namespace AttendanceSystem
 {
-    partial class FrmNewEmployee
+    partial class NewEmployeeView
     {
         /// <summary>
         /// Required designer variable.
