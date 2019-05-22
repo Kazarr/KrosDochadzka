@@ -45,24 +45,6 @@ namespace AttendanceTermianal
         }
 
         /// <summary>
-        /// Ak pre daného zamestnanca neexistuje žiaden záznam pre dnešný deň, vytvorím nový záznam
-        /// v ktorom mu nastavím start a finish time na aktuálny |||||DOVOD|||| - aby som nestratil čas odchodu,ak si zamestnanec nedal príchod
-        /// </summary>
-        /// <param name="employeeId"></param>
-        private void ExitDailyRecord(int employeeId)
-        {
-            DailyRecord dailyRecord = _logic.GetLastDailyRecordByEmployeeId(employeeId);
-            if (dailyRecord == null)
-            {
-                _logic.CreateNewTimeBlock(employeeId, EnumWorkType.Other, DateTime.Now, DateTime.Now);
-            }
-            else
-            {
-                _logic.UpdateFinishInTimeBlock(dailyRecord, DateTime.Now);
-            }
-        }
-
-        /// <summary>
         /// HLavna funkcua pre buttony
         /// </summary>
         /// <param name="employeeId"></param>
@@ -71,7 +53,7 @@ namespace AttendanceTermianal
         {
             if (type == EnumWorkType.Exit)
             {
-                ExitDailyRecord(employeeId);
+                _logic.ExitTimeBlock(employeeId);
             }
             else
             {
