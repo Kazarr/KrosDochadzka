@@ -4,8 +4,6 @@ using System;
 
 namespace AttendanceTermianal
 {
-
-
     public class TerminalViewModel
     {
         private LogicTerminal _logic;
@@ -31,12 +29,12 @@ namespace AttendanceTermianal
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public bool IsCorrectEmp(string employeeId)
+        public bool IsCorrectEmp(int employeeId)
         {
             try
             {
-                var empoloyee = _logic.GetEmpolyeeByID(int.Parse(employeeId));
-                return empoloyee != null && empoloyee.Id.Equals(int.Parse(employeeId));
+                var empoloyee = _logic.GetEmpolyeeByID(employeeId);
+                return empoloyee != null && empoloyee.Id.Equals(employeeId);
             }
             catch (FormatException)
             {

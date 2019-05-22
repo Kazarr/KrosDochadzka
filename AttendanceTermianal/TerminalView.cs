@@ -14,7 +14,7 @@ namespace AttendanceTermianal
             InitializeComponent();
             _logic = logic;
             _terminalViewModel = new TerminalViewModel(_logic);
-            timer.Start();
+            timerCurrentDateTime.Start();
         }
 
         private void CheckInternetConnection()
@@ -30,7 +30,7 @@ namespace AttendanceTermianal
             }
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
+        private void timerCurrentDateTime_Tick(object sender, EventArgs e)
         {
             lblDate.Text = DateTime.Now.DateFormat();
             lblDay.Text = DateTime.Now.DayFormat();
@@ -50,23 +50,23 @@ namespace AttendanceTermianal
             lblDateNow.Text = DateTime.Now.DateDescription();
             lblWorkType.Text = "";
             lblName.Text = "";
-            txtEmpId.Clear();
-            timerClear.Stop();
-        }       
+            numEmployeeID.Value=0;
+            timerClearDisplay.Stop();
+        }
 
         private void DescribeAndProcessAction(EnumWorkType type)
         {
-            if (_terminalViewModel.IsCorrectEmp(txtEmpId.Text))
-            {
-                    int employeeId = int.Parse(txtEmpId.Text);
-                    _terminalViewModel.ProcessAction(employeeId, type);
-                    Describe(employeeId, type);
-                    timerClear.Start();
+            int employeeId = (int)numEmployeeID.Value;
+            if (_terminalViewModel.IsCorrectEmp(employeeId))
+            {                
+                _terminalViewModel.ProcessAction(employeeId, type);
+                Describe(employeeId, type);
+                timerClearDisplay.Start();
             }
             else
             {
                 lblName.Text = ShowError();
-                timerClear.Start();
+                timerClearDisplay.Start();
             }
         }
 
@@ -76,7 +76,7 @@ namespace AttendanceTermianal
             lblDateNow.Text = DateTime.Now.DateDescription();
             lblWorkType.Text = type.ToString();
         }
-        
+
         #region Buttons
         private void btnExit_Click(object sender, EventArgs e)
         {

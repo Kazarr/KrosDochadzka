@@ -58,9 +58,27 @@ namespace Logic
             CreateNewTimeBlock(employeeId, type, currentTime);
         }
 
-        public Employee GetEmpolyeeByID(int v)
+        /// <summary>
+        /// Ak pre daného zamestnanca neexistuje žiaden záznam pre dnešný deň, vytvorím nový záznam
+        /// v ktorom mu nastavím start a finish time na aktuálny |||||DOVOD|||| - aby som nestratil čas odchodu,ak si zamestnanec nedal príchod
+        /// </summary>
+        /// <param name="employeeId"></param>
+        public void ExitTimeBlock(int employeeId)
         {
-            return _employeeRepository.GetEmpolyeeByID(v);
+            DailyRecord dailyRecord = GetLastDailyRecordByEmployeeId(employeeId);
+            if (dailyRecord == null)
+            {
+                CreateNewTimeBlock(employeeId, EnumWorkType.Other, DateTime.Now, DateTime.Now);
+            }
+            else
+            {
+                UpdateFinishInTimeBlock(dailyRecord, DateTime.Now);
+            }
+        }
+
+        public Employee GetEmpolyeeByID(int employeeId)
+        {
+            return _employeeRepository.GetEmpolyeeByID(employeeId);
         }
 
         public DailyRecord GetLastDailyRecordByEmployeeId(int employeeId)
