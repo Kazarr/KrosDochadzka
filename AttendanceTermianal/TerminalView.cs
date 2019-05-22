@@ -42,13 +42,13 @@ namespace AttendanceTermianal
 
         public bool CorrectEmp(string input)
         {
-            bool test = false;
-            if (!test)
+            bool succes = false;
+            if (!succes)
             {
                 if (_terminalViewModel.CorrectEmp(input))
                 {
-                    test = true;
-                    return test;
+                    succes = true;
+                    return succes;
                 }
                 else
                 {
@@ -56,7 +56,7 @@ namespace AttendanceTermianal
                     timerClear.Start();
                 }
             }
-            return false;
+            return succes;
         }
 
         private string ShowError()
@@ -75,22 +75,12 @@ namespace AttendanceTermianal
 
         private void DescribeAndProcessAction(EnumWorkType type)
         {
-            if (!string.IsNullOrEmpty(txtEmpId.Text))
+            if (CorrectEmp(txtEmpId.Text))
             {
-                if (CorrectEmp(txtEmpId.Text))
-                {
                     int employeeId = int.Parse(txtEmpId.Text);
-                    if (type == EnumWorkType.Exit)
-                    {
-                        _terminalViewModel.ExitDailyRecord(employeeId);
-                    }
-                    else
-                    {
-                        _terminalViewModel.CreateNewAndFinishPreviousRecord(employeeId, type);
-                    }
+                    _terminalViewModel.ProcessAction(employeeId, type);
                     Describe(employeeId, type);
                     timerClear.Start();
-                }
             }
             else
             {

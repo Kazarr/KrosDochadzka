@@ -28,7 +28,7 @@ namespace AttendanceTermianal
                                 $"{_logic.GetPersonByIdEmployee(employeeId).LastName} ";
         }
 
-     
+
 
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace AttendanceTermianal
                 return false;
             }
         }
-        
+
         /// <summary>
         /// Ak pre daného zamestnanca neexistuje žiaden záznam pre dnešný deň, vytvorím nový záznam
         /// v ktorom mu nastavím start a finish time na aktuálny |||||DOVOD|||| - aby som nestratil čas odchodu,ak si zamestnanec nedal príchod
@@ -75,6 +75,18 @@ namespace AttendanceTermianal
         public void CreateNewAndFinishPreviousRecord(int employeeId, EnumWorkType type)
         {
             _logic.CreateNewAndFinishPreviousRecord(employeeId, type);
+        }
+
+        public void ProcessAction(int employeeId, EnumWorkType type)
+        {
+            if (type == EnumWorkType.Exit)
+            {
+                ExitDailyRecord(employeeId);
+            }
+            else
+            {
+                CreateNewAndFinishPreviousRecord(employeeId, type);
+            }
         }
     }
 }
