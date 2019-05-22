@@ -33,7 +33,7 @@ namespace AttendanceTermianal
         {
             try
             {
-                var empoloyee = _logic.GetEmpolyeeByID(employeeId);
+                Employee empoloyee = _logic.GetEmpolyeeByID(employeeId);
                 return empoloyee != null && empoloyee.Id.Equals(employeeId);
             }
             catch (FormatException)
