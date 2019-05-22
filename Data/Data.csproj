@@ -67,12 +67,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Repository\DialyRecordRepository.cs" />
+    <Compile Include="Repository\DailyRecordRepository.cs" />
     <Compile Include="Repository\DaySummaryRepository.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />
     <Compile Include="Repository\RepositoryFactory.cs" />
     <Compile Include="Repository\ConnectionManager.cs" />
-    <Compile Include="Repository\MonthOverviewRepository.cs" />
     <Compile Include="Repository\PermissionRepository.cs" />
     <Compile Include="Repository\PersonRepository.cs" />
     <Compile Include="Repository\WorkTypeRepository.cs" />

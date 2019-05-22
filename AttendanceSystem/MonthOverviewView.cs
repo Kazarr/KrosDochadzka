@@ -20,8 +20,8 @@ namespace AttendanceSystem
             labelSickDays.Text = _monthOverviewView.GetSickTime();
             labelHomeOffice.Text = _monthOverviewView.GetHomeOfficeTime();
 
-                
-                }
+
+        }
 
         private void label11_Click(object sender, EventArgs e)
         {
@@ -30,14 +30,12 @@ namespace AttendanceSystem
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void buttonOK_Click_1(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
         }
-
-
     }
 }

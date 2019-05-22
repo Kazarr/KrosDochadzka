@@ -20,6 +20,7 @@ namespace AttendanceSystem
         {
             return _logic.GenerateDb();
         }
+
         public bool GenerateTables()
         {
             return _logic.GenerateTables();

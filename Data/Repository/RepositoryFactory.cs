@@ -195,7 +195,7 @@
             return ret;
         }
                
-        public DialyRecordRepository GetDailyRecordRepository() => new DialyRecordRepository();
+        public DailyRecordRepository GetDailyRecordRepository() => new DailyRecordRepository();
         public EmployeeRepository GetEmployeeRepository() => new EmployeeRepository();
         public PersonRepository GetPersonRepository() => new PersonRepository();
         public WorkTypeRepository GetWorkTypeRepository() => new WorkTypeRepository();

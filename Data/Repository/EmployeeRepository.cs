@@ -96,7 +96,7 @@ namespace Data.Repository
             return success;
         }
       
-              /// <summary>
+        /// <summary>
         /// Recursively delete supervisor. Normal delete pleb.
         /// </summary>
         /// <param name="empolyee"></param>

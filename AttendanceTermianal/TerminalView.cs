@@ -82,6 +82,7 @@ namespace AttendanceTermianal
         {
             DescribeAndProcessAction(EnumWorkType.Exit);
         }
+
         private void btnLunch_Click(object sender, EventArgs e)
         {
             DescribeAndProcessAction(EnumWorkType.Lunch);
