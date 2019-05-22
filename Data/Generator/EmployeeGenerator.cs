@@ -20,7 +20,7 @@ namespace Data.Generator
 
         private DateTime RandomDate()
         {
-            DateTime start = new DateTime(1995, 1, 1);
+            DateTime start = new DateTime(2010, 1, 1);
             int range = (DateTime.Today - start).Days;
             return start.AddDays(r.Next(range));
         }

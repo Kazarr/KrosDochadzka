@@ -42,39 +42,7 @@ namespace Data.Repository
                 }
             }
         }
-
-        public bool InsertWorkType(WorkType workType)
-        {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = @"INSERT INTO WorkType (Name)
-                                                VALUES (@Name)";
-                        command.Parameters.Add("@Name", SqlDbType.VarChar).Value = workType.Name;
-                        if (command.ExecuteNonQuery() > 1)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine($"Error happend during  InsertWorkType \n Error info:{e.Message}");
-                    return false;
-
-                }
-            }
-        }
-
+               
 
     }
 }

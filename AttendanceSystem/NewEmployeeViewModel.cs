@@ -33,11 +33,7 @@ namespace AttendanceSystem
         {
             _logic.AddNewEmployee(firstName, lastName, phoneNumber, address, permission, supervisor, password);
         }
-
-        public void AddNewEmployee()
-        {
-            _logic.AddNewEmployee(Person, Employee, Supervisor);
-        }
+                
 
         public List<string> FillPermissions()
         {
