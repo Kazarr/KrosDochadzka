@@ -4,8 +4,6 @@ using System;
 
 namespace AttendanceTermianal
 {
-
-
     public class TerminalViewModel
     {
         private LogicTerminal _logic;
