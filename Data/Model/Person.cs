@@ -4,27 +4,6 @@ namespace Data.Model
 {
     public class Person
     {
-        public Person()
-        {
-        }
-
-        public Person(string first_name, string last_name, string phone_number, string adress)
-        {
-            FirstName = first_name;
-            LastName = last_name;
-            PhoneNumber = phone_number;
-            Adress = adress;
-        }
-
-        public Person(int id, string first_name, string last_name, string phone_number, string adress)
-        {
-            Id = id;
-            FirstName = first_name;
-            LastName = last_name;
-            PhoneNumber = phone_number;
-            Adress = adress;
-        }
-
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

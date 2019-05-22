@@ -77,7 +77,7 @@ namespace Data.Repository
                         DateTime finish = reader.GetDateTime(3);
                         int workTypeId = reader.GetInt32(4);
 
-                        ret.Add(new DailyRecord(dailyResultId, employeeId, start, finish, workTypeId));
+                        ret.Add(new DailyRecord() { Id = dailyResultId, IdEmployee = employeeId, Start = start, Finish = finish, IdWorktype = workTypeId });
                     }
 
                 }
