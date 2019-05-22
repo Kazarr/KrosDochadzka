@@ -10,7 +10,7 @@ namespace AttendanceSystem
         private DailyDetailsAddEditViewModel _dailyDetailsAddEditViewModel;
         private LogicSystem _logic;
         private int _selectedEmployeeId;
-        private DailyRecord _dailyResultToUpdate =null;
+        private DailyRecord _dailyResultToUpdate = null;
         private DateTime _date;
 
         public DailyDetailsAddEditView(int selectedEmployeeID, DateTime date, LogicSystem logic)
@@ -35,7 +35,7 @@ namespace AttendanceSystem
             _date = date;
             _dailyResultToUpdate = dailyResultToUpdate;
 
-            
+
             FormatTimePickers();
             FillComboBox();
 
@@ -49,7 +49,7 @@ namespace AttendanceSystem
             dateTimePickerFinish.CustomFormat = "HH:mm:ss ";
             if (_dailyResultToUpdate == null)
             {
-                dateTimePickerStart.Value =  _date ;
+                dateTimePickerStart.Value = _date;
                 dateTimePickerFinish.Value = _date.AddHours(1);
             }
             else
@@ -62,7 +62,7 @@ namespace AttendanceSystem
         private void FillComboBox()
         {
             comboBoxWorkTypes.Items.AddRange(_dailyDetailsAddEditViewModel.GetWorkTypes().ToArray());
-            comboBoxWorkTypes.SelectedIndex = (_dailyResultToUpdate == null) ? 0 : _dailyResultToUpdate.IdWorktype-1;
+            comboBoxWorkTypes.SelectedIndex = (_dailyResultToUpdate == null) ? 0 : _dailyResultToUpdate.IdWorktype - 1;
 
         }
 
@@ -71,7 +71,7 @@ namespace AttendanceSystem
             if (_dailyResultToUpdate == null)
             {
                 if (_dailyDetailsAddEditViewModel.CreateNewDailyResult(_selectedEmployeeId, dateTimePickerStart.Value,
-                    dateTimePickerFinish.Value, comboBoxWorkTypes.SelectedIndex+1))
+                    dateTimePickerFinish.Value, comboBoxWorkTypes.SelectedIndex + 1))
                 {
                     MessageBox.Show("Record added succesfully");
                     DialogResult = DialogResult.OK;
@@ -87,7 +87,7 @@ namespace AttendanceSystem
             {
                 _dailyResultToUpdate.Start = dateTimePickerStart.Value;
                 _dailyResultToUpdate.Finish = dateTimePickerFinish.Value;
-                _dailyResultToUpdate.IdWorktype = comboBoxWorkTypes.SelectedIndex+1;
+                _dailyResultToUpdate.IdWorktype = comboBoxWorkTypes.SelectedIndex + 1;
 
                 if (_dailyDetailsAddEditViewModel.UpdateDailyResult(_dailyResultToUpdate))
                 {

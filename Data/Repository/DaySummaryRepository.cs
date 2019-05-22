@@ -6,7 +6,6 @@ namespace Data.Repository
 {
     public class DaySummaryRepository : ConnectionManager
     {
-        
         public  DateTime? GetArrivalTime(DateTime date, int idEmployee)
         {
 
@@ -23,7 +22,6 @@ namespace Data.Repository
             return ret;
         }
 
-
         public  DateTime? GetLeavingTime(DateTime date, int idEmployee)
         {
             DateTime? ret = null;
@@ -38,7 +36,6 @@ namespace Data.Repository
             });
             return ret;
         }
-          
 
         public  TimeSpan GetTimeSpendOnDailyResults(DateTime date, int IdEmployee, int idWorkType)
         {
@@ -65,7 +62,5 @@ namespace Data.Repository
             });
             return ret;
         }
-
-               
     }
 }

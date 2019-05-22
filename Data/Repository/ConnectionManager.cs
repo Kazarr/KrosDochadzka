@@ -33,13 +33,18 @@ namespace Data.Repository
                 Debug.WriteLine($"Error happend during  Connecting \n Error info:{e.Message}\n{e.StackTrace}");
             }
         }
+        
         //public void SaveConnectionString(string connectionString)
         //{
         //    Properties.Settings.Default.ConnectionString = connectionString;
         //    Properties.Settings.Default.Save();
         //}
-        public SqlConnectionStringBuilder GetSqlConnectionStringBuilder(string initialCatalog) =>
-            new SqlConnectionStringBuilder() { IntegratedSecurity = true, InitialCatalog = initialCatalog};
-
+        public SqlConnectionStringBuilder GetSqlConnectionStringBuilder(string initialCatalog)
+        {
+            SqlConnectionStringBuilder scsb = new SqlConnectionStringBuilder();
+            scsb.IntegratedSecurity = true;
+            scsb.InitialCatalog = initialCatalog;
+            return scsb;
+        }
     }
 }

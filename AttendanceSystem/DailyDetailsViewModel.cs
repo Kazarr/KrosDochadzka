@@ -8,16 +8,18 @@ namespace AttendanceSystem
     class DailyDetailsViewModel
     {
         private RepositoryFactory _repositoryFactory;
+
         public DailyDetailsViewModel()
         {
             _repositoryFactory = new RepositoryFactory();
         }
-        public IEnumerable<DailyResultWithWorkType> GetDailyResultWithWorkTypes (int employeeID, DateTime date)
+
+        public IEnumerable<DailyResultWithWorkType> GetDailyResultWithWorkTypes(int employeeID, DateTime date)
         {
             return _repositoryFactory.GetDailyRecordRepository().GetSpecifficDailyResult(employeeID, date);
         }
 
-        public bool DeleteDailyResultByID (int dailyResultID)
+        public bool DeleteDailyResultByID(int dailyResultID)
         {
             return _repositoryFactory.GetDailyRecordRepository().DeleteDailyResult(dailyResultID);
         }

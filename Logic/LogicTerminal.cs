@@ -6,7 +6,7 @@ namespace Logic
 {
     public class LogicTerminal
     {
-        private DialyRecordRepository _dailyRecordRepository;
+        private DailyRecordRepository _dailyRecordRepository;
         private PersonRepository _personRepository;
         private EmployeeRepository _employeeRepository;
 
@@ -16,6 +16,7 @@ namespace Logic
             _personRepository = new RepositoryFactory().GetPersonRepository();
             _employeeRepository = new RepositoryFactory().GetEmployeeRepository();
         }
+
         public void CreateNewTimeBlock(int idEmployee, EnumWorkType type, DateTime startTime, DateTime? finishTime = null)
         {
             DailyRecord dailyRecord = new DailyRecord
@@ -55,24 +56,6 @@ namespace Logic
                 }               
             }
             CreateNewTimeBlock(employeeId, type, currentTime);
-        }
-
-        /// <summary>
-        /// Ak pre daného zamestnanca neexistuje žiaden záznam pre dnešný deň, vytvorím nový záznam
-        /// v ktorom mu nastavím start a finish time na aktuálny |||||DOVOD|||| - aby som nestratil čas odchodu,ak si zamestnanec nedal príchod
-        /// </summary>
-        /// <param name="employeeId"></param>
-        public void ExitTimeBlock(int employeeId)
-        {
-            DailyRecord dailyRecord = GetLastDailyRecordByEmployeeId(employeeId);
-            if (dailyRecord == null)
-            {
-                CreateNewTimeBlock(employeeId, EnumWorkType.Other, DateTime.Now, DateTime.Now);
-            }
-            else
-            {
-                UpdateFinishInTimeBlock(dailyRecord, DateTime.Now);
-            }
         }
 
         public Employee GetEmpolyeeByID(int v)
