@@ -36,12 +36,12 @@ namespace AttendanceTermianal
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public bool CorrectEmp(string input)
+        public bool IsCorrectEmp(string employeeId)
         {
             try
             {
-                var empoloyee = _logic.GetEmpolyeeByID(int.Parse(input));
-                return empoloyee != null && empoloyee.Id.Equals(int.Parse(input));
+                var empoloyee = _logic.GetEmpolyeeByID(int.Parse(employeeId));
+                return empoloyee != null && empoloyee.Id.Equals(int.Parse(employeeId));
             }
             catch (FormatException)
             {

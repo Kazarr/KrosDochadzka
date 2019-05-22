@@ -40,25 +40,6 @@ namespace AttendanceTermianal
             CheckInternetConnection();
         }
 
-        public bool CorrectEmp(string input)
-        {
-            bool succes = false;
-            if (!succes)
-            {
-                if (_terminalViewModel.CorrectEmp(input))
-                {
-                    succes = true;
-                    return succes;
-                }
-                else
-                {
-                    lblName.Text = ShowError();
-                    timerClear.Start();
-                }
-            }
-            return succes;
-        }
-
         private string ShowError()
         {
             return ("This Id does not exist");
@@ -75,7 +56,7 @@ namespace AttendanceTermianal
 
         private void DescribeAndProcessAction(EnumWorkType type)
         {
-            if (CorrectEmp(txtEmpId.Text))
+            if (_terminalViewModel.IsCorrectEmp(txtEmpId.Text))
             {
                     int employeeId = int.Parse(txtEmpId.Text);
                     _terminalViewModel.ProcessAction(employeeId, type);
