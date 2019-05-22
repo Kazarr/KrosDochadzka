@@ -56,7 +56,6 @@ namespace AttendanceSystem
 
         }
 
-
         private void FillComboBoxes()
         {
             comboBoxMonth.DataSource = DateTimeFormatInfo.CurrentInfo.MonthNames;
@@ -65,7 +64,6 @@ namespace AttendanceSystem
             comboBoxYear.SelectedIndex = 0;
         }
 
-
         private void FillDataGridView()
         {
             //get name of the month from the combobox
@@ -73,7 +71,6 @@ namespace AttendanceSystem
             bindingSource1.DataSource = _mainWindowViewModel.FillDataGridViewOverview(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), _selected);
 
         }
-               
 
         private void btnDeleteEmployee_Click_1(object sender, EventArgs e)
         {
@@ -86,7 +83,6 @@ namespace AttendanceSystem
 
         }
 
-
         private void btnNewEmployee_Click_1(object sender, EventArgs e)
         {
             NewEmployeeView newEmployee = new NewEmployeeView(_logic);
@@ -98,7 +94,6 @@ namespace AttendanceSystem
             }
         }
 
-
         private void btnShowMonth_Click_1(object sender, EventArgs e)
         {
             List<DaySummary> daySummaries = new List<DaySummary>(
@@ -108,12 +103,10 @@ namespace AttendanceSystem
             monthOverview.ShowDialog();
         }
 
-
         private void buttonExit_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
         }
-
 
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
         {
@@ -124,7 +117,6 @@ namespace AttendanceSystem
                 CheckPermission();
             }
         }
-
 
         private void btnDetails_Click(object sender, EventArgs e)
         {
@@ -140,12 +132,10 @@ namespace AttendanceSystem
             }
         }
 
-
         private void btnReset_Click(object sender, EventArgs e)
         {
             _mainWindowViewModel.ResetPassword();
         }
-
 
         private void FrmMainWindow_Load(object sender, EventArgs e)
         {
@@ -194,25 +184,21 @@ namespace AttendanceSystem
 
         }
 
-
         private void btnChangePassword_Click(object sender, EventArgs e)
         {
             PasswordChangeView passwordChange = new PasswordChangeView(_loggedEmployeeID, _logic);
             passwordChange.ShowDialog();
         }
-                
 
         private void comboBoxMonth_SelectionChangeCommitted(object sender, EventArgs e)
         {
             FillDataGridView();
         }
 
-
         private void comboBoxYear_SelectedIndexChanged(object sender, EventArgs e)
         {
             FillDataGridView();
         }
-
 
         private void comboBoxPerson_SelectionChangeCommitted(object sender, EventArgs e)
         {

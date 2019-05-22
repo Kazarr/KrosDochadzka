@@ -40,25 +40,6 @@ namespace AttendanceTermianal
             CheckInternetConnection();
         }
 
-        public bool CorrectEmp(string input)
-        {
-            bool test = false;
-            if (!test)
-            {
-                if (_terminalViewModel.CorrectEmp(input))
-                {
-                    test = true;
-                    return test;
-                }
-                else
-                {
-                    lblName.Text = ShowError();
-                    timerClear.Start();
-                }
-            }
-            return false;
-        }
-
         private string ShowError()
         {
             return ("This Id does not exist");
@@ -75,22 +56,12 @@ namespace AttendanceTermianal
 
         private void DescribeAndProcessAction(EnumWorkType type)
         {
-            if (!string.IsNullOrEmpty(txtEmpId.Text))
+            if (_terminalViewModel.IsCorrectEmp(txtEmpId.Text))
             {
-                if (CorrectEmp(txtEmpId.Text))
-                {
                     int employeeId = int.Parse(txtEmpId.Text);
-                    if (type == EnumWorkType.Exit)
-                    {
-                        _terminalViewModel.ExitDailyRecord(employeeId);
-                    }
-                    else
-                    {
-                        _terminalViewModel.CreateNewAndFinishPreviousRecord(employeeId, type);
-                    }
+                    _terminalViewModel.ProcessAction(employeeId, type);
                     Describe(employeeId, type);
                     timerClear.Start();
-                }
             }
             else
             {
@@ -111,6 +82,7 @@ namespace AttendanceTermianal
         {
             DescribeAndProcessAction(EnumWorkType.Exit);
         }
+
         private void btnLunch_Click(object sender, EventArgs e)
         {
             DescribeAndProcessAction(EnumWorkType.Lunch);

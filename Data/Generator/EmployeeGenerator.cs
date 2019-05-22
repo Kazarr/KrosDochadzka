@@ -15,7 +15,6 @@ namespace Data.Generator
             _repositoryFactory = new RepositoryFactory();
 
         }
-
         Random r = new Random();
 
         private DateTime RandomDate()
@@ -34,6 +33,7 @@ namespace Data.Generator
             DateTime date = RandomDate();
             return new Employee() { Password = pass, IdPerson = idPerson, Permision = idPermission, Salary = salary, HiredDate = date };
         }
+
         public Employee SetEmployee(int i)
         {
             string pass = "0000";
@@ -50,14 +50,14 @@ namespace Data.Generator
             List<Person> people = _repositoryFactory.GetPersonRepository().GetPersons().ToList();
             for (int i = 5; i < people.Count - 700; i++)
             {
-               _repositoryFactory.GetEmployeeRepository().InsertFullEmployee(SetSupervisor(i));
+                _repositoryFactory.GetEmployeeRepository().InsertFullEmployee(SetSupervisor(i));
             }
         }
 
         public void GenerateEmployee()
         {
             List<Person> people = _repositoryFactory.GetPersonRepository().GetPersons().ToList();
-            for (int i = 200; i < people.Count-1 ; i++)
+            for (int i = 200; i < people.Count - 1; i++)
             {
                 _repositoryFactory.GetEmployeeRepository().InsertFullEmployee(SetEmployee(i));
             }

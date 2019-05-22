@@ -13,10 +13,11 @@ namespace AttendanceSystem
         {
             _logic = logic;
         }
+
         public List<string> GetWorkTypes()
         {
             List<string> ret = new List<string>();
-            IEnumerable<WorkType> myList= _logic.GetWorkType(); 
+            IEnumerable<WorkType> myList = _logic.GetWorkType();
 
             foreach (var item in myList)
             {
@@ -33,7 +34,8 @@ namespace AttendanceSystem
         /// <param name="finishTime"></param>
         /// <param name="workTypeID"></param>
         /// <returns> true if new daily result was added, othervise false</returns>
-        public bool CreateNewDailyResult(int employeeID, DateTime startTime, DateTime finishTime,int workTypeID) {
+        public bool CreateNewDailyResult(int employeeID, DateTime startTime, DateTime finishTime, int workTypeID)
+        {
 
             DailyRecord dailyResult = new DailyRecord
             {
@@ -46,13 +48,13 @@ namespace AttendanceSystem
 
 
         }
-        
+
         /// <summary>
         /// update existing Daily Result
         /// </summary>
         /// <param name="updatedDailyResult"></param>
         /// <returns>true if update happend, otherwise false</returns>
-        public bool UpdateDailyResult (DailyRecord updatedDailyResult)
+        public bool UpdateDailyResult(DailyRecord updatedDailyResult)
         {
             return _logic.UpdateDailyResult(updatedDailyResult);
         }

@@ -13,6 +13,7 @@ namespace Data.Generator
         {
             _personRepository = new PersonRepository();
         }
+
         public Person FakePerson()
         {
             Random r = new Random();
@@ -25,7 +26,7 @@ namespace Data.Generator
 
         public void GenerateRandomPersons()
         {
-            for(int i = 0; i < PERSON_COUNT; i++)
+            for (int i = 0; i < PERSON_COUNT; i++)
             {
                 _personRepository.InsertOnlyPerson(FakePerson());
             }
