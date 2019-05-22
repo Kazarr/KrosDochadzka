@@ -82,9 +82,5 @@ namespace AttendanceSystem
         {
             return _homeOfficeTime.ToString(@"hh\:mm\:ss");
         }
-
-
-
-
     }
 }

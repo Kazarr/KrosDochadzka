@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 
 namespace Data.Repository
 {
-    public class DialyRecordRepository : ConnectionManager
+    public class DailyRecordRepository : ConnectionManager
     {
 
         public IEnumerable<DailyResultWithWorkType> GetSpecifficDailyResult(int employeeID, DateTime date)
@@ -108,7 +108,6 @@ namespace Data.Repository
             return success;
         }
 
-
         public bool UpdateFinishDailyResult(DailyRecord daily_Result)
         {
             bool success = false;
@@ -162,33 +161,6 @@ namespace Data.Repository
                 }
             });
             return selectedResult;
-        }
-
-        /// <summary>
-        ///   method for geting number of records with months
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>months as key and number of records as value in dictionary</returns>
-        public Dictionary<string, int> GetMonthsWithNumberOfRecords(int id)
-        {
-            Dictionary<string, int> myDictionary = new Dictionary<string, int>();
-            Execute((command) =>
-            {
-                command.CommandText = @"select distinct datename (month, d.Start), count(*)
-                                        from [dbo].[DailyRecord] as d
-                                        where d.idEmployee = @id
-                                        group by datename (month, d.Start)
-                                        order by datename (month, d.Start)";
-                command.Parameters.Add("@id", SqlDbType.Int).Value = id;
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        myDictionary[reader.GetString(0)] = reader.GetInt32(1);
-                    }
-                }
-            });
-            return myDictionary;
         }
 
         /// <summary>

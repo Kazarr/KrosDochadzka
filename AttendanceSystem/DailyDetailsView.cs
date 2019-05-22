@@ -41,9 +41,6 @@ namespace AttendanceSystem
             bindingSource1.DataSource = _dailyDetailsViewModel.GetDailyResultWithWorkTypes(_selectedEmployeeId, _thisDate);
         }
 
-
-
-
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
@@ -77,8 +74,6 @@ namespace AttendanceSystem
             }
         }
 
-
-
         private void btnAdd_Click_1(object sender, EventArgs e)
         {
             DailyDetailsAddEditView frmDailyDetailsAdd = new DailyDetailsAddEditView(_selectedEmployeeId, _thisDate, _logic);
@@ -89,13 +84,12 @@ namespace AttendanceSystem
         private void btnEdit_Click(object sender, EventArgs e)
         {
             DailyDetailsAddEditView frmDailyDetailsEdit = new DailyDetailsAddEditView(
-                _selectedEmployeeId, 
-                _thisDate, 
+                _selectedEmployeeId,
+                _thisDate,
                 _dailyDetailsViewModel.GetDailyResultById(Convert.ToInt32(dGVDailyResultsOverview.Rows[dGVDailyResultsOverview.CurrentCell.RowIndex].Cells[0].Value)),
                 _logic);
             frmDailyDetailsEdit.ShowDialog();
             FillDataGridView();
         }
-
     }
 }

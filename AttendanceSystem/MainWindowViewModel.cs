@@ -26,7 +26,6 @@ namespace AttendanceSystem
             }
         }
 
-
         public Employee Employee { get => _employee; set => _employee = value; }
 
         public Employee GetEmployeeByID(int id)

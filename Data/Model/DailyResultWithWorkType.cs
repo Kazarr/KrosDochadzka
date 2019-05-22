@@ -9,6 +9,5 @@ namespace Data.Model
         public DateTime? StartTime { get; set; }
         public DateTime? FinishTime { get; set; }
         public string  WorkType { get; set; }
-
     }
 }

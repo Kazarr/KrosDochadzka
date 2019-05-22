@@ -6,7 +6,7 @@ namespace Logic
 {
     public class LogicTerminal
     {
-        private DialyRecordRepository _dailyRecordRepository;
+        private DailyRecordRepository _dailyRecordRepository;
         private PersonRepository _personRepository;
         private EmployeeRepository _employeeRepository;
 
@@ -16,6 +16,7 @@ namespace Logic
             _personRepository = new RepositoryFactory().GetPersonRepository();
             _employeeRepository = new RepositoryFactory().GetEmployeeRepository();
         }
+
         public void CreateNewTimeBlock(int idEmployee, EnumWorkType type, DateTime startTime, DateTime? finishTime = null)
         {
             DailyRecord dailyRecord = new DailyRecord

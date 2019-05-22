@@ -9,6 +9,7 @@ namespace AttendanceSystem
         private int _employeeId;
         private PasswordChangeViewModel _passwordChangeViewModel;
         private LogicSystem _logic;
+
         public PasswordChangeView(int id, LogicSystem logic)
         {
             InitializeComponent();

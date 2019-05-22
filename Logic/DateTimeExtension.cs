@@ -8,12 +8,6 @@ namespace Logic
 {
    public static  class DateTimeExtension
     {
-        /// <summary>
-        /// extensiony
-        /// </summary>
-        /// <param name="date"></param>
-        /// <returns></returns>
-
         public static string DateFormat(this DateTime date) => date.ToString("dd.MM.yyyy");
 
         public static string DayFormat(this DateTime date) => date.ToString("dddd");
@@ -23,6 +17,5 @@ namespace Logic
         public static string SecondsFormat(this DateTime date) => date.ToString("ss");
 
         public static string DateDescription (this DateTime date )=> date.ToString("dd.MM.yyyy" + " | " + "HH:mm");
-
     }
 }

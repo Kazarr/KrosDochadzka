@@ -19,7 +19,7 @@ namespace Logic
         private EmployeeRepository _employeeRepository;
         private PersonRepository _personRepository;
         private WorkTypeRepository _workTypeRepository;
-        private DialyRecordRepository _dailyRecordRepository;
+        private DailyRecordRepository _dailyRecordRepository;
 
         public LogicSystem()
         {
@@ -71,11 +71,6 @@ namespace Logic
             return _dailyRecordRepository.UpdateFinishDailyResult(updatedDailyResult);
         }
 
-        public IDictionary<string, int> GetMonthsWithNumberOfRecords(int id)
-        {
-            return _dailyRecordRepository.GetMonthsWithNumberOfRecords(id);
-        }
-
         public Person GetPersonByIdEmployee(int employeeId)
         {
             return _personRepository.GetPersonByIdEmployee(employeeId);
@@ -89,11 +84,6 @@ namespace Logic
         public Employee GetEmpolyeeByIdPerson(int id)
         {
             return _employeeRepository.GetEmpolyeeByIdPerson(id);
-        }
-
-        public Employee GetEmpolyeeByIdPerson(Person person)
-        {
-            return _employeeRepository.GetEmpolyeeByIdPerson(person.Id);
         }
 
         public void SaveConnectionString(string connectionString)
@@ -122,7 +112,6 @@ namespace Logic
             }
             return ret;
         }
-                
 
         public SqlConnectionStringBuilder GetSqlConnectionStringBuilder()
         {
@@ -169,7 +158,6 @@ namespace Logic
 
         }
 
-
         private TimeSpan? CalculateWorkedTime(DaySummary daySummary)
         {
             daySummary.TotalTimeWorked = daySummary.WorkLeavingTime - daySummary.WorkArrivalTime - daySummary.HolidayTime
@@ -188,7 +176,6 @@ namespace Logic
 
             return daySummary.TotalTimeWorked;
         }
-
 
         public List<DaySummary> GetSummariesByMonth(string monthAndYear, int employeeID)
         {
@@ -243,27 +230,7 @@ namespace Logic
 
 
         }
-
-        public void AddNewEmployee(Person person, Employee employee, Person supervisor)
-        {
-
-            //najvyssi supervisor bude mat ako supervisora seba, aby si tiez mohol upravovat svoje zaznamy
-            if (supervisor == null)
-            {
-                
-                employee.IdSupervisor = InsertFullEmployee(employee);
-                employee.Id = employee.IdSupervisor.Value;
-                _employeeRepository.UpdateSupervisor(employee);
-            }
-            else
-            {
-                employee.IdSupervisor = _employeeRepository.GetEmpolyeeByIdPerson(supervisor.Id).Id;
-                InsertFullEmployee(employee);
-            }
-
-
-        }
-
+        
         public void AddNewEmployee(string firstName, string lastName, string phoneNumber, string adress, int permission, Person supervisor, string password)
         {
             Person person = new Person() { FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress };
