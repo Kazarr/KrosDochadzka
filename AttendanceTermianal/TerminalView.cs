@@ -1,6 +1,7 @@
 ﻿using Data.Model;
 using Logic;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace AttendanceTermianal
@@ -48,15 +49,15 @@ namespace AttendanceTermianal
         private void TimerClear_Tick(object sender, EventArgs e)
         {
             lblDateNow.Text = DateTime.Now.DateDescription();
-            lblWorkType.Text = "";
-            lblName.Text = "";
-            numEmployeeID.Value=0;
+            lblWorkType.Text = string.Empty;
+            lblName.Text = string.Empty;
+            txtEmpIdNum.Text = string.Empty;
             timerClearDisplay.Stop();
         }
 
         private void DescribeAndProcessAction(EnumWorkType type)
         {
-            int employeeId = (int)numEmployeeID.Value;
+            int employeeId = int.Parse(txtEmpIdNum.Text);
             if (_terminalViewModel.IsCorrectEmp(employeeId))
             {                
                 _terminalViewModel.ProcessAction(employeeId, type);
@@ -108,5 +109,10 @@ namespace AttendanceTermianal
             DescribeAndProcessAction(EnumWorkType.Work);
         }
         #endregion
+
+        private void txtEmpIdNum_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
     }
 }

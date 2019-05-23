@@ -36,7 +36,6 @@
             this.lblDay = new System.Windows.Forms.Label();
             this.timerCurrentDateTime = new System.Windows.Forms.Timer(this.components);
             this.panelBtnsAndTxtBox = new System.Windows.Forms.Panel();
-            this.numEmployeeID = new System.Windows.Forms.NumericUpDown();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnEntry = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -45,13 +44,13 @@
             this.btnDoctor = new System.Windows.Forms.Button();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtEmpIdNum = new System.Windows.Forms.TextBox();
             this.lblWorkType = new System.Windows.Forms.Label();
             this.lblDateNow = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.timerClearDisplay = new System.Windows.Forms.Timer(this.components);
             this.panelBtnsAndTxtBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numEmployeeID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -114,7 +113,7 @@
             // 
             // panelBtnsAndTxtBox
             // 
-            this.panelBtnsAndTxtBox.Controls.Add(this.numEmployeeID);
+            this.panelBtnsAndTxtBox.Controls.Add(this.txtEmpIdNum);
             this.panelBtnsAndTxtBox.Controls.Add(this.btnExit);
             this.panelBtnsAndTxtBox.Controls.Add(this.btnEntry);
             this.panelBtnsAndTxtBox.Controls.Add(this.button1);
@@ -127,21 +126,6 @@
             this.panelBtnsAndTxtBox.Name = "panelBtnsAndTxtBox";
             this.panelBtnsAndTxtBox.Size = new System.Drawing.Size(545, 345);
             this.panelBtnsAndTxtBox.TabIndex = 1;
-            // 
-            // numEmployeeID
-            // 
-            this.numEmployeeID.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.numEmployeeID.Font = new System.Drawing.Font("Century Gothic", 19F, System.Drawing.FontStyle.Bold);
-            this.numEmployeeID.Location = new System.Drawing.Point(90, 20);
-            this.numEmployeeID.Maximum = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-            this.numEmployeeID.Name = "numEmployeeID";
-            this.numEmployeeID.Size = new System.Drawing.Size(444, 35);
-            this.numEmployeeID.TabIndex = 24;
-            this.numEmployeeID.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnExit
             // 
@@ -226,6 +210,17 @@
             this.panel2.Size = new System.Drawing.Size(529, 111);
             this.panel2.TabIndex = 23;
             // 
+            // txtEmpIdNum
+            // 
+            this.txtEmpIdNum.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtEmpIdNum.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtEmpIdNum.Location = new System.Drawing.Point(93, 21);
+            this.txtEmpIdNum.Name = "txtEmpIdNum";
+            this.txtEmpIdNum.Size = new System.Drawing.Size(440, 30);
+            this.txtEmpIdNum.TabIndex = 12;
+            this.txtEmpIdNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtEmpIdNum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmpIdNum_KeyPress);
+            // 
             // lblWorkType
             // 
             this.lblWorkType.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -282,7 +277,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Terminal";
             this.panelBtnsAndTxtBox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numEmployeeID)).EndInit();
+            this.panelBtnsAndTxtBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -313,7 +308,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnLunch;
         private System.Windows.Forms.Button btnBTrip;
-        private System.Windows.Forms.NumericUpDown numEmployeeID;
+        private System.Windows.Forms.TextBox txtEmpIdNum;
     }
 }
 
