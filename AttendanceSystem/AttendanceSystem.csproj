@@ -239,5 +239,41 @@
   <ItemGroup>
     <None Include="Resources\newPass.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\oldPass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\addnew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bussinesstrip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\holiday.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\homeoffice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\overtime.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sickdays.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spareofftime.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\workedtime.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
