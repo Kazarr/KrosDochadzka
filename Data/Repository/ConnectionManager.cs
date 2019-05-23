@@ -36,18 +36,8 @@ namespace Data.Repository
                 log.Error(e);
             }
         }
-        
-        //public void SaveConnectionString(string connectionString)
-        //{
-        //    Properties.Settings.Default.ConnectionString = connectionString;
-        //    Properties.Settings.Default.Save();
-        //}
-        public SqlConnectionStringBuilder GetSqlConnectionStringBuilder(string initialCatalog)
-        {
-            SqlConnectionStringBuilder scsb = new SqlConnectionStringBuilder();
-            scsb.IntegratedSecurity = true;
-            scsb.InitialCatalog = initialCatalog;
-            return scsb;
-        }
+
+        public SqlConnectionStringBuilder GetSqlConnectionStringBuilder(string initialCatalog) =>
+            new SqlConnectionStringBuilder() { IntegratedSecurity = true, InitialCatalog = initialCatalog };
     }
 }
