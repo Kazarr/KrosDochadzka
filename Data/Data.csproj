@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Generator\DailyRecordGenerator.cs" />
     <Compile Include="Generator\EmployeeGenerator.cs" />
     <Compile Include="Generator\PasswordGenerator.cs" />
     <Compile Include="Generator\PersonGenerator.cs" />

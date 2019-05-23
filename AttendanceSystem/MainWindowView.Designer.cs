@@ -257,7 +257,6 @@
             // 
             // bindingSource1
             // 
-            this.bindingSource1.DataSource = typeof(Data.Model.DaySummary);
             this.bindingSource1.CurrentChanged += new System.EventHandler(this.bindingSource1_CurrentChanged);
             // 
             // Date
