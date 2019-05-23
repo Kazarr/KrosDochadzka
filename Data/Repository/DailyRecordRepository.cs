@@ -136,10 +136,7 @@ namespace Data.Repository
             DailyRecord selectedResult = null;
             Execute((command) =>
             {
-                //command.CommandText = @"Select [ID], [IdEmployee], [Start], [Finish], [IdWorktype] 
-                //                        from [dbo].[DailyRecord] 
-                //                        where IdEmployee= @IdEmployee and [Finish] is null 
-                //                         and CONVERT(date,[Start]) = CONVERT(date,GETDATE()) order by [start] desc";
+               
                 command.CommandText = @"Select [ID], [IdEmployee], [Start], [Finish], [IdWorktype] 
                                         from [dbo].[DailyRecord] 
                                         where IdEmployee= @IdEmployee
@@ -162,37 +159,6 @@ namespace Data.Repository
             });
             return selectedResult;
         }
-
-        /// <summary>
-        /// Select posledného startu a predposledného finishu
-        /// </summary>
-        /// <param name="dailyResult"></param>
-        /// <returns>start a finish time</returns>
-        //public DailyRecord SelectLastStartAndFinish(int employeeId)
-        //{
-        //    DailyRecord ret = new DailyRecord();
-        //    Execute((command) => 
-        //    {
-        //        command.CommandText = $@"select max([start]), min(finish) from DailyRecord where id in
-        //            (select top 2 id from DailyRecord where IdEmployee=@IdEmp and IdWorktype=1 order by [Start] desc) ";
-        //        command.Parameters.Add("@IdEmp", SqlDbType.Int).Value = employeeId;
-        //        using (SqlDataReader reader = command.ExecuteReader())
-        //        {
-        //            if (reader.Read())
-        //            {
-        //                ret.Finish = reader.GetDateTime(0);
-        //                ret.Start = reader.GetDateTime(1);
-        //            }
-        //        }
-        //    });
-        //    return ret;
-        //}
-
-        /// <summary>
-        /// Select posledných dvoch záznamov zamestnanca(Employee) 
-        /// </summary>
-        /// <param name="dailyResult"></param>
-        /// <returns>List posledných dvoch záznamov </returns>
 
         /// <summary>
         /// gets daily result by its ID

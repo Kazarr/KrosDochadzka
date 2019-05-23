@@ -216,6 +216,10 @@ namespace Logic
                 date = date.AddDays(1);
                 monthRecords.Add(daySummary);
             }
+
+
+        
+
             return monthRecords;
 
         }

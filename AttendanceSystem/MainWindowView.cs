@@ -59,8 +59,9 @@ namespace AttendanceSystem
         private void FillComboBoxes()
         {
             comboBoxMonth.DataSource = DateTimeFormatInfo.CurrentInfo.MonthNames;
-            comboBoxYear.DataSource = _mainWindowViewModel.FillYears(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem));
             comboBoxMonth.SelectedIndex = int.Parse(DateTime.Now.Month.ToString()) - 1;
+            comboBoxYear.DataSource = _mainWindowViewModel.FillYears(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem));
+            
             comboBoxYear.SelectedIndex = 0;
         }
 
