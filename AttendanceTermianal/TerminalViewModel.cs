@@ -20,8 +20,9 @@ namespace AttendanceTermianal
 
         public string DescriptionFullname(int employeeId)
         {
-            return $"{_logic.GetPersonByIdEmployee(employeeId).FirstName} " +
-                   $"{_logic.GetPersonByIdEmployee(employeeId).LastName} ";
+            Person person = new Person();
+            person = _logic.GetPersonByIdEmployee(employeeId);
+            return $"{person.FirstName}+ {person.LastName}";
         }
 
         /// <summary>
