@@ -245,18 +245,6 @@ namespace Logic
 
     public List<DaySummary> GetSummariesByMonth(string monthAndYear, int employeeID)
     {
-        //string month = monthAndYear.Split(' ')[0];
-        //int year = Convert.ToInt32(monthAndYear.Split(' ')[1]);
-
-        //List<DaySummary> myListOfDays = new List<DaySummary>();
-        //int numberOfMonth = DateTime.ParseExact(month, "MMMM", CultureInfo.CurrentCulture).Month;
-
-        //DateTime dt = new DateTime(year, numberOfMonth, 1);
-        //while (dt.Month == numberOfMonth)
-        //{
-        //    myListOfDays.Add(CreateDaySummary(dt, employeeID));
-        //    dt = dt.AddDays(1);
-        //}
         return CreateDaySummary(monthAndYear,employeeID);
     }
 
@@ -283,7 +271,6 @@ namespace Logic
             Permision = permission
         };
 
-        //Person p = new Person() { FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress };
         if (supervisor == null)
         {
             employee.IdSupervisor = employee.Id;

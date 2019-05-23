@@ -135,7 +135,12 @@ namespace AttendanceSystem
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            _mainWindowViewModel.ResetPassword();
+            DialogResult dialogResult = MessageBox.Show($"You are going to Reset Password for {_mainWindowViewModel.Person.FirstName} " +
+                $"{_mainWindowViewModel.Person.LastName} ", "Password Reset", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                _mainWindowViewModel.ResetPassword();
+            }
         }
 
         private void FrmMainWindow_Load(object sender, EventArgs e)
@@ -205,6 +210,7 @@ namespace AttendanceSystem
         {
             _mainWindowViewModel.Person = (Person)comboBoxPerson.SelectedItem;
             btnReset.Enabled = true;
+            FillComboBoxes();
             FillDataGridView();
         }
 
