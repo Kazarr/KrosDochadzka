@@ -158,182 +158,182 @@ namespace Logic
             return manager.GenerateTables();
         }
 
-        private DaySummary CreateDaySummary(DateTime date, int idEmployee)
+        private List<DaySummary> CreateDaySummary(string monthAndYear, int idEmployee)
         {
-            List<DailyRecord> dailyRecords = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee);
-            DaySummary daySummary = new DaySummary();
-            daySummary.Date = date.Date.ToString("MM-dd-yyyy");
-            foreach (var item in dailyRecords)
-            {
-                if (item.IdWorktype == (int)EnumWorkType.Work)
-                {
-                    daySummary.WorkArrivalTime = item.Start;
-                    daySummary.WorkLeavingTime = item.Finish;
-                }
-                if (item.IdWorktype == (int)EnumWorkType.Lunch)
-                {
-                    daySummary.LunchBreak = (TimeSpan)(item.Finish-item.Start);
-                }
-                if (item.IdWorktype == (int)EnumWorkType.Holiday)
-                {
-                    daySummary.HolidayTime = (TimeSpan)(item.Finish - item.Start);
-                }
-                if (item.IdWorktype == (int)EnumWorkType.HomeOffice)
-                {
-                    daySummary.HomeOffice = (TimeSpan)(item.Finish - item.Start);
-                }
-                if (item.IdWorktype == (int)EnumWorkType.Holiday)
-                {
-                    daySummary.HolidayTime = (TimeSpan)(item.Finish - item.Start);
-                }
-                if (item.IdWorktype == (int)EnumWorkType.BusinessTrip)
-                {
-                    daySummary.BusinessTrip = (TimeSpan)(item.Finish - item.Start);
-                }
-                if (item.IdWorktype == (int)EnumWorkType.Doctor)
-                {
-                    daySummary.Doctor = (TimeSpan)(item.Finish - item.Start);
-                }
-                if (item.IdWorktype == (int)EnumWorkType.Private)
-                {
-                    daySummary.Private = (TimeSpan)(item.Finish - item.Start);
-                }
-                if (item.IdWorktype == (int)EnumWorkType.Other)
-                {
-                    daySummary.Other = (TimeSpan)(item.Finish - item.Start);
-                }
 
 
-            }
-            //DaySummary daySummary = new DaySummary
-            //{
-            //    ,
-            //    WorkArrivalTime = _daySummaryRepository.GetArrivalTime(date, idEmployee),
-            //    WorkLeavingTime = _daySummaryRepository.GetLeavingTime(date, idEmployee),
-            //    LunchBreak = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.Lunch),
-            //    HolidayTime = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.Holiday),
-            //    HomeOffice = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.HomeOffice),
-            //    BusinessTrip = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.BusinessTrip),
-            //    Doctor = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.Doctor),
-            //    Private = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.Private),
-            //    Other = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee, (int)EnumWorkType.Other)
-            //};
 
-            daySummary.TotalTimeWorked = CalculateWorkedTime(daySummary);
-
-            return daySummary;
-
-        }
-
-        private TimeSpan? CalculateWorkedTime(DaySummary daySummary)
-        {
-            daySummary.TotalTimeWorked = daySummary.WorkLeavingTime - daySummary.WorkArrivalTime - daySummary.HolidayTime
-                 - daySummary.Doctor - daySummary.Private - daySummary.Other;
-            //ak pocet odrobenych hodin je viac ako 4 ma zamestnanec pravo na obed
-            if (daySummary.TotalTimeWorked > TimeSpan.FromHours(MINHOURSFORLUNCHBREAKTIME))
-            {
-                daySummary.TotalTimeWorked -= daySummary.LunchBreak > TimeSpan.FromMinutes(LUNCHBREAKTIME)
-                    ? daySummary.LunchBreak
-                    : TimeSpan.FromMinutes(LUNCHBREAKTIME);
-            }
-            else
-            {
-                daySummary.TotalTimeWorked -= daySummary.LunchBreak;
-            }
-
-            return daySummary.TotalTimeWorked;
-        }
-
-        public List<DaySummary> GetSummariesByMonth(string monthAndYear, int employeeID)
-        {
             string month = monthAndYear.Split(' ')[0];
             int year = Convert.ToInt32(monthAndYear.Split(' ')[1]);
-            List<DaySummary> myListOfDays = new List<DaySummary>();
             int numberOfMonth = DateTime.ParseExact(month, "MMMM", CultureInfo.CurrentCulture).Month;
 
-            DateTime dt = new DateTime(year, numberOfMonth, 1);
-            while (dt.Month == numberOfMonth)
+            DateTime date = new DateTime(year, numberOfMonth, 1);
+            List<DailyRecord> dailyRecords = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee);
+            List<DaySummary> monthRecords = new List<DaySummary>();
+
+            while (date.Month == numberOfMonth)
             {
-                myListOfDays.Add(CreateDaySummary(dt, employeeID));
-                dt = dt.AddDays(1);
+                DaySummary daySummary = new DaySummary();
+
+                daySummary.Date = date.ToString("M/d/yyyy");
+
+                foreach (var item in dailyRecords)
+                {
+                    if (item.Start.ToString().Contains(daySummary.Date))
+                    {
+                        switch (item.IdWorktype)
+                        {
+                            case (int)EnumWorkType.Work:
+                                daySummary.WorkArrivalTime = item.Start;
+                                daySummary.WorkLeavingTime = item.Finish;
+                                break;
+                            case (int)EnumWorkType.Lunch:
+                                daySummary.LunchBreak += (TimeSpan)(item.Finish - item.Start);
+                                break;
+                            case (int)EnumWorkType.Holiday:
+                                daySummary.HolidayTime += (TimeSpan)(item.Finish - item.Start);
+                                break;
+                            case (int)EnumWorkType.HomeOffice:
+                                daySummary.HomeOffice += (TimeSpan)(item.Finish - item.Start);
+                                break;
+                            case (int)EnumWorkType.BusinessTrip:
+                                daySummary.BusinessTrip += (TimeSpan)(item.Finish - item.Start);
+                                break;
+                            case (int)EnumWorkType.Doctor:
+                                daySummary.Doctor = (TimeSpan)(item.Finish - item.Start);
+                                break;
+                            case (int)EnumWorkType.Private:
+                                daySummary.Private = (TimeSpan)(item.Finish - item.Start);
+                                break;
+                            case (int)EnumWorkType.Other:
+                                daySummary.Other = (TimeSpan)(item.Finish - item.Start);
+                                break;
+
+                        }
+                    }
+                }
+                daySummary.TotalTimeWorked = CalculateWorkedTime(daySummary);
+                date = date.AddDays(1);
+                monthRecords.Add(daySummary);
             }
-            return myListOfDays;
+
+
+        
+
+            return monthRecords;
+
         }
 
-        public bool CheckLogin(int employeeId, string password)
+    private TimeSpan? CalculateWorkedTime(DaySummary daySummary)
+    {
+        daySummary.TotalTimeWorked = daySummary.WorkLeavingTime - daySummary.WorkArrivalTime - daySummary.HolidayTime
+             - daySummary.Doctor - daySummary.Private - daySummary.Other;
+        //ak pocet odrobenych hodin je viac ako 4 ma zamestnanec pravo na obed
+        if (daySummary.TotalTimeWorked > TimeSpan.FromHours(MINHOURSFORLUNCHBREAKTIME))
         {
-            return _employeeRepository.CheckLogin(employeeId, CalculateMD5Hash(password));
+            daySummary.TotalTimeWorked -= daySummary.LunchBreak > TimeSpan.FromMinutes(LUNCHBREAKTIME)
+                ? daySummary.LunchBreak
+                : TimeSpan.FromMinutes(LUNCHBREAKTIME);
         }
-
-        private int InsertFullEmployee(Employee employee)
+        else
         {
-            employee.Password = CalculateMD5Hash(employee.Password);
-            return _employeeRepository.InsertFullEmployee(employee);
+            daySummary.TotalTimeWorked -= daySummary.LunchBreak;
         }
 
-        public bool ChangePasswordByEmployeeId(int employeeID, string password)
-        {
-            return _employeeRepository.ChangePassword(employeeID, CalculateMD5Hash(password));
-        }
-
-        public void UpdateEmployee(Person person, int permission, Person supervisor)
-        {
-            Employee employee = new Employee
-            {
-                Permision = permission
-            };
-
-            //Person p = new Person() { FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress };
-            if (supervisor == null)
-            {
-                employee.IdSupervisor = employee.Id;
-            }
-            else
-            {
-                employee.IdSupervisor = _employeeRepository.GetEmpolyeeByIdPerson(supervisor.Id).Id;
-            }
-            _employeeRepository.UpdateEmployee(employee, person);
-
-
-        }
-
-        public void AddNewEmployee(string firstName, string lastName, string phoneNumber, string adress, int permission, Person supervisor, string password)
-        {
-            Person person = new Person() { FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress };
-            person.Id = _personRepository.InsertPerson(person);
-            Employee employee = new Employee() { Password = password, IdPerson = person.Id, Permision = permission };
-            if (supervisor == null)
-            {
-                employee.IdSupervisor = InsertFullEmployee(employee);
-                employee.Id = employee.IdSupervisor.Value;
-                _employeeRepository.UpdateSupervisor(employee);
-            }
-            else
-            {
-                employee.IdSupervisor = _employeeRepository.GetEmpolyeeByIdPerson(supervisor.Id).Id;
-                InsertFullEmployee(employee);
-            }
-
-
-        }
-
-        public List<int> GetYearsFromEmploymentStartByEmployee(int employeeID)
-        {
-            int firstYear = _dailyRecordRepository.GetYearOfEmploymentStartByEmployee(employeeID);
-            //v pripade ze metoda vrati 0, zamestnanec nema ziadne zaznamy (len teraz zacal pracovat), tak mu nadstavime terajsi rok ako 
-            //jeho prvy rok
-            if (firstYear == 0)
-            {
-                firstYear = DateTime.Now.Year;
-            }
-
-            List<int> YearList = new List<int>();
-
-            for (int i = firstYear; i <= DateTime.Now.Year + 1; i++)
-            {
-                YearList.Add(i);
-            }
-            return YearList;
-        }
+        return daySummary.TotalTimeWorked;
     }
+
+    public List<DaySummary> GetSummariesByMonth(string monthAndYear, int employeeID)
+    {
+        //string month = monthAndYear.Split(' ')[0];
+        //int year = Convert.ToInt32(monthAndYear.Split(' ')[1]);
+
+        //List<DaySummary> myListOfDays = new List<DaySummary>();
+        //int numberOfMonth = DateTime.ParseExact(month, "MMMM", CultureInfo.CurrentCulture).Month;
+
+        //DateTime dt = new DateTime(year, numberOfMonth, 1);
+        //while (dt.Month == numberOfMonth)
+        //{
+        //    myListOfDays.Add(CreateDaySummary(dt, employeeID));
+        //    dt = dt.AddDays(1);
+        //}
+        return CreateDaySummary(monthAndYear,employeeID);
+    }
+
+    public bool CheckLogin(int employeeId, string password)
+    {
+        return _employeeRepository.CheckLogin(employeeId, CalculateMD5Hash(password));
+    }
+
+    private int InsertFullEmployee(Employee employee)
+    {
+        employee.Password = CalculateMD5Hash(employee.Password);
+        return _employeeRepository.InsertFullEmployee(employee);
+    }
+
+    public bool ChangePasswordByEmployeeId(int employeeID, string password)
+    {
+        return _employeeRepository.ChangePassword(employeeID, CalculateMD5Hash(password));
+    }
+
+    public void UpdateEmployee(Person person, int permission, Person supervisor)
+    {
+        Employee employee = new Employee
+        {
+            Permision = permission
+        };
+
+        //Person p = new Person() { FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress };
+        if (supervisor == null)
+        {
+            employee.IdSupervisor = employee.Id;
+        }
+        else
+        {
+            employee.IdSupervisor = _employeeRepository.GetEmpolyeeByIdPerson(supervisor.Id).Id;
+        }
+        _employeeRepository.UpdateEmployee(employee, person);
+
+
+    }
+
+    public void AddNewEmployee(string firstName, string lastName, string phoneNumber, string adress, int permission, Person supervisor, string password)
+    {
+        Person person = new Person() { FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress };
+        person.Id = _personRepository.InsertPerson(person);
+        Employee employee = new Employee() { Password = password, IdPerson = person.Id, Permision = permission };
+        if (supervisor == null)
+        {
+            employee.IdSupervisor = InsertFullEmployee(employee);
+            employee.Id = employee.IdSupervisor.Value;
+            _employeeRepository.UpdateSupervisor(employee);
+        }
+        else
+        {
+            employee.IdSupervisor = _employeeRepository.GetEmpolyeeByIdPerson(supervisor.Id).Id;
+            InsertFullEmployee(employee);
+        }
+
+
+    }
+
+    public List<int> GetYearsFromEmploymentStartByEmployee(int employeeID)
+    {
+        int firstYear = _dailyRecordRepository.GetYearOfEmploymentStartByEmployee(employeeID);
+        //v pripade ze metoda vrati 0, zamestnanec nema ziadne zaznamy (len teraz zacal pracovat), tak mu nadstavime terajsi rok ako 
+        //jeho prvy rok
+        if (firstYear == 0)
+        {
+            firstYear = DateTime.Now.Year;
+        }
+
+        List<int> YearList = new List<int>();
+
+        for (int i = firstYear; i <= DateTime.Now.Year + 1; i++)
+        {
+            YearList.Add(i);
+        }
+        return YearList;
+    }
+}
 }

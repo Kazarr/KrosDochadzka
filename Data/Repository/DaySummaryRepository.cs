@@ -45,7 +45,7 @@ namespace Data.Repository
             Execute((command) => 
             {
             command.CommandText = @"select dr.Id, dr.Start,dr.Finish, dr.IdWorkType from DailyRecord as dr
-where dr.IdEmployee=@IdEmployee and convert(date,dr.start)=convert(date,@date)";
+where dr.IdEmployee=@idEmployee and year(dr.Start) = YEAR(@date) and MONTH(dr.Start)=MONTH(@date)";
             command.Parameters.Add("@idEmployee", SqlDbType.Int).Value = IdEmployee;
             command.Parameters.Add("@date", SqlDbType.DateTime2).Value = date;
             using (SqlDataReader reader = command.ExecuteReader())
