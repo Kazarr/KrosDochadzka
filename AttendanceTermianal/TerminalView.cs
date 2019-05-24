@@ -57,19 +57,27 @@ namespace AttendanceTermianal
 
         private void DescribeAndProcessAction(EnumWorkType type)
         {
-            int employeeId = int.Parse(txtEmpIdNum.Text);
-            if (_terminalViewModel.IsCorrectEmp(employeeId))
-            {                
-                _terminalViewModel.ProcessAction(employeeId, type);
-                Describe(employeeId, type);
-                timerClearDisplay.Start();
-            }
-            else
+            if (string.IsNullOrWhiteSpace(txtEmpIdNum.Text))
             {
                 lblName.Text = ShowError();
                 timerClearDisplay.Start();
             }
-        }
+            else
+            {
+                int employeeId = Convert.ToInt32(txtEmpIdNum.Text);
+
+                if (_terminalViewModel.IsCorrectEmp(employeeId))
+                {
+                    _terminalViewModel.ProcessAction(employeeId, type);
+                    Describe(employeeId, type);
+                    timerClearDisplay.Start();
+                }
+                else
+                {
+                    lblName.Text = ShowError();
+                    timerClearDisplay.Start();
+                }
+            }        }
 
         private void Describe(int employeeId, EnumWorkType type)
         {
