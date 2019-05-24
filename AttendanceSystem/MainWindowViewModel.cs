@@ -15,6 +15,8 @@ namespace AttendanceSystem
         public MainWindowViewModel(LogicSystem logic)
         {
             _logic = logic;
+            //default person if none is selected
+            //Person = _logic.GetPersonByIdEmployee(1);
         }
 
         public Person Person

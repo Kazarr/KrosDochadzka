@@ -26,7 +26,7 @@ namespace Data.Generator
 
         public Employee SetSupervisor(int i)
         {
-            string pass = "0000";
+            string pass = "4a7d1ed414474e4033ac29ccb8653d9b";
             int idPerson = i;
             int idPermission = 2;
             decimal salary = r.Next(1400, 2300);
@@ -36,7 +36,7 @@ namespace Data.Generator
 
         public Employee SetEmployee(int i)
         {
-            string pass = "0000";
+            string pass = "4a7d1ed414474e4033ac29ccb8653d9b";
             int idPerson = i;
             int idSupervisor = r.Next(2118, 2214);
             int idPermission = 1;
