@@ -30,8 +30,6 @@ namespace AttendanceSystem
             set
             {
                 _newPass = value;
-                CompareNewPass();
-                OnPropertyChange();
             }
         }
         public string ConfirmPass
