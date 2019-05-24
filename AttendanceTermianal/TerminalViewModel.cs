@@ -22,7 +22,7 @@ namespace AttendanceTermianal
         {
             Person person = new Person();
             person = _logic.GetPersonByIdEmployee(employeeId);
-            return $"{person.FirstName}+ {person.LastName}";
+            return $"{person.FirstName} {person.LastName}";
         }
 
         /// <summary>

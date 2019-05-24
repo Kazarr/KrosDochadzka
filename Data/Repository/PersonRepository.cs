@@ -17,7 +17,7 @@ namespace Data.Repository
                 {
                     while (reader.Read())
                     {
-                        int personId = reader.GetInt32(0);
+                        int personId = reader.GetInt32(reader.GetOrdinal("Id"));
                         string firstName = reader.GetString(1);
                         string lastName = reader.GetString(2);
                         string phoneNumber = reader.GetString(3);
