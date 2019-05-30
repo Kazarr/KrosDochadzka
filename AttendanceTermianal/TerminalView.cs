@@ -8,13 +8,11 @@ namespace AttendanceTermianal
 {
     public partial class TerminalView : Form
     {
-        private TerminalViewModel _terminalViewModel;
         private LogicTerminal _logic;
         public TerminalView(LogicTerminal logic)
         {
             InitializeComponent();
             _logic = logic;
-            _terminalViewModel = new TerminalViewModel(_logic);
             timerCurrentDateTime.Start();
         }
 
