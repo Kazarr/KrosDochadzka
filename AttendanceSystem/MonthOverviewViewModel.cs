@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace AttendanceSystem
 {
-    class MonthOverviewViewModel
+    public class MonthOverviewViewModel
     {
         private List<DaySummary> _daySummaries;
         private TimeSpan _totalHours;
@@ -60,7 +60,7 @@ namespace AttendanceSystem
 
         public string GetOverTime()
         {
-            return $"{(Int32)  _overTime.TotalHours}:{_overTime.ToString(@"mm\:ss")}";
+            return $"{(Int32)_overTime.TotalHours}:{_overTime.ToString(@"mm\:ss")}";
         }
 
         public string GetHolidayTime()
