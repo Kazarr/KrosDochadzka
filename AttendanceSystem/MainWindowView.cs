@@ -76,10 +76,14 @@ namespace AttendanceSystem
         private void btnDeleteEmployee_Click_1(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("This action will permanently delete employee and all his records are you sure you want to continue?", "Delete Employee", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            if (dialogResult == DialogResult.Yes && _mainWindowViewModel.Person.Id != _mainWindowViewModel.Employee.IdPerson)
             {
                 _mainWindowViewModel.DeleteEmployeePerson((Person)comboBoxPerson.SelectedItem);
                 comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox();
+            }
+            else
+            {
+                MessageBox.Show("You cant delete yourself. Ask your supervisor or admin to do so.", "Delete Employee", MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
 
         }
