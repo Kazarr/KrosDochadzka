@@ -157,12 +157,10 @@ namespace Logic
             RepositoryFactory manager = new RepositoryFactory();
             return manager.GenerateTables();
         }
+        
 
         private List<DaySummary> CreateDaySummary(string monthAndYear, int idEmployee)
         {
-
-
-
             string month = monthAndYear.Split(' ')[0];
             int year = Convert.ToInt32(monthAndYear.Split(' ')[1]);
             int numberOfMonth = DateTime.ParseExact(month, "MMMM", CultureInfo.CurrentCulture).Month;
