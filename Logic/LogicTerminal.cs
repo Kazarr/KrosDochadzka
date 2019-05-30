@@ -17,6 +17,36 @@ namespace Logic
             _employeeRepository = new RepositoryFactory().GetEmployeeRepository();
         }
 
+        public string DescriptionFullname(int employeeId)
+        {
+            Person person = new Person();
+            person = _personRepository.GetPersonByIdEmployee(employeeId);
+            return $"{person.FirstName} {person.LastName}";
+        }
+
+        /// <summary>
+        /// kontroluje či pod zadaným ID existuje nejaký employee
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public bool IsCorrectEmp(int employeeId)
+        {
+            Employee empoloyee = _employeeRepository.GetEmpolyeeByID(employeeId);
+            if (empoloyee != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public DailyRecord GetLastDailyRecordByEmployeeId(int employeeId)
+        {
+            return _dailyRecordRepository.GetLastDailyRecordByEmployeeId(employeeId);
+        }
+
         public void CreateNewTimeBlock(int idEmployee, EnumWorkType type, DateTime startTime, DateTime? finishTime = null)
         {
             DailyRecord dailyRecord = new DailyRecord
@@ -29,15 +59,10 @@ namespace Logic
             _dailyRecordRepository.InsertDialyRecord(dailyRecord);
         }
 
-        public Person GetPersonByIdEmployee(int employeeId)
-        {
-            return _personRepository.GetPersonByIdEmployee(employeeId);
-        }
-
         public void UpdateFinishInTimeBlock(DailyRecord dailyRecord, DateTime finishTime)
         {
-                dailyRecord.Finish = finishTime;
-                _dailyRecordRepository.UpdateDailyRecord(dailyRecord);            
+            dailyRecord.Finish = finishTime;
+            _dailyRecordRepository.UpdateDailyRecord(dailyRecord);
         }
 
         public void CreateNewAndFinishPreviousRecord(int employeeId, EnumWorkType type)
@@ -52,8 +77,8 @@ namespace Logic
                 }
                 else
                 {
-                    CreateNewTimeBlock(employeeId, EnumWorkType.Other, (DateTime)dailyRecord.Finish, currentTime);   
-                }               
+                    CreateNewTimeBlock(employeeId, EnumWorkType.Other, (DateTime)dailyRecord.Finish, currentTime);
+                }
             }
             CreateNewTimeBlock(employeeId, type, currentTime);
         }
@@ -76,14 +101,21 @@ namespace Logic
             }
         }
 
-        public Employee GetEmpolyeeByID(int employeeId)
+        /// <summary>
+        /// HLavna funkcua pre buttony
+        /// </summary>
+        /// <param name="employeeId"></param>
+        /// <param name="type"></param>
+        public void ProcessAction(int employeeId, EnumWorkType type)
         {
-            return _employeeRepository.GetEmpolyeeByID(employeeId);
-        }
-
-        public DailyRecord GetLastDailyRecordByEmployeeId(int employeeId)
-        {
-            return _dailyRecordRepository.GetLastDailyRecordByEmployeeId(employeeId);
+            if (type == EnumWorkType.Exit)
+            {
+                ExitTimeBlock(employeeId);
+            }
+            else
+            {
+                CreateNewAndFinishPreviousRecord(employeeId, type);
+            }
         }
     }
 }

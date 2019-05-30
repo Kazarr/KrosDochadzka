@@ -14,50 +14,20 @@ namespace AttendanceTermianal
         }
 
         /// <summary>
-        /// nastavenie dizajnu, rozne fonty pre rozne casove zlozky
-        /// </summary>
-        /// <returns></returns>
-
-        public string DescriptionFullname(int employeeId)
-        {
-            Person person = new Person();
-            person = _logic.GetPersonByIdEmployee(employeeId);
-            return $"{person.FirstName} {person.LastName}";
-        }
-
-        /// <summary>
-        /// kontroluje či pod zadaným ID existuje nejaký employee
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        public bool IsCorrectEmp(int employeeId)
-        {
-            try
-            {
-                Employee empoloyee = _logic.GetEmpolyeeByID(employeeId);
-                return empoloyee != null && empoloyee.Id.Equals(employeeId);
-            }
-            catch (FormatException)
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
         /// HLavna funkcua pre buttony
         /// </summary>
         /// <param name="employeeId"></param>
         /// <param name="type"></param>
-        public void ProcessAction(int employeeId, EnumWorkType type)
-        {
-            if (type == EnumWorkType.Exit)
-            {
-                _logic.ExitTimeBlock(employeeId);
-            }
-            else
-            {
-                _logic.CreateNewAndFinishPreviousRecord(employeeId, type);
-            }
-        }
+        //public void ProcessAction(int employeeId, EnumWorkType type)
+        //{
+        //    if (type == EnumWorkType.Exit)
+        //    {
+        //        _logic.ExitTimeBlock(employeeId);
+        //    }
+        //    else
+        //    {
+        //        _logic.CreateNewAndFinishPreviousRecord(employeeId, type);
+        //    }
+        //}
     }
 }
