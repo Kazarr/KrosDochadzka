@@ -8,13 +8,11 @@ namespace AttendanceTermianal
 {
     public partial class TerminalView : Form
     {
-        private TerminalViewModel _terminalViewModel;
         private LogicTerminal _logic;
         public TerminalView(LogicTerminal logic)
         {
             InitializeComponent();
             _logic = logic;
-            _terminalViewModel = new TerminalViewModel(_logic);
             timerCurrentDateTime.Start();
         }
 
@@ -66,9 +64,9 @@ namespace AttendanceTermianal
             {
                 int employeeId = Convert.ToInt32(txtEmpIdNum.Text);
 
-                if (_terminalViewModel.IsCorrectEmp(employeeId))
+                if (_logic.IsCorrectEmp(employeeId))
                 {
-                    _terminalViewModel.ProcessAction(employeeId, type);
+                    _logic.ProcessAction(employeeId, type);
                     Describe(employeeId, type);
                     timerClearDisplay.Start();
                 }
@@ -77,11 +75,12 @@ namespace AttendanceTermianal
                     lblName.Text = ShowError();
                     timerClearDisplay.Start();
                 }
-            }        }
+            }
+        }
 
         private void Describe(int employeeId, EnumWorkType type)
         {
-            lblName.Text = _terminalViewModel.DescriptionFullname(employeeId);
+            lblName.Text = _logic.DescriptionFullname(employeeId);
             lblDateNow.Text = DateTime.Now.DateDescription();
             lblWorkType.Text = type.ToString();
         }
