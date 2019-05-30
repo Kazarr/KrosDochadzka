@@ -37,7 +37,9 @@ namespace AttendanceSystem
 
         public BindingList<Person> FillComboBox()
         {
-            return new BindingList<Person>(_logic.GetPersonsEmployees().ToList());
+            List<Person> ret = _logic.GetPersonsEmployees().ToList();
+            Person = ret[0];
+            return new BindingList<Person>(ret);
         }
 
         public BindingList<Person> FillComboBox(int idSupervisor)
