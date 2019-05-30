@@ -1,32 +1,30 @@
 ﻿using System;
-using System.Linq;
 
 namespace ConsoleSystem
 {
-
     class ConsoleReader : IReader
     {
-        private IWriter _writer = new ConsoleWriter();
+        private IWriter _writer;
+
+        public ConsoleReader(IWriter writer)
+        {
+            _writer = writer;
+        }
 
         public int NumberReader()
         {
             while (true)
             {
                 string input = Console.ReadLine();
-                if (input.All(char.IsDigit))
+                if (int.TryParse(input, out int output))
                 {
-                    return Convert.ToInt32(input);
+                    return output;
                 }
                 else
                 {
                     _writer.Writer(Properties.Resources.WrongInputError);
                 }
             }
-        }
-
-        public T Reader<T>()
-        {
-            throw new System.NotImplementedException();
         }
 
         public string PasswordReader()
@@ -54,6 +52,11 @@ namespace ConsoleSystem
                 }
             } while (true);
             return pass;
+        }
+
+        public void ReadLine()
+        {
+            Console.ReadLine();
         }
     }
 }

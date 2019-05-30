@@ -154,6 +154,22 @@ namespace ConsoleSystem.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose:
+        ///1:Work Entry / Continue
+        ///2:LunchBreak start
+        ///3:Doctor
+        ///4:Bussiness Trip
+        ///5:Private
+        ///6:Exit
+        ///0:LogOut.
+        /// </summary>
+        internal static string TerminalMenu {
+            get {
+                return ResourceManager.GetString("TerminalMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wrong input try again.
         /// </summary>
         internal static string WrongInputError {
@@ -168,6 +184,15 @@ namespace ConsoleSystem.Properties {
         internal static string WrongLoginPassError {
             get {
                 return ResourceManager.GetString("WrongLoginPassError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Entered login doesn&apos;t exist.
+        /// </summary>
+        internal static string WrongUser {
+            get {
+                return ResourceManager.GetString("WrongUser", resourceCulture);
             }
         }
     }

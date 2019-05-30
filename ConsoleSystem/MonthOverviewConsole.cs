@@ -1,8 +1,8 @@
-﻿using Data.Model;
+﻿using AttendanceSystem;
+using Data.Model;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using AttendanceSystem;
 
 namespace ConsoleSystem
 {
@@ -19,17 +19,17 @@ namespace ConsoleSystem
             _loginId = id;
             _reader = reader;
             _writer = writer;
-            GetMonthOverview();
+
         }
 
-        private void GetMonthOverview()
+        public void GetMonthOverview()
         {
-            Console.Clear();
+            _writer.Clear();
             List<DaySummary> myList = _logicSystem.GetSummariesByMonth(GetDateFormat(), _loginId);
             WriteDetails(new MonthOverviewViewModel(myList));
             _writer.Writer(Properties.Resources.PressKey);
-            Console.ReadLine();
-            Console.Clear();
+            _reader.ReadLine();
+            _writer.Clear();
         }
 
         private string GetDateFormat()

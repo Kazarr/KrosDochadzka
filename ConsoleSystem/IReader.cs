@@ -2,8 +2,8 @@
 {
     interface IReader
     {
-        T Reader<T>();
         int NumberReader();
         string PasswordReader();
+        void ReadLine();
     }
 }

@@ -150,10 +150,23 @@
   <data name="PressKey" xml:space="preserve">
     <value>Press Enter to Continue...</value>
   </data>
+  <data name="TerminalMenu" xml:space="preserve">
+    <value>Choose:
+1:Work Entry / Continue
+2:LunchBreak start
+3:Doctor
+4:Bussiness Trip
+5:Private
+6:Exit
+0:LogOut</value>
+  </data>
   <data name="WrongInputError" xml:space="preserve">
     <value>Wrong input try again</value>
   </data>
   <data name="WrongLoginPassError" xml:space="preserve">
     <value>Wrong login / password combination</value>
+  </data>
+  <data name="WrongUser" xml:space="preserve">
+    <value>Entered login doesn't exist</value>
   </data>
 </root>
