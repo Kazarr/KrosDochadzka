@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.panelPass = new System.Windows.Forms.Panel();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.txtOldPass = new System.Windows.Forms.TextBox();
+            this.btnConfirm = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.lblMessage = new System.Windows.Forms.Label();
             this.txtConfirmPass = new System.Windows.Forms.TextBox();
             this.txtNewPass = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnConfirm = new System.Windows.Forms.Button();
             this.panelPass.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -56,10 +56,20 @@
             this.panelPass.Controls.Add(this.txtNewPass);
             this.panelPass.Controls.Add(this.pictureBox2);
             this.panelPass.Controls.Add(this.pictureBox1);
-            this.panelPass.Location = new System.Drawing.Point(10, 10);
+            this.panelPass.Location = new System.Drawing.Point(0, 0);
             this.panelPass.Name = "panelPass";
             this.panelPass.Size = new System.Drawing.Size(546, 367);
             this.panelPass.TabIndex = 3;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Image = global::AttendanceSystem.Properties.Resources.cancel;
+            this.btnCancel.Location = new System.Drawing.Point(319, 275);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(220, 73);
+            this.btnCancel.TabIndex = 5;
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // txtOldPass
             // 
@@ -72,6 +82,16 @@
             this.txtOldPass.Size = new System.Drawing.Size(269, 30);
             this.txtOldPass.TabIndex = 1;
             this.txtOldPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // btnConfirm
+            // 
+            this.btnConfirm.Image = global::AttendanceSystem.Properties.Resources.confirm;
+            this.btnConfirm.Location = new System.Drawing.Point(8, 275);
+            this.btnConfirm.Name = "btnConfirm";
+            this.btnConfirm.Size = new System.Drawing.Size(245, 73);
+            this.btnConfirm.TabIndex = 4;
+            this.btnConfirm.UseVisualStyleBackColor = true;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // pictureBox3
             // 
@@ -137,36 +157,16 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // btnCancel
-            // 
-            this.btnCancel.Image = global::AttendanceSystem.Properties.Resources.cancel;
-            this.btnCancel.Location = new System.Drawing.Point(319, 275);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(220, 73);
-            this.btnCancel.TabIndex = 5;
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnConfirm
-            // 
-            this.btnConfirm.Image = global::AttendanceSystem.Properties.Resources.confirm;
-            this.btnConfirm.Location = new System.Drawing.Point(8, 275);
-            this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(245, 73);
-            this.btnConfirm.TabIndex = 4;
-            this.btnConfirm.UseVisualStyleBackColor = true;
-            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
-            // 
             // PasswordChangeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(566, 386);
+            this.ClientSize = new System.Drawing.Size(546, 367);
             this.Controls.Add(this.panelPass);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximumSize = new System.Drawing.Size(566, 386);
-            this.MinimumSize = new System.Drawing.Size(566, 386);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximumSize = new System.Drawing.Size(600, 500);
+            this.MinimumSize = new System.Drawing.Size(500, 300);
             this.Name = "PasswordChangeView";
             this.Text = "frmPasswordChange";
             this.panelPass.ResumeLayout(false);
