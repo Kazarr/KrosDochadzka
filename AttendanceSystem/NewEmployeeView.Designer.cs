@@ -160,7 +160,7 @@
             this.panel2.Size = new System.Drawing.Size(529, 350);
             this.panel2.TabIndex = 56;
             // 
-            // frmNewEmployee
+            // NewEmployeeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -171,9 +171,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximumSize = new System.Drawing.Size(1457, 1642);
             this.MinimumSize = new System.Drawing.Size(5, 5);
-            this.Name = "frmNewEmployee";
+            this.Name = "NewEmployeeView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form2";
+            this.Text = "Details";
             this.Load += new System.EventHandler(this.FrmNewEmployee_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
