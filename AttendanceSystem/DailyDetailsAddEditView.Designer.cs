@@ -129,10 +129,8 @@
             this.ClientSize = new System.Drawing.Size(548, 290);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximumSize = new System.Drawing.Size(548, 290);
-            this.MinimumSize = new System.Drawing.Size(548, 290);
             this.Name = "DailyDetailsAddEditView";
-            this.Text = "frmDailyDetailsAddEdit";
+            this.Text = "Edit activity";
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);

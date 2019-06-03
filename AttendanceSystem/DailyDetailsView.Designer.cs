@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dGVDailyResultsOverview = new System.Windows.Forms.DataGridView();
             this.dailyResultIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idEmployeeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,8 +92,8 @@
             // 
             this.startTimeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.startTimeDataGridViewTextBoxColumn.DataPropertyName = "StartTime";
-            dataGridViewCellStyle5.Format = "MM/dd/yy HH:mm:ss";
-            this.startTimeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Format = "MM/dd/yy HH:mm:ss";
+            this.startTimeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.startTimeDataGridViewTextBoxColumn.HeaderText = "StartTime";
             this.startTimeDataGridViewTextBoxColumn.Name = "startTimeDataGridViewTextBoxColumn";
             this.startTimeDataGridViewTextBoxColumn.ReadOnly = true;
@@ -102,8 +102,8 @@
             // 
             this.finishTimeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.finishTimeDataGridViewTextBoxColumn.DataPropertyName = "FinishTime";
-            dataGridViewCellStyle6.Format = "MM/dd/yy HH:mm:ss";
-            this.finishTimeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Format = "MM/dd/yy HH:mm:ss";
+            this.finishTimeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.finishTimeDataGridViewTextBoxColumn.HeaderText = "FinishTime";
             this.finishTimeDataGridViewTextBoxColumn.Name = "finishTimeDataGridViewTextBoxColumn";
             this.finishTimeDataGridViewTextBoxColumn.ReadOnly = true;
@@ -124,7 +124,7 @@
             // 
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnDelete.Image = global::AttendanceSystem.Properties.Resources.delete1;
-            this.btnDelete.Location = new System.Drawing.Point(342, 15);
+            this.btnDelete.Location = new System.Drawing.Point(342, 3);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(215, 52);
             this.btnDelete.TabIndex = 4;
@@ -136,7 +136,7 @@
             // 
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnAdd.Image = global::AttendanceSystem.Properties.Resources.addnew;
-            this.btnAdd.Location = new System.Drawing.Point(15, 15);
+            this.btnAdd.Location = new System.Drawing.Point(15, 3);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(215, 52);
             this.btnAdd.TabIndex = 3;
@@ -148,7 +148,7 @@
             // 
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnEdit.Image = global::AttendanceSystem.Properties.Resources.Edit;
-            this.btnEdit.Location = new System.Drawing.Point(342, 73);
+            this.btnEdit.Location = new System.Drawing.Point(342, 61);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(215, 52);
             this.btnEdit.TabIndex = 2;
@@ -160,7 +160,7 @@
             // 
             this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnConfirm.Image = global::AttendanceSystem.Properties.Resources.confirm;
-            this.btnConfirm.Location = new System.Drawing.Point(15, 502);
+            this.btnConfirm.Location = new System.Drawing.Point(158, 469);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(245, 73);
             this.btnConfirm.TabIndex = 1;
@@ -206,8 +206,7 @@
             this.MaximumSize = new System.Drawing.Size(590, 608);
             this.MinimumSize = new System.Drawing.Size(590, 608);
             this.Name = "FrmDailyDetails";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DailyDetails";
+            this.Text = "Daily activities";
             ((System.ComponentModel.ISupportInitialize)(this.dGVDailyResultsOverview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.panel1.ResumeLayout(false);

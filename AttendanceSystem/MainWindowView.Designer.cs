@@ -258,7 +258,7 @@
             this.Controls.Add(this.labelMonth);
             this.Controls.Add(this.comboBoxMonth);
             this.Name = "MainWindowView";
-            this.Text = "Form1";
+            this.Text = "Overview";
             this.Load += new System.EventHandler(this.FrmMainWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dGVOverview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();

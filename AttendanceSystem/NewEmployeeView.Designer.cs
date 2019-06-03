@@ -173,7 +173,7 @@
             this.MinimumSize = new System.Drawing.Size(5, 5);
             this.Name = "NewEmployeeView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form2";
+            this.Text = "Details";
             this.Load += new System.EventHandler(this.FrmNewEmployee_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
