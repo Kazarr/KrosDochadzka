@@ -44,7 +44,9 @@ namespace AttendanceSystem
 
         public BindingList<Person> FillComboBox(int idSupervisor)
         {
-            return new BindingList<Person>(_logic.GetPersonEmployeesPlebs(idSupervisor).ToList());
+            List<Person> ret = _logic.GetPersonEmployeesPlebs(idSupervisor).ToList();
+            Person = ret[0];
+            return new BindingList<Person>(ret);
         }
 
         public BindingList<DaySummary> FillDataGridViewOverview(int id, string date)
