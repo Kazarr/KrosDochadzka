@@ -30,19 +30,19 @@
         {
             this.btnClose = new System.Windows.Forms.Button();
             this.panelPass = new System.Windows.Forms.Panel();
-            this.lblMessage = new System.Windows.Forms.Label();
             this.txtOldPass = new System.Windows.Forms.TextBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.lblMessage = new System.Windows.Forms.Label();
             this.txtConfirmPass = new System.Windows.Forms.TextBox();
             this.txtNewPass = new System.Windows.Forms.TextBox();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnConfirm = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnConfirm = new System.Windows.Forms.Button();
             this.panelPass.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -76,16 +76,6 @@
             this.panelPass.Size = new System.Drawing.Size(540, 265);
             this.panelPass.TabIndex = 3;
             // 
-            // lblMessage
-            // 
-            this.lblMessage.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblMessage.Location = new System.Drawing.Point(7, 12);
-            this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(487, 34);
-            this.lblMessage.TabIndex = 6;
-            this.lblMessage.Text = "Message";
-            this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // txtOldPass
             // 
             this.txtOldPass.BackColor = System.Drawing.Color.White;
@@ -97,6 +87,26 @@
             this.txtOldPass.Size = new System.Drawing.Size(269, 30);
             this.txtOldPass.TabIndex = 1;
             this.txtOldPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.pictureBox3.Image = global::AttendanceSystem.Properties.Resources.oldPass;
+            this.pictureBox3.Location = new System.Drawing.Point(5, 66);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(530, 60);
+            this.pictureBox3.TabIndex = 7;
+            this.pictureBox3.TabStop = false;
+            // 
+            // lblMessage
+            // 
+            this.lblMessage.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblMessage.Location = new System.Drawing.Point(7, 12);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(487, 34);
+            this.lblMessage.TabIndex = 6;
+            this.lblMessage.Text = "Message";
+            this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtConfirmPass
             // 
@@ -122,26 +132,6 @@
             this.txtNewPass.TabIndex = 2;
             this.txtNewPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // btnCancel
-            // 
-            this.btnCancel.Image = global::AttendanceSystem.Properties.Resources.cancel;
-            this.btnCancel.Location = new System.Drawing.Point(321, 283);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(220, 73);
-            this.btnCancel.TabIndex = 5;
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnConfirm
-            // 
-            this.btnConfirm.Image = global::AttendanceSystem.Properties.Resources.confirm;
-            this.btnConfirm.Location = new System.Drawing.Point(10, 283);
-            this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(245, 73);
-            this.btnConfirm.TabIndex = 4;
-            this.btnConfirm.UseVisualStyleBackColor = true;
-            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
-            // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -162,15 +152,25 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // pictureBox3
+            // btnCancel
             // 
-            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.pictureBox3.Image = global::AttendanceSystem.Properties.Resources.oldPass;
-            this.pictureBox3.Location = new System.Drawing.Point(5, 66);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(530, 60);
-            this.pictureBox3.TabIndex = 7;
-            this.pictureBox3.TabStop = false;
+            this.btnCancel.Image = global::AttendanceSystem.Properties.Resources.cancel;
+            this.btnCancel.Location = new System.Drawing.Point(321, 283);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(220, 73);
+            this.btnCancel.TabIndex = 5;
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnConfirm
+            // 
+            this.btnConfirm.Image = global::AttendanceSystem.Properties.Resources.confirm;
+            this.btnConfirm.Location = new System.Drawing.Point(10, 283);
+            this.btnConfirm.Name = "btnConfirm";
+            this.btnConfirm.Size = new System.Drawing.Size(245, 73);
+            this.btnConfirm.TabIndex = 4;
+            this.btnConfirm.UseVisualStyleBackColor = true;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // PasswordChangeView
             // 
@@ -183,12 +183,12 @@
             this.Controls.Add(this.panelPass);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "PasswordChangeView";
-            this.Text = "frmPasswordChange";
+            this.Text = "Password change";
             this.panelPass.ResumeLayout(false);
             this.panelPass.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }

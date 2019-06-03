@@ -108,7 +108,7 @@
             this.panel1.Size = new System.Drawing.Size(528, 159);
             this.panel1.TabIndex = 15;
             // 
-            // frmDailyDetailsAddEdit
+            // DailyDetailsAddEditView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -118,8 +118,8 @@
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.btnCancel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmDailyDetailsAddEdit";
-            this.Text = "frmDailyDetailsAddEdit";
+            this.Name = "DailyDetailsAddEditView";
+            this.Text = "Edit activity";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
