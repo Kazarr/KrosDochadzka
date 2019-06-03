@@ -72,7 +72,6 @@ namespace AttendanceSystem
         {
 
             Employee employee = _logic.GetEmpolyeeByIdPerson(person.Id);
-            _logic.DeleteDailyResultByIdEmployee(employee.Id);
             _logic.DeleteEmployee(employee);
 
         }
