@@ -22,9 +22,7 @@ namespace AttendanceSystem
             _loggedEmployeeID = id;
             _logic = logic;
             _mainWindowViewModel = new MainWindowViewModel(_logic);
-            WindowState = FormWindowState.Maximized;
-            lblUserName.Text = $"{_logic.GetPersonByIdEmployee(id).FirstName} {_logic.GetPersonByIdEmployee(id).LastName}";
-
+            WindowState = FormWindowState.Maximized;            
         }
 
         /// <summary>
@@ -154,6 +152,7 @@ namespace AttendanceSystem
             CheckPermission();
             FillComboBoxes();
             FillDataGridView();
+            lblUserName.Text = $"{_logic.GetPersonByIdEmployee(_loggedEmployeeID).FirstName} {_logic.GetPersonByIdEmployee(_loggedEmployeeID).LastName}";
         }
 
         /// <summary>
@@ -218,6 +217,7 @@ namespace AttendanceSystem
             btnReset.Enabled = true;
             FillComboBoxes();
             FillDataGridView();
+            lblEmpId.Text = _mainWindowViewModel.Employee.Id.ToString();
         }
 
         private void bindingSource1_CurrentChanged(object sender, EventArgs e)
