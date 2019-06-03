@@ -115,7 +115,7 @@
             this.panel1.Controls.Add(this.buttonConfirm);
             this.panel1.Controls.Add(this.buttonCancel);
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(10, 10);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(529, 465);
             this.panel1.TabIndex = 55;
@@ -135,7 +135,7 @@
             // 
             this.buttonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonCancel.Image = global::AttendanceSystem.Properties.Resources.cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(292, 370);
+            this.buttonCancel.Location = new System.Drawing.Point(295, 370);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(220, 73);
             this.buttonCancel.TabIndex = 8;
@@ -166,15 +166,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(549, 485);
+            this.ClientSize = new System.Drawing.Size(529, 465);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximumSize = new System.Drawing.Size(1457, 1642);
-            this.MinimumSize = new System.Drawing.Size(5, 5);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximumSize = new System.Drawing.Size(545, 504);
+            this.MinimumSize = new System.Drawing.Size(545, 504);
             this.Name = "NewEmployeeView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Details";
-            this.Load += new System.EventHandler(this.FrmNewEmployee_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

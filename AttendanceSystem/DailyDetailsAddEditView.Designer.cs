@@ -116,7 +116,7 @@
             this.panel2.Controls.Add(this.panel1);
             this.panel2.Controls.Add(this.btnCancel);
             this.panel2.Controls.Add(this.btnConfirm);
-            this.panel2.Location = new System.Drawing.Point(10, 10);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(528, 270);
             this.panel2.TabIndex = 16;
@@ -126,9 +126,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(548, 290);
+            this.ClientSize = new System.Drawing.Size(528, 270);
             this.Controls.Add(this.panel2);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximumSize = new System.Drawing.Size(544, 309);
+            this.MinimumSize = new System.Drawing.Size(544, 309);
             this.Name = "DailyDetailsAddEditView";
             this.Text = "Edit activity";
             this.panel1.ResumeLayout(false);

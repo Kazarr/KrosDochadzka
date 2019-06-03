@@ -64,9 +64,5 @@ namespace AttendanceSystem
             DialogResult = DialogResult.Cancel;
         }
 
-        private void FrmNewEmployee_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -31,7 +31,6 @@
             this.textBoxLogin = new System.Windows.Forms.TextBox();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.btnChooseServer = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -65,7 +64,7 @@
             // btnChooseServer
             // 
             this.btnChooseServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnChooseServer.Location = new System.Drawing.Point(26, 64);
+            this.btnChooseServer.Location = new System.Drawing.Point(25, 12);
             this.btnChooseServer.Name = "btnChooseServer";
             this.btnChooseServer.Size = new System.Drawing.Size(154, 46);
             this.btnChooseServer.TabIndex = 6;
@@ -73,29 +72,13 @@
             this.btnChooseServer.UseVisualStyleBackColor = true;
             this.btnChooseServer.Click += new System.EventHandler(this.btnChooseServer_Click);
             // 
-            // btnClose
-            // 
-            this.btnClose.BackColor = System.Drawing.Color.White;
-            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnClose.Location = new System.Drawing.Point(510, 12);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(32, 32);
-            this.btnClose.TabIndex = 9;
-            this.btnClose.Text = "X";
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.textBoxLogin);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.textBoxPassword);
             this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Location = new System.Drawing.Point(2, 128);
+            this.panel1.Location = new System.Drawing.Point(1, 76);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(550, 150);
             this.panel1.TabIndex = 12;
@@ -122,7 +105,7 @@
             // 
             this.buttonConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonConfirm.Image = global::AttendanceSystem.Properties.Resources.entry;
-            this.buttonConfirm.Location = new System.Drawing.Point(26, 284);
+            this.buttonConfirm.Location = new System.Drawing.Point(25, 232);
             this.buttonConfirm.Name = "buttonConfirm";
             this.buttonConfirm.Size = new System.Drawing.Size(251, 97);
             this.buttonConfirm.TabIndex = 3;
@@ -134,13 +117,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(554, 410);
+            this.ClientSize = new System.Drawing.Size(554, 337);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnChooseServer);
             this.Controls.Add(this.buttonConfirm);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximumSize = new System.Drawing.Size(570, 376);
+            this.MinimumSize = new System.Drawing.Size(570, 376);
             this.Name = "LoginView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Login";
@@ -159,7 +142,6 @@
         private System.Windows.Forms.TextBox textBoxLogin;
         private System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.Button btnChooseServer;
-        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel panel1;
