@@ -22,8 +22,7 @@ namespace AttendanceSystem
             _loggedEmployeeID = id;
             _logic = logic;
             _mainWindowViewModel = new MainWindowViewModel(_logic);
-            WindowState = FormWindowState.Maximized;
-
+            WindowState = FormWindowState.Maximized;            
         }
 
         /// <summary>
@@ -157,6 +156,7 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
             CheckPermission();
             FillComboBoxes();
             FillDataGridView();
+            lblUserName.Text = $"{_logic.GetPersonByIdEmployee(_loggedEmployeeID).FirstName} {_logic.GetPersonByIdEmployee(_loggedEmployeeID).LastName}";
         }
 
         /// <summary>
@@ -222,6 +222,7 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
             btnReset.Enabled = true;
             FillComboBoxes();
             FillDataGridView();
+            lblEmpId.Text = _mainWindowViewModel.Employee.Id.ToString();
         }
 
         private void bindingSource1_CurrentChanged(object sender, EventArgs e)

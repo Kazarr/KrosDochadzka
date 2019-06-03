@@ -45,6 +45,9 @@
             this.btnChangePassword = new System.Windows.Forms.Button();
             this.comboBoxYear = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.lblUserName = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblEmpId = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dGVOverview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
@@ -226,11 +229,44 @@
             this.label1.TabIndex = 27;
             this.label1.Text = "Choose  Year ";
             // 
+            // lblUserName
+            // 
+            this.lblUserName.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblUserName.Location = new System.Drawing.Point(281, 21);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(429, 23);
+            this.lblUserName.TabIndex = 28;
+            this.lblUserName.Text = "label2";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(516, 239);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 21);
+            this.label2.TabIndex = 29;
+            this.label2.Text = "Emp ID";
+            // 
+            // lblEmpId
+            // 
+            this.lblEmpId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEmpId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblEmpId.Location = new System.Drawing.Point(588, 239);
+            this.lblEmpId.Name = "lblEmpId";
+            this.lblEmpId.Size = new System.Drawing.Size(49, 21);
+            this.lblEmpId.TabIndex = 30;
+            this.lblEmpId.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1187, 531);
+            this.Controls.Add(this.lblEmpId);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblUserName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxYear);
             this.Controls.Add(this.btnChangePassword);
@@ -285,6 +321,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn privateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn otherDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalTimeWorked;
+        private System.Windows.Forms.Label lblUserName;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblEmpId;
     }
 }
 
