@@ -119,10 +119,6 @@ namespace Logic
             _employeeRepository.DeleteEmployee(e);
         }
 
-        public void DeleteDailyResultByIdEmployee(int id)
-        {
-            _dailyRecordRepository.DeleteDailyResultByIdEmployee(id);
-        }
 
         public bool HasDatabase()
         {
@@ -171,9 +167,10 @@ namespace Logic
 
             while (date.Month == numberOfMonth)
             {
-                DaySummary daySummary = new DaySummary();
-
-                daySummary.Date = date.ToString("M/d/yyyy");
+                DaySummary daySummary = new DaySummary
+                {
+                    Date = date.ToString("M/d/yyyy")
+                };
 
                 foreach (var item in dailyRecords)
                 {
@@ -182,7 +179,10 @@ namespace Logic
                         switch (item.IdWorktype)
                         {
                             case (int)EnumWorkType.Work:
-                                daySummary.WorkArrivalTime = item.Start;
+                                if (daySummary.WorkArrivalTime==null || daySummary.WorkArrivalTime>item.Start)
+                                {
+                                    daySummary.WorkArrivalTime = item.Start;
+                                }
                                 daySummary.WorkLeavingTime = item.Finish;
                                 break;
                             case (int)EnumWorkType.Lunch:
@@ -198,13 +198,13 @@ namespace Logic
                                 daySummary.BusinessTrip += (TimeSpan)(item.Finish - item.Start);
                                 break;
                             case (int)EnumWorkType.Doctor:
-                                daySummary.Doctor = (TimeSpan)(item.Finish - item.Start);
+                                daySummary.Doctor += (TimeSpan)(item.Finish - item.Start);
                                 break;
                             case (int)EnumWorkType.Private:
-                                daySummary.Private = (TimeSpan)(item.Finish - item.Start);
+                                daySummary.Private += (TimeSpan)(item.Finish - item.Start);
                                 break;
                             case (int)EnumWorkType.Other:
-                                daySummary.Other = (TimeSpan)(item.Finish - item.Start);
+                                daySummary.Other += (TimeSpan)(item.Finish - item.Start);
                                 break;
 
                         }
@@ -221,6 +221,8 @@ namespace Logic
             return monthRecords;
 
         }
+
+         
 
     private TimeSpan? CalculateWorkedTime(DaySummary daySummary)
     {

@@ -96,18 +96,32 @@ namespace Data.Repository
             return success;
         }
       
-              /// <summary>
-        /// Recursively delete supervisor. Normal delete pleb.
-        /// </summary>
-        /// <param name="empolyee"></param>
-        /// <returns></returns>
-        public bool DeleteEmployee(Employee empolyee)
+        public bool DeleteEmployee(Employee employee)
         {
             bool success = false;
             Execute((command) => 
             {
-                command.CommandText = @"DELETE FROM Employee WHERE Id = @Id";
-                command.Parameters.Add("@Id", SqlDbType.Decimal).Value = empolyee.Id;
+                command.CommandText = @"begin transaction
+if ((select IdPermission
+	from Employee
+	where Id=@id)=2)
+		update Employee
+		set IdSupervisor=
+		(
+		select top 1 Id
+		from Employee 
+		where IdPermission=3
+		)
+		where IdSupervisor=@id;
+	
+
+delete from DailyRecord
+where IdEmployee=@id
+
+delete  from Employee
+where Id=@id
+commit";
+                command.Parameters.Add("@Id", SqlDbType.Decimal).Value = employee.Id;
                 if (command.ExecuteNonQuery() > 0)
                 {
                     success = true;

@@ -196,23 +196,6 @@ namespace Data.Repository
             });
             return success;
         }
-
-        public bool DeleteDailyResultByIdEmployee(int idEmployee)
-        {
-            bool success = false;
-            Execute((command) =>
-            {
-                command.CommandText = @"DELETE FROM DailyRecord
-                                        WHERE idEmployee = @didEmployee";
-                command.Parameters.Add("@didEmployee", SqlDbType.Int).Value = idEmployee;
-
-                if (command.ExecuteNonQuery() > 0)
-                {
-                    success = true;
-                }
-            });
-            return success;
-        }
         
         public int GetYearOfEmploymentStartByEmployee(int IdEmployee)
         {

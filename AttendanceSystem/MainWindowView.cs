@@ -70,21 +70,25 @@ namespace AttendanceSystem
         {
             //get name of the month from the combobox
             _selected = $"{comboBoxMonth.GetItemText(comboBoxMonth.SelectedItem)} {comboBoxYear.GetItemText(comboBoxYear.SelectedItem)}";
-            bindingSource1.DataSource = _mainWindowViewModel.FillDataGridViewOverview(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), _selected);
+            bindingSource1.DataSource = _mainWindowViewModel.FillDataGridViewOverview(
+                _mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), _selected);
 
         }
 
         private void btnDeleteEmployee_Click_1(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("This action will permanently delete employee and all his records are you sure you want to continue?", "Delete Employee", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes && _mainWindowViewModel.Person.Id != _mainWindowViewModel.Employee.IdPerson)
+            DialogResult dialogResult = MessageBox.Show($@"This action will permanently delete {_mainWindowViewModel.Person.ToString()} 
+and all his records are you sure you want to continue?", "Delete Employee", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes && _mainWindowViewModel.Employee.Id != _loggedEmployeeID)
             {
                 _mainWindowViewModel.DeleteEmployeePerson((Person)comboBoxPerson.SelectedItem);
                 comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox();
+                MessageBox.Show("Delete Succesfull");
             }
             else
             {
-                MessageBox.Show("You cant delete yourself. Ask your supervisor or admin to do so.", "Delete Employee", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("You cant delete yourself. Ask your supervisor or admin to do so.", "Delete Employee", 
+                    MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
 
         }
@@ -167,7 +171,8 @@ namespace AttendanceSystem
             {
                 dGVOverview.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightSkyBlue;
             }
-            else if (dGVOverview.Rows[e.RowIndex].Cells["WorkArrivalTime"].Value != null && dGVOverview.Rows[e.RowIndex].Cells["WorkLeavingTime"].Value == null)
+            else if (dGVOverview.Rows[e.RowIndex].Cells["WorkArrivalTime"].Value != null && 
+                dGVOverview.Rows[e.RowIndex].Cells["WorkLeavingTime"].Value == null)
             {
 
                 dGVOverview.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.DarkRed;
