@@ -88,9 +88,9 @@ namespace Logic
             return _personRepository.GetPersonsEmployees();
         }
 
-        public bool UpdateDailyResult(DailyRecord updatedDailyResult)
+        public bool UpdateDailyRecord(DailyRecord updatedDailyResult)
         {
-            return _dailyRecordRepository.UpdateFinishDailyResult(updatedDailyResult);
+            return _dailyRecordRepository.UpdateDailyRecord(updatedDailyResult);
         }
 
         public Person GetPersonByIdEmployee(int employeeId)

@@ -31,6 +31,7 @@ namespace AttendanceSystem
         {
             InitializeComponent();
             _logic = logic;
+            _dailyDetailsAddEditViewModel = new DailyDetailsAddEditViewModel(_logic);
             _selectedEmployeeId = selectedEmployeeID;
             _date = date;
             _dailyResultToUpdate = dailyResultToUpdate;
@@ -89,7 +90,7 @@ namespace AttendanceSystem
                 _dailyResultToUpdate.Finish = dateTimePickerFinish.Value;
                 _dailyResultToUpdate.IdWorktype = comboBoxWorkTypes.SelectedIndex + 1;
 
-                if (_dailyDetailsAddEditViewModel.UpdateDailyResult(_dailyResultToUpdate))
+                if (_dailyDetailsAddEditViewModel.UpdateDailyRecord(_dailyResultToUpdate))
                 {
 
                     MessageBox.Show("Record updated succesfully");

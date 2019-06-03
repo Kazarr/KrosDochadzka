@@ -54,9 +54,9 @@ namespace AttendanceSystem
         /// </summary>
         /// <param name="updatedDailyResult"></param>
         /// <returns>true if update happend, otherwise false</returns>
-        public bool UpdateDailyResult(DailyRecord updatedDailyResult)
+        public bool UpdateDailyRecord(DailyRecord updatedDailyResult)
         {
-            return _logic.UpdateDailyResult(updatedDailyResult);
+            return _logic.UpdateDailyRecord(updatedDailyResult);
         }
     }
 }
