@@ -22,6 +22,7 @@ namespace AttendanceSystem
             _logic = logic;
             _mainWindowViewModel = new MainWindowViewModel(_logic);
             WindowState = FormWindowState.Maximized;
+            lblUserName.Text = $"{_logic.GetPersonByIdEmployee(id).FirstName} {_logic.GetPersonByIdEmployee(id).LastName}";
 
         }
 

@@ -111,7 +111,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.buttonConfirm);
             this.panel1.Controls.Add(this.buttonCancel);
             this.panel1.Controls.Add(this.panel2);
@@ -160,18 +160,18 @@
             this.panel2.Size = new System.Drawing.Size(529, 350);
             this.panel2.TabIndex = 56;
             // 
-            // frmNewEmployee
+            // NewEmployeeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(549, 489);
+            this.BackColor = System.Drawing.Color.Black;
+            this.ClientSize = new System.Drawing.Size(549, 485);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximumSize = new System.Drawing.Size(1457, 1642);
             this.MinimumSize = new System.Drawing.Size(5, 5);
-            this.Name = "frmNewEmployee";
+            this.Name = "NewEmployeeView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.FrmNewEmployee_Load);

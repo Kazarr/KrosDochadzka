@@ -34,14 +34,16 @@
             this.comboBoxWorkTypes = new System.Windows.Forms.ComboBox();
             this.dateTimePickerFinish = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnCancel.Image = global::AttendanceSystem.Properties.Resources.cancel;
-            this.btnCancel.Location = new System.Drawing.Point(303, 177);
+            this.btnCancel.Location = new System.Drawing.Point(295, 178);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(220, 73);
             this.btnCancel.TabIndex = 3;
@@ -52,7 +54,7 @@
             // 
             this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnConfirm.Image = global::AttendanceSystem.Properties.Resources.confirm;
-            this.btnConfirm.Location = new System.Drawing.Point(27, 177);
+            this.btnConfirm.Location = new System.Drawing.Point(12, 178);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(245, 73);
             this.btnConfirm.TabIndex = 5;
@@ -103,24 +105,36 @@
             this.panel1.Controls.Add(this.dateTimePickerStart);
             this.panel1.Controls.Add(this.dateTimePickerFinish);
             this.panel1.Controls.Add(this.comboBoxWorkTypes);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(528, 159);
+            this.panel1.Size = new System.Drawing.Size(528, 160);
             this.panel1.TabIndex = 15;
             // 
-            // frmDailyDetailsAddEdit
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.panel1);
+            this.panel2.Controls.Add(this.btnCancel);
+            this.panel2.Controls.Add(this.btnConfirm);
+            this.panel2.Location = new System.Drawing.Point(10, 10);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(528, 270);
+            this.panel2.TabIndex = 16;
+            // 
+            // DailyDetailsAddEditView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(560, 274);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnConfirm);
-            this.Controls.Add(this.btnCancel);
+            this.BackColor = System.Drawing.Color.Black;
+            this.ClientSize = new System.Drawing.Size(548, 290);
+            this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmDailyDetailsAddEdit";
+            this.MaximumSize = new System.Drawing.Size(548, 290);
+            this.MinimumSize = new System.Drawing.Size(548, 290);
+            this.Name = "DailyDetailsAddEditView";
             this.Text = "frmDailyDetailsAddEdit";
             this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -132,5 +146,6 @@
         private System.Windows.Forms.ComboBox comboBoxWorkTypes;
         private System.Windows.Forms.DateTimePicker dateTimePickerFinish;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

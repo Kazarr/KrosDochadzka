@@ -42,12 +42,14 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonClose
@@ -55,18 +57,18 @@
             this.buttonClose.BackColor = System.Drawing.Color.Gray;
             this.buttonClose.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonClose.ForeColor = System.Drawing.Color.White;
-            this.buttonClose.Location = new System.Drawing.Point(201, 362);
+            this.buttonClose.Image = global::AttendanceSystem.Properties.Resources.cancel;
+            this.buttonClose.Location = new System.Drawing.Point(159, 331);
             this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(140, 33);
+            this.buttonClose.Size = new System.Drawing.Size(220, 73);
             this.buttonClose.TabIndex = 31;
-            this.buttonClose.Text = "Close";
             this.buttonClose.UseVisualStyleBackColor = false;
             this.buttonClose.Click += new System.EventHandler(this.buttonOK_Click_1);
             // 
             // labelSickDays
             // 
             this.labelSickDays.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelSickDays.Location = new System.Drawing.Point(197, 297);
+            this.labelSickDays.Location = new System.Drawing.Point(196, 282);
             this.labelSickDays.Name = "labelSickDays";
             this.labelSickDays.Size = new System.Drawing.Size(316, 36);
             this.labelSickDays.TabIndex = 30;
@@ -76,7 +78,7 @@
             // labelHoliday
             // 
             this.labelHoliday.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelHoliday.Location = new System.Drawing.Point(197, 252);
+            this.labelHoliday.Location = new System.Drawing.Point(196, 237);
             this.labelHoliday.Name = "labelHoliday";
             this.labelHoliday.Size = new System.Drawing.Size(316, 36);
             this.labelHoliday.TabIndex = 28;
@@ -86,7 +88,7 @@
             // labelHomeOffice
             // 
             this.labelHomeOffice.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelHomeOffice.Location = new System.Drawing.Point(197, 207);
+            this.labelHomeOffice.Location = new System.Drawing.Point(196, 192);
             this.labelHomeOffice.Name = "labelHomeOffice";
             this.labelHomeOffice.Size = new System.Drawing.Size(316, 36);
             this.labelHomeOffice.TabIndex = 24;
@@ -96,7 +98,7 @@
             // labelBussinessTrip
             // 
             this.labelBussinessTrip.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelBussinessTrip.Location = new System.Drawing.Point(197, 160);
+            this.labelBussinessTrip.Location = new System.Drawing.Point(196, 145);
             this.labelBussinessTrip.Name = "labelBussinessTrip";
             this.labelBussinessTrip.Size = new System.Drawing.Size(316, 36);
             this.labelBussinessTrip.TabIndex = 22;
@@ -106,7 +108,7 @@
             // labelOvertime
             // 
             this.labelOvertime.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelOvertime.Location = new System.Drawing.Point(197, 114);
+            this.labelOvertime.Location = new System.Drawing.Point(196, 99);
             this.labelOvertime.Name = "labelOvertime";
             this.labelOvertime.Size = new System.Drawing.Size(316, 36);
             this.labelOvertime.TabIndex = 20;
@@ -116,7 +118,7 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(14, 24);
+            this.label3.Location = new System.Drawing.Point(13, 9);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(501, 23);
             this.label3.TabIndex = 19;
@@ -126,7 +128,7 @@
             // labelHours
             // 
             this.labelHours.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelHours.Location = new System.Drawing.Point(197, 68);
+            this.labelHours.Location = new System.Drawing.Point(196, 53);
             this.labelHours.Name = "labelHours";
             this.labelHours.Size = new System.Drawing.Size(316, 36);
             this.labelHours.TabIndex = 17;
@@ -136,7 +138,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::AttendanceSystem.Properties.Resources.sickdays;
-            this.pictureBox2.Location = new System.Drawing.Point(14, 296);
+            this.pictureBox2.Location = new System.Drawing.Point(13, 281);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(501, 40);
             this.pictureBox2.TabIndex = 35;
@@ -145,7 +147,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::AttendanceSystem.Properties.Resources.homeoffice;
-            this.pictureBox3.Location = new System.Drawing.Point(14, 204);
+            this.pictureBox3.Location = new System.Drawing.Point(13, 189);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(501, 40);
             this.pictureBox3.TabIndex = 36;
@@ -154,7 +156,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::AttendanceSystem.Properties.Resources.workedtime;
-            this.pictureBox4.Location = new System.Drawing.Point(14, 66);
+            this.pictureBox4.Location = new System.Drawing.Point(13, 51);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(501, 40);
             this.pictureBox4.TabIndex = 37;
@@ -163,7 +165,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = global::AttendanceSystem.Properties.Resources.bussinesstrip;
-            this.pictureBox5.Location = new System.Drawing.Point(14, 158);
+            this.pictureBox5.Location = new System.Drawing.Point(13, 143);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(501, 40);
             this.pictureBox5.TabIndex = 38;
@@ -172,7 +174,7 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = global::AttendanceSystem.Properties.Resources.overtime;
-            this.pictureBox6.Location = new System.Drawing.Point(14, 112);
+            this.pictureBox6.Location = new System.Drawing.Point(13, 97);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(501, 40);
             this.pictureBox6.TabIndex = 39;
@@ -181,33 +183,44 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = global::AttendanceSystem.Properties.Resources.holiday;
-            this.pictureBox7.Location = new System.Drawing.Point(14, 250);
+            this.pictureBox7.Location = new System.Drawing.Point(13, 235);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(501, 40);
             this.pictureBox7.TabIndex = 40;
             this.pictureBox7.TabStop = false;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.labelHoliday);
+            this.panel1.Controls.Add(this.buttonClose);
+            this.panel1.Controls.Add(this.pictureBox7);
+            this.panel1.Controls.Add(this.pictureBox2);
+            this.panel1.Controls.Add(this.labelOvertime);
+            this.panel1.Controls.Add(this.labelSickDays);
+            this.panel1.Controls.Add(this.pictureBox6);
+            this.panel1.Controls.Add(this.pictureBox3);
+            this.panel1.Controls.Add(this.labelBussinessTrip);
+            this.panel1.Controls.Add(this.labelHomeOffice);
+            this.panel1.Controls.Add(this.pictureBox5);
+            this.panel1.Controls.Add(this.pictureBox4);
+            this.panel1.Controls.Add(this.labelHours);
+            this.panel1.Location = new System.Drawing.Point(10, 10);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(529, 417);
+            this.panel1.TabIndex = 41;
+            // 
             // MonthOverviewView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(529, 419);
-            this.Controls.Add(this.labelHoliday);
-            this.Controls.Add(this.pictureBox7);
-            this.Controls.Add(this.labelOvertime);
-            this.Controls.Add(this.pictureBox6);
-            this.Controls.Add(this.labelBussinessTrip);
-            this.Controls.Add(this.pictureBox5);
-            this.Controls.Add(this.labelHours);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.labelHomeOffice);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.labelSickDays);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.buttonClose);
-            this.Controls.Add(this.label3);
+            this.BackColor = System.Drawing.Color.Black;
+            this.ClientSize = new System.Drawing.Size(549, 437);
+            this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximumSize = new System.Drawing.Size(549, 437);
+            this.MinimumSize = new System.Drawing.Size(549, 437);
             this.Name = "MonthOverviewView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
@@ -217,6 +230,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -237,5 +251,6 @@
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.Panel panel1;
     }
 }
