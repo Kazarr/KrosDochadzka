@@ -18,9 +18,9 @@ namespace AttendanceSystem
         {
             _totalHours = TimeSpan.Zero;
             _daySummaries = daySummaries;
-            _overTime = TimeSpan.Zero;
             _holidayTime = TimeSpan.Zero;
             _sickTime = TimeSpan.Zero;
+            _overTime = TimeSpan.Zero;
             _bsTripTime = TimeSpan.Zero;
             _homeOfficeTime = TimeSpan.Zero;
             FillFieldsWithTime();
@@ -47,8 +47,8 @@ namespace AttendanceSystem
                     _bsTripTime += (day.BusinessTrip == null) ? TimeSpan.Zero : (TimeSpan)day.BusinessTrip;
                     _homeOfficeTime += (day.HomeOffice == null) ? TimeSpan.Zero : (TimeSpan)day.HomeOffice;
                 }
-                _overTime = _totalHours - TimeSpan.FromHours(8 * dayCount);
             }
+                _overTime = _totalHours - TimeSpan.FromHours(8 * dayCount);
 
 
         }

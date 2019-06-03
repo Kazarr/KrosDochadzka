@@ -108,23 +108,6 @@ namespace Data.Repository
             return success;
         }
 
-        public bool UpdateFinishDailyResult(DailyRecord daily_Result)
-        {
-            bool success = false;
-            Execute((command) =>
-            {
-                command.CommandText = @"UPDATE DailyRecord
-                                        SET Finish = GETDATE()
-                                        WHERE ID = @ID";
-                command.Parameters.Add("@ID", SqlDbType.VarChar).Value = daily_Result.Id;
-                if (command.ExecuteNonQuery() > 1)
-                {
-                    success = true;
-                }
-            });
-            return success;
-        }
-
         /// <summary>
         /// vyhladá POSLEDNÝ finish time daného employee
         /// </summary>
