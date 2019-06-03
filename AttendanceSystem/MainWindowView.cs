@@ -18,6 +18,7 @@ namespace AttendanceSystem
         public MainWindowView(int id, LogicSystem logic)
         {
             InitializeComponent();
+            dGVOverview.AutoGenerateColumns = true;
             _loggedEmployeeID = id;
             _logic = logic;
             _mainWindowViewModel = new MainWindowViewModel(_logic);

@@ -52,7 +52,7 @@
             // 
             // btnShowMonth
             // 
-            this.btnShowMonth.Location = new System.Drawing.Point(195, 183);
+            this.btnShowMonth.Location = new System.Drawing.Point(195, 265);
             this.btnShowMonth.Name = "btnShowMonth";
             this.btnShowMonth.Size = new System.Drawing.Size(162, 23);
             this.btnShowMonth.TabIndex = 20;
@@ -99,7 +99,7 @@
             this.labelChoosePerson.AutoSize = true;
             this.labelChoosePerson.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.labelChoosePerson.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelChoosePerson.Location = new System.Drawing.Point(657, 161);
+            this.labelChoosePerson.Location = new System.Drawing.Point(657, 243);
             this.labelChoosePerson.Name = "labelChoosePerson";
             this.labelChoosePerson.Size = new System.Drawing.Size(108, 18);
             this.labelChoosePerson.TabIndex = 14;
@@ -109,7 +109,7 @@
             // 
             this.comboBoxPerson.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxPerson.FormattingEnabled = true;
-            this.comboBoxPerson.Location = new System.Drawing.Point(771, 158);
+            this.comboBoxPerson.Location = new System.Drawing.Point(771, 240);
             this.comboBoxPerson.Name = "comboBoxPerson";
             this.comboBoxPerson.Size = new System.Drawing.Size(395, 21);
             this.comboBoxPerson.TabIndex = 13;
@@ -121,7 +121,7 @@
             this.labelMonth.AutoSize = true;
             this.labelMonth.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.labelMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelMonth.Location = new System.Drawing.Point(669, 188);
+            this.labelMonth.Location = new System.Drawing.Point(669, 270);
             this.labelMonth.Name = "labelMonth";
             this.labelMonth.Size = new System.Drawing.Size(96, 18);
             this.labelMonth.TabIndex = 12;
@@ -131,7 +131,7 @@
             // 
             this.comboBoxMonth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxMonth.FormattingEnabled = true;
-            this.comboBoxMonth.Location = new System.Drawing.Point(771, 185);
+            this.comboBoxMonth.Location = new System.Drawing.Point(771, 267);
             this.comboBoxMonth.Name = "comboBoxMonth";
             this.comboBoxMonth.Size = new System.Drawing.Size(395, 21);
             this.comboBoxMonth.TabIndex = 11;
@@ -148,13 +148,13 @@
             this.dGVOverview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dGVOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGVOverview.DataSource = this.bindingSource1;
-            this.dGVOverview.Location = new System.Drawing.Point(15, 212);
+            this.dGVOverview.Location = new System.Drawing.Point(15, 294);
             this.dGVOverview.MultiSelect = false;
             this.dGVOverview.Name = "dGVOverview";
             this.dGVOverview.ReadOnly = true;
             this.dGVOverview.RowHeadersVisible = false;
             this.dGVOverview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dGVOverview.Size = new System.Drawing.Size(1151, 409);
+            this.dGVOverview.Size = new System.Drawing.Size(1151, 225);
             this.dGVOverview.TabIndex = 21;
             this.dGVOverview.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dGVOverview_RowPrePaint);
             // 
@@ -174,7 +174,7 @@
             // 
             // btnDetails
             // 
-            this.btnDetails.Location = new System.Drawing.Point(15, 183);
+            this.btnDetails.Location = new System.Drawing.Point(15, 265);
             this.btnDetails.Name = "btnDetails";
             this.btnDetails.Size = new System.Drawing.Size(174, 23);
             this.btnDetails.TabIndex = 23;
@@ -209,7 +209,7 @@
             // 
             this.comboBoxYear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxYear.FormattingEnabled = true;
-            this.comboBoxYear.Location = new System.Drawing.Point(771, 131);
+            this.comboBoxYear.Location = new System.Drawing.Point(771, 213);
             this.comboBoxYear.Name = "comboBoxYear";
             this.comboBoxYear.Size = new System.Drawing.Size(395, 21);
             this.comboBoxYear.TabIndex = 26;
@@ -221,7 +221,7 @@
             this.label1.AutoSize = true;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(670, 134);
+            this.label1.Location = new System.Drawing.Point(670, 216);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(95, 18);
             this.label1.TabIndex = 27;
