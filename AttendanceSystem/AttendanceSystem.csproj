@@ -275,5 +275,56 @@
   <ItemGroup>
     <None Include="Resources\workedtime.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attsys.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deleteEmp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deleteRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\details.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\detailsRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\change1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\change1Red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout1Red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\overview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\overviewRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reset.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resetRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\update.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\updateRed.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
