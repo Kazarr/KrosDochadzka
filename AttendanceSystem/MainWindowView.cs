@@ -1,4 +1,5 @@
-﻿using Data.Model;
+﻿using AttendanceSystem.Properties;
+using Data.Model;
 using Logic;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace AttendanceSystem
             _loggedEmployeeID = id;
             _logic = logic;
             _mainWindowViewModel = new MainWindowViewModel(_logic);
-            WindowState = FormWindowState.Maximized;            
+            WindowState = FormWindowState.Maximized;
         }
 
         /// <summary>
@@ -61,7 +62,7 @@ namespace AttendanceSystem
             comboBoxMonth.DataSource = DateTimeFormatInfo.CurrentInfo.MonthNames;
             comboBoxMonth.SelectedIndex = int.Parse(DateTime.Now.Month.ToString()) - 1;
             comboBoxYear.DataSource = _mainWindowViewModel.FillYears(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem));
-            
+
             comboBoxYear.SelectedIndex = 0;
         }
 
@@ -76,6 +77,7 @@ namespace AttendanceSystem
 
         private void btnDeleteEmployee_Click_1(object sender, EventArgs e)
         {
+            MarkedButton(btnDeleteEmployee);
             DialogResult dialogResult = MessageBox.Show($@"This action will permanently delete {_mainWindowViewModel.Person.ToString()} 
 and all his records are you sure you want to continue?", "Delete Employee", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes && _mainWindowViewModel.Employee.Id != _loggedEmployeeID)
@@ -86,49 +88,53 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
             }
             else
             {
-                MessageBox.Show("You cant delete yourself. Ask your supervisor or admin to do so.", "Delete Employee", 
-                    MessageBoxButtons.OK,MessageBoxIcon.Information);
-            }
-
+                MessageBox.Show("You cant delete yourself. Ask your supervisor or admin to do so.", "Delete Employee",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }            
         }
 
         private void btnNewEmployee_Click_1(object sender, EventArgs e)
         {
+            MarkedButton(btnNewEmployee);
             NewEmployeeView newEmployee = new NewEmployeeView(_logic);
             newEmployee.ShowDialog();
 
             if (newEmployee.DialogResult == DialogResult.OK)
             {
                 CheckPermission();
-            }
+            }            
         }
 
         private void btnShowMonth_Click_1(object sender, EventArgs e)
         {
+            MarkedButton(btnShowMonth);
             List<DaySummary> daySummaries = new List<DaySummary>(
             _mainWindowViewModel.FillDataGridViewOverview(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), _selected));
 
             MonthOverviewView monthOverview = new MonthOverviewView(daySummaries);
-            monthOverview.ShowDialog();
+            monthOverview.ShowDialog();           
         }
 
         private void buttonExit_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
+            MarkedButton(buttonExit);
+            DialogResult = DialogResult.OK;           
         }
 
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
         {
+            MarkedButton(btnUpdateEmployee);
             NewEmployeeView newEmployee = new NewEmployeeView(_mainWindowViewModel.Person, _mainWindowViewModel.Employee, _logic);
             newEmployee.ShowDialog();
             if (newEmployee.DialogResult == DialogResult.OK)
             {
                 CheckPermission();
-            }
+            }           
         }
 
         private void btnDetails_Click(object sender, EventArgs e)
         {
+            MarkedButton(btnDetails);
             //checks if something is selected
             if (dGVOverview.SelectedRows.Count > 0)
             {
@@ -138,17 +144,18 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
                     _loggedEmployeeID, selectedDate, _mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), _logic);
                 dailyDetails.ShowDialog();
                 FillDataGridView();
-            }
+            }            
         }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
+            MarkedButton(btnReset);
             DialogResult dialogResult = MessageBox.Show($"You are going to Reset Password for {_mainWindowViewModel.Person.FirstName} " +
                 $"{_mainWindowViewModel.Person.LastName} ", "Password Reset", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 _mainWindowViewModel.ResetPassword();
-            }
+            }           
         }
 
         private void FrmMainWindow_Load(object sender, EventArgs e)
@@ -171,7 +178,7 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
             {
                 dGVOverview.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightSkyBlue;
             }
-            else if (dGVOverview.Rows[e.RowIndex].Cells["WorkArrivalTime"].Value != null && 
+            else if (dGVOverview.Rows[e.RowIndex].Cells["WorkArrivalTime"].Value != null &&
                 dGVOverview.Rows[e.RowIndex].Cells["WorkLeavingTime"].Value == null)
             {
 
@@ -202,8 +209,9 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
 
         private void btnChangePassword_Click(object sender, EventArgs e)
         {
+            MarkedButton(btnChangePassword);
             PasswordChangeView passwordChange = new PasswordChangeView(_loggedEmployeeID, _logic);
-            passwordChange.ShowDialog();
+            passwordChange.ShowDialog();            
         }
 
         private void comboBoxMonth_SelectionChangeCommitted(object sender, EventArgs e)
@@ -229,5 +237,96 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
         {
 
         }
+
+        #region Change buttons color
+        private void ChangeImage(Button button, Image image)
+        {
+            button.Image = image;
+        }
+        private void MarkedButton(Button button)
+        {
+            panel1.Top = button.Top;
+        }
+
+        private void buttonExit_MouseEnter(object sender, EventArgs e)
+        {
+            ChangeImage(buttonExit, Resources.logout1Red);
+        }
+
+        private void buttonExit_MouseLeave(object sender, EventArgs e)
+        {
+            ChangeImage(buttonExit, Resources.logout1);
+        }
+
+        private void btnChangePassword_MouseEnter(object sender, EventArgs e)
+        {
+            ChangeImage(btnChangePassword, Resources.change1Red);
+        }
+
+        private void btnChangePassword_MouseLeave(object sender, EventArgs e)
+        {
+            ChangeImage(btnChangePassword, Resources.change1);
+        }
+
+        private void btnDetails_MouseEnter(object sender, EventArgs e)
+        {
+            ChangeImage(btnDetails, Resources.detailsRed);
+        }
+
+        private void btnDetails_MouseLeave(object sender, EventArgs e)
+        {
+            ChangeImage(btnDetails, Resources.details);
+        }
+
+        private void btnShowMonth_MouseEnter(object sender, EventArgs e)
+        {
+            ChangeImage(btnShowMonth, Resources.overviewRed);
+        }
+
+        private void btnShowMonth_MouseLeave(object sender, EventArgs e)
+        {
+            ChangeImage(btnShowMonth, Resources.overview);
+        }
+
+        private void btnUpdateEmployee_MouseEnter(object sender, EventArgs e)
+        {
+            ChangeImage(btnUpdateEmployee, Resources.updateRed);
+        }
+
+        private void btnUpdateEmployee_MouseLeave(object sender, EventArgs e)
+        {
+            ChangeImage(btnUpdateEmployee, Resources.update);
+        }
+
+        private void btnNewEmployee_MouseEnter(object sender, EventArgs e)
+        {
+            ChangeImage(btnNewEmployee, Resources.newRed);
+        }
+
+        private void btnNewEmployee_MouseLeave(object sender, EventArgs e)
+        {
+            ChangeImage(btnNewEmployee, Resources._new);
+        }
+
+        private void btnDeleteEmployee_MouseEnter(object sender, EventArgs e)
+        {
+            ChangeImage(btnDeleteEmployee, Resources.deleteRed);
+        }
+
+        private void btnDeleteEmployee_MouseLeave(object sender, EventArgs e)
+        {
+            ChangeImage(btnDeleteEmployee, Resources.deleteEmp);
+        }
+
+        private void btnReset_MouseEnter(object sender, EventArgs e)
+        {
+            ChangeImage(btnReset, Resources.resetRed);
+        }
+
+        private void btnReset_MouseLeave(object sender, EventArgs e)
+        {
+            ChangeImage(btnReset, Resources.reset);
+        }
+        #endregion
     }
 }
