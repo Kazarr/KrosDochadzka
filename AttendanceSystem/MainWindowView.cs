@@ -86,7 +86,7 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
                 comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox();
                 MessageBox.Show("Delete Succesfull");
             }
-            else
+            else if (dialogResult ==DialogResult.Yes)
             {
                 MessageBox.Show("You cant delete yourself. Ask your supervisor or admin to do so.", "Delete Employee",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -179,12 +179,6 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
             {
                 dGVOverview.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightSkyBlue;
             }
-            //else if (dGVOverview.Rows[e.RowIndex].Cells["WorkArrivalTime"].Value != null &&
-            //    dGVOverview.Rows[e.RowIndex].Cells["WorkLeavingTime"].Value == null)
-            //{
-
-            //    dGVOverview.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.DarkRed;
-            //}
 
             else if (dGVOverview.Rows[e.RowIndex].Cells[10].Value == null)
             {

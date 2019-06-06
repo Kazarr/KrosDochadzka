@@ -55,7 +55,7 @@ namespace AttendanceSystem
 
         public string GetTotalHours()
         {
-            return _totalHours.ToString(@"hh\:mm\:ss");
+            return $"{(Int32)_totalHours.TotalHours}:{_totalHours.ToString(@"mm\:ss")}";
         }
 
         public string GetOverTime()
@@ -65,22 +65,22 @@ namespace AttendanceSystem
 
         public string GetHolidayTime()
         {
-            return _holidayTime.ToString(@"hh\:mm\:ss");
+            return $"{(Int32)_holidayTime.TotalHours}:{_holidayTime.ToString(@"mm\:ss")}";
         }
 
         public string GetSickTime()
         {
-            return _sickTime.ToString(@"hh\:mm\:ss");
+            return $"{(Int32)_sickTime.TotalHours}:{_sickTime.ToString(@"mm\:ss")}";
         }
 
         public string GetBSTripTime()
         {
-            return _bsTripTime.ToString(@"hh\:mm\:ss");
+            return $"{(Int32)_bsTripTime.TotalHours}:{_bsTripTime.ToString(@"mm\:ss")}";
         }
 
         public string GetHomeOfficeTime()
         {
-            return _homeOfficeTime.ToString(@"hh\:mm\:ss");
+            return $"{(Int32)_homeOfficeTime.TotalHours}:{_homeOfficeTime.ToString(@"mm\:ss")}";
         }
     }
 }
