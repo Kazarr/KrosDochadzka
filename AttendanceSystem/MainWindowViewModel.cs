@@ -1,4 +1,5 @@
-﻿using Data.Model;
+﻿using Data.Generator;
+using Data.Model;
 using Logic;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,13 +9,16 @@ namespace AttendanceSystem
 {
     public class MainWindowViewModel
     {
+        public int EmployeeToGenerate { get; set; }
         private LogicSystem _logic;
         private Employee _employee;
         private Person _person;
+        //public EmployeeGenerator EmployeeGenerator { get => new EmployeeGenerator(EmployeeToGenerate); private set; }
 
         public MainWindowViewModel(LogicSystem logic)
         {
             _logic = logic;
+
             //default person if none is selected
             //Person = _logic.GetPersonByIdEmployee(1);
         }

@@ -41,12 +41,16 @@ namespace Data.Generator
             }
         }
 
-        public void GiveRecordsToEmployee()
+        public bool GiveRecordsToEmployee(Action<int> reportProgress, Func<bool> cancelationPendint, List<int> generatedEmployeesId)
         {
-            foreach (var employee in _employeeRepository.GetEmpolyees())
+            List<Employee> employees = _employeeRepository.GetEmployeesByIdGreaterThan(generatedEmployeesId[0]);
+            for(int i= 0; i < employees.Count && !cancelationPendint.Invoke(); i++)
             {
-                LoopThruoughtTime(employee.HiredDate, DateTime.Now.AddDays(-1), employee.Id);
+                LoopThruoughtTime(employees[i].HiredDate, DateTime.Now.AddDays(-1), employees[i].Id);
+                reportProgress.Invoke((int)(((double)i / employees.Count) * 100));
+                if(i == employees.Count - 1) { return true; }
             }
+            return false;
         }
 
     }

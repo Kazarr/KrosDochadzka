@@ -286,7 +286,7 @@ namespace Logic
         {
             employee.IdSupervisor = InsertFullEmployee(employee);
             employee.Id = employee.IdSupervisor.Value;
-            _employeeRepository.UpdateSupervisor(employee);
+            _employeeRepository.UpdateSupervisor(employee.Id);
         }
         else
         {
