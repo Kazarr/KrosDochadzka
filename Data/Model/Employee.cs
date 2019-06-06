@@ -8,7 +8,7 @@ namespace Data.Model
         public string Password { get; set; }
         public int IdPerson { get; set; }
         public int? IdSupervisor { get; set; }
-        public int Permision { get; set; }
+        public int IdPermission { get; set; }
         public decimal Salary { get; set; }
         public DateTime HiredDate { get; set; }
     }

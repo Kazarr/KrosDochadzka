@@ -170,6 +170,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dGVOverview.AutoGenerateColumns = false;
             this.dGVOverview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dGVOverview.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dGVOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGVOverview.DataSource = this.bindingSource1;
             this.dGVOverview.Location = new System.Drawing.Point(233, 189);

@@ -17,11 +17,12 @@ namespace Data.Repository
                 {
                     while (reader.Read())
                     {
-                        int personId = reader.GetInt32(reader.GetOrdinal("Id"));
-                        string firstName = reader.GetString(1);
-                        string lastName = reader.GetString(2);
-                        string phoneNumber = reader.GetString(3);
-                        string adress = reader.GetString(4);
+                        int personId = reader.GetInt32(reader.GetOrdinal("ID"));
+                        string firstName = reader.GetString(reader.GetOrdinal("FirstName"));
+                        string lastName = reader.GetString(reader.GetOrdinal("LastName"));
+                        string phoneNumber = reader.GetString(reader.GetOrdinal("PhoneNumber"));
+                        string adress = reader.IsDBNull(reader.GetOrdinal("Adress")) ? "" :
+                        reader.GetString(reader.GetOrdinal("Adress"));
 
                         ret.Add(new Person() { Id = personId, FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress });
                     }
@@ -69,13 +70,15 @@ namespace Data.Repository
                 {
                     if (reader.Read())
                     {
-                        int personId = reader.GetInt32(0);
-                        string firstName = reader.GetString(1);
-                        string lastName = reader.GetString(2);
-                        string phoneNumber = reader.GetString(3);
-                        string adress = reader.IsDBNull(4) ? "" : reader.GetString(4);
+                        int personId = reader.GetInt32(reader.GetOrdinal("ID"));
+                        string firstName = reader.GetString(reader.GetOrdinal("FirstName"));
+                        string lastName = reader.GetString(reader.GetOrdinal("LastName"));
+                        string phoneNumber = reader.GetString(reader.GetOrdinal("PhoneNumber"));
+                        string adress = reader.IsDBNull(reader.GetOrdinal("Adress")) ? "" : 
+                        reader.GetString(reader.GetOrdinal("Adress"));
 
-                        ret = new Person() { Id = personId, FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress };
+                        ret = new Person() { Id = personId, FirstName = firstName, LastName = lastName,
+                            PhoneNumber = phoneNumber, Adress = adress };
                     }
                 }
             });

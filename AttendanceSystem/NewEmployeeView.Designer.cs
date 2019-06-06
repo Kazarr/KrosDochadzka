@@ -98,6 +98,8 @@
             this.cmbPermissions.Name = "cmbPermissions";
             this.cmbPermissions.Size = new System.Drawing.Size(310, 36);
             this.cmbPermissions.TabIndex = 4;
+            this.cmbPermissions.SelectionChangeCommitted += new System.EventHandler(this.cmbPermissions_SelectionChangeCommitted);
+            this.cmbPermissions.SelectedValueChanged += new System.EventHandler(this.cmbPermissions_SelectedValueChanged);
             // 
             // textBoxPassword
             // 

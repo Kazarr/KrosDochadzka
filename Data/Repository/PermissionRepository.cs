@@ -16,8 +16,7 @@ namespace Data.Repository
                 {
                     while (reader.Read())
                     {
-                        string name = reader.GetString(0);
-
+                        string name = reader.GetString(reader.GetOrdinal("Name"));
                         ret.Add(name);
                     }
                 }
@@ -28,7 +27,7 @@ namespace Data.Repository
 
         public string SelectPermissionNameById(int id)
         {
-            string ret = null;
+            string ret = "";
             Execute((command) => 
             {
                 command.CommandText = @"Select Name from Permission WHERE Id = @id";
