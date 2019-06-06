@@ -44,6 +44,7 @@ namespace AttendanceSystem
             if (permssion == (int)EnumPermissions.Supervisor)
             {
                 btnReset.Visible = true;
+                btnUpdateEmployee.Visible = true;
                 comboBoxPerson.DataSource = _mainWindowViewModel.FillPlebPerson(_loggedEmployeeID);
                 comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox(_loggedEmployeeID);
             }
