@@ -102,23 +102,21 @@ namespace Data.Repository
             return ret;
         }
 
-        public bool InsertOnlyPerson(Person person)
+        public int InsertOnlyPerson(Person person)
         {
-            bool success = false;
+            int Id = -1;
             Execute((command) => 
             {
                 command.CommandText = @"INSERT INTO Person (FirstName, LastName, PhoneNumber, Adress)
+                                                OUTPUT INSERTED.ID
                                                 VALUES (@FirstName, @Lastname, @PhoneNumber, @Adress)";
                 command.Parameters.Add("@Firstname", SqlDbType.VarChar).Value = person.FirstName;
                 command.Parameters.Add("@Lastname", SqlDbType.VarChar).Value = person.LastName;
                 command.Parameters.Add("@PhoneNumber", SqlDbType.VarChar).Value = person.PhoneNumber;
                 command.Parameters.Add("@Adress", SqlDbType.VarChar).Value = person.Adress;
-                if (command.ExecuteNonQuery() > 1)
-                {
-                    success = true;
-                }
+                Id = (int)command.ExecuteScalar();
             });
-            return success;
+            return Id;
         }
 
         public IEnumerable<Person> GetPersonsEmployees()
