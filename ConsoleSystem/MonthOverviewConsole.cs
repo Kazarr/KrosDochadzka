@@ -34,7 +34,7 @@ namespace ConsoleSystem
 
         private string GetDateFormat()
         {
-            return $"{CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(DateTime.Now.Month)} " +
+            return $"{DateTime.Now.ToString("MMMM",CultureInfo.InvariantCulture)} " +
                 $"{DateTime.Now.Year.ToString()}";
         }
 
