@@ -114,9 +114,9 @@ namespace Logic
             Data.Properties.Settings.Default.Save();
         }
 
-        public void DeleteEmployee(Employee e)
+        public void DeleteEmployee(Employee e,int supervisorID)
         {
-            _employeeRepository.DeleteEmployee(e);
+            _employeeRepository.DeleteEmployee(e,supervisorID);
         }
 
 
@@ -264,13 +264,8 @@ namespace Logic
         return _employeeRepository.ChangePassword(employeeID, CalculateMD5Hash(password));
     }
 
-    public void UpdateEmployee(Person person, int permission, Person supervisor)
+    public void UpdateEmployee(Person person, Employee employee, Person supervisor)
     {
-        Employee employee = new Employee
-        {
-            Permision = permission
-        };
-
         if (supervisor == null)
         {
             employee.IdSupervisor = employee.Id;
@@ -280,15 +275,13 @@ namespace Logic
             employee.IdSupervisor = _employeeRepository.GetEmpolyeeByIdPerson(supervisor.Id).Id;
         }
         _employeeRepository.UpdateEmployee(employee, person);
-
-
     }
 
     public void AddNewEmployee(string firstName, string lastName, string phoneNumber, string adress, int permission, Person supervisor, string password)
     {
         Person person = new Person() { FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = adress };
         person.Id = _personRepository.InsertPerson(person);
-        Employee employee = new Employee() { Password = password, IdPerson = person.Id, Permision = permission };
+        Employee employee = new Employee() { Password = password, IdPerson = person.Id, IdPermission = permission, HiredDate=DateTime.Now };
         if (supervisor == null)
         {
             employee.IdSupervisor = InsertFullEmployee(employee);

@@ -1,7 +1,6 @@
 ﻿using Data.Model;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 
@@ -25,8 +24,8 @@ namespace Data.Repository
                         {
                             while (reader.Read())
                             {
-                                int workTypeId = reader.GetInt32(0);
-                                string name = reader.GetString(1);                               
+                                int workTypeId = reader.GetInt32(reader.GetOrdinal("Id"));
+                                string name = reader.GetString(reader.GetOrdinal("Name"));                               
 
                                 ret.Add(new WorkType() { Id = workTypeId, Name = name });
                             }
