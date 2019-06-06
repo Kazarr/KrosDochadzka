@@ -179,12 +179,12 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
             {
                 dGVOverview.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightSkyBlue;
             }
-            else if (dGVOverview.Rows[e.RowIndex].Cells["WorkArrivalTime"].Value != null &&
-                dGVOverview.Rows[e.RowIndex].Cells["WorkLeavingTime"].Value == null)
-            {
+            //else if (dGVOverview.Rows[e.RowIndex].Cells["WorkArrivalTime"].Value != null &&
+            //    dGVOverview.Rows[e.RowIndex].Cells["WorkLeavingTime"].Value == null)
+            //{
 
-                dGVOverview.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.DarkRed;
-            }
+            //    dGVOverview.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.DarkRed;
+            //}
 
             else if (dGVOverview.Rows[e.RowIndex].Cells[10].Value == null)
             {

@@ -207,6 +207,7 @@
             this.MaximumSize = new System.Drawing.Size(586, 621);
             this.MinimumSize = new System.Drawing.Size(586, 621);
             this.Name = "FrmDailyDetails";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Daily activities";
             ((System.ComponentModel.ISupportInitialize)(this.dGVDailyResultsOverview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();

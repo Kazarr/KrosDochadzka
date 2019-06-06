@@ -50,6 +50,10 @@
             this.btnChangePassword = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dGVOverview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -118,7 +122,7 @@
             this.labelChoosePerson.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.labelChoosePerson.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.labelChoosePerson.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelChoosePerson.Location = new System.Drawing.Point(813, 92);
+            this.labelChoosePerson.Location = new System.Drawing.Point(230, 113);
             this.labelChoosePerson.Name = "labelChoosePerson";
             this.labelChoosePerson.Size = new System.Drawing.Size(129, 20);
             this.labelChoosePerson.TabIndex = 14;
@@ -130,7 +134,7 @@
             this.comboBoxPerson.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.comboBoxPerson.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.comboBoxPerson.FormattingEnabled = true;
-            this.comboBoxPerson.Location = new System.Drawing.Point(948, 92);
+            this.comboBoxPerson.Location = new System.Drawing.Point(365, 113);
             this.comboBoxPerson.Name = "comboBoxPerson";
             this.comboBoxPerson.Size = new System.Drawing.Size(263, 25);
             this.comboBoxPerson.TabIndex = 13;
@@ -143,7 +147,7 @@
             this.labelMonth.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.labelMonth.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.labelMonth.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelMonth.Location = new System.Drawing.Point(525, 93);
+            this.labelMonth.Location = new System.Drawing.Point(1011, 112);
             this.labelMonth.Name = "labelMonth";
             this.labelMonth.Size = new System.Drawing.Size(117, 20);
             this.labelMonth.TabIndex = 12;
@@ -155,7 +159,7 @@
             this.comboBoxMonth.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.comboBoxMonth.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.comboBoxMonth.FormattingEnabled = true;
-            this.comboBoxMonth.Location = new System.Drawing.Point(648, 92);
+            this.comboBoxMonth.Location = new System.Drawing.Point(1134, 111);
             this.comboBoxMonth.Name = "comboBoxMonth";
             this.comboBoxMonth.Size = new System.Drawing.Size(135, 25);
             this.comboBoxMonth.TabIndex = 11;
@@ -237,7 +241,7 @@
             this.comboBoxYear.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.comboBoxYear.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.comboBoxYear.FormattingEnabled = true;
-            this.comboBoxYear.Location = new System.Drawing.Point(349, 94);
+            this.comboBoxYear.Location = new System.Drawing.Point(835, 113);
             this.comboBoxYear.Name = "comboBoxYear";
             this.comboBoxYear.Size = new System.Drawing.Size(152, 25);
             this.comboBoxYear.TabIndex = 26;
@@ -250,7 +254,7 @@
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(230, 95);
+            this.label1.Location = new System.Drawing.Point(716, 114);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(113, 20);
             this.label1.TabIndex = 27;
@@ -271,7 +275,7 @@
             // 
             this.lblEmpId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEmpId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblEmpId.Location = new System.Drawing.Point(1223, 93);
+            this.lblEmpId.Location = new System.Drawing.Point(640, 114);
             this.lblEmpId.Name = "lblEmpId";
             this.lblEmpId.Size = new System.Drawing.Size(58, 21);
             this.lblEmpId.TabIndex = 30;
@@ -311,12 +315,64 @@
             this.panel1.Size = new System.Drawing.Size(10, 110);
             this.panel1.TabIndex = 32;
             // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label2.BackColor = System.Drawing.Color.MediumPurple;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(1044, 66);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 18);
+            this.label2.TabIndex = 33;
+            this.label2.Text = "Overtime";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label3.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(968, 66);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(70, 18);
+            this.label3.TabIndex = 34;
+            this.label3.Text = "Weekend";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label4.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(1196, 66);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(70, 18);
+            this.label4.TabIndex = 35;
+            this.label4.Text = "Correct";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label5.BackColor = System.Drawing.Color.LightPink;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.Location = new System.Drawing.Point(1120, 66);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(70, 18);
+            this.label5.TabIndex = 36;
+            this.label5.Text = "Under time";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1293, 1000);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblEmpId);
@@ -380,6 +436,10 @@
         private System.Windows.Forms.Label lblEmpId;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }
 
