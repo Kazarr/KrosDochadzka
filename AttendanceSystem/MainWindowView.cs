@@ -342,6 +342,7 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
                 progressBar1.Visible = true;
                 lblGenerating.Visible = true;
                 btnCancel.Visible = true;
+                buttonExit.Enabled = false;
                 backgroundWorker1.RunWorkerAsync();
             }
             generate.Dispose();
@@ -376,6 +377,7 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
                 progressBar1.Visible = false;
                 btnCancel.Visible = false;
             }
+            buttonExit.Enabled = true;
             CheckPermission();
         }
 
