@@ -329,12 +329,14 @@
             // 
             // lblGenerating
             // 
-            this.lblGenerating.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblGenerating.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblGenerating.AutoSize = true;
             this.lblGenerating.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblGenerating.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.lblGenerating.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblGenerating.Location = new System.Drawing.Point(230, 9);
+            this.lblGenerating.Location = new System.Drawing.Point(230, 18);
             this.lblGenerating.Name = "lblGenerating";
             this.lblGenerating.Size = new System.Drawing.Size(132, 20);
             this.lblGenerating.TabIndex = 34;
