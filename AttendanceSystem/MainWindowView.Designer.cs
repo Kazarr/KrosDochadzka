@@ -120,12 +120,11 @@
             // 
             // labelChoosePerson
             // 
-            this.labelChoosePerson.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelChoosePerson.AutoSize = true;
             this.labelChoosePerson.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.labelChoosePerson.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.labelChoosePerson.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelChoosePerson.Location = new System.Drawing.Point(813, 92);
+            this.labelChoosePerson.Location = new System.Drawing.Point(233, 101);
             this.labelChoosePerson.Name = "labelChoosePerson";
             this.labelChoosePerson.Size = new System.Drawing.Size(129, 20);
             this.labelChoosePerson.TabIndex = 14;
@@ -133,11 +132,10 @@
             // 
             // comboBoxPerson
             // 
-            this.comboBoxPerson.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxPerson.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.comboBoxPerson.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.comboBoxPerson.FormattingEnabled = true;
-            this.comboBoxPerson.Location = new System.Drawing.Point(948, 92);
+            this.comboBoxPerson.Location = new System.Drawing.Point(368, 96);
             this.comboBoxPerson.Name = "comboBoxPerson";
             this.comboBoxPerson.Size = new System.Drawing.Size(263, 25);
             this.comboBoxPerson.TabIndex = 13;
@@ -145,12 +143,11 @@
             // 
             // labelMonth
             // 
-            this.labelMonth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelMonth.AutoSize = true;
             this.labelMonth.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.labelMonth.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.labelMonth.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelMonth.Location = new System.Drawing.Point(525, 93);
+            this.labelMonth.Location = new System.Drawing.Point(245, 163);
             this.labelMonth.Name = "labelMonth";
             this.labelMonth.Size = new System.Drawing.Size(117, 20);
             this.labelMonth.TabIndex = 12;
@@ -158,11 +155,10 @@
             // 
             // comboBoxMonth
             // 
-            this.comboBoxMonth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxMonth.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.comboBoxMonth.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.comboBoxMonth.FormattingEnabled = true;
-            this.comboBoxMonth.Location = new System.Drawing.Point(648, 92);
+            this.comboBoxMonth.Location = new System.Drawing.Point(368, 158);
             this.comboBoxMonth.Name = "comboBoxMonth";
             this.comboBoxMonth.Size = new System.Drawing.Size(135, 25);
             this.comboBoxMonth.TabIndex = 11;
@@ -240,11 +236,10 @@
             // 
             // comboBoxYear
             // 
-            this.comboBoxYear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxYear.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.comboBoxYear.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.comboBoxYear.FormattingEnabled = true;
-            this.comboBoxYear.Location = new System.Drawing.Point(349, 94);
+            this.comboBoxYear.Location = new System.Drawing.Point(368, 127);
             this.comboBoxYear.Name = "comboBoxYear";
             this.comboBoxYear.Size = new System.Drawing.Size(152, 25);
             this.comboBoxYear.TabIndex = 26;
@@ -252,12 +247,11 @@
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(230, 95);
+            this.label1.Location = new System.Drawing.Point(249, 132);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(113, 20);
             this.label1.TabIndex = 27;
