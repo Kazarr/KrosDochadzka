@@ -75,5 +75,10 @@ namespace AttendanceSystem
         {
             Close();
         }
+
+        private void textBoxLogin_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
     }
 }

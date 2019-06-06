@@ -48,6 +48,7 @@
             this.textAdress.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textAdress.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textAdress.Location = new System.Drawing.Point(198, 254);
+            this.textAdress.MaxLength = 100;
             this.textAdress.Name = "textAdress";
             this.textAdress.Size = new System.Drawing.Size(310, 30);
             this.textAdress.TabIndex = 6;
@@ -57,6 +58,7 @@
             this.textBoxPhoneNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxPhoneNumber.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBoxPhoneNumber.Location = new System.Drawing.Point(198, 109);
+            this.textBoxPhoneNumber.MaxLength = 15;
             this.textBoxPhoneNumber.Name = "textBoxPhoneNumber";
             this.textBoxPhoneNumber.Size = new System.Drawing.Size(310, 30);
             this.textBoxPhoneNumber.TabIndex = 2;
@@ -66,6 +68,7 @@
             this.textBoxLastName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxLastName.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBoxLastName.Location = new System.Drawing.Point(198, 62);
+            this.textBoxLastName.MaxLength = 25;
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(310, 30);
             this.textBoxLastName.TabIndex = 1;
@@ -75,6 +78,7 @@
             this.textBoxFirstName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxFirstName.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBoxFirstName.Location = new System.Drawing.Point(198, 14);
+            this.textBoxFirstName.MaxLength = 25;
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(310, 30);
             this.textBoxFirstName.TabIndex = 0;
@@ -106,6 +110,7 @@
             this.textBoxPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxPassword.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.textBoxPassword.Location = new System.Drawing.Point(198, 303);
+            this.textBoxPassword.MaxLength = 25;
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.PasswordChar = '*';
             this.textBoxPassword.Size = new System.Drawing.Size(310, 30);

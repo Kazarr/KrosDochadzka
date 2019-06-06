@@ -62,9 +62,8 @@ namespace AttendanceTermianal
             }
             else
             {
-                int employeeId = Convert.ToInt32(txtEmpIdNum.Text);
-
-                if (_logic.IsCorrectEmp(employeeId))
+                bool success = Int32.TryParse(txtEmpIdNum.Text, out int employeeId);
+                if (success && _logic.IsCorrectEmp(employeeId))
                 {
                     _logic.ProcessAction(employeeId, type);
                     Describe(employeeId, type);
