@@ -128,7 +128,7 @@
             this.labelChoosePerson.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.labelChoosePerson.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.labelChoosePerson.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelChoosePerson.Location = new System.Drawing.Point(233, 101);
+            this.labelChoosePerson.Location = new System.Drawing.Point(233, 268);
             this.labelChoosePerson.Name = "labelChoosePerson";
             this.labelChoosePerson.Size = new System.Drawing.Size(129, 20);
             this.labelChoosePerson.TabIndex = 14;
@@ -139,7 +139,7 @@
             this.comboBoxPerson.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.comboBoxPerson.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.comboBoxPerson.FormattingEnabled = true;
-            this.comboBoxPerson.Location = new System.Drawing.Point(368, 96);
+            this.comboBoxPerson.Location = new System.Drawing.Point(371, 268);
             this.comboBoxPerson.Name = "comboBoxPerson";
             this.comboBoxPerson.Size = new System.Drawing.Size(263, 25);
             this.comboBoxPerson.TabIndex = 13;
@@ -151,7 +151,7 @@
             this.labelMonth.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.labelMonth.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.labelMonth.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelMonth.Location = new System.Drawing.Point(245, 163);
+            this.labelMonth.Location = new System.Drawing.Point(233, 330);
             this.labelMonth.Name = "labelMonth";
             this.labelMonth.Size = new System.Drawing.Size(117, 20);
             this.labelMonth.TabIndex = 12;
@@ -162,7 +162,7 @@
             this.comboBoxMonth.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.comboBoxMonth.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.comboBoxMonth.FormattingEnabled = true;
-            this.comboBoxMonth.Location = new System.Drawing.Point(368, 158);
+            this.comboBoxMonth.Location = new System.Drawing.Point(371, 329);
             this.comboBoxMonth.Name = "comboBoxMonth";
             this.comboBoxMonth.Size = new System.Drawing.Size(135, 25);
             this.comboBoxMonth.TabIndex = 11;
@@ -180,13 +180,13 @@
             this.dGVOverview.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dGVOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGVOverview.DataSource = this.bindingSource1;
-            this.dGVOverview.Location = new System.Drawing.Point(233, 189);
+            this.dGVOverview.Location = new System.Drawing.Point(233, 359);
             this.dGVOverview.MultiSelect = false;
             this.dGVOverview.Name = "dGVOverview";
             this.dGVOverview.ReadOnly = true;
             this.dGVOverview.RowHeadersVisible = false;
             this.dGVOverview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dGVOverview.Size = new System.Drawing.Size(1039, 804);
+            this.dGVOverview.Size = new System.Drawing.Size(1039, 634);
             this.dGVOverview.TabIndex = 21;
             this.dGVOverview.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dGVOverview_RowPrePaint);
             // 
@@ -243,7 +243,7 @@
             this.comboBoxYear.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.comboBoxYear.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.comboBoxYear.FormattingEnabled = true;
-            this.comboBoxYear.Location = new System.Drawing.Point(368, 127);
+            this.comboBoxYear.Location = new System.Drawing.Point(371, 298);
             this.comboBoxYear.Name = "comboBoxYear";
             this.comboBoxYear.Size = new System.Drawing.Size(152, 25);
             this.comboBoxYear.TabIndex = 26;
@@ -255,7 +255,7 @@
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(249, 132);
+            this.label1.Location = new System.Drawing.Point(233, 299);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(113, 20);
             this.label1.TabIndex = 27;
@@ -274,9 +274,8 @@
             // 
             // lblEmpId
             // 
-            this.lblEmpId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEmpId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblEmpId.Location = new System.Drawing.Point(640, 114);
+            this.lblEmpId.Location = new System.Drawing.Point(640, 268);
             this.lblEmpId.Name = "lblEmpId";
             this.lblEmpId.Size = new System.Drawing.Size(58, 21);
             this.lblEmpId.TabIndex = 30;
@@ -323,7 +322,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label2.BackColor = System.Drawing.Color.MediumPurple;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(1044, 66);
+            this.label2.Location = new System.Drawing.Point(1050, 333);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 18);
             this.label2.TabIndex = 33;
@@ -335,7 +334,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label3.BackColor = System.Drawing.Color.LightSkyBlue;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.Location = new System.Drawing.Point(968, 66);
+            this.label3.Location = new System.Drawing.Point(974, 333);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(70, 18);
             this.label3.TabIndex = 34;
@@ -347,7 +346,7 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label4.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(1196, 66);
+            this.label4.Location = new System.Drawing.Point(1202, 333);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(70, 18);
             this.label4.TabIndex = 35;
@@ -359,7 +358,7 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label5.BackColor = System.Drawing.Color.LightPink;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label5.Location = new System.Drawing.Point(1120, 66);
+            this.label5.Location = new System.Drawing.Point(1126, 333);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(70, 18);
             this.label5.TabIndex = 36;

@@ -70,8 +70,9 @@ namespace Data.Generator
         public bool GenerateEmployees(Action<int> reportProgress, Func<bool> cancelationPendint)
         {
             bool finished = false;
+            int count = 0; 
             GeneratedSupervisorsId.Add(1);
-            for(int i = _personGenerator.generatedPersonsId[0]; i <= _personGenerator.generatedPersonsId.Last() && !cancelationPendint.Invoke(); i++)
+            for(int i = _personGenerator.generatedPersonsId[0]; i <= _personGenerator.generatedPersonsId.Last() && !cancelationPendint.Invoke(); i++ ,count++)
             {
                 if (r.Next(1, 101) >= 20)
                 {
@@ -83,7 +84,7 @@ namespace Data.Generator
                     GeneratedEmployeesId.Add(_repositoryFactory.GetEmployeeRepository().InsertFullEmployee(SetSupervisor(i)));
                     GeneratedSupervisorsId.Add(GeneratedEmployeesId.Last());
                 }
-                    reportProgress.Invoke((i / _personGenerator.generatedPersonsId.Last()) * 100);
+                reportProgress.Invoke(((int)(((double)count / _personGenerator.generatedPersonsId.Count) * 100)));
             }
             if(GeneratedEmployeesId.Count == _personGenerator.generatedPersonsId.Count) { finished = true; }
             return finished;

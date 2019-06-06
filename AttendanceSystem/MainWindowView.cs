@@ -253,6 +253,7 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
         private void buttonExit_MouseEnter(object sender, EventArgs e)
         {
             ChangeImage(buttonExit, Resources.logout1Red);
+            MarkedButton(buttonExit);
         }
 
         private void buttonExit_MouseLeave(object sender, EventArgs e)
@@ -263,6 +264,7 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
         private void btnChangePassword_MouseEnter(object sender, EventArgs e)
         {
             ChangeImage(btnChangePassword, Resources.change1Red);
+            MarkedButton(btnChangePassword);
         }
 
         private void btnChangePassword_MouseLeave(object sender, EventArgs e)
@@ -273,6 +275,7 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
         private void btnDetails_MouseEnter(object sender, EventArgs e)
         {
             ChangeImage(btnDetails, Resources.detailsRed);
+            MarkedButton(btnDetails);
         }
 
         private void btnDetails_MouseLeave(object sender, EventArgs e)
@@ -283,6 +286,7 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
         private void btnShowMonth_MouseEnter(object sender, EventArgs e)
         {
             ChangeImage(btnShowMonth, Resources.overviewRed);
+            MarkedButton(btnShowMonth);
         }
 
         private void btnShowMonth_MouseLeave(object sender, EventArgs e)
@@ -293,6 +297,7 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
         private void btnUpdateEmployee_MouseEnter(object sender, EventArgs e)
         {
             ChangeImage(btnUpdateEmployee, Resources.updateRed);
+            MarkedButton(btnUpdateEmployee);
         }
 
         private void btnUpdateEmployee_MouseLeave(object sender, EventArgs e)
@@ -303,6 +308,7 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
         private void btnNewEmployee_MouseEnter(object sender, EventArgs e)
         {
             ChangeImage(btnNewEmployee, Resources.newRed);
+            MarkedButton(btnNewEmployee);
         }
 
         private void btnNewEmployee_MouseLeave(object sender, EventArgs e)
@@ -313,6 +319,7 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
         private void btnDeleteEmployee_MouseEnter(object sender, EventArgs e)
         {
             ChangeImage(btnDeleteEmployee, Resources.deleteRed);
+            MarkedButton(btnDeleteEmployee);
         }
 
         private void btnDeleteEmployee_MouseLeave(object sender, EventArgs e)
@@ -323,6 +330,7 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
         private void btnReset_MouseEnter(object sender, EventArgs e)
         {
             ChangeImage(btnReset, Resources.resetRed);
+            MarkedButton(btnReset);
         }
 
         private void btnReset_MouseLeave(object sender, EventArgs e)
