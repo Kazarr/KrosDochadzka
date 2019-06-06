@@ -132,6 +132,7 @@
             this.MaximumSize = new System.Drawing.Size(544, 309);
             this.MinimumSize = new System.Drawing.Size(544, 309);
             this.Name = "DailyDetailsAddEditView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit activity";
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
