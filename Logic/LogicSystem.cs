@@ -159,7 +159,7 @@ namespace Logic
         {
             string month = monthAndYear.Split(' ')[0];
             int year = Convert.ToInt32(monthAndYear.Split(' ')[1]);
-            int numberOfMonth = DateTime.ParseExact(month, "MMMM", CultureInfo.CurrentCulture).Month;
+            int numberOfMonth = DateTime.ParseExact(month, "MMMM", CultureInfo.InvariantCulture).Month;
 
             DateTime date = new DateTime(year, numberOfMonth, 1);
             List<DailyRecord> dailyRecords = _daySummaryRepository.GetTimeSpendOnDailyResults(date, idEmployee);

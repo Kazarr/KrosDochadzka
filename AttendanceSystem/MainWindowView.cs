@@ -2,6 +2,7 @@
 using Data.Model;
 using Logic;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
@@ -69,10 +70,12 @@ namespace AttendanceSystem
         private void FillDataGridView()
         {
             //get name of the month from the combobox
-            _selected = $"{comboBoxMonth.GetItemText(comboBoxMonth.SelectedItem)} {comboBoxYear.GetItemText(comboBoxYear.SelectedItem)}";
-            bindingSource1.DataSource = _mainWindowViewModel.FillDataGridViewOverview(
+            if (comboBoxMonth.SelectedIndex != comboBoxMonth.Items.Count - 1)
+            {
+                _selected = $"{comboBoxMonth.GetItemText(comboBoxMonth.SelectedItem)} {comboBoxYear.GetItemText(comboBoxYear.SelectedItem)}";
+                bindingSource1.DataSource = _mainWindowViewModel.FillDataGridViewOverview(
                 _mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), _selected);
-
+            }
         }
 
         private void btnDeleteEmployee_Click_1(object sender, EventArgs e)
@@ -82,15 +85,15 @@ namespace AttendanceSystem
 and all his records are you sure you want to continue?", "Delete Employee", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes && _mainWindowViewModel.Employee.Id != _loggedEmployeeID)
             {
-                _mainWindowViewModel.DeleteEmployeePerson((Person)comboBoxPerson.SelectedItem,_loggedEmployeeID);
+                _mainWindowViewModel.DeleteEmployeePerson((Person)comboBoxPerson.SelectedItem, _loggedEmployeeID);
                 comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox();
                 MessageBox.Show("Delete Succesfull");
             }
-            else if (dialogResult ==DialogResult.Yes)
+            else if (dialogResult == DialogResult.Yes)
             {
                 MessageBox.Show("You cant delete yourself. Ask your supervisor or admin to do so.", "Delete Employee",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }            
+            }
         }
 
         private void btnNewEmployee_Click_1(object sender, EventArgs e)
@@ -102,7 +105,7 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
             if (newEmployee.DialogResult == DialogResult.OK)
             {
                 CheckPermission();
-            }            
+            }
         }
 
         private void btnShowMonth_Click_1(object sender, EventArgs e)
@@ -112,24 +115,24 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
             _mainWindowViewModel.FillDataGridViewOverview(_mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), _selected));
 
             MonthOverviewView monthOverview = new MonthOverviewView(daySummaries);
-            monthOverview.ShowDialog();           
+            monthOverview.ShowDialog();
         }
 
         private void buttonExit_Click(object sender, EventArgs e)
         {
             MarkedButton(buttonExit);
-            DialogResult = DialogResult.OK;           
+            DialogResult = DialogResult.OK;
         }
 
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
         {
             MarkedButton(btnUpdateEmployee);
-            NewEmployeeView newEmployee = new NewEmployeeView(_mainWindowViewModel.Person, _mainWindowViewModel.Employee, _logic, (EnumPermissions) _mainWindowViewModel.GetEmployeeByID(_loggedEmployeeID).IdPermission );
+            NewEmployeeView newEmployee = new NewEmployeeView(_mainWindowViewModel.Person, _mainWindowViewModel.Employee, _logic, (EnumPermissions)_mainWindowViewModel.GetEmployeeByID(_loggedEmployeeID).IdPermission);
             newEmployee.ShowDialog();
             if (newEmployee.DialogResult == DialogResult.OK)
             {
                 CheckPermission();
-            }           
+            }
         }
 
         private void btnDetails_Click(object sender, EventArgs e)
@@ -144,7 +147,7 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
                     _loggedEmployeeID, selectedDate, _mainWindowViewModel.GetEmployeeIdByPerson((Person)comboBoxPerson.SelectedItem), _logic);
                 dailyDetails.ShowDialog();
                 FillDataGridView();
-            }            
+            }
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -155,7 +158,7 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
             if (dialogResult == DialogResult.Yes)
             {
                 _mainWindowViewModel.ResetPassword();
-            }           
+            }
         }
 
         private void FrmMainWindow_Load(object sender, EventArgs e)
@@ -206,7 +209,7 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
         {
             MarkedButton(btnChangePassword);
             PasswordChangeView passwordChange = new PasswordChangeView(_loggedEmployeeID, _logic);
-            passwordChange.ShowDialog();            
+            passwordChange.ShowDialog();
         }
 
         private void comboBoxMonth_SelectionChangeCommitted(object sender, EventArgs e)
