@@ -47,7 +47,7 @@ namespace Data.Generator
             for(int i= 0; i < employees.Count && !cancelationPendint.Invoke(); i++)
             {
                 LoopThruoughtTime(employees[i].HiredDate, DateTime.Now.AddDays(-1), employees[i].Id);
-                reportProgress.Invoke((i / employees.Count) * 100);
+                reportProgress.Invoke((int)(((double)i / employees.Count) * 100));
                 if(i == employees.Count - 1) { return true; }
             }
             return false;

@@ -34,7 +34,7 @@ namespace Data.Generator
             for (int i = 0; i < PersonCount && !cancelationPendint.Invoke(); i++)
             {
                 generatedPersonsId.Add(_personRepository.InsertOnlyPerson(FakePerson()));
-                reportProgress.Invoke((i / PersonCount) * 100);
+                reportProgress.Invoke((int)(((double)i / PersonCount) * 100));
             }
             if(generatedPersonsId.Count == PersonCount)
             {

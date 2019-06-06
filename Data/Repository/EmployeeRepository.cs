@@ -62,7 +62,7 @@ namespace Data.Repository
                         decimal salary = reader.GetDecimal(5);
                         DateTime hiredDate = reader.GetDateTime(6);
 
-                        ret.Add(new Employee() { Id = employeeId, Password = password, IdPerson = idPerson, IdSupervisor = idSupervisor, Permision = permision, Salary = salary, HiredDate = hiredDate });
+                        ret.Add(new Employee() { Id = employeeId, Password = password, IdPerson = idPerson, IdSupervisor = idSupervisor, IdPermission = permision, Salary = salary, HiredDate = hiredDate });
                     }
                 }
             });
