@@ -83,13 +83,23 @@ namespace AttendanceSystem
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            DailyDetailsAddEditView frmDailyDetailsEdit = new DailyDetailsAddEditView(
+            if (dGVDailyResultsOverview.SelectedRows.Count > 0)
+            {
+
+                DailyDetailsAddEditView frmDailyDetailsEdit = new DailyDetailsAddEditView(
                 _selectedEmployeeId,
                 _thisDate,
                 _dailyDetailsViewModel.GetDailyResultById(Convert.ToInt32(dGVDailyResultsOverview.Rows[dGVDailyResultsOverview.CurrentCell.RowIndex].Cells[0].Value)),
                 _logic);
-            frmDailyDetailsEdit.ShowDialog();
-            FillDataGridView();
+                frmDailyDetailsEdit.ShowDialog();
+                FillDataGridView();
+            }
+
+            else
+            {
+                MessageBox.Show("Select record first");
+            }
         }
     }
 }
+
