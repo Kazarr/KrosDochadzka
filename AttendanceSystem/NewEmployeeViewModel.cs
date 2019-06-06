@@ -34,14 +34,20 @@ namespace AttendanceSystem
             _logic.AddNewEmployee(firstName, lastName, phoneNumber, address, permission, supervisor, password);
         }
 
-        public List<string> FillPermissions()
+        public List<string> FillPermissions(EnumPermissions permissions)
         {
-            return _logic.SelectPermissionName();
+            List<string> myPermissionList= _logic.SelectPermissionName();
+
+            if (permissions != EnumPermissions.Admin)
+            {
+                myPermissionList.Remove("Admin");
+            }
+            return myPermissionList;
         }
 
         public string EmployeePermission(Employee empolyee)
         {
-            return _logic.SelectPermissionNameById(empolyee.Permision);
+            return _logic.SelectPermissionNameById(empolyee.IdPermission);
         }
 
         public int EmployeePermissionId(string name)
@@ -62,7 +68,8 @@ namespace AttendanceSystem
         public void UpdateEmployee(string firstName, string lastName, string phoneNumber, string address, int permission, Person supervisor)
         {
             Person person = new Person() { FirstName = firstName, LastName = lastName, PhoneNumber = phoneNumber, Adress = address };
-            _logic.UpdateEmployee(person, permission, supervisor);
+            Employee.IdPermission = permission;
+            _logic.UpdateEmployee(person, Employee, supervisor);
 
         }
     }

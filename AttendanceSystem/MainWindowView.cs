@@ -34,7 +34,7 @@ namespace AttendanceSystem
         /// </summary>
         private void CheckPermission()
         {
-            int permssion = _mainWindowViewModel.GetEmployeeByID(_loggedEmployeeID).Permision;
+            int permssion = _mainWindowViewModel.GetEmployeeByID(_loggedEmployeeID).IdPermission;
 
             if (permssion == (int)EnumPermissions.Employee)
             {
@@ -83,7 +83,7 @@ namespace AttendanceSystem
 and all his records are you sure you want to continue?", "Delete Employee", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes && _mainWindowViewModel.Employee.Id != _loggedEmployeeID)
             {
-                _mainWindowViewModel.DeleteEmployeePerson((Person)comboBoxPerson.SelectedItem);
+                _mainWindowViewModel.DeleteEmployeePerson((Person)comboBoxPerson.SelectedItem,_loggedEmployeeID);
                 comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox();
                 MessageBox.Show("Delete Succesfull");
             }
@@ -125,7 +125,7 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
         {
             MarkedButton(btnUpdateEmployee);
-            NewEmployeeView newEmployee = new NewEmployeeView(_mainWindowViewModel.Person, _mainWindowViewModel.Employee, _logic);
+            NewEmployeeView newEmployee = new NewEmployeeView(_mainWindowViewModel.Person, _mainWindowViewModel.Employee, _logic, (EnumPermissions) _mainWindowViewModel.GetEmployeeByID(_loggedEmployeeID).IdPermission );
             newEmployee.ShowDialog();
             if (newEmployee.DialogResult == DialogResult.OK)
             {
@@ -165,6 +165,7 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
             FillComboBoxes();
             FillDataGridView();
             lblUserName.Text = $"{_logic.GetPersonByIdEmployee(_loggedEmployeeID).FirstName} {_logic.GetPersonByIdEmployee(_loggedEmployeeID).LastName}";
+            dGVOverview.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
         }
 
         /// <summary>

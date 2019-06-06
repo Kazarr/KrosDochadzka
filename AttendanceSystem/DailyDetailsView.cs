@@ -28,7 +28,7 @@ namespace AttendanceSystem
         /// </summary>
         private void CheckPermission()
         {
-            if (_dailyDetailsViewModel.GetEmpolyeeById(_loggedEmployeeId).Permision > 1)
+            if (_dailyDetailsViewModel.GetEmpolyeeById(_loggedEmployeeId).IdPermission > 1)
             {
                 btnAdd.Visible = true;
                 btnDelete.Visible = true;

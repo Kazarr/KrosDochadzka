@@ -28,6 +28,7 @@ namespace AttendanceSystem
             get => _person; set
             {
                 _person = value;
+                
                 Employee = GetEmpolyeeByPersonId(Person.Id);
             }
         }
@@ -49,7 +50,7 @@ namespace AttendanceSystem
         public BindingList<Person> FillComboBox(int idSupervisor)
         {
             List<Person> ret = _logic.GetPersonEmployeesPlebs(idSupervisor).ToList();
-            //Person = ret[0];
+            Person = ret.FirstOrDefault();
             return new BindingList<Person>(ret);
         }
 
@@ -74,11 +75,11 @@ namespace AttendanceSystem
             return _logic.GetEmpolyeeByIdPerson(selectedItem.Id).Id;
         }
 
-        public void DeleteEmployeePerson(Person person)
+        public void DeleteEmployeePerson(Person person,int supervisorID)
         {
 
             Employee employee = _logic.GetEmpolyeeByIdPerson(person.Id);
-            _logic.DeleteEmployee(employee);
+            _logic.DeleteEmployee(employee,supervisorID);
 
         }
 

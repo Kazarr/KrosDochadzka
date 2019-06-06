@@ -53,7 +53,7 @@ namespace Data.Generator
             int idPermission = 2;
             decimal salary = r.Next(1400, 2300);
             DateTime date = RandomDate();
-            return new Employee() { Password = pass, IdPerson = idPerson, Permision = idPermission, Salary = salary, HiredDate = date };
+            return new Employee() { Password = pass, IdPerson = idPerson, IdPermission = idPermission, Salary = salary, HiredDate = date };
         }
 
         public Employee SetEmployee(int i)
@@ -64,7 +64,7 @@ namespace Data.Generator
             int idPermission = 1;
             decimal salary = r.Next(1000, 2500);
             DateTime date = RandomDate();
-            return new Employee() { Password = pass, IdPerson = idPerson, IdSupervisor = idSupervisor, Permision = idPermission, Salary = salary, HiredDate = date };
+            return new Employee() { Password = pass, IdPerson = idPerson, IdSupervisor = idSupervisor, IdPermission = idPermission, Salary = salary, HiredDate = date };
         }
 
         public bool GenerateEmployees(Action<int> reportProgress, Func<bool> cancelationPendint)
