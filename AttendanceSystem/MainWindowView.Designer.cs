@@ -136,12 +136,11 @@
             // 
             // comboBoxPerson
             // 
-            this.comboBoxPerson.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxPerson.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPerson.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.comboBoxPerson.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.comboBoxPerson.FormattingEnabled = true;
-            this.comboBoxPerson.Location = new System.Drawing.Point(371, 268);
+            this.comboBoxPerson.Location = new System.Drawing.Point(371, 267);
             this.comboBoxPerson.Name = "comboBoxPerson";
             this.comboBoxPerson.Size = new System.Drawing.Size(263, 25);
             this.comboBoxPerson.TabIndex = 13;
@@ -161,12 +160,11 @@
             // 
             // comboBoxMonth
             // 
-            this.comboBoxMonth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxMonth.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.comboBoxMonth.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.comboBoxMonth.FormattingEnabled = true;
-            this.comboBoxMonth.Location = new System.Drawing.Point(371, 329);
+            this.comboBoxMonth.Location = new System.Drawing.Point(371, 328);
             this.comboBoxMonth.Name = "comboBoxMonth";
             this.comboBoxMonth.Size = new System.Drawing.Size(135, 25);
             this.comboBoxMonth.TabIndex = 11;
@@ -244,12 +242,11 @@
             // 
             // comboBoxYear
             // 
-            this.comboBoxYear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxYear.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxYear.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.comboBoxYear.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.comboBoxYear.FormattingEnabled = true;
-            this.comboBoxYear.Location = new System.Drawing.Point(371, 298);
+            this.comboBoxYear.Location = new System.Drawing.Point(371, 297);
             this.comboBoxYear.Name = "comboBoxYear";
             this.comboBoxYear.Size = new System.Drawing.Size(152, 25);
             this.comboBoxYear.TabIndex = 26;
