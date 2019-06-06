@@ -85,6 +85,7 @@
             // 
             // cmbSupervisors
             // 
+            this.cmbSupervisors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSupervisors.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmbSupervisors.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cmbSupervisors.FormattingEnabled = true;
@@ -95,6 +96,7 @@
             // 
             // cmbPermissions
             // 
+            this.cmbPermissions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPermissions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmbPermissions.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cmbPermissions.FormattingEnabled = true;
