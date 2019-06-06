@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindowView));
             this.btnShowMonth = new System.Windows.Forms.Button();
             this.btnUpdateEmployee = new System.Windows.Forms.Button();
             this.btnDeleteEmployee = new System.Windows.Forms.Button();
@@ -42,78 +43,96 @@
             this.buttonExit = new System.Windows.Forms.Button();
             this.btnDetails = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
-            this.btnChangePassword = new System.Windows.Forms.Button();
             this.comboBoxYear = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblUserName = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.lblEmpId = new System.Windows.Forms.Label();
+            this.btnChangePassword = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dGVOverview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnShowMonth
             // 
-            this.btnShowMonth.Location = new System.Drawing.Point(195, 265);
+            this.btnShowMonth.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnShowMonth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowMonth.Image = global::AttendanceSystem.Properties.Resources.overview;
+            this.btnShowMonth.Location = new System.Drawing.Point(12, 443);
             this.btnShowMonth.Name = "btnShowMonth";
-            this.btnShowMonth.Size = new System.Drawing.Size(162, 23);
+            this.btnShowMonth.Size = new System.Drawing.Size(200, 110);
             this.btnShowMonth.TabIndex = 20;
-            this.btnShowMonth.Text = "Month Overview";
             this.btnShowMonth.UseVisualStyleBackColor = true;
             this.btnShowMonth.Click += new System.EventHandler(this.btnShowMonth_Click_1);
+            this.btnShowMonth.MouseEnter += new System.EventHandler(this.btnShowMonth_MouseEnter);
+            this.btnShowMonth.MouseLeave += new System.EventHandler(this.btnShowMonth_MouseLeave);
             // 
             // btnUpdateEmployee
             // 
-            this.btnUpdateEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdateEmployee.Location = new System.Drawing.Point(997, 41);
+            this.btnUpdateEmployee.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnUpdateEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateEmployee.Image = global::AttendanceSystem.Properties.Resources.update;
+            this.btnUpdateEmployee.Location = new System.Drawing.Point(12, 553);
             this.btnUpdateEmployee.Name = "btnUpdateEmployee";
-            this.btnUpdateEmployee.Size = new System.Drawing.Size(162, 23);
+            this.btnUpdateEmployee.Size = new System.Drawing.Size(200, 110);
             this.btnUpdateEmployee.TabIndex = 17;
-            this.btnUpdateEmployee.Text = "Update Employee";
             this.btnUpdateEmployee.UseVisualStyleBackColor = true;
             this.btnUpdateEmployee.Click += new System.EventHandler(this.btnUpdateEmployee_Click);
+            this.btnUpdateEmployee.MouseEnter += new System.EventHandler(this.btnUpdateEmployee_MouseEnter);
+            this.btnUpdateEmployee.MouseLeave += new System.EventHandler(this.btnUpdateEmployee_MouseLeave);
             // 
             // btnDeleteEmployee
             // 
-            this.btnDeleteEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeleteEmployee.Location = new System.Drawing.Point(811, 12);
+            this.btnDeleteEmployee.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnDeleteEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteEmployee.Image = global::AttendanceSystem.Properties.Resources.deleteEmp;
+            this.btnDeleteEmployee.Location = new System.Drawing.Point(12, 773);
             this.btnDeleteEmployee.Name = "btnDeleteEmployee";
-            this.btnDeleteEmployee.Size = new System.Drawing.Size(162, 23);
+            this.btnDeleteEmployee.Size = new System.Drawing.Size(200, 110);
             this.btnDeleteEmployee.TabIndex = 16;
-            this.btnDeleteEmployee.Text = "Delete Employee";
             this.btnDeleteEmployee.UseVisualStyleBackColor = true;
             this.btnDeleteEmployee.Click += new System.EventHandler(this.btnDeleteEmployee_Click_1);
+            this.btnDeleteEmployee.MouseEnter += new System.EventHandler(this.btnDeleteEmployee_MouseEnter);
+            this.btnDeleteEmployee.MouseLeave += new System.EventHandler(this.btnDeleteEmployee_MouseLeave);
             // 
             // btnNewEmployee
             // 
-            this.btnNewEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNewEmployee.Location = new System.Drawing.Point(997, 12);
+            this.btnNewEmployee.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnNewEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewEmployee.Image = global::AttendanceSystem.Properties.Resources._new;
+            this.btnNewEmployee.Location = new System.Drawing.Point(12, 663);
             this.btnNewEmployee.Name = "btnNewEmployee";
-            this.btnNewEmployee.Size = new System.Drawing.Size(162, 23);
+            this.btnNewEmployee.Size = new System.Drawing.Size(200, 110);
             this.btnNewEmployee.TabIndex = 15;
-            this.btnNewEmployee.Text = "New Employee";
             this.btnNewEmployee.UseVisualStyleBackColor = true;
             this.btnNewEmployee.Click += new System.EventHandler(this.btnNewEmployee_Click_1);
+            this.btnNewEmployee.MouseEnter += new System.EventHandler(this.btnNewEmployee_MouseEnter);
+            this.btnNewEmployee.MouseLeave += new System.EventHandler(this.btnNewEmployee_MouseLeave);
             // 
             // labelChoosePerson
             // 
             this.labelChoosePerson.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelChoosePerson.AutoSize = true;
             this.labelChoosePerson.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.labelChoosePerson.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelChoosePerson.Location = new System.Drawing.Point(657, 243);
+            this.labelChoosePerson.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.labelChoosePerson.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelChoosePerson.Location = new System.Drawing.Point(813, 92);
             this.labelChoosePerson.Name = "labelChoosePerson";
-            this.labelChoosePerson.Size = new System.Drawing.Size(108, 18);
+            this.labelChoosePerson.Size = new System.Drawing.Size(129, 20);
             this.labelChoosePerson.TabIndex = 14;
             this.labelChoosePerson.Text = "Choose  person ";
             // 
             // comboBoxPerson
             // 
             this.comboBoxPerson.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxPerson.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.comboBoxPerson.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.comboBoxPerson.FormattingEnabled = true;
-            this.comboBoxPerson.Location = new System.Drawing.Point(771, 240);
+            this.comboBoxPerson.Location = new System.Drawing.Point(948, 92);
             this.comboBoxPerson.Name = "comboBoxPerson";
-            this.comboBoxPerson.Size = new System.Drawing.Size(395, 21);
+            this.comboBoxPerson.Size = new System.Drawing.Size(263, 25);
             this.comboBoxPerson.TabIndex = 13;
             this.comboBoxPerson.SelectionChangeCommitted += new System.EventHandler(this.comboBoxPerson_SelectionChangeCommitted);
             // 
@@ -122,20 +141,23 @@
             this.labelMonth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelMonth.AutoSize = true;
             this.labelMonth.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.labelMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelMonth.Location = new System.Drawing.Point(669, 270);
+            this.labelMonth.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.labelMonth.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.labelMonth.Location = new System.Drawing.Point(525, 93);
             this.labelMonth.Name = "labelMonth";
-            this.labelMonth.Size = new System.Drawing.Size(96, 18);
+            this.labelMonth.Size = new System.Drawing.Size(117, 20);
             this.labelMonth.TabIndex = 12;
             this.labelMonth.Text = "Choose month";
             // 
             // comboBoxMonth
             // 
             this.comboBoxMonth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxMonth.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.comboBoxMonth.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.comboBoxMonth.FormattingEnabled = true;
-            this.comboBoxMonth.Location = new System.Drawing.Point(771, 267);
+            this.comboBoxMonth.Location = new System.Drawing.Point(648, 92);
             this.comboBoxMonth.Name = "comboBoxMonth";
-            this.comboBoxMonth.Size = new System.Drawing.Size(395, 21);
+            this.comboBoxMonth.Size = new System.Drawing.Size(135, 25);
             this.comboBoxMonth.TabIndex = 11;
             this.comboBoxMonth.SelectionChangeCommitted += new System.EventHandler(this.comboBoxMonth_SelectionChangeCommitted);
             // 
@@ -151,13 +173,13 @@
             this.dGVOverview.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dGVOverview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGVOverview.DataSource = this.bindingSource1;
-            this.dGVOverview.Location = new System.Drawing.Point(15, 294);
+            this.dGVOverview.Location = new System.Drawing.Point(233, 189);
             this.dGVOverview.MultiSelect = false;
             this.dGVOverview.Name = "dGVOverview";
             this.dGVOverview.ReadOnly = true;
             this.dGVOverview.RowHeadersVisible = false;
             this.dGVOverview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dGVOverview.Size = new System.Drawing.Size(1151, 225);
+            this.dGVOverview.Size = new System.Drawing.Size(1039, 804);
             this.dGVOverview.TabIndex = 21;
             this.dGVOverview.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dGVOverview_RowPrePaint);
             // 
@@ -167,54 +189,57 @@
             // 
             // buttonExit
             // 
-            this.buttonExit.Location = new System.Drawing.Point(15, 12);
+            this.buttonExit.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.buttonExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonExit.Image = global::AttendanceSystem.Properties.Resources.logout1;
+            this.buttonExit.Location = new System.Drawing.Point(12, 113);
             this.buttonExit.Name = "buttonExit";
-            this.buttonExit.Size = new System.Drawing.Size(162, 23);
+            this.buttonExit.Size = new System.Drawing.Size(200, 110);
             this.buttonExit.TabIndex = 22;
-            this.buttonExit.Text = "Logout";
             this.buttonExit.UseVisualStyleBackColor = true;
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
+            this.buttonExit.MouseEnter += new System.EventHandler(this.buttonExit_MouseEnter);
+            this.buttonExit.MouseLeave += new System.EventHandler(this.buttonExit_MouseLeave);
             // 
             // btnDetails
             // 
-            this.btnDetails.Location = new System.Drawing.Point(15, 265);
+            this.btnDetails.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnDetails.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDetails.Image = ((System.Drawing.Image)(resources.GetObject("btnDetails.Image")));
+            this.btnDetails.Location = new System.Drawing.Point(12, 333);
             this.btnDetails.Name = "btnDetails";
-            this.btnDetails.Size = new System.Drawing.Size(174, 23);
+            this.btnDetails.Size = new System.Drawing.Size(200, 110);
             this.btnDetails.TabIndex = 23;
-            this.btnDetails.Text = "Details";
             this.btnDetails.UseVisualStyleBackColor = true;
             this.btnDetails.Click += new System.EventHandler(this.btnDetails_Click);
+            this.btnDetails.MouseEnter += new System.EventHandler(this.btnDetails_MouseEnter);
+            this.btnDetails.MouseLeave += new System.EventHandler(this.btnDetails_MouseLeave);
             // 
             // btnReset
             // 
-            this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReset.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnReset.Enabled = false;
-            this.btnReset.Location = new System.Drawing.Point(997, 70);
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.Image = global::AttendanceSystem.Properties.Resources.reset;
+            this.btnReset.Location = new System.Drawing.Point(12, 883);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(162, 23);
+            this.btnReset.Size = new System.Drawing.Size(200, 110);
             this.btnReset.TabIndex = 24;
-            this.btnReset.Text = "Reset Employee Password";
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Visible = false;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
-            // 
-            // btnChangePassword
-            // 
-            this.btnChangePassword.Location = new System.Drawing.Point(15, 41);
-            this.btnChangePassword.Name = "btnChangePassword";
-            this.btnChangePassword.Size = new System.Drawing.Size(162, 23);
-            this.btnChangePassword.TabIndex = 25;
-            this.btnChangePassword.Text = "Change Password";
-            this.btnChangePassword.UseVisualStyleBackColor = true;
-            this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
+            this.btnReset.MouseEnter += new System.EventHandler(this.btnReset_MouseEnter);
+            this.btnReset.MouseLeave += new System.EventHandler(this.btnReset_MouseLeave);
             // 
             // comboBoxYear
             // 
             this.comboBoxYear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxYear.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.comboBoxYear.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.comboBoxYear.FormattingEnabled = true;
-            this.comboBoxYear.Location = new System.Drawing.Point(771, 213);
+            this.comboBoxYear.Location = new System.Drawing.Point(349, 94);
             this.comboBoxYear.Name = "comboBoxYear";
-            this.comboBoxYear.Size = new System.Drawing.Size(395, 21);
+            this.comboBoxYear.Size = new System.Drawing.Size(152, 25);
             this.comboBoxYear.TabIndex = 26;
             this.comboBoxYear.SelectedIndexChanged += new System.EventHandler(this.comboBoxYear_SelectedIndexChanged);
             // 
@@ -223,50 +248,78 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(670, 216);
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(230, 95);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 18);
+            this.label1.Size = new System.Drawing.Size(113, 20);
             this.label1.TabIndex = 27;
             this.label1.Text = "Choose  Year ";
             // 
             // lblUserName
             // 
-            this.lblUserName.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblUserName.Location = new System.Drawing.Point(281, 21);
+            this.lblUserName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblUserName.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblUserName.Location = new System.Drawing.Point(0, 0);
             this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(429, 23);
+            this.lblUserName.Size = new System.Drawing.Size(1293, 42);
             this.lblUserName.TabIndex = 28;
             this.lblUserName.Text = "label2";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(516, 239);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 21);
-            this.label2.TabIndex = 29;
-            this.label2.Text = "Emp ID";
+            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblEmpId
             // 
             this.lblEmpId.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEmpId.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblEmpId.Location = new System.Drawing.Point(588, 239);
+            this.lblEmpId.Location = new System.Drawing.Point(1223, 93);
             this.lblEmpId.Name = "lblEmpId";
-            this.lblEmpId.Size = new System.Drawing.Size(49, 21);
+            this.lblEmpId.Size = new System.Drawing.Size(58, 21);
             this.lblEmpId.TabIndex = 30;
+            this.lblEmpId.Text = "ID";
             this.lblEmpId.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btnChangePassword
+            // 
+            this.btnChangePassword.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnChangePassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChangePassword.Image = ((System.Drawing.Image)(resources.GetObject("btnChangePassword.Image")));
+            this.btnChangePassword.Location = new System.Drawing.Point(12, 223);
+            this.btnChangePassword.Name = "btnChangePassword";
+            this.btnChangePassword.Size = new System.Drawing.Size(200, 110);
+            this.btnChangePassword.TabIndex = 25;
+            this.btnChangePassword.UseVisualStyleBackColor = true;
+            this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
+            this.btnChangePassword.MouseEnter += new System.EventHandler(this.btnChangePassword_MouseEnter);
+            this.btnChangePassword.MouseLeave += new System.EventHandler(this.btnChangePassword_MouseLeave);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.Image = global::AttendanceSystem.Properties.Resources.attsys;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(200, 110);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 31;
+            this.pictureBox1.TabStop = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Red;
+            this.panel1.Location = new System.Drawing.Point(214, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(10, 110);
+            this.panel1.TabIndex = 32;
             // 
             // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1187, 531);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(1293, 1000);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblEmpId);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblUserName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxYear);
@@ -288,6 +341,7 @@
             this.Load += new System.EventHandler(this.FrmMainWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dGVOverview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -323,8 +377,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn otherDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalTimeWorked;
         private System.Windows.Forms.Label lblUserName;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblEmpId;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
