@@ -176,15 +176,15 @@ commit";
             return ret;
         }
 
-        public void UpdateSupervisor(Employee empolyee)
+        public void UpdateSupervisor(int id)
         {
             Execute((command) => 
             {
                 command.CommandText = @"UPDATE Employee
 	                                            SET IdSupervisor = @idSupervisor
 	                                            WHERE id = @idEmployee ";
-                command.Parameters.Add("@idSupervisor", SqlDbType.Decimal).Value = empolyee.IdSupervisor;
-                command.Parameters.Add("@idEmployee", SqlDbType.Int).Value = empolyee.Id;
+                command.Parameters.Add("@idSupervisor", SqlDbType.Decimal).Value = id;
+                command.Parameters.Add("@idEmployee", SqlDbType.Int).Value = id;
                 command.ExecuteNonQuery();
             });
         }

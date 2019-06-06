@@ -20,7 +20,6 @@ namespace Data.Generator
         public bool Generating { get; private set; }
         public EmployeeGenerator(int employeeCount)
         {
-
             _repositoryFactory = new RepositoryFactory();
             GeneratedEmployeesId = new List<int>();
             GeneratedSupervisorsId = new List<int>();
@@ -60,7 +59,7 @@ namespace Data.Generator
         {
             string pass = "4a7d1ed414474e4033ac29ccb8653d9b";
             int idPerson = i;
-            int idSupervisor = r.Next(GeneratedSupervisorsId.First(),GeneratedSupervisorsId.Last());
+            int idSupervisor = GeneratedSupervisorsId[r.Next(0,GeneratedSupervisorsId.Count)];
             int idPermission = 1;
             decimal salary = r.Next(1000, 2500);
             DateTime date = RandomDate();
@@ -80,9 +79,9 @@ namespace Data.Generator
                 }
                 else
                 {
-
                     GeneratedEmployeesId.Add(_repositoryFactory.GetEmployeeRepository().InsertFullEmployee(SetSupervisor(i)));
                     GeneratedSupervisorsId.Add(GeneratedEmployeesId.Last());
+                    _repositoryFactory.GetEmployeeRepository().UpdateSupervisor(GeneratedSupervisorsId.Last());
                 }
                 reportProgress.Invoke(((int)(((double)count / _personGenerator.generatedPersonsId.Count) * 100)));
             }

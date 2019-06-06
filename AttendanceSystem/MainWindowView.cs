@@ -364,10 +364,6 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
         {
             MethodInvoker invoker = () => progressBar1.Value = e.ProgressPercentage;
             progressBar1.BeginInvoke(invoker);
-
-            //invoker = () => lblGenerating.Visible = true;
-            //lblGenerating.BeginInvoke(invoker);
-
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
@@ -386,6 +382,7 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
                 progressBar1.Visible = false;
                 btnCancel.Visible = false;
             }
+            CheckPermission();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
