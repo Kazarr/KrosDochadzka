@@ -1,4 +1,5 @@
 ﻿using AttendanceSystem.Properties;
+using Data.Generator;
 using Data.Model;
 using Logic;
 using System;
@@ -24,6 +25,8 @@ namespace AttendanceSystem
             _logic = logic;
             _mainWindowViewModel = new MainWindowViewModel(_logic);
             WindowState = FormWindowState.Maximized;
+            progressBar1.Visible = false;
+            lblGenerating.Visible = false;
         }
 
         /// <summary>
@@ -35,16 +38,10 @@ namespace AttendanceSystem
 
             if (permssion == (int)EnumPermissions.Employee)
             {
-                btnDeleteEmployee.Visible = false;
-                btnNewEmployee.Visible = false;
-                btnUpdateEmployee.Visible = false;
                 comboBoxPerson.DataSource = _mainWindowViewModel.FillPlebPerson(_loggedEmployeeID);
             }
-            else if (permssion == (int)EnumPermissions.Supervisor)
+            if (permssion == (int)EnumPermissions.Supervisor)
             {
-
-                btnDeleteEmployee.Visible = false;
-                btnNewEmployee.Visible = false;
                 btnReset.Visible = true;
                 comboBoxPerson.DataSource = _mainWindowViewModel.FillPlebPerson(_loggedEmployeeID);
                 comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox(_loggedEmployeeID);
@@ -52,7 +49,11 @@ namespace AttendanceSystem
             else if (permssion == (int)EnumPermissions.Admin)
             {
                 comboBoxPerson.DataSource = _mainWindowViewModel.FillComboBox();
+                btnDeleteEmployee.Visible = true;
+                btnNewEmployee.Visible = true;
+                btnUpdateEmployee.Visible = true;
                 btnReset.Visible = true;
+                pictureBox1.Enabled = true;
             }
 
         }
@@ -328,5 +329,61 @@ and all his records are you sure you want to continue?", "Delete Employee", Mess
             ChangeImage(btnReset, Resources.reset);
         }
         #endregion
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            GenerateDataView generate = new GenerateDataView(_mainWindowViewModel);
+            generate.ShowDialog();
+            if (generate.DialogResult == DialogResult.OK)
+            {
+                progressBar1.Visible = true;
+                lblGenerating.Visible = true;
+                btnCancel.Visible = true;
+                backgroundWorker1.RunWorkerAsync();
+            }
+            generate.Dispose();
+        }
+
+        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            EmployeeGenerator employeeGenerator = new EmployeeGenerator(_mainWindowViewModel.EmployeeToGenerate);
+
+            e.Result = employeeGenerator.Generate(backgroundWorker1.ReportProgress, CheckCancellation);
+        }
+
+        private void backgroundWorker1_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+            MethodInvoker invoker = () => progressBar1.Value = e.ProgressPercentage;
+            progressBar1.BeginInvoke(invoker);
+
+            //invoker = () => lblGenerating.Visible = true;
+            //lblGenerating.BeginInvoke(invoker);
+
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            if ((bool)e.Result)
+            {
+                MessageBox.Show("Random data was successfully generated", "Generator", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                lblGenerating.Visible = false;
+                progressBar1.Visible = false;
+                btnCancel.Visible = false;
+            }
+            else
+            {
+                MessageBox.Show("There was an error generating data", "Generator", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lblGenerating.Visible = false;
+                progressBar1.Visible = false;
+                btnCancel.Visible = false;
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            backgroundWorker1.CancelAsync();
+        }
+
+        private bool CheckCancellation() => backgroundWorker1.CancellationPending;
     }
 }

@@ -50,6 +50,10 @@
             this.btnChangePassword = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.lblGenerating = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.btnCancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dGVOverview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -79,6 +83,7 @@
             this.btnUpdateEmployee.Size = new System.Drawing.Size(200, 110);
             this.btnUpdateEmployee.TabIndex = 17;
             this.btnUpdateEmployee.UseVisualStyleBackColor = true;
+            this.btnUpdateEmployee.Visible = false;
             this.btnUpdateEmployee.Click += new System.EventHandler(this.btnUpdateEmployee_Click);
             this.btnUpdateEmployee.MouseEnter += new System.EventHandler(this.btnUpdateEmployee_MouseEnter);
             this.btnUpdateEmployee.MouseLeave += new System.EventHandler(this.btnUpdateEmployee_MouseLeave);
@@ -93,6 +98,7 @@
             this.btnDeleteEmployee.Size = new System.Drawing.Size(200, 110);
             this.btnDeleteEmployee.TabIndex = 16;
             this.btnDeleteEmployee.UseVisualStyleBackColor = true;
+            this.btnDeleteEmployee.Visible = false;
             this.btnDeleteEmployee.Click += new System.EventHandler(this.btnDeleteEmployee_Click_1);
             this.btnDeleteEmployee.MouseEnter += new System.EventHandler(this.btnDeleteEmployee_MouseEnter);
             this.btnDeleteEmployee.MouseLeave += new System.EventHandler(this.btnDeleteEmployee_MouseLeave);
@@ -107,6 +113,7 @@
             this.btnNewEmployee.Size = new System.Drawing.Size(200, 110);
             this.btnNewEmployee.TabIndex = 15;
             this.btnNewEmployee.UseVisualStyleBackColor = true;
+            this.btnNewEmployee.Visible = false;
             this.btnNewEmployee.Click += new System.EventHandler(this.btnNewEmployee_Click_1);
             this.btnNewEmployee.MouseEnter += new System.EventHandler(this.btnNewEmployee_MouseEnter);
             this.btnNewEmployee.MouseLeave += new System.EventHandler(this.btnNewEmployee_MouseLeave);
@@ -294,6 +301,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.White;
+            this.pictureBox1.Enabled = false;
             this.pictureBox1.Image = global::AttendanceSystem.Properties.Resources.attsys;
             this.pictureBox1.Location = new System.Drawing.Point(12, 3);
             this.pictureBox1.Name = "pictureBox1";
@@ -301,6 +309,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 31;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // panel1
             // 
@@ -310,12 +319,54 @@
             this.panel1.Size = new System.Drawing.Size(10, 110);
             this.panel1.TabIndex = 32;
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(230, 56);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(132, 23);
+            this.progressBar1.TabIndex = 33;
+            // 
+            // lblGenerating
+            // 
+            this.lblGenerating.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblGenerating.AutoSize = true;
+            this.lblGenerating.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblGenerating.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.lblGenerating.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblGenerating.Location = new System.Drawing.Point(230, 9);
+            this.lblGenerating.Name = "lblGenerating";
+            this.lblGenerating.Size = new System.Drawing.Size(132, 20);
+            this.lblGenerating.TabIndex = 34;
+            this.lblGenerating.Text = "Generating data";
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(368, 56);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 35;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Visible = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1293, 1000);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.lblGenerating);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblEmpId);
@@ -379,6 +430,10 @@
         private System.Windows.Forms.Label lblEmpId;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label lblGenerating;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
 

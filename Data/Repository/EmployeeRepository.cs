@@ -33,6 +33,40 @@ namespace Data.Repository
             return ret;
         }
 
+        public List<Employee> GetEmployeesByIdGreaterThan(int lowestId)
+        {
+            List<Employee> ret = new List<Employee>();
+            Execute((command) =>
+            {
+                command.CommandText = @"SELECT TOP (1000) [Id]
+                                      ,[Password]
+                                      ,[IdPerson]
+                                      ,[IdSupervisor]
+                                      ,[IdPermission]
+                                      ,[Salary]
+                                      ,[HiredDate]
+                                  FROM [Employee]
+                                  where id >= @lowestId";
+                command.Parameters.Add("@lowestId", SqlDbType.Int).Value = lowestId;
+                using(SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int employeeId = reader.GetInt32(0);
+                        string password = reader.GetString(1);
+                        int idPerson = reader.GetInt32(2);
+                        int idSupervisor = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
+                        int permision = reader.GetInt32(4);
+                        decimal salary = reader.GetDecimal(5);
+                        DateTime hiredDate = reader.GetDateTime(6);
+
+                        ret.Add(new Employee() { Id = employeeId, Password = password, IdPerson = idPerson, IdSupervisor = idSupervisor, Permision = permision, Salary = salary, HiredDate = hiredDate });
+                    }
+                }
+            });
+            return ret;
+        }
+
         public bool ChangePassword(int employeeId, string password)
         {           
             bool success = false;
